@@ -2,9 +2,11 @@
 
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
 
-- **Bug:** 24, gồm 16 đang mở, 7 đã sửa trên `fix/storefront-bugs` nhưng chưa vào `develop`, 1 đã đóng (SF-16)
-- **Ảnh:** 27
-- **Kế hoạch sửa:** [fix-plans](fix-plans/), mỗi bug một file, chia theo repo cần sửa
+- **Bug:** 34, gồm 16 đang mở, 17 đã sửa và đã vào `origin/develop` qua PR #77 (merge `b3444b9`), 1 đã đóng (SF-16)
+- **Ảnh:** 37 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
+- **Kế hoạch sửa:** [fix-plans](fix-plans/), 27 file cho SF-01–SF-27, chia theo repo cần sửa; BO-01–BO-07 chưa có kế hoạch riêng
+
+Bổ sung ngày 2026-11-11: SF-18–SF-27 là 10 bug giao diện Minor. Đã đối chiếu ảnh và commit sửa; chưa chạy kiểm thử lại. Trạng thái đã vào `origin/develop` được xác nhận bằng Git sau khi fetch. [Tổng kết](tong-ket.md) giữ nguyên kết quả đợt test 2026-11-10, chưa bao gồm 10 bug mới. SF-27 tiếp nối phần tiêu đề riêng từng trang từng được để tùy chọn ở SF-14.
 
 | Sheet | Bên | File |
 |---|---|---|

@@ -19,13 +19,23 @@
 | [SF-15](#sf-15) | Minor (đã sửa) | 5 - Hủy đơn | Chi tiết đơn storefront | storefront | [Ảnh 1](../images/SF-15-1.jpg) |
 | [SF-16](#sf-16) | Minor (đã đóng) | 1 - Đăng nhập | Form đăng nhập | storefront | [Ảnh 1](../images/SF-16-1.jpg) |
 | [SF-17](#sf-17) | Minor (đã sửa) | Backoffice 2 - Hiển thị sách | Chi tiết sách storefront | storefront | [Ảnh 1](../images/SF-17-1.jpg) |
+| [SF-18](#sf-18) | Minor (đã sửa) | 3 - Checkout COD | /checkout · chọn địa chỉ | storefront | [Ảnh 1](../images/SF-18-1.png) |
+| [SF-19](#sf-19) | Minor (đã sửa) | 3 - Checkout COD | /checkout | storefront | [Ảnh 1](../images/SF-19-1.webp) |
+| [SF-20](#sf-20) | Minor (đã sửa) | Giao diện điện thoại | Header · NotificationsMenu / AccountMenu | storefront | [Ảnh 1](../images/SF-20-1.png) |
+| [SF-21](#sf-21) | Minor (đã sửa) | 2 - Danh mục, thêm giỏ | /books · BookCard | storefront | [Ảnh 1](../images/SF-21-1.jpg) |
+| [SF-22](#sf-22) | Minor (đã sửa) | Đơn hàng và đổi/trả | /orders · bộ lọc đơn hàng, đổi/trả | storefront | [Ảnh 1](../images/SF-22-1.jpg) |
+| [SF-23](#sf-23) | Minor (đã sửa) | 2 - Chi tiết sách | /detail/[...slug] · breadcrumb | storefront | [Ảnh 1](../images/SF-23-1.jpg) |
+| [SF-24](#sf-24) | Minor (đã sửa) | Đơn hàng và thông báo | /orders · menu thông báo | storefront | [Ảnh 1](../images/SF-24-1.jpg), [Ảnh 2](../images/SF-24-2.jpg) |
+| [SF-25](#sf-25) | Minor (đã sửa) | 8 - Giao diện điện thoại | Header · thanh điều hướng phụ | storefront | [Ảnh 1](../images/SF-25-1.jpg) |
+| [SF-26](#sf-26) | Minor (đã sửa) | Điều hướng, xử lý trang không tồn tại | Đường dẫn không tồn tại dưới /vi | storefront | [Ảnh 1](../images/SF-26-1.jpg) |
+| [SF-27](#sf-27) | Minor (đã sửa) | Điều hướng và tiêu đề trang | /cart, /orders, /search, /login, /register | storefront | [Bằng chứng nguồn](../fix-plans/storefront/SF-27.md#bằng-chứng) |
 
 ## SF-01
 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-01.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-01.md) |
 | **Luồng** | 1 - Đăng nhập, đăng ký |
 | **Endpoint / Màn hình** | POST /auth/login, /auth/register · route.ts |
 | **Nghi ngờ thuộc** | storefront (route.ts) |
@@ -86,7 +96,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-05.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-05.md) |
 | **Luồng** | 2 - Giỏ hàng |
 | **Endpoint / Màn hình** | Mọi trang storefront · lib/auth/token.ts |
 | **Nghi ngờ thuộc** | storefront |
@@ -177,7 +187,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-11.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-11.md) |
 | **Luồng** | 1 - Đăng nhập |
 | **Endpoint / Màn hình** | Trang đăng nhập |
 | **Nghi ngờ thuộc** | storefront |
@@ -208,7 +218,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-13.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-13.md) |
 | **Luồng** | Hồ sơ |
 | **Endpoint / Màn hình** | /vi/profile |
 | **Nghi ngờ thuộc** | storefront |
@@ -224,7 +234,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-14.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-14.md) |
 | **Luồng** | Nhiều trang |
 | **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
 | **Nghi ngờ thuộc** | storefront |
@@ -240,7 +250,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `be16d74`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-15.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `be16d74`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-15.md) |
 | **Luồng** | 5 - Hủy đơn |
 | **Endpoint / Màn hình** | Chi tiết đơn storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -272,7 +282,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-17.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-17.md) |
 | **Luồng** | Backoffice 2 - Hiển thị sách |
 | **Endpoint / Màn hình** | Chi tiết sách storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -282,3 +292,163 @@
 | **Bằng chứng (status/body)** | Ảnh chi tiết sách id 50 |
 | **API Response** | Không áp dụng |
 | **Ảnh bằng chứng** | [SF-17-1.jpg](../images/SF-17-1.jpg) |
+
+## SF-18
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-18.md). |
+| **Luồng** | 3 - Checkout COD |
+| **Endpoint / Màn hình** | /checkout · chọn địa chỉ |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Đăng nhập, có giỏ hàng và địa chỉ chứa chuỗi dài không có dấu cách (500 ký tự)<br>2. Mở checkout ở chiều rộng 390px |
+| **Mong đợi** | Địa chỉ xuống dòng trong khung, trang không cuộn ngang |
+| **Thực tế** | Chuỗi địa chỉ chạy qua mép phải màn hình |
+| **Bằng chứng (status/body)** | Ảnh dựng lại lỗi trên code trước bản sửa theo bàn giao; đã kiểm tra nội dung ảnh. Không phải ảnh chụp bản hiện tại. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-18-1.png) |
+
+## SF-19
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-19.md). |
+| **Luồng** | 3 - Checkout COD |
+| **Endpoint / Màn hình** | /checkout |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Đăng nhập, thêm sách vào giỏ<br>2. Mở trang thanh toán trên desktop |
+| **Mong đợi** | Nội dung có khoảng cách hai bên và căn theo container chung của website |
+| **Thực tế** | Nội dung thanh toán sát mép, không thẳng hàng với header |
+| **Bằng chứng (status/body)** | Ảnh người dùng cung cấp; đã kiểm tra nội dung ảnh. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-19-1.webp) |
+
+## SF-20
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-20.md). |
+| **Luồng** | Giao diện điện thoại |
+| **Endpoint / Màn hình** | Header · NotificationsMenu / AccountMenu |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở storefront trên điện thoại<br>2. Bấm biểu tượng thông báo trên header |
+| **Mong đợi** | Khung thông báo nằm trọn trong viewport, đọc và bấm được nội dung |
+| **Thực tế** | Khung lệch ra ngoài mép trái, nội dung bị cắt |
+| **Bằng chứng (status/body)** | Ảnh người dùng cung cấp; đã kiểm tra nội dung ảnh. Ảnh minh họa thông báo; phạm vi sửa còn bao gồm khung tài khoản. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-20-1.png) |
+
+## SF-21
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-21.md). |
+| **Luồng** | 2 - Danh mục, thêm giỏ |
+| **Endpoint / Màn hình** | /books · BookCard |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở danh mục sách trên điện thoại cảm ứng<br>2. Quan sát và thao tác trên thẻ sách |
+| **Mong đợi** | Có thể nhìn thấy và bấm nút yêu thích, thêm giỏ mà không cần hover |
+| **Thực tế** | Các nút bị ẩn khi không hover; điện thoại không có thao tác rê chuột |
+| **Bằng chứng (status/body)** | Ảnh cho thấy thẻ sách không có nút thao tác; nguyên nhân được đối chiếu trong diff commit. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-21-1.jpg) |
+
+## SF-22
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-22.md). |
+| **Luồng** | Đơn hàng và đổi/trả |
+| **Endpoint / Màn hình** | /orders · bộ lọc đơn hàng, đổi/trả |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Đăng nhập, mở /vi/orders<br>2. Xem chip lọc ở tab Đơn hàng và Đổi/Trả |
+| **Mong đợi** | Nhãn trạng thái tiếng Việt; URL/API vẫn dùng mã trạng thái |
+| **Thực tế** | Chip hiển thị mã PENDING, CONFIRMED, PROCESSING… |
+| **Bằng chứng (status/body)** | Ảnh minh họa tab Đơn hàng; diff xác nhận sửa cả bộ lọc đổi/trả. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-22-1.jpg) |
+
+## SF-23
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-23.md). |
+| **Luồng** | 2 - Chi tiết sách |
+| **Endpoint / Màn hình** | /detail/[...slug] · breadcrumb |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở chi tiết sách có tên và danh mục dài<br>2. Thu viewport xuống 375px |
+| **Mong đợi** | Các mục breadcrumb tách rõ, được xuống dòng khi thiếu chỗ |
+| **Thực tế** | Tên danh mục và tên sách chồng lên nhau |
+| **Bằng chứng (status/body)** | Ảnh minh họa chi tiết sách Tư Duy Python ở viewport điện thoại. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-23-1.jpg) |
+
+## SF-24
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-24.md). |
+| **Luồng** | Đơn hàng và thông báo |
+| **Endpoint / Màn hình** | /orders · menu thông báo |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Đăng xuất hoặc mở phiên khách<br>2. Mở /vi/orders<br>3. Mở menu thông báo |
+| **Mong đợi** | Nhắc đăng nhập và có liên kết đăng nhập |
+| **Thực tế** | Hiển thị “Bạn chưa có đơn hàng”, “Bạn chưa có thông báo” như tài khoản đã đăng nhập nhưng chưa có dữ liệu |
+| **Bằng chứng (status/body)** | Hai ảnh từ phiên khách theo bàn giao; ảnh riêng lẻ không tự chứng minh trạng thái phiên. Diff xác nhận nhánh giao diện trước đây thiếu phân biệt khách. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-24-1.jpg), [Ảnh 2](../images/SF-24-2.jpg) |
+
+## SF-25
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-25.md). |
+| **Luồng** | 8 - Giao diện điện thoại |
+| **Endpoint / Màn hình** | Header · thanh điều hướng phụ |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở trang chủ ở chiều rộng khoảng 375–413px<br>2. Xem hàng “Tất cả danh mục”, “Theo dõi đơn”, “Hỗ trợ” |
+| **Mong đợi** | Tên danh mục không bị bẻ dòng khó đọc, các liên kết truy cập được bằng cuộn ngang khi thiếu chỗ |
+| **Thực tế** | “Tất cả danh mục” xuống dòng, các mục còn lại chật và bị cắt ở cuối |
+| **Bằng chứng (status/body)** | Ảnh SF-25-1.jpg; triệu chứng cũng đã được ghi chú trong luồng giao diện điện thoại của đợt 10/11. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-25-1.jpg) |
+
+## SF-26
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-26.md). |
+| **Luồng** | Điều hướng, xử lý trang không tồn tại |
+| **Endpoint / Màn hình** | Đường dẫn không tồn tại dưới /vi |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở một đường dẫn không tồn tại, ví dụ /vi/khong-co-trang-nay |
+| **Mong đợi** | Trang lỗi của Velora có thông báo tiếng Việt và điều hướng của cửa hàng |
+| **Thực tế** | Trang 404 mặc định của Next.js, không có header của cửa hàng |
+| **Bằng chứng (status/body)** | Ảnh 320×240 hiển thị “404 / This page could not be found.”; ảnh không chứa URL, đường dẫn tái hiện dựa trên test trong commit. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | [Ảnh 1](../images/SF-26-1.jpg) |
+
+## SF-27
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-27.md). |
+| **Luồng** | Điều hướng và tiêu đề trang |
+| **Endpoint / Màn hình** | /cart, /orders, /search, /login, /register |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở lần lượt giỏ, đơn hàng, tìm kiếm, đăng nhập và đăng ký<br>2. Đọc document.title hoặc dùng await page.title() |
+| **Mong đợi** | Mỗi trang có tiêu đề riêng gắn với Velora |
+| **Thực tế** | Các trang dùng tiêu đề mặc định chung do không khai báo metadata riêng |
+| **Bằng chứng (status/body)** | Không có ảnh và chưa lưu kết quả page.title(). Bằng chứng nguồn: layout locale đặt title chung; commit b771af7 bổ sung 5 layout metadata. Test đơn hàng có assertion toHaveTitle("Đơn hàng &#124; Velora"); chưa chạy lại trong đợt ghi nhận này. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | Không có; xem bằng chứng nguồn ở kế hoạch, cần bổ sung kết quả page.title(). |
