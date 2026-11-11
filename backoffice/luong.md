@@ -1,0 +1,10 @@
+# Kết quả theo luồng - Backoffice
+
+| # | Luồng | App / Vai trò | Kết quả mong đợi | Kết quả thực tế | Trạng thái | Bug # | API Response |
+|---|---|---|---|---|---|---|---|
+| 1 | Xử lý đơn đến khi hoàn tất | Seller → Khách | Trạng thái mới hiện đúng ở cả hai phía | Seller chuyển Confirmed → Processing → Delivering → Completed. Khách thấy COMPLETED, thanh toán chuyển Paid. | Pass |  | PATCH /orders/17/status: 200 cho cả 3 bước. Status ghi nhận từ tab Network. Body không lưu được vì đã chuyển trang trước khi đọc. |
+| 2 | Tạo sách → hiển thị trên storefront | Seller → Khách | Sách hiện đúng thông tin, giá, danh mục | Tạo sách id 50, storefront hiện đúng tên, giá 99.000 đ, danh mục Kỹ năng sống. Xem chi tiết tại sheet Backoffice-HD-Tạo sách. | Pass | BO-05, BO-06, SF-17 | <pre>HTTP 201<br>{<br>  "id": 50,<br>  "slug": "sach-hop-le-manual-1110",<br>  "price": 99000<br>}</pre> |
+| 3 | Đơn mua → nhập kho → tồn tăng | Warehouse | Số tồn tăng đúng số lượng nhập | Đơn mua được admin duyệt và thanh toán, nhập kho và nhận hàng đúng. Tồn sách id 50 tăng 0 → 10 → 12. Xem sheet Backoffice-HD-Đơn mua, Backoffice-HD-Nhập kho. | Pass | BO-05, BO-06, BO-07 | <pre>HTTP 200<br>{<br>  "id": 2,<br>  "importCode": "IMP-20261110-000018",<br>  "received": true<br>}</pre> |
+| 4 | Yêu cầu kho / trả hàng về kho | Seller → Warehouse | Hai phía thấy cùng trạng thái và số lượng | Yêu cầu kho được admin duyệt, warehouse thấy APPROVED. Trả kho được kho duyệt, tồn sách id 46 tăng 49 → 50, seller thấy Approved. Xem sheet Backoffice-HD-Yêu cầu trả kho. | Pass |  | <pre>HTTP 200<br>{<br>  "id": 1,<br>  "returnCode": "RTW-20261110-000020",<br>  "status": "APPROVED"<br>}</pre> |
+| 5 | Quản lý tài khoản, vai trò, quyền | Admin | Quyền mới có hiệu lực với người dùng |  | Chưa chạy |  |  |
+| 6 | Truy cập trái quyền bằng URL trực tiếp | Seller, Warehouse | Bị chặn, không lộ dữ liệu | Seller đăng nhập console admin bị đưa đến trang không có quyền, gọi API admin bị 403. | Pass | BO-01 | <pre>GET /api/roles và /api/permissions<br>HTTP 403<br>{<br>  "error": "You do not have permission to perform this action",<br>  "code": "FORBIDDEN"<br>}</pre> |
