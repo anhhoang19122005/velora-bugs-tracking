@@ -1,5 +1,7 @@
 # Danh sách lỗi - Storefront
 
+Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](ui/README.md).
+
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
 | [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |

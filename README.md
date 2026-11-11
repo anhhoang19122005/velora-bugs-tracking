@@ -13,6 +13,7 @@ Bổ sung ngày 2026-11-11: SF-18–SF-27 là 10 bug giao diện Minor. Đã đ�
 | Tổng kết | Chung | [tong-ket.md](tong-ket.md) |
 | Storefront-Luồng | Storefront | [storefront/luong.md](storefront/luong.md) |
 | Storefront-Lỗi | Storefront | [storefront/loi.md](storefront/loi.md) |
+| Storefront-Bug UI | Storefront | [storefront/ui/](storefront/ui/README.md) |
 | Storefront-HD-Đăng nhập | Storefront | [storefront/hd-dang-nhap.md](storefront/hd-dang-nhap.md) |
 | Storefront-HD-Đăng ký | Storefront | [storefront/hd-dang-ky.md](storefront/hd-dang-ky.md) |
 | Storefront-HD-Địa chỉ | Storefront | [storefront/hd-dia-chi.md](storefront/hd-dia-chi.md) |
