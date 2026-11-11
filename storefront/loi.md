@@ -2,29 +2,30 @@
 
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
-| [SF-01](#sf-01) | Major | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
+| [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
 | [SF-02](#sf-02) | Major | 3 - Checkout COD | POST /api/v1/orders · form địa chỉ | identity-service (địa chỉ) / order-service | [Ảnh 1](../images/SF-02-1.jpg) |
 | [SF-03](#sf-03) | Major | 3 - Checkout COD | order-service GlobalExceptionHandler | order-service | [Ảnh 1](../images/SF-03-1.png) |
 | [SF-04](#sf-04) | Major | Khởi động môi trường | taschen-backend/dev.ps1 | backend (dev.ps1) | [Ảnh 1](../images/SF-04-1.png) |
-| [SF-05](#sf-05) | Major | 2 - Giỏ hàng | Mọi trang storefront · lib/auth/token.ts | storefront | [Ảnh 1](../images/SF-05-1.jpg), [Ảnh 2](../images/SF-05-2.jpg) |
+| [SF-05](#sf-05) | Major (đã sửa) | 2 - Giỏ hàng | Mọi trang storefront · lib/auth/token.ts | storefront | [Ảnh 1](../images/SF-05-1.jpg), [Ảnh 2](../images/SF-05-2.jpg) |
 | [SF-06](#sf-06) | Major | 1 - Đăng ký | Mailpit · notification-service | backend / hạ tầng | [Ảnh 1](../images/SF-06-1.jpg) |
 | [SF-07](#sf-07) | Major | 4 - Checkout VNPAY | POST /orders/{id}/payments/initiate | order-service / payment-service | [Ảnh 1](../images/SF-07-1.jpg) |
 | [SF-08](#sf-08) | Major | 7 - Khuyến mãi | POST /api/v1/orders có mã | order-service / promotion-service | [Ảnh 1](../images/SF-08-1.jpg), [Ảnh 2](../images/SF-08-2.jpg) |
 | [SF-09](#sf-09) | Major | 1 - Xác thực email | Email xác thực · notification-service | notification-service (cấu hình link) | [Ảnh 1](../images/SF-09-1.jpg) |
 | [SF-10](#sf-10) | Major | Địa chỉ, đặt hàng | POST /users/me/addresses | identity-service / storefront | [Ảnh 1](../images/SF-10-1.jpg) |
-| [SF-11](#sf-11) | Minor | 1 - Đăng nhập | Trang đăng nhập | storefront | [Ảnh 1](../images/SF-11-1.jpg) |
+| [SF-11](#sf-11) | Minor (đã sửa) | 1 - Đăng nhập | Trang đăng nhập | storefront | [Ảnh 1](../images/SF-11-1.jpg) |
 | [SF-12](#sf-12) | Minor | Trang chủ, chi tiết sách | /recommendations/*, POST /events | backend (dev.ps1) | [Ảnh 1](../images/SF-12-1.jpg) |
-| [SF-13](#sf-13) | Minor | Hồ sơ | /vi/profile | storefront | [Ảnh 1](../images/SF-13-1.png) |
-| [SF-14](#sf-14) | Minor | Nhiều trang | login, cart, orders · chi tiết đơn | storefront | [Ảnh 1](../images/SF-14-1.jpg) |
-| [SF-15](#sf-15) | Minor | 5 - Hủy đơn | Chi tiết đơn storefront | storefront | [Ảnh 1](../images/SF-15-1.jpg) |
+| [SF-13](#sf-13) | Minor (đã sửa) | Hồ sơ | /vi/profile | storefront | [Ảnh 1](../images/SF-13-1.png) |
+| [SF-14](#sf-14) | Minor (đã sửa) | Nhiều trang | login, cart, orders · chi tiết đơn | storefront | [Ảnh 1](../images/SF-14-1.jpg) |
+| [SF-15](#sf-15) | Minor (đã sửa) | 5 - Hủy đơn | Chi tiết đơn storefront | storefront | [Ảnh 1](../images/SF-15-1.jpg) |
 | [SF-16](#sf-16) | Minor (đã đóng) | 1 - Đăng nhập | Form đăng nhập | storefront | [Ảnh 1](../images/SF-16-1.jpg) |
-| [SF-17](#sf-17) | Minor | Backoffice 2 - Hiển thị sách | Chi tiết sách storefront | storefront | [Ảnh 1](../images/SF-17-1.jpg) |
+| [SF-17](#sf-17) | Minor (đã sửa) | Backoffice 2 - Hiển thị sách | Chi tiết sách storefront | storefront | [Ảnh 1](../images/SF-17-1.jpg) |
 
 ## SF-01
 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-01.md) |
 | **Luồng** | 1 - Đăng nhập, đăng ký |
 | **Endpoint / Màn hình** | POST /auth/login, /auth/register · route.ts |
 | **Nghi ngờ thuộc** | storefront (route.ts) |
@@ -85,6 +86,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-05.md) |
 | **Luồng** | 2 - Giỏ hàng |
 | **Endpoint / Màn hình** | Mọi trang storefront · lib/auth/token.ts |
 | **Nghi ngờ thuộc** | storefront |
@@ -175,6 +177,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-11.md) |
 | **Luồng** | 1 - Đăng nhập |
 | **Endpoint / Màn hình** | Trang đăng nhập |
 | **Nghi ngờ thuộc** | storefront |
@@ -205,6 +208,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-13.md) |
 | **Luồng** | Hồ sơ |
 | **Endpoint / Màn hình** | /vi/profile |
 | **Nghi ngờ thuộc** | storefront |
@@ -220,6 +224,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-14.md) |
 | **Luồng** | Nhiều trang |
 | **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
 | **Nghi ngờ thuộc** | storefront |
@@ -235,6 +240,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `be16d74`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-15.md) |
 | **Luồng** | 5 - Hủy đơn |
 | **Endpoint / Màn hình** | Chi tiết đơn storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -266,6 +272,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), chưa vào `develop`. Xem [kế hoạch](../fix-plans/storefront/SF-17.md) |
 | **Luồng** | Backoffice 2 - Hiển thị sách |
 | **Endpoint / Màn hình** | Chi tiết sách storefront |
 | **Nghi ngờ thuộc** | storefront |

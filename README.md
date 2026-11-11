@@ -2,7 +2,7 @@
 
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
 
-- **Bug:** 23 đang mở, 1 đã đóng (SF-16)
+- **Bug:** 24, gồm 16 đang mở, 7 đã sửa trên `fix/storefront-bugs` nhưng chưa vào `develop`, 1 đã đóng (SF-16)
 - **Ảnh:** 27
 - **Kế hoạch sửa:** [fix-plans](fix-plans/), mỗi bug một file, chia theo repo cần sửa
 
