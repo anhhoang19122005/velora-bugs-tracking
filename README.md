@@ -4,7 +4,7 @@ Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. 
 
 - **Bug:** 23 đang mở, 1 đã đóng (SF-16)
 - **Ảnh:** 27
-- **Kế hoạch sửa:** [fix-plans/storefront](fix-plans/storefront/), mỗi bug một file
+- **Kế hoạch sửa:** [fix-plans](fix-plans/), mỗi bug một file, chia theo repo cần sửa
 
 | Sheet | Bên | File |
 |---|---|---|
