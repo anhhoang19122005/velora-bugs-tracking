@@ -5,9 +5,9 @@
 | [BO-01](#bo-01) | Minor | 6 - Phân quyền | /forbidden · console admin | backoffice | [Ảnh 1](../images/BO-01-1.jpg) |
 | [BO-02](#bo-02) | Minor | Storefront 7 - Khuyến mãi | PATCH /promotions/{id}/approve | promotion-service | [Ảnh 1](../images/BO-02-1.jpg) |
 | [BO-03](#bo-03) | Minor | Storefront 7 - Khuyến mãi | Danh sách khuyến mãi | seller / promotion-service | [Ảnh 1](../images/BO-03-1.jpg) |
-| [BO-04](#bo-04) | Minor | Tạo khuyến mãi | Form tạo khuyến mãi seller | seller app | [Ảnh 1](../images/BO-04-1.jpg) |
+| [BO-04](#bo-04) | Minor (đã sửa, chưa merge) | Tạo khuyến mãi | Form tạo khuyến mãi seller | seller app | [Ảnh 1](../images/BO-04-1.jpg) |
 | [BO-05](#bo-05) | Minor | 2, 3 - Sách, đơn mua | Ô giá của form tạo sách và đơn mua | backoffice | [Ảnh 1](../images/BO-05-1.jpg) |
-| [BO-06](#bo-06) | Minor | 2, 3 - Sách, đơn mua | Form tạo sách, đơn mua | backoffice | [Ảnh 1](../images/BO-06-1.jpg) |
+| [BO-06](#bo-06) | Minor (đã sửa, chưa merge) | 2, 3 - Sách, đơn mua | Form tạo sách, đơn mua | backoffice | [Ảnh 1](../images/BO-06-1.jpg) |
 | [BO-07](#bo-07) | Minor | 3 - Đơn mua | Form đơn mua ở màn hình 1024px | backoffice | [Ảnh 1](../images/BO-07-1.jpg) |
 
 ## BO-01
@@ -15,6 +15,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-01.md) |
 | **Luồng** | 6 - Phân quyền |
 | **Endpoint / Màn hình** | /forbidden · console admin |
 | **Nghi ngờ thuộc** | backoffice |
@@ -30,6 +31,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backend/BO-02.md) |
 | **Luồng** | Storefront 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | PATCH /promotions/{id}/approve |
 | **Nghi ngờ thuộc** | promotion-service |
@@ -45,6 +47,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-03.md) |
 | **Luồng** | Storefront 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | Danh sách khuyến mãi |
 | **Nghi ngờ thuộc** | seller / promotion-service |
@@ -60,6 +63,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-04.md) |
 | **Luồng** | Tạo khuyến mãi |
 | **Endpoint / Màn hình** | Form tạo khuyến mãi seller |
 | **Nghi ngờ thuộc** | seller app |
@@ -75,6 +79,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-05.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Ô giá của form tạo sách và đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -90,6 +95,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử form sách trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-06.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Form tạo sách, đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -105,6 +111,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-07.md) |
 | **Luồng** | 3 - Đơn mua |
 | **Endpoint / Màn hình** | Form đơn mua ở màn hình 1024px |
 | **Nghi ngờ thuộc** | backoffice |

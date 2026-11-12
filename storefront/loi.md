@@ -9,7 +9,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
 | [SF-02](#sf-02) | Major (đã sửa; chưa kiểm thử lại) | 3 - Checkout COD | POST /api/v1/orders · form địa chỉ | identity-service (địa chỉ) / order-service | [Ảnh 1](../images/SF-02-1.jpg) |
 | [SF-03](#sf-03) | Major (đã sửa; chưa kiểm thử lại) | 3 - Checkout COD | order-service GlobalExceptionHandler | order-service | [Ảnh 1](../images/SF-03-1.png) |
-| [SF-04](#sf-04) | Major | Khởi động môi trường | taschen-backend/dev.ps1 | backend (dev.ps1) | [Ảnh 1](../images/SF-04-1.png) |
+| [SF-04](#sf-04) | Major (đã sửa) | Khởi động môi trường | taschen-backend/dev.ps1 | backend (dev.ps1) | [Ảnh 1](../images/SF-04-1.png) |
 | [SF-05](#sf-05) | Major (đã sửa) | 2 - Giỏ hàng | Mọi trang storefront · lib/auth/token.ts | storefront | [Ảnh 1](../images/SF-05-1.jpg), [Ảnh 2](../images/SF-05-2.jpg) |
 | [SF-06](#sf-06) | Major | 1 - Đăng ký | Mailpit · notification-service | backend / hạ tầng | [Ảnh 1](../images/SF-06-1.jpg) |
 | [SF-07](#sf-07) | Major (đã sửa; chưa kiểm thử lại) | 4 - Checkout VNPAY | POST /orders/{id}/payments/initiate | order-service / payment-service | [Ảnh 1](../images/SF-07-1.jpg) |
@@ -17,7 +17,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | [SF-09](#sf-09) | Major | 1 - Xác thực email | Email xác thực · notification-service | notification-service (cấu hình link) | [Ảnh 1](../images/SF-09-1.jpg) |
 | [SF-10](#sf-10) | Major (đã sửa; chưa kiểm thử lại) | Địa chỉ, đặt hàng | POST /users/me/addresses | identity-service / storefront | [Ảnh 1](../images/SF-10-1.jpg) |
 | [SF-11](#sf-11) | Minor (đã sửa) | 1 - Đăng nhập | Trang đăng nhập | storefront | [Ảnh 1](../images/SF-11-1.jpg) |
-| [SF-12](#sf-12) | Minor | Trang chủ, chi tiết sách | /recommendations/*, POST /events | backend (dev.ps1) | [Ảnh 1](../images/SF-12-1.jpg) |
+| [SF-12](#sf-12) | Minor (đã sửa) | Trang chủ, chi tiết sách | /recommendations/*, POST /events | backend (dev.ps1) | [Ảnh 1](../images/SF-12-1.jpg) |
 | [SF-13](#sf-13) | Minor (đã sửa) | Hồ sơ | /vi/profile | storefront | [Ảnh 1](../images/SF-13-1.png) |
 | [SF-14](#sf-14) | Minor (đã sửa) | Nhiều trang | login, cart, orders · chi tiết đơn | storefront | [Ảnh 1](../images/SF-14-1.jpg) |
 | [SF-15](#sf-15) | Minor (đã sửa) | 5 - Hủy đơn | Chi tiết đơn storefront | storefront | [Ảnh 1](../images/SF-15-1.jpg) |
@@ -89,6 +89,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-04.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
 | **Luồng** | Khởi động môi trường |
 | **Endpoint / Màn hình** | taschen-backend/dev.ps1 |
 | **Nghi ngờ thuộc** | backend (dev.ps1) |
@@ -217,6 +218,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-12.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
 | **Luồng** | Trang chủ, chi tiết sách |
 | **Endpoint / Màn hình** | /recommendations/*, POST /events |
 | **Nghi ngờ thuộc** | backend (dev.ps1) |
