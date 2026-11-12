@@ -2,18 +2,20 @@
 
 Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](ui/README.md).
 
+Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản sửa merge; chưa kiểm thử lại. Trong các mục này, bước tái hiện, mong đợi, thực tế, response và ảnh bên dưới được giữ nguyên từ **trước khi sửa**, không phải kết quả trên bản develop mới.
+
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
 | [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
-| [SF-02](#sf-02) | Major | 3 - Checkout COD | POST /api/v1/orders · form địa chỉ | identity-service (địa chỉ) / order-service | [Ảnh 1](../images/SF-02-1.jpg) |
-| [SF-03](#sf-03) | Major | 3 - Checkout COD | order-service GlobalExceptionHandler | order-service | [Ảnh 1](../images/SF-03-1.png) |
+| [SF-02](#sf-02) | Major (đã sửa; chưa kiểm thử lại) | 3 - Checkout COD | POST /api/v1/orders · form địa chỉ | identity-service (địa chỉ) / order-service | [Ảnh 1](../images/SF-02-1.jpg) |
+| [SF-03](#sf-03) | Major (đã sửa; chưa kiểm thử lại) | 3 - Checkout COD | order-service GlobalExceptionHandler | order-service | [Ảnh 1](../images/SF-03-1.png) |
 | [SF-04](#sf-04) | Major | Khởi động môi trường | taschen-backend/dev.ps1 | backend (dev.ps1) | [Ảnh 1](../images/SF-04-1.png) |
 | [SF-05](#sf-05) | Major (đã sửa) | 2 - Giỏ hàng | Mọi trang storefront · lib/auth/token.ts | storefront | [Ảnh 1](../images/SF-05-1.jpg), [Ảnh 2](../images/SF-05-2.jpg) |
 | [SF-06](#sf-06) | Major | 1 - Đăng ký | Mailpit · notification-service | backend / hạ tầng | [Ảnh 1](../images/SF-06-1.jpg) |
-| [SF-07](#sf-07) | Major | 4 - Checkout VNPAY | POST /orders/{id}/payments/initiate | order-service / payment-service | [Ảnh 1](../images/SF-07-1.jpg) |
-| [SF-08](#sf-08) | Major | 7 - Khuyến mãi | POST /api/v1/orders có mã | order-service / promotion-service | [Ảnh 1](../images/SF-08-1.jpg), [Ảnh 2](../images/SF-08-2.jpg) |
+| [SF-07](#sf-07) | Major (đã sửa; chưa kiểm thử lại) | 4 - Checkout VNPAY | POST /orders/{id}/payments/initiate | order-service / payment-service | [Ảnh 1](../images/SF-07-1.jpg) |
+| [SF-08](#sf-08) | Major (đã sửa; chưa kiểm thử lại) | 7 - Khuyến mãi | POST /api/v1/orders có mã | order-service / promotion-service | [Ảnh 1](../images/SF-08-1.jpg), [Ảnh 2](../images/SF-08-2.jpg) |
 | [SF-09](#sf-09) | Major | 1 - Xác thực email | Email xác thực · notification-service | notification-service (cấu hình link) | [Ảnh 1](../images/SF-09-1.jpg) |
-| [SF-10](#sf-10) | Major | Địa chỉ, đặt hàng | POST /users/me/addresses | identity-service / storefront | [Ảnh 1](../images/SF-10-1.jpg) |
+| [SF-10](#sf-10) | Major (đã sửa; chưa kiểm thử lại) | Địa chỉ, đặt hàng | POST /users/me/addresses | identity-service / storefront | [Ảnh 1](../images/SF-10-1.jpg) |
 | [SF-11](#sf-11) | Minor (đã sửa) | 1 - Đăng nhập | Trang đăng nhập | storefront | [Ảnh 1](../images/SF-11-1.jpg) |
 | [SF-12](#sf-12) | Minor | Trang chủ, chi tiết sách | /recommendations/*, POST /events | backend (dev.ps1) | [Ảnh 1](../images/SF-12-1.jpg) |
 | [SF-13](#sf-13) | Minor (đã sửa) | Hồ sơ | /vi/profile | storefront | [Ảnh 1](../images/SF-13-1.png) |
@@ -53,6 +55,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-02.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Bản sửa đã merge** | Backend `e3f5aad`, `0324996`; storefront `b59c5c6`. Địa chỉ nhận đúng 10 chữ số đầu 02/03/05/07/08/09; checkout chặn địa chỉ cũ sai, handler validation trả 400. |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | POST /api/v1/orders · form địa chỉ |
 | **Nghi ngờ thuộc** | identity-service (địa chỉ) / order-service |
@@ -68,6 +72,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/backend/SF-03.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. |
+| **Bản sửa đã merge** | Backend `0c9fe1d`: thêm logger, traceId và stack trace cho lỗi 500; chưa quan sát log runtime sau sửa. |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | order-service GlobalExceptionHandler |
 | **Nghi ngờ thuộc** | order-service |
@@ -129,6 +135,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-07.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Bản sửa đã merge** | Backend `afaec9a`, `e3ee8c2`, `32f5dd4`; storefront `4e923d7`. Sửa endpoint/response payment, chuỗi ký URL-encode, giữ query khi thêm locale và điều hướng trang kết quả. |
 | **Luồng** | 4 - Checkout VNPAY |
 | **Endpoint / Màn hình** | POST /orders/{id}/payments/initiate |
 | **Nghi ngờ thuộc** | order-service / payment-service |
@@ -144,6 +152,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-08.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Bản sửa đã merge** | Backend `e4b317a`, `afaec9a`; storefront `0bfd28a`. Thêm endpoint khuyến mãi theo ID có token nội bộ, sửa Feign/valid và giải thích lỗi mã trên UI. |
 | **Luồng** | 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | POST /api/v1/orders có mã |
 | **Nghi ngờ thuộc** | order-service / promotion-service |
@@ -174,6 +184,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-10.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Bản sửa đã merge** | Backend `e3f5aad`, `0324996`; storefront `b59c5c6`. Đồng bộ kiểm tra ký tự tên/các phần địa chỉ, chặn địa chỉ cũ sai tại checkout. |
 | **Luồng** | Địa chỉ, đặt hàng |
 | **Endpoint / Màn hình** | POST /users/me/addresses |
 | **Nghi ngờ thuộc** | identity-service / storefront |
