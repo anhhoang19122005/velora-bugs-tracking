@@ -5,14 +5,14 @@
 | **Mức độ** | Minor |
 | **Trạng thái** | Đã sửa trên nhánh local, đã kiểm thử form sách trên trình duyệt; **chưa commit, chưa merge** |
 | **Repo có bản sửa** | `taschen-backoffice` (backend không đổi) |
-| **Nhánh thực hiện** | `fix/bo-04-06-clear-error-messages`, tách từ `develop` `02da243d` (chung với [BO-04](BO-04.md)) |
+| **Nhánh thực hiện** | `fix/bo-04-06-clear-error-messages`, tách từ `develop` `02da243d` (chung với [BO-04](BO-04-promotion-form-generic-error-data-lost.md)) |
 | **Bug và ảnh trước sửa** | [Chi tiết bug](../../backoffice/loi.md#bo-06), [Ảnh 1](../../images/BO-06-1.jpg) |
 | **Test case** | [HD Tạo sách](../../backoffice/hd-tao-sach.md) TC10, TC11; [HD Đơn mua](../../backoffice/hd-don-mua.md) TC11 |
 
 ## Nguyên nhân trước khi sửa
 
 - Các trường `title`, `author`, `description`, `imageUrl` của form sách và `note` của form đơn mua không có giới hạn độ dài, nên form gửi lên và backend trả 400.
-- BFF bỏ mất `fieldErrors` của backend (xem [BO-04](BO-04.md)), nên toast chỉ có câu chung "The request contains invalid data.".
+- BFF bỏ mất `fieldErrors` của backend (xem [BO-04](BO-04-promotion-form-generic-error-data-lost.md)), nên toast chỉ có câu chung "The request contains invalid data.".
 
 ## Thay đổi đã có
 

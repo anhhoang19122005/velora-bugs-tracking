@@ -29,7 +29,7 @@ Giữ nguyên dòng phụ của toast (`description: err.message`): đây là c�
 
 **Không làm so với kế hoạch ban đầu:**
 - Không thêm giới hạn vào schema zod ở BFF: backend vẫn chặn, và lỗi theo trường của nó giờ đã đi tới form.
-- Quy tắc `priceOrderActive` không âm chuyển sang [BO-05](BO-05.md), vì ô tiền hiện vẫn bỏ dấu trừ.
+- Quy tắc `priceOrderActive` không âm chuyển sang [BO-05](BO-05-price-input-drops-minus-sign.md), vì ô tiền hiện vẫn bỏ dấu trừ.
 
 ## Kiểm thử đã chạy (2026-11-12)
 

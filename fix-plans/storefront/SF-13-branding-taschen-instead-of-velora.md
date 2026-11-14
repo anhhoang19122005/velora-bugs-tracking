@@ -119,7 +119,7 @@ Các đường dẫn dưới đây nằm trong `src/app/[locale]/`.
 **Không đổi:**
 
 - `(private)/profile/_components/Header/index.tsx:52`, `LoadingLazy/index.tsx:20,43`, `auth-logo.tsx:13` và các chuỗi Velora trong `vi.json`, `en.json` đã đúng.
-- Tên kỹ thuật không hiển thị cho khách: khóa `taschen_visitor_id` (đổi sẽ làm mất định danh khách đã lưu), tên cookie `taschen_storefront_*` trong [SF-05](SF-05.md) theo quy ước của backoffice, tên repo và package.
+- Tên kỹ thuật không hiển thị cho khách: khóa `taschen_visitor_id` (đổi sẽ làm mất định danh khách đã lưu), tên cookie `taschen_storefront_*` trong [SF-05](SF-05-refresh-loses-session-cart.md) theo quy ước của backoffice, tên repo và package.
 - Dữ liệu mẫu trong `_prototype/`, `mocks/`, mã `TASCHEN10` và các email test.
 
 **Cần bạn cho biết:** `Footer/index.tsx:27` hiển thị `hello@taschen.vn`. Đây là địa chỉ liên hệ thật nên kế hoạch chưa đổi, cần địa chỉ đúng của Velora.

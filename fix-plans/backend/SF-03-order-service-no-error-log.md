@@ -10,7 +10,7 @@
 
 ## Nguyên nhân trước khi sửa
 
-`GlobalExceptionHandler` của order-service chuyển exception thành JSON nhưng không ghi log. Khi client nhận 500 và traceId, không có stack trace tương ứng để điều tra; điều này từng che nguyên nhân của [SF-02](../storefront-backend/SF-02.md).
+`GlobalExceptionHandler` của order-service chuyển exception thành JSON nhưng không ghi log. Khi client nhận 500 và traceId, không có stack trace tương ứng để điều tra; điều này từng che nguyên nhân của [SF-02](../storefront-backend/SF-02-address-phone-order-http-500.md).
 
 ## Thay đổi đã có
 

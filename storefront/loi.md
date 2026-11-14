@@ -32,14 +32,14 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | [SF-24](#sf-24) | Minor (đã sửa) | Đơn hàng và thông báo | /orders · menu thông báo | storefront | [Ảnh 1](../images/SF-24-1.jpg), [Ảnh 2](../images/SF-24-2.jpg) |
 | [SF-25](#sf-25) | Minor (đã sửa) | 8 - Giao diện điện thoại | Header · thanh điều hướng phụ | storefront | [Ảnh 1](../images/SF-25-1.jpg) |
 | [SF-26](#sf-26) | Minor (đã sửa) | Điều hướng, xử lý trang không tồn tại | Đường dẫn không tồn tại dưới /vi | storefront | [Ảnh 1](../images/SF-26-1.jpg) |
-| [SF-27](#sf-27) | Minor (đã sửa) | Điều hướng và tiêu đề trang | /cart, /orders, /search, /login, /register | storefront | [Bằng chứng nguồn](../fix-plans/storefront/SF-27.md#bằng-chứng) |
+| [SF-27](#sf-27) | Minor (đã sửa) | Điều hướng và tiêu đề trang | /cart, /orders, /search, /login, /register | storefront | [Bằng chứng nguồn](../fix-plans/storefront/SF-27-pages-share-same-tab-title.md#bằng-chứng) |
 
 ## SF-01
 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-01.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-01-proxy-forwards-origin-gateway-403.md) |
 | **Luồng** | 1 - Đăng nhập, đăng ký |
 | **Endpoint / Màn hình** | POST /auth/login, /auth/register · route.ts |
 | **Nghi ngờ thuộc** | storefront (route.ts) |
@@ -55,7 +55,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-02.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-02-address-phone-order-http-500.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
 | **Bản sửa đã merge** | Backend `e3f5aad`, `0324996`; storefront `b59c5c6`. Địa chỉ nhận đúng 10 chữ số đầu 02/03/05/07/08/09; checkout chặn địa chỉ cũ sai, handler validation trả 400. |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | POST /api/v1/orders · form địa chỉ |
@@ -72,7 +72,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/backend/SF-03.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/backend/SF-03-order-service-no-error-log.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. |
 | **Bản sửa đã merge** | Backend `0c9fe1d`: thêm logger, traceId và stack trace cho lỗi 500; chưa quan sát log runtime sau sửa. |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | order-service GlobalExceptionHandler |
@@ -89,7 +89,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-04.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
 | **Luồng** | Khởi động môi trường |
 | **Endpoint / Màn hình** | taschen-backend/dev.ps1 |
 | **Nghi ngờ thuộc** | backend (dev.ps1) |
@@ -105,7 +105,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-05.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `3ed6beb`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-05-refresh-loses-session-cart.md) |
 | **Luồng** | 2 - Giỏ hàng |
 | **Endpoint / Màn hình** | Mọi trang storefront · lib/auth/token.ts |
 | **Nghi ngờ thuộc** | storefront |
@@ -136,7 +136,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-07.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-07-vnpay-initiate-http-500.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
 | **Bản sửa đã merge** | Backend `afaec9a`, `e3ee8c2`, `32f5dd4`; storefront `4e923d7`. Sửa endpoint/response payment, chuỗi ký URL-encode, giữ query khi thêm locale và điều hướng trang kết quả. |
 | **Luồng** | 4 - Checkout VNPAY |
 | **Endpoint / Màn hình** | POST /orders/{id}/payments/initiate |
@@ -153,7 +153,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-08.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-08-checkout-promotion-http-400.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
 | **Bản sửa đã merge** | Backend `e4b317a`, `afaec9a`; storefront `0bfd28a`. Thêm endpoint khuyến mãi theo ID có token nội bộ, sửa Feign/valid và giải thích lỗi mã trên UI. |
 | **Luồng** | 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | POST /api/v1/orders có mã |
@@ -185,7 +185,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-10.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/storefront-backend/SF-10-address-special-chars-order-fails.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`; storefront [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a`. |
 | **Bản sửa đã merge** | Backend `e3f5aad`, `0324996`; storefront `b59c5c6`. Đồng bộ kiểm tra ký tự tên/các phần địa chỉ, chặn địa chỉ cũ sai tại checkout. |
 | **Luồng** | Địa chỉ, đặt hàng |
 | **Endpoint / Màn hình** | POST /users/me/addresses |
@@ -202,7 +202,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-11.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) |
 | **Luồng** | 1 - Đăng nhập |
 | **Endpoint / Màn hình** | Trang đăng nhập |
 | **Nghi ngờ thuộc** | storefront |
@@ -218,7 +218,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-12.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-12-recommendations-tracking-http-500.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
 | **Luồng** | Trang chủ, chi tiết sách |
 | **Endpoint / Màn hình** | /recommendations/*, POST /events |
 | **Nghi ngờ thuộc** | backend (dev.ps1) |
@@ -234,7 +234,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-13.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) |
 | **Luồng** | Hồ sơ |
 | **Endpoint / Màn hình** | /vi/profile |
 | **Nghi ngờ thuộc** | storefront |
@@ -250,7 +250,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-14.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) |
 | **Luồng** | Nhiều trang |
 | **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
 | **Nghi ngờ thuộc** | storefront |
@@ -266,7 +266,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `be16d74`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-15.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `be16d74`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-15-cancel-order-no-confirmation.md) |
 | **Luồng** | 5 - Hủy đơn |
 | **Endpoint / Màn hình** | Chi tiết đơn storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -283,7 +283,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 |---|---|
 | **Mức độ** | Minor |
 | **Luồng** | 1 - Đăng nhập |
-| **Trạng thái** | Đã đóng ngày 2026-11-10: hoạt động đúng, test case đặt sai mong đợi. Xem [kế hoạch](../fix-plans/storefront/SF-16.md) |
+| **Trạng thái** | Đã đóng ngày 2026-11-10: hoạt động đúng, test case đặt sai mong đợi. Xem [kế hoạch](../fix-plans/storefront/SF-16-login-short-password-sent-to-api.md) |
 | **Endpoint / Màn hình** | Form đăng nhập |
 | **Nghi ngờ thuộc** | storefront |
 | **Bước tái hiện** | Nhập mật khẩu 5 ký tự, bấm đăng nhập |
@@ -298,7 +298,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-17.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) |
 | **Luồng** | Backoffice 2 - Hiển thị sách |
 | **Endpoint / Màn hình** | Chi tiết sách storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -314,7 +314,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-18.md). |
+| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-18-checkout-long-address-overflow.md). |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | /checkout · chọn địa chỉ |
 | **Nghi ngờ thuộc** | storefront |
@@ -330,7 +330,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-19.md). |
+| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-19-checkout-content-touches-edge.md). |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | /checkout |
 | **Nghi ngờ thuộc** | storefront |
@@ -346,7 +346,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-20.md). |
+| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-20-toast-cut-off-mobile.md). |
 | **Luồng** | Giao diện điện thoại |
 | **Endpoint / Màn hình** | Header · NotificationsMenu / AccountMenu |
 | **Nghi ngờ thuộc** | storefront |
@@ -362,7 +362,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-21.md). |
+| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md). |
 | **Luồng** | 2 - Danh mục, thêm giỏ |
 | **Endpoint / Màn hình** | /books · BookCard |
 | **Nghi ngờ thuộc** | storefront |
@@ -378,7 +378,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-22.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-22-order-status-chip-english.md). |
 | **Luồng** | Đơn hàng và đổi/trả |
 | **Endpoint / Màn hình** | /orders · bộ lọc đơn hàng, đổi/trả |
 | **Nghi ngờ thuộc** | storefront |
@@ -394,7 +394,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-23.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md). |
 | **Luồng** | 2 - Chi tiết sách |
 | **Endpoint / Màn hình** | /detail/[...slug] · breadcrumb |
 | **Nghi ngờ thuộc** | storefront |
@@ -410,7 +410,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-24.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md). |
 | **Luồng** | Đơn hàng và thông báo |
 | **Endpoint / Màn hình** | /orders · menu thông báo |
 | **Nghi ngờ thuộc** | storefront |
@@ -426,7 +426,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-25.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md). |
 | **Luồng** | 8 - Giao diện điện thoại |
 | **Endpoint / Màn hình** | Header · thanh điều hướng phụ |
 | **Nghi ngờ thuộc** | storefront |
@@ -442,7 +442,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-26.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-26-unknown-route-default-404.md). |
 | **Luồng** | Điều hướng, xử lý trang không tồn tại |
 | **Endpoint / Màn hình** | Đường dẫn không tồn tại dưới /vi |
 | **Nghi ngờ thuộc** | storefront |
@@ -458,7 +458,7 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-27.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-27-pages-share-same-tab-title.md). |
 | **Luồng** | Điều hướng và tiêu đề trang |
 | **Endpoint / Màn hình** | /cart, /orders, /search, /login, /register |
 | **Nghi ngờ thuộc** | storefront |

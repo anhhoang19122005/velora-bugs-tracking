@@ -15,7 +15,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-01.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) |
 | **Luồng** | 6 - Phân quyền |
 | **Endpoint / Màn hình** | /forbidden · console admin |
 | **Nghi ngờ thuộc** | backoffice |
@@ -31,7 +31,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backend/BO-02.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backend/BO-02-promotion-approve-stale-updated-at.md) |
 | **Luồng** | Storefront 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | PATCH /promotions/{id}/approve |
 | **Nghi ngờ thuộc** | promotion-service |
@@ -47,7 +47,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-03.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-03-promotion-expired-still-active.md) |
 | **Luồng** | Storefront 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | Danh sách khuyến mãi |
 | **Nghi ngờ thuộc** | seller / promotion-service |
@@ -63,7 +63,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-04.md) |
+| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-04-promotion-form-generic-error-data-lost.md) |
 | **Luồng** | Tạo khuyến mãi |
 | **Endpoint / Màn hình** | Form tạo khuyến mãi seller |
 | **Nghi ngờ thuộc** | seller app |
@@ -79,7 +79,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-05.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-05-price-input-drops-minus-sign.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Ô giá của form tạo sách và đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -95,7 +95,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử form sách trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-06.md) |
+| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử form sách trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-06-book-purchase-order-form-field-too-long.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Form tạo sách, đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -111,7 +111,7 @@
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-07.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-07-purchase-order-lines-horizontal-scroll.md) |
 | **Luồng** | 3 - Đơn mua |
 | **Endpoint / Màn hình** | Form đơn mua ở màn hình 1024px |
 | **Nghi ngờ thuộc** | backoffice |

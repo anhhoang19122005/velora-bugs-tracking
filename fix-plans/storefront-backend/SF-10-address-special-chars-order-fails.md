@@ -18,7 +18,7 @@ DTO địa chỉ và schema frontend từng không giới hạn ký tự như Or
 - Các phần street/ward/district/city dùng `^[\p{L}\p{M}\p{N}\s,./#-]+$`; các ký tự dấu câu được cho phép trong địa chỉ không có nghĩa được phép trong tên người nhận.
 - Storefront dùng biểu thức tương ứng với cờ Unicode, giữ kiểm tra độ dài/bắt buộc và thêm thông báo lỗi.
 - Checkout kiểm tra địa chỉ đã lưu bằng `orderAcceptsAddress`, hiển thị đường sửa trong hồ sơ và chặn đặt hàng với địa chỉ không đạt quy tắc.
-- Handler `ConstraintViolationException` dùng chung với [SF-02](SF-02.md) chuyển validation entity thành 400. Dữ liệu địa chỉ cũ không được tự động sửa hoặc xóa.
+- Handler `ConstraintViolationException` dùng chung với [SF-02](SF-02-address-phone-order-http-500.md) chuyển validation entity thành 400. Dữ liệu địa chỉ cũ không được tự động sửa hoặc xóa.
 
 ~~~text title="Ví dụ theo ràng buộc source"
 Tên Nguyễn Văn A       -> được phép theo tập ký tự

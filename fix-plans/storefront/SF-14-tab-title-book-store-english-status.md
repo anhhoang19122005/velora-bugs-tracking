@@ -27,7 +27,7 @@
  };
 ```
 
-**Vì sao:** cùng nội dung với trang chủ (`(main)/page.tsx:5-6`) sau khi [SF-13](SF-13.md) đổi thương hiệu thành Velora, để trang chưa có tiêu đề riêng vẫn đúng thương hiệu.
+**Vì sao:** cùng nội dung với trang chủ (`(main)/page.tsx:5-6`) sau khi [SF-13](SF-13-branding-taschen-instead-of-velora.md) đổi thương hiệu thành Velora, để trang chưa có tiêu đề riêng vẫn đúng thương hiệu.
 
 ### 2. `src/app/[locale]/(main)/orders/[number]/page.tsx`
 
@@ -125,7 +125,7 @@ Bug mong muốn mỗi trang có tiêu đề riêng. Vì đăng nhập, giỏ hà
 - `(main)/cart/layout.tsx`
 - `(main)/orders/layout.tsx`
 
-Đây là phương án từng để tùy chọn khi sửa SF-14. Ngày 2026-11-11, commit `b771af7` đã bổ sung layout tiêu đề riêng cho 5 trang, gồm cả tìm kiếm và đăng ký; xem [SF-27](SF-27.md). Bản sửa đã vào `origin/develop` qua PR #77 (`b3444b9`).
+Đây là phương án từng để tùy chọn khi sửa SF-14. Ngày 2026-11-11, commit `b771af7` đã bổ sung layout tiêu đề riêng cho 5 trang, gồm cả tìm kiếm và đăng ký; xem [SF-27](SF-27-pages-share-same-tab-title.md). Bản sửa đã vào `origin/develop` qua PR #77 (`b3444b9`).
 
 ## Kiểm thử lại
 

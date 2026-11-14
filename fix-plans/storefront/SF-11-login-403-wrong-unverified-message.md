@@ -13,7 +13,7 @@
 
 Storefront có hai form đăng nhập và cả hai đều phân loại lỗi sai:
 
-- `login/page.tsx:64` coi mọi status 403 là tài khoản chưa xác thực. Ngoài trường hợp đó còn có 403 của gateway (như [SF-01](SF-01.md)), với body rỗng. Người dùng được khuyên xác thực email trong khi lỗi không liên quan.
+- `login/page.tsx:64` coi mọi status 403 là tài khoản chưa xác thực. Ngoài trường hợp đó còn có 403 của gateway (như [SF-01](SF-01-proxy-forwards-origin-gateway-403.md)), với body rỗng. Người dùng được khuyên xác thực email trong khi lỗi không liên quan.
 - Form thả xuống ở header (`AccountMenu.tsx:104-105`) báo mọi lỗi là "Email hoặc mật khẩu không đúng", kể cả tài khoản chưa xác thực và lỗi kết nối.
 
 Identity trả `FORBIDDEN` trong `code` ở body (`AuthServiceImpl.java:109-110`), còn CORS 403 của gateway không có body. Storefront đang bỏ mất trường `code`.
@@ -47,7 +47,7 @@ Identity trả `FORBIDDEN` trong `code` ở body (`AuthServiceImpl.java:109-110`
      errors: data?.errors,
 ```
 
-**Vì sao:** `code` có sẵn trong mọi phản hồi lỗi (`ErrorResponse.java:12`). Đây là thay đổi cộng thêm, các nơi đang dùng `ApiError` không bị ảnh hưởng. [SF-02](../storefront-backend/SF-02.md) cũng sửa các khối này, nếu làm cùng thì gộp lại.
+**Vì sao:** `code` có sẵn trong mọi phản hồi lỗi (`ErrorResponse.java:12`). Đây là thay đổi cộng thêm, các nơi đang dùng `ApiError` không bị ảnh hưởng. [SF-02](../storefront-backend/SF-02-address-phone-order-http-500.md) cũng sửa các khối này, nếu làm cùng thì gộp lại.
 
 ### 3. `src/modules/auth/hooks/use-login.ts`, thêm hàm dùng chung
 
