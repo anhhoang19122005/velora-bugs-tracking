@@ -2,15 +2,17 @@
 
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
 
-- **Bug:** 34, gồm 9 đang mở, 24 đã sửa, 1 đã đóng (SF-16)
-- **Ảnh:** 37 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
-- **Kế hoạch sửa:** [fix-plans](fix-plans/), 34 file cho SF-01–SF-27 và BO-01–BO-07, chia theo repo cần sửa
+- **Bug:** 54, gồm 28 đang mở, 24 đã sửa, 2 đã đóng (SF-16, SF-36)
+- **Ảnh:** 40 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
+- **Kế hoạch sửa:** [fix-plans](fix-plans/), 38 file cho SF-01–SF-27, SF-37–SF-40 và BO-01–BO-07, chia theo repo cần sửa
 
 Bổ sung ngày 2026-11-11: SF-18–SF-27 là 10 bug giao diện Minor. Đã đối chiếu ảnh và commit sửa; chưa chạy kiểm thử lại. Trạng thái đã vào `origin/develop` được xác nhận bằng Git sau khi fetch. [Tổng kết](tong-ket.md) giữ nguyên kết quả đợt test 2026-11-10, chưa bao gồm 10 bug mới. SF-27 tiếp nối phần tiêu đề riêng từng trang từng được để tùy chọn ở SF-14.
 
 Cập nhật ngày 2026-11-12: **SF-02, SF-03, SF-07, SF-08, SF-10 đã sửa, đã merge vào `develop`; chưa kiểm thử lại**. Backend: [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. Storefront: [PR #78](https://github.com/VELORA-MICRO/taschen-storefront/pull/78), merge `cdb599a` (SF-03 chỉ có bản sửa backend). Đã đối chiếu source, commit và đầu nhánh remote ngày 2026-11-12.
 
 Trong 24 bug đã sửa, **17 bug** đã vào develop qua PR #77 (merge `b3444b9`), **5 bug** thuộc đợt merge mới trên; **SF-04 và SF-12** được người dùng xác nhận đã giải quyết ngày 2026-11-12. Hai bug này chưa được đối chiếu commit/PR hoặc kiểm thử lại trong lần cập nhật này. Cập nhật này phản ánh trạng thái code, **không phải kết quả retest**. Tổng kết, luồng, test case Pass/Fail/Blocked, ảnh và response của đợt manual 2026-11-10 được giữ nguyên làm bằng chứng lịch sử. Các kế hoạch SF-07/SF-08 được chuyển sang nhóm `fix-plans/storefront-backend` vì bản sửa chạm cả hai repo.
+
+Bổ sung ngày 2026-11-14: **SF-28–SF-43 và BO-08–BO-11** (20 bug) từ đợt retest và test tính bất biến, có 3 Major ở backend (SF-37 đặt hàng trùng, SF-38 mã giảm giá dùng quá lượt, SF-40 đổi trả trùng) và kế hoạch sửa tương ứng. Số lượng bug ở trên đã tính thêm 20 bug mới nhưng **chưa phản ánh kết quả retest 14/11 của các bug cũ**. Trang mới [Storefront-Bất biến](storefront/bat-bien.md). Trạng thái từng bug cũ sau retest, luồng và test case vẫn giữ nguyên kết quả đợt 1; xem file Excel.
 
 | Sheet | Bên | File |
 |---|---|---|
@@ -26,6 +28,7 @@ Trong 24 bug đã sửa, **17 bug** đã vào develop qua PR #77 (merge `b3444b9
 | Storefront-HT-Checkout | Storefront | [storefront/ht-checkout.md](storefront/ht-checkout.md) |
 | Storefront-HT-Áp mã | Storefront | [storefront/ht-ap-ma.md](storefront/ht-ap-ma.md) |
 | Storefront-HT-VNPAY | Storefront | [storefront/ht-vnpay.md](storefront/ht-vnpay.md) |
+| Storefront-Bất biến | Storefront | [storefront/bat-bien.md](storefront/bat-bien.md) |
 | Backoffice-Luồng | Backoffice | [backoffice/luong.md](backoffice/luong.md) |
 | Backoffice-Lỗi | Backoffice | [backoffice/loi.md](backoffice/loi.md) |
 | Backoffice-HD-Tạo khuyến mãi | Backoffice | [backoffice/hd-tao-khuyen-mai.md](backoffice/hd-tao-khuyen-mai.md) |

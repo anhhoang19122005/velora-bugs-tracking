@@ -1,5 +1,7 @@
 # Danh sách lỗi - Backoffice
 
+Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi retest và khi test tính bất biến.
+
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
 | [BO-01](#bo-01) | Minor | 6 - Phân quyền | /forbidden · console admin | backoffice | [Ảnh 1](../images/BO-01-1.jpg) |
@@ -9,6 +11,10 @@
 | [BO-05](#bo-05) | Minor | 2, 3 - Sách, đơn mua | Ô giá của form tạo sách và đơn mua | backoffice | [Ảnh 1](../images/BO-05-1.jpg) |
 | [BO-06](#bo-06) | Minor (đã sửa, chưa merge) | 2, 3 - Sách, đơn mua | Form tạo sách, đơn mua | backoffice | [Ảnh 1](../images/BO-06-1.jpg) |
 | [BO-07](#bo-07) | Minor | 3 - Đơn mua | Form đơn mua ở màn hình 1024px | backoffice | [Ảnh 1](../images/BO-07-1.jpg) |
+| [BO-08](#bo-08) | Minor | Tạo khuyến mãi | POST /promotions · form tạo khuyến mãi seller | promotion-service | [Ảnh 1](../images/BO-08-1.jpg) |
+| [BO-09](#bo-09) | Minor | Khuyến mãi | GET /promotions/search?keyword= | promotion-service | Không có |
+| [BO-10](#bo-10) | Minor | Nhà cung cấp | POST /api/v1/suppliers | inventory-service | Không có |
+| [BO-11](#bo-11) | Minor | Đơn mua, nhập kho | POST /api/v1/inventory/import-stocks | inventory-service | Không có |
 
 ## BO-01
 
@@ -121,3 +127,67 @@
 | **Bằng chứng (status/body)** | Kiểm tra ở 1024px, bình thường ở 1600px |
 | **API Response** | Không áp dụng |
 | **Ảnh bằng chứng** | [BO-07-1.jpg](../images/BO-07-1.jpg) |
+
+## BO-08
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | Tạo khuyến mãi |
+| **Endpoint / Màn hình** | POST /promotions · form tạo khuyến mãi seller |
+| **Nghi ngờ thuộc** | promotion-service |
+| **Bước tái hiện** | 1. Tạo mã có khoảng trắng và ký tự &lt;&gt; (A B&lt;&gt;), mã chữ thường, mã 51 ký tự |
+| **Mong đợi** | Từ chối mã sai định dạng hoặc quá dài |
+| **Thực tế** | 201, lưu mã bất kỳ độ dài và ký tự. Mã có khoảng trắng gõ không được ở ô áp mã |
+| **Bằng chứng (status/body)** | Mã A B&lt;&gt; (id 42), lowercase1 (id 43), mã 51 chữ A (id 44) đều 201 |
+| **API Response** | <pre>HTTP 201 / { "code": "A B&lt;&gt;", "status": "PENDING" }</pre> |
+| **Ảnh bằng chứng** | [BO-08-1.jpg](../images/BO-08-1.jpg) |
+
+## BO-09
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | Khuyến mãi |
+| **Endpoint / Màn hình** | GET /promotions/search?keyword= |
+| **Nghi ngờ thuộc** | promotion-service |
+| **Bước tái hiện** | 1. Admin gọi GET /api/v1/promotions/search?keyword=deep |
+| **Mong đợi** | Trả danh sách khớp |
+| **Thực tế** | 500 INTERNAL_ERROR (nghi lower(bytea) trong truy vấn khi keyword rỗng hoặc có giá trị) |
+| **Bằng chứng (status/body)** | GET /promotions/search?keyword=deep: 500 |
+| **API Response** | <pre>HTTP 500 / { "code": "INTERNAL_ERROR" }</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## BO-10
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
+| **Luồng** | Nhà cung cấp |
+| **Endpoint / Màn hình** | POST /api/v1/suppliers |
+| **Nghi ngờ thuộc** | inventory-service |
+| **Bước tái hiện** | 1. Gửi 5 request tạo nhà cung cấp cùng tên và email cùng lúc |
+| **Mong đợi** | 1 nhà cung cấp, các request còn lại 409 |
+| **Thực tế** | Tạo cả 5 nhà cung cấp trùng nhau (id 25 đến 29). Gửi lần lượt thì lần 2 bị 409, nên chỉ kiểm ở mức ứng dụng, thiếu ràng buộc duy nhất ở CSDL |
+| **Bằng chứng (status/body)** | 201 x5, đã xóa sau khi test |
+| **API Response** | <pre>HTTP 201 x5</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## BO-11
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
+| **Luồng** | Đơn mua, nhập kho |
+| **Endpoint / Màn hình** | POST /api/v1/inventory/import-stocks |
+| **Nghi ngờ thuộc** | inventory-service |
+| **Bước tái hiện** | 1. PO đã duyệt và thanh toán<br>2. Gửi 3 request tạo phiếu nhập cùng một PO cùng lúc |
+| **Mong đợi** | 1 phiếu nhập cho 1 PO |
+| **Thực tế** | Tạo 3 phiếu nhập. Nhận hàng chỉ thành công 1 phiếu (tồn tăng đúng +1), hai phiếu còn lại bị 409. Gửi lần lượt thì lần 2 bị 409 |
+| **Bằng chứng (status/body)** | Phiếu nhập 6, 7, 8 cho một PO; chỉ một phiếu nhận được hàng |
+| **API Response** | <pre>HTTP 201 x3</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |

@@ -4,6 +4,8 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 
 Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản sửa merge; chưa kiểm thử lại. Trong các mục này, bước tái hiện, mong đợi, thực tế, response và ảnh bên dưới được giữ nguyên từ **trước khi sửa**, không phải kết quả trên bản develop mới.
 
+Ghi nhận ngày 2026-11-14: **SF-28–SF-43** là lỗi mới tìm thấy khi retest và khi test tính bất biến (gửi request đồng thời). Số lỗi nối tiếp SF-27. SF-37, SF-38, SF-40 là Major; SF-36 đã đóng vì đúng theo thiết kế. Bằng chứng nằm ở [bat-bien.md](bat-bien.md).
+
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
 | [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
@@ -33,6 +35,22 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | [SF-25](#sf-25) | Minor (đã sửa) | 8 - Giao diện điện thoại | Header · thanh điều hướng phụ | storefront | [Ảnh 1](../images/SF-25-1.jpg) |
 | [SF-26](#sf-26) | Minor (đã sửa) | Điều hướng, xử lý trang không tồn tại | Đường dẫn không tồn tại dưới /vi | storefront | [Ảnh 1](../images/SF-26-1.jpg) |
 | [SF-27](#sf-27) | Minor (đã sửa) | Điều hướng và tiêu đề trang | /cart, /orders, /search, /login, /register | storefront | [Bằng chứng nguồn](../fix-plans/storefront/SF-27-pages-share-same-tab-title.md#bằng-chứng) |
+| [SF-28](#sf-28) | Minor | Nhiều luồng | GET /books/abc, /orders/abc, /users/abc, /promotions/abc, /categories/abc, ?categoryId=abc, ?sort=zzz, /notifications/1 | catalog, order, identity, promotion, notification | [Ảnh 1](../images/SF-28-1.jpg) |
+| [SF-29](#sf-29) | Minor | Nhiều luồng | POST /orders, POST /carts/me/items, PATCH /orders/{id}/status, POST /returns, POST /promotions | order-service, promotion-service (GlobalExceptionHandler) | Không có |
+| [SF-30](#sf-30) | Minor | 1 - Đăng nhập | POST /auth/login | identity-service / api-gateway | Không có |
+| [SF-31](#sf-31) | Minor | Hồ sơ | PUT /users/me | identity-service | Không có |
+| [SF-32](#sf-32) | Minor | 5 - Đơn hàng | Chi tiết đơn storefront · PATCH /orders/{id}/confirm-received | storefront | Không có |
+| [SF-33](#sf-33) | Minor | 4 - Checkout VNPAY | Trang kết quả thanh toán · chi tiết đơn | order-service / payment-service (cần xác nhận) | [Ảnh 1](../images/SF-33-1.jpg) |
+| [SF-34](#sf-34) | Minor | 7 - Khuyến mãi | Ô mã khuyến mãi ở checkout | storefront / promotion-service (cần xác nhận) | Không có |
+| [SF-35](#sf-35) | Minor | 3 - Checkout COD | GET /books/{id} sau khi đặt đơn | catalog-service (cache) | Không có |
+| [SF-36](#sf-36) | Minor (đã đóng) | 7 - Khuyến mãi | Hủy đơn có mã khuyến mãi · promotion-service | order-service / promotion-service (cần xác nhận) | Không có |
+| [SF-37](#sf-37) | Major | 3 - Checkout COD | POST /api/v1/orders · order-service | order-service (không khóa giỏ, không có idempotency key) | Không có |
+| [SF-38](#sf-38) | Major | 7 - Khuyến mãi | POST /api/v1/orders có promotionId · promotion-service | order-service / promotion-service | Không có |
+| [SF-39](#sf-39) | Minor | 3 - Checkout COD | POST /api/v1/orders · inventory-service | order-service (kiểm tra tồn kho đồng bộ nhưng giữ hàng bất đồng bộ qua OrderPlacedEvent) | Không có |
+| [SF-40](#sf-40) | Major | 6 - Đổi trả | POST /api/v1/returns · PATCH /returns/{id}/approve, /received | order-service (kiểm tra số lượng còn trả được không nằm trong khóa; duyệt không kiểm lại) | Không có |
+| [SF-41](#sf-41) | Minor | Nhiều luồng | Hủy đơn, đổi trạng thái, đã nhận hàng, duyệt đổi trả, đăng ký, xác thực email, địa chỉ mặc định, duyệt khuyến mãi | order-service, identity-service, promotion-service, inventory-service (GlobalExceptionHandler) | Không có |
+| [SF-42](#sf-42) | Minor | 2 - Giỏ hàng | POST /api/v1/carts/me/items | order-service (cập nhật giỏ không khóa) | Không có |
+| [SF-43](#sf-43) | Minor | 4 - Checkout VNPAY | POST /api/v1/orders/{id}/payments/initiate | payment-service | Không có |
 
 ## SF-01
 
@@ -468,3 +486,259 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 | **Bằng chứng (status/body)** | Không có ảnh và chưa lưu kết quả page.title(). Bằng chứng nguồn: layout locale đặt title chung; commit b771af7 bổ sung 5 layout metadata. Test đơn hàng có assertion toHaveTitle("Đơn hàng &#124; Velora"); chưa chạy lại trong đợt ghi nhận này. |
 | **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
 | **Ảnh bằng chứng** | Không có; xem bằng chứng nguồn ở kế hoạch, cần bổ sung kết quả page.title(). |
+
+## SF-28
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | Nhiều luồng |
+| **Endpoint / Màn hình** | GET /books/abc, /orders/abc, /users/abc, /promotions/abc, /categories/abc, ?categoryId=abc, ?sort=zzz, /notifications/1 |
+| **Nghi ngờ thuộc** | catalog, order, identity, promotion, notification |
+| **Bước tái hiện** | 1. Gọi một trong các URL bên cạnh với id hoặc tham số sai kiểu |
+| **Mong đợi** | 400 hoặc 404 có mã lỗi rõ ràng |
+| **Thực tế** | 500 INTERNAL_ERROR. Chỉ inventory-service xử lý MethodArgumentTypeMismatch và NoResourceFound |
+| **Bằng chứng (status/body)** | GET /api/v1/books/abc: 500. /books/5/nonexistent: 500. /books?sort=zzz: 500. /orders/99999999 đúng là 404 |
+| **API Response** | <pre>HTTP 500 / { "success": false, "code": "INTERNAL_ERROR", "message": "Something went wrong. Please try again later." }</pre> |
+| **Ảnh bằng chứng** | [SF-28-1.jpg](../images/SF-28-1.jpg) |
+
+## SF-29
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | Nhiều luồng |
+| **Endpoint / Màn hình** | POST /orders, POST /carts/me/items, PATCH /orders/{id}/status, POST /returns, POST /promotions |
+| **Nghi ngờ thuộc** | order-service, promotion-service (GlobalExceptionHandler) |
+| **Bước tái hiện** | 1. Gửi body JSON hỏng, hoặc enum sai (paymentMethod BITCOIN, status FOO, reasonCode FOO), hoặc quantity là chuỗi |
+| **Mong đợi** | 400 MALFORMED_REQUEST như identity-service và catalog-service |
+| **Thực tế** | 500 INTERNAL_ERROR ở order-service và promotion-service. Số lượng khuyến mãi 2147483648 cũng 500 |
+| **Bằng chứng (status/body)** | POST /orders với body { : 500; POST /carts/me/items với quantity "abc": 500; login với body hỏng: 400 MALFORMED_REQUEST |
+| **API Response** | <pre>HTTP 500 / { "success": false, "code": "INTERNAL_ERROR" }</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-30
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | 1 - Đăng nhập |
+| **Endpoint / Màn hình** | POST /auth/login |
+| **Nghi ngờ thuộc** | identity-service / api-gateway |
+| **Bước tái hiện** | 1. Gọi đăng nhập sai mật khẩu 8 lần liên tiếp với cùng một email<br>2. Đăng nhập đúng ngay sau đó |
+| **Mong đợi** | Bị giới hạn hoặc khóa tạm sau một số lần sai |
+| **Thực tế** | Cả 8 lần đều 401, lần đúng sau đó vào được. Không có giới hạn số lần thử |
+| **Bằng chứng (status/body)** | 8 lần 401 liên tiếp, lần 9 đúng trả 200 |
+| **API Response** | <pre>HTTP 401 x8, rồi HTTP 200</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-31
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | Hồ sơ |
+| **Endpoint / Màn hình** | PUT /users/me |
+| **Nghi ngờ thuộc** | identity-service |
+| **Bước tái hiện** | 1. Cập nhật hồ sơ với firstName là &lt;script&gt; |
+| **Mong đợi** | Từ chối ký tự đặc biệt như tên người nhận ở địa chỉ |
+| **Thực tế** | 200, lưu tên &lt;script&gt;. Địa chỉ thì chặn tên có ký tự đặc biệt, hai nơi không đồng nhất |
+| **Bằng chứng (status/body)** | PUT /users/me với firstName &lt;script&gt;: 200 |
+| **API Response** | <pre>HTTP 200 / { "success": true, "data": { "firstName": "&lt;script&gt;" } }</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-32
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | 5 - Đơn hàng |
+| **Endpoint / Màn hình** | Chi tiết đơn storefront · PATCH /orders/{id}/confirm-received |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở đơn ở trạng thái Đang giao<br>2. Bấm Đã nhận hàng |
+| **Mong đợi** | Hỏi xác nhận như nút Huỷ đơn |
+| **Thực tế** | Đơn chuyển Completed và Đã thanh toán ngay sau một lần bấm, không hỏi |
+| **Bằng chứng (status/body)** | Đơn ORD-20261114-000041 |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-33
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | 4 - Checkout VNPAY |
+| **Endpoint / Màn hình** | Trang kết quả thanh toán · chi tiết đơn |
+| **Nghi ngờ thuộc** | order-service / payment-service (cần xác nhận) |
+| **Bước tái hiện** | 1. Đặt hàng VNPay<br>2. Bấm hủy ở cổng sandbox |
+| **Mong đợi** | Thanh toán thất bại được thử lại (theo luồng 4) |
+| **Thực tế** | Đơn tự thành Đã hủy, không có nút thanh toán lại. Cần xác nhận đây là chủ đích |
+| **Bằng chứng (status/body)** | Đơn ORD-20261114-000040: CANCELLED, FAILED |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | [SF-33-1.jpg](../images/SF-33-1.jpg) |
+
+## SF-34
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | 7 - Khuyến mãi |
+| **Endpoint / Màn hình** | Ô mã khuyến mãi ở checkout |
+| **Nghi ngờ thuộc** | storefront / promotion-service (cần xác nhận) |
+| **Bước tái hiện** | 1. Nhập deep1114 (chữ thường) và bấm Áp dụng |
+| **Mong đợi** | Mã không phân biệt hoa thường, hoặc báo rõ cần nhập chữ hoa |
+| **Thực tế** | Báo "Không tìm thấy mã khuyến mãi". Backend lại nhận cả mã chữ thường khi tạo (BO-08) |
+| **Bằng chứng (status/body)** | deep1114 không tìm thấy, DEEP1114 hợp lệ |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-35
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Luồng** | 3 - Checkout COD |
+| **Endpoint / Màn hình** | GET /books/{id} sau khi đặt đơn |
+| **Nghi ngờ thuộc** | catalog-service (cache) |
+| **Bước tái hiện** | 1. Đặt đơn 1 cuốn sách id 4 và 5<br>2. Gọi lại GET /books/4 |
+| **Mong đợi** | Tồn kho giảm tương ứng |
+| **Thực tế** | Tồn vẫn 50 sau khi đặt. Nghi do catalog cache Redis 10 phút không bị xóa khi tồn kho đổi; chưa xác nhận bằng inventory-service |
+| **Bằng chứng (status/body)** | GET /books/4 và /books/5 stockQuantity 50 sau khi đặt đơn 520.116 đ |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-36
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor (không còn là lỗi) |
+| **Trạng thái** | Đã đóng ngày 2026-11-14: hoạt động đúng theo quyết định của người dùng, không phải lỗi. Quy tắc: khách tự hủy đơn thì không được hoàn lượt dùng mã. |
+| **Luồng** | 7 - Khuyến mãi |
+| **Endpoint / Màn hình** | Hủy đơn có mã khuyến mãi · promotion-service |
+| **Nghi ngờ thuộc** | order-service / promotion-service (cần xác nhận) |
+| **Bước tái hiện** | 1. Đặt COD bằng mã WB06A (số lượng 1)<br>2. Hủy đơn<br>3. Xem lại số lượng mã |
+| **Mong đợi** | Không hoàn lại: mã là khuyến mãi dùng một lần, hủy đơn không trả lượt |
+| **Thực tế** | Số lượng mã không đổi sau khi hủy đơn, đúng quy tắc nghiệp vụ |
+| **Bằng chứng (status/body)** | GET /promotions sau khi hủy đơn 38 và 39: WB06A quantity 0, WB07B quantity 1 |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-37
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-37-checkout-concurrent-duplicate-orders.md) |
+| **Luồng** | 3 - Checkout COD |
+| **Endpoint / Màn hình** | POST /api/v1/orders · order-service |
+| **Nghi ngờ thuộc** | order-service (không khóa giỏ, không có idempotency key) |
+| **Bước tái hiện** | 1. Giỏ có 1 cuốn sách id 4<br>2. Gửi 2, 3 hoặc 10 request POST /orders giống hệt nhau cùng một lúc |
+| **Mong đợi** | Chỉ 1 đơn được tạo, tồn kho trừ 1 lần |
+| **Thực tế** | Tạo đúng bấy nhiêu đơn (2, 3, 10 đơn), tồn kho bị trừ bấy nhiêu lần (49 xuống 47, 47 xuống 44, 44 xuống 34). Gửi lần lượt thì giỏ được dọn nên không trùng. Click 3 lần trên giao diện thì chỉ có 1 request (giao diện đã chặn) |
+| **Bằng chứng (status/body)** | Script chạy request song song. n=2: 201 x2, đơn 40 và 41. n=10: 201 x10, đơn 45 đến 54 |
+| **API Response** | <pre>HTTP 201 x10 / mỗi lần một đơn ORD-... khác nhau</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-38
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) |
+| **Luồng** | 7 - Khuyến mãi |
+| **Endpoint / Màn hình** | POST /api/v1/orders có promotionId · promotion-service |
+| **Nghi ngờ thuộc** | order-service / promotion-service |
+| **Bước tái hiện** | 1. Mã còn 1 lượt, 2 người cùng đặt COD bằng mã<br>2. Một người, mã còn 3 lượt, bấm đặt 3 lần cùng lúc |
+| **Mong đợi** | Chỉ 1 đơn được giảm. Mỗi người chỉ dùng mã 1 lần |
+| **Thực tế** | Mã 1 lượt: cả 2 đơn đều giảm 19.300 đ. Mã 3 lượt, một người: cả 3 đơn giảm 19.300 đ, số lượng mã chỉ giảm 3 xuống 2. Số lượng không âm nhưng giảm giá bị cấp quá lượt |
+| **Bằng chứng (status/body)** | Đơn 58 và 59 cùng promotionId 47 đều discountAmount 19300; đơn 60, 61, 62 cùng promotionId 48 |
+| **API Response** | <pre>HTTP 201 x2 / discountAmount 19300.0 trên cả hai đơn</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-39
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-39-checkout-order-cancelled-after-success.md) |
+| **Luồng** | 3 - Checkout COD |
+| **Endpoint / Màn hình** | POST /api/v1/orders · inventory-service |
+| **Nghi ngờ thuộc** | order-service (kiểm tra tồn kho đồng bộ nhưng giữ hàng bất đồng bộ qua OrderPlacedEvent) |
+| **Bước tái hiện** | 1. Sách id 4 còn 43 cuốn trong inventory-service<br>2. Hai người, mỗi người một giỏ 26 cuốn, đặt cùng lúc |
+| **Mong đợi** | Chỉ 1 đơn được nhận; đơn còn lại báo hết hàng ngay khi đặt |
+| **Thực tế** | Cả 2 request trả 201 và giao diện báo đặt hàng thành công. Inventory chỉ giữ hàng cho 1 đơn (tồn 43 xuống 17); đơn còn lại tự hủy sau khoảng 0,9 giây (đơn 64: tạo 02:27:11.558, hủy 02:27:12.472) do giữ hàng thất bại. Không bán vượt tồn kho; lỗi là khách được báo thành công rồi đơn bị hủy mà không có lý do |
+| **Bằng chứng (status/body)** | Đơn 63 và 64, mỗi đơn 26 cuốn. Đơn 64 bị hệ thống hủy, đơn 63 do mình hủy khi dọn dữ liệu |
+| **API Response** | <pre>HTTP 201 x2</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-40
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) |
+| **Luồng** | 6 - Đổi trả |
+| **Endpoint / Màn hình** | POST /api/v1/returns · PATCH /returns/{id}/approve, /received |
+| **Nghi ngờ thuộc** | order-service (kiểm tra số lượng còn trả được không nằm trong khóa; duyệt không kiểm lại) |
+| **Bước tái hiện** | 1. Đơn Completed có 1 cuốn<br>2. Gửi 5 request tạo đổi trả cùng dòng hàng cùng lúc<br>3. Duyệt và nhận hàng cả 5 yêu cầu |
+| **Mong đợi** | Chỉ 1 yêu cầu được tạo cho 1 cuốn. Yêu cầu thứ hai bị từ chối khi duyệt |
+| **Thực tế** | Tạo cả 5 yêu cầu. Cả 5 đều duyệt và nhận hàng được (200). Dòng hàng ghi returnedQuantity 5 trên số lượng 1, returnableQuantity 0. Gửi lần lượt thì lần 2 bị 409 |
+| **Bằng chứng (status/body)** | Đơn 57: RMA-20261114-000006 đến -000010 đều RECEIVED. Đơn COD không có bản ghi thanh toán nên chưa kiểm được hoàn tiền nhiều lần; với VNPay đây là rủi ro hoàn tiền trùng |
+| **API Response** | <pre>HTTP 201 x5, rồi PATCH approve và received 200 x5</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-41
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
+| **Luồng** | Nhiều luồng |
+| **Endpoint / Màn hình** | Hủy đơn, đổi trạng thái, đã nhận hàng, duyệt đổi trả, đăng ký, xác thực email, địa chỉ mặc định, duyệt khuyến mãi |
+| **Nghi ngờ thuộc** | order-service, identity-service, promotion-service, inventory-service (GlobalExceptionHandler) |
+| **Bước tái hiện** | 1. Gửi 3 đến 5 request giống nhau cùng lúc cho một trong các thao tác bên cạnh |
+| **Mong đợi** | 1 request thành công, các request còn lại 409 CONFLICT. Dữ liệu chỉ đổi một lần |
+| **Thực tế** | Dữ liệu đổi đúng một lần, nhưng các request còn lại trả 500 INTERNAL_ERROR (4 trên 5, hoặc 2 trên 3). Nghi lỗi khóa lạc quan hoặc ràng buộc duy nhất chưa được xử lý. Cùng nhóm ở backoffice: duyệt khuyến mãi, duyệt và thanh toán đơn mua, nhận hàng nhập kho, duyệt đổi trả |
+| **Bằng chứng (status/body)** | Hủy đơn x5: 200 x1, 500 x4. Đăng ký x5: 201 x1, 500 x4. Xác thực x5: 200 x1, 500 x4. Địa chỉ mặc định x3: 201 x1, 500 x2 |
+| **API Response** | <pre>HTTP 500 / { "code": "INTERNAL_ERROR" }</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-42
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
+| **Luồng** | 2 - Giỏ hàng |
+| **Endpoint / Màn hình** | POST /api/v1/carts/me/items |
+| **Nghi ngờ thuộc** | order-service (cập nhật giỏ không khóa) |
+| **Bước tái hiện** | 1. Giỏ trống<br>2. Gửi 5 request thêm cùng một sách, mỗi lần 1 cuốn, cùng lúc |
+| **Mong đợi** | Giỏ có 5 cuốn |
+| **Thực tế** | Cả 5 request trả 200 nhưng giỏ chỉ có 1 cuốn (mất cập nhật) |
+| **Bằng chứng (status/body)** | GET /carts/me sau đó: sách id 4, quantity 1 |
+| **API Response** | <pre>HTTP 200 x5</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-43
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
+| **Luồng** | 4 - Checkout VNPAY |
+| **Endpoint / Màn hình** | POST /api/v1/orders/{id}/payments/initiate |
+| **Nghi ngờ thuộc** | payment-service |
+| **Bước tái hiện** | 1. Tạo đơn VNPAY<br>2. Gửi 3 request initiate cùng lúc |
+| **Mong đợi** | Một bản ghi thanh toán cho một đơn |
+| **Thực tế** | Tạo 3 bản ghi PENDING (id 9, 10, 11), nghĩa là có 3 link thanh toán đều trả được. Gửi lần lượt thì dùng lại 1 bản ghi |
+| **Bằng chứng (status/body)** | GET /payments/order/{id}: 3 bản ghi PENDING |
+| **API Response** | <pre>HTTP 200 x3</pre> |
+| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
