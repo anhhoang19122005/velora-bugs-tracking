@@ -23,9 +23,9 @@ Xếp theo mức độ, Major trước.
 |---|---|---|---|---|---|---|
 | [SF-06](storefront/loi.md#sf-06) | Major | Email xác thực đến không ổn định | hạ tầng / backend | Không tái hiện | [kế hoạch](fix-plans/platform/SF-06-verify-email-delivery-unreliable.md) | 1 lần đăng ký nhận 1 email, đến sau khoảng 30 giây |
 | [SF-09](storefront/loi.md#sf-09) | Major | Link trong email xác thực trỏ tới địa chỉ giả | notification-service (cấu hình link) | Còn lỗi | [kế hoạch](fix-plans/backend-platform/SF-09-verify-email-link-fake-domain.md) |  |
-| [SF-37](storefront/loi.md#sf-37) | Major | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ | backend, order-service | Còn lỗi | [kế hoạch](fix-plans/backend/SF-37-checkout-concurrent-duplicate-orders.md) | 10 request cùng lúc ra 10 đơn |
+| [SF-37](storefront/loi.md#sf-37) | Major | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ | backend, order-service và storefront | Còn lỗi | [kế hoạch](fix-plans/storefront-backend/SF-37-checkout-concurrent-duplicate-orders.md) | 10 request cùng lúc ra 10 đơn |
 | [SF-38](storefront/loi.md#sf-38) | Major | Mã giảm giá được cấp vượt số lượt | backend, order-service và promotion-service | Còn lỗi | [kế hoạch](fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) | Đã chốt quy tắc hoàn lượt (phương án B) |
-| [SF-40](storefront/loi.md#sf-40) | Major | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn | backend, order-service | Còn lỗi | [kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) | 5 yêu cầu RECEIVED cho 1 cuốn, mỗi yêu cầu hoàn toàn bộ tiền đơn |
+| [SF-40](storefront/loi.md#sf-40) | Major | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn | backend, order-service và storefront | Còn lỗi | [kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) | 5 yêu cầu RECEIVED cho 1 cuốn, mỗi yêu cầu hoàn toàn bộ tiền đơn |
 | [SF-28](storefront/loi.md#sf-28) | Minor | Tham số sai kiểu trả 500 thay vì 400 hoặc 404 | backend, nhiều service | Còn lỗi | chưa có |  |
 | [SF-29](storefront/loi.md#sf-29) | Minor | Body JSON hỏng hoặc enum sai trả 500 | backend, order-service và promotion-service | Còn lỗi | chưa có |  |
 | [SF-30](storefront/loi.md#sf-30) | Minor | Đăng nhập sai nhiều lần không bị giới hạn | backend, identity-service hoặc gateway | Còn lỗi | chưa có | Nên cân nhắc nâng mức trước khi lên môi trường thật |

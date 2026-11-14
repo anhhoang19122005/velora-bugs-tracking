@@ -53,6 +53,27 @@ Khóa dòng đơn hàng trong lúc tạo yêu cầu, để các lần tạo cho 
 
 **Không cần sửa `approve` và `markReceived`** khi việc tạo đã an toàn. Có thể làm thêm sau: kiểm tra lại số lượng trong `approve`, để chặn các yêu cầu trùng đã lỡ tạo ra trước bản sửa.
 
+## Các trường hợp đã cover
+
+| # | Tình huống | Cơ chế xử lý | Kết quả | Kiểm bằng |
+|---|---|---|---|---|
+| 1 | Hai đến năm request tạo đổi trả cho cùng đơn, gửi cùng lúc | Khóa dòng đơn `FOR UPDATE`; request sau chờ rồi thấy yêu cầu PENDING vừa tạo (dòng 93-97) | Đúng 1 yêu cầu, còn lại 409 | IT `createReturn_concurrentRequests_createOne`; kịch bản 10 |
+| 2 | Khách bấm gửi lần hai sau khi mất phản hồi | Đã có yêu cầu PENDING cho đơn | 409 "đã có yêu cầu đổi trả", không trùng. Khách không nhận lại được yêu cầu cũ ở lần bấm đó, nhưng thấy nó ở tab Đổi/Trả | Kịch bản 14 |
+| 3 | Gửi lần lượt yêu cầu thứ hai cho cùng dòng hàng | Kiểm tra yêu cầu đang mở, rồi kiểm tra số lượng còn trả được (dòng 155-159) | 409 hoặc 400, như hiện nay | Kịch bản 14 |
+| 4 | Trả một phần, yêu cầu đầu đã RECEIVED, tạo yêu cầu mới cho phần còn lại | Yêu cầu RECEIVED không còn tính là đang mở; số lượng còn lại tính theo `sumActiveReturnedQtyByOrderDetailId` | Được tạo nếu còn số lượng; vượt thì 400 | Thêm ca vào `ReturnRequestServiceTest` (chưa có sẵn) |
+| 5 | Hai đơn khác nhau của cùng một khách cùng gửi đổi trả | Khóa theo từng đơn, không khóa chung | Không chờ nhau | Nằm trong thiết kế |
+| 6 | Tiền hoàn của yêu cầu | Tính trong cùng đoạn đã khóa (dòng 192-197) nên đọc đúng tổng tiền đã hoàn | Tổng hoàn không vượt tiền đơn | Thêm vào IT `createReturn_concurrentRequests_createOne`: kiểm tổng `refundAmount` của đơn |
+| 7 | Khóa dòng đơn tranh chấp với hủy đơn hoặc đổi trạng thái | Khóa chỉ giữ trong transaction tạo yêu cầu, rất ngắn | Request kia chờ vài chục mili giây rồi chạy tiếp | Không cần ca riêng |
+
+### Chưa cover (biết trước)
+
+| # | Tình huống | Hệ quả | Hướng xử lý nếu cần |
+|---|---|---|---|
+| A | Duyệt hoặc nhận hàng cùng một yêu cầu đồng thời | Dữ liệu đổi đúng một lần nhưng các request còn lại trả 500 (khóa lạc quan), thuộc SF-41 | Sửa ở SF-41 |
+| B | Các yêu cầu trùng đã tạo trước khi sửa (đơn 57 có 5 yêu cầu RECEIVED) | Giữ nguyên | Dọn tay; hoặc kiểm tra lại số lượng trong `approve` để chặn các bản trùng còn PENDING |
+| C | Mất phản hồi rồi khách muốn xem lại yêu cầu vừa tạo | Chỉ thấy qua danh sách | Có thể thêm Idempotency-Key như SF-37 nếu cần trải nghiệm này |
+| D | Hoàn tiền thật cho đơn VNPay khi nhận hàng trả | payment-service chưa nghe sự kiện trả hàng | Ngoài phạm vi plan này |
+
 ## Dữ liệu đã hỏng
 
 Đơn 57 (`ORD-20261114-000061`, khách `deep1114084504@taschen.test`) có 5 yêu cầu RECEIVED với tổng hoàn 965.000 đ. Đây là dữ liệu test. Nên xóa hoặc sửa tay sau khi có bản sửa, để báo cáo doanh thu không bị trừ sai.

@@ -190,6 +190,31 @@ Gọi `releasePromotionAfterCommit(...)` ngay cạnh `publishOrderCancelled(...)
 - Kết hợp với khóa của SF-37, một người chỉ có một checkout tại một thời điểm. Khi hai người tranh lượt cuối, `@Version` ở promotion-service đảm bảo chỉ một người thắng.
 - Hoàn lượt sau commit, theo cùng cách `publishPromotionApprovedEvent` (`PromotionServiceImpl.java:352-376`) và `eventPublisher.publishAfterCommit` đang làm.
 
+## Các trường hợp đã cover
+
+| # | Tình huống | Cơ chế xử lý | Kết quả | Kiểm bằng |
+|---|---|---|---|---|
+| 1 | Mã còn 1 lượt, hai người đặt cùng lúc | promotion-service giữ lượt bằng `@Version` và kiểm tra lại số lượng, thử lại tối đa 3 lần (`recordUsageAttempt`) | Chỉ một người giữ được. Người kia nhận 400 `VALIDATION_ERROR`, đơn rollback, giỏ còn nguyên, giao diện báo mã không còn dùng được | Kịch bản 15; IT mới (hai luồng cùng claim) |
+| 2 | Một người bấm đặt 3 lần cùng lúc với mã còn 3 lượt | Khóa và Idempotency-Key của SF-37 chỉ cho một lần chạy; claim vẫn idempotent theo (người dùng, mã) | Một đơn được giảm, số lượng mã giảm 1 | Kịch bản 16 |
+| 3 | Người đã dùng mã đặt đơn thứ hai bằng mã đó | `recordUsage` trả lại lượt cũ (khác `orderId`), `claimPromotion` từ chối | 400, đơn không tạo | Kịch bản 17; unit `checkout_promotionClaimReturnsOtherOrder_throwsValidationErrorAndKeepsCart` |
+| 4 | Mất phản hồi khi đặt đơn có mã, khách bấm lại cùng K | Replay của SF-37 trả đơn cũ, không gọi lại `claimPromotion` | Không trừ lượt lần hai | Kịch bản mất phản hồi ở SF-37 |
+| 5 | VNPay: khách tạo đơn rồi bỏ cổng thanh toán, đặt đơn thứ hai bằng cùng mã | Lượt được giữ ngay lúc tạo đơn đầu | Đơn thứ hai bị chặn (trước đây lọt vì lượt chỉ ghi khi đã thanh toán) | Kiểm thử lại VNPay |
+| 6 | Thanh toán VNPay thất bại, hoặc giữ hàng thất bại, hoặc sai số tiền | Hệ thống hủy, hoàn lượt sau commit | Số lượng mã tăng 1, khách dùng lại được mã | Unit `handlePaymentFailed_withPromotion_releasesUsage`, `handleStockReservedFailure_withPromotion_releasesUsage` |
+| 7 | Nhân viên hủy đơn có mã | Hoàn lượt sau commit | Số lượng mã tăng 1 | Unit `updateStatus_staffCancelWithPromotion_releasesUsage` |
+| 8 | Khách tự hủy đơn có mã | Không hoàn (đúng quy tắc) | Số lượng mã giữ nguyên | Unit `cancel_withPromotion_doesNotReleaseUsage` |
+| 9 | Sự kiện thanh toán thất bại được giao hai lần (RabbitMQ giao ít nhất một lần) | `handlePaymentFailed` chỉ xử lý khi đơn còn PENDING; endpoint hoàn lượt tìm theo `orderId` nên gọi lại không làm gì | Chỉ hoàn một lần, không tăng số lượng hai lần | Unit `releaseUsageByOrder_noUsage_isNoOp` |
+| 10 | Đơn không có mã bị hủy | `releasePromotionAfterCommit` thoát sớm khi `promotionId == null` | Không gọi promotion-service | Thêm vào các unit hủy đơn ở trên |
+| 11 | Gọi endpoint hoàn lượt không có token nội bộ | `InternalTokenInterceptor` | Bị từ chối | IT `releaseUsage_withoutInternalToken_isRejected` |
+
+### Chưa cover (biết trước)
+
+| # | Tình huống | Hệ quả | Hướng xử lý nếu cần |
+|---|---|---|---|
+| A | promotion-service lỗi đúng lúc hoàn lượt khi hệ thống hủy đơn | Lượt không được hoàn (chỉ ghi log) | Thêm thử lại hoặc bảng outbox; chỉ làm nếu thực tế xảy ra |
+| B | Giữ lượt thành công rồi commit đơn thất bại | Lượt bị trừ mà đơn không có. `saveAndFlush` giảm khả năng này nhưng không loại bỏ | Gọi hoàn lượt theo `orderId` khi commit lỗi, hoặc đối soát định kỳ |
+| C | Đơn VNPay bỏ dở, cổng không gọi lại (không có thất bại hay hủy) | Đơn PENDING giữ lượt vô thời hạn | **Chưa kiểm tra** có tác vụ hết hạn đơn chưa thanh toán hay không; nếu chưa có thì cần một tác vụ hủy sau N phút |
+| D | Các đơn đã được giảm vượt lượt trước khi sửa (ví dụ đơn 58, 59 và 60 đến 62 trong dữ liệu test) | Giữ nguyên, không tự sửa | Xử lý tay nếu là dữ liệu thật |
+
 ## Test
 
 **promotion-service**

@@ -636,7 +636,7 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-43** là lỗi mới tìm thấy khi r
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-37-checkout-concurrent-duplicate-orders.md) |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/storefront-backend/SF-37-checkout-concurrent-duplicate-orders.md) |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | POST /api/v1/orders · order-service |
 | **Nghi ngờ thuộc** | order-service (không khóa giỏ, không có idempotency key) |
