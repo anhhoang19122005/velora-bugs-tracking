@@ -7,14 +7,15 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | [BO-01](#bo-01) | Minor | 6 - Phân quyền | /forbidden · console admin | backoffice | [Ảnh 1](../images/BO-01-1.jpg) |
 | [BO-02](#bo-02) | Minor | Storefront 7 - Khuyến mãi | PATCH /promotions/{id}/approve | promotion-service | [Ảnh 1](../images/BO-02-1.jpg) |
 | [BO-03](#bo-03) | Minor | Storefront 7 - Khuyến mãi | Danh sách khuyến mãi | seller / promotion-service | [Ảnh 1](../images/BO-03-1.jpg) |
-| [BO-04](#bo-04) | Minor (đã sửa, chưa merge) | Tạo khuyến mãi | Form tạo khuyến mãi seller | seller app | [Ảnh 1](../images/BO-04-1.jpg) |
-| [BO-05](#bo-05) | Minor | 2, 3 - Sách, đơn mua | Ô giá của form tạo sách và đơn mua | backoffice | [Ảnh 1](../images/BO-05-1.jpg) |
-| [BO-06](#bo-06) | Minor (đã sửa, chưa merge) | 2, 3 - Sách, đơn mua | Form tạo sách, đơn mua | backoffice | [Ảnh 1](../images/BO-06-1.jpg) |
+| [BO-04](#bo-04) | Minor (đã sửa) | Tạo khuyến mãi | Form tạo khuyến mãi seller | seller app | [Ảnh 1](../images/BO-04-1.jpg) |
+| [BO-05](#bo-05) | Minor (chấp nhận) | 2, 3 - Sách, đơn mua | Ô giá của form tạo sách và đơn mua | backoffice | [Ảnh 1](../images/BO-05-1.jpg) |
+| [BO-06](#bo-06) | Minor (đã sửa) | 2, 3 - Sách, đơn mua | Form tạo sách, đơn mua | backoffice | [Ảnh 1](../images/BO-06-1.jpg) |
 | [BO-07](#bo-07) | Minor | 3 - Đơn mua | Form đơn mua ở màn hình 1024px | backoffice | [Ảnh 1](../images/BO-07-1.jpg) |
 | [BO-08](#bo-08) | Minor | Tạo khuyến mãi | POST /promotions · form tạo khuyến mãi seller | promotion-service | [Ảnh 1](../images/BO-08-1.jpg) |
 | [BO-09](#bo-09) | Minor | Khuyến mãi | GET /promotions/search?keyword= | promotion-service | Không có |
 | [BO-10](#bo-10) | Minor | Nhà cung cấp | POST /api/v1/suppliers | inventory-service | Không có |
 | [BO-11](#bo-11) | Minor | Đơn mua, nhập kho | POST /api/v1/inventory/import-stocks | inventory-service | Không có |
+| [BO-12](#bo-12) | Minor | 3 - Đơn mua (Admin) | Danh sách và chi tiết đơn mua ở console Admin | backoffice | [Ảnh 1](../images/BO-12-1.png), [Ảnh 2](../images/BO-12-2.png) |
 
 ## BO-01
 
@@ -69,7 +70,7 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-04-promotion-form-generic-error-data-lost.md) |
+| **Trạng thái** | Đã sửa, đã merge vào `develop` qua PR #367 (merge `8bc1ee53`); kiểm thử lại trên trình duyệt ngày 2026-11-14. Xem [kế hoạch](../fix-plans/backoffice/BO-04-promotion-form-generic-error-data-lost.md) |
 | **Luồng** | Tạo khuyến mãi |
 | **Endpoint / Màn hình** | Form tạo khuyến mãi seller |
 | **Nghi ngờ thuộc** | seller app |
@@ -84,8 +85,8 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 
 | Trường | Nội dung |
 |---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-05-price-input-drops-minus-sign.md) |
+| **Mức độ** | Minor (chấp nhận) |
+| **Trạng thái** | Đã chấp nhận, không sửa: người dùng xác nhận ngày 2026-11-12 rằng việc chuẩn hóa -1 thành 1 là hợp lý (ghi trong báo cáo retest Backoffice, đã xóa khỏi repo, còn trong commit `e6e2057`; chưa kiểm tra lưu sau chuẩn hóa). Xem [kế hoạch](../fix-plans/backoffice/BO-05-price-input-drops-minus-sign.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Ô giá của form tạo sách và đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -101,7 +102,7 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên nhánh local `fix/bo-04-06-clear-error-messages` của backoffice, đã kiểm thử form sách trên trình duyệt ngày 2026-11-12; chưa commit, chưa merge. Xem [kế hoạch](../fix-plans/backoffice/BO-06-book-purchase-order-form-field-too-long.md) |
+| **Trạng thái** | Đã sửa, đã merge vào `develop` qua PR #367 (merge `8bc1ee53`); kiểm thử lại form sách trên trình duyệt ngày 2026-11-14. Xem [kế hoạch](../fix-plans/backoffice/BO-06-book-purchase-order-form-field-too-long.md) |
 | **Luồng** | 2, 3 - Sách, đơn mua |
 | **Endpoint / Màn hình** | Form tạo sách, đơn mua |
 | **Nghi ngờ thuộc** | backoffice |
@@ -191,3 +192,19 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | **Bằng chứng (status/body)** | Phiếu nhập 6, 7, 8 cho một PO; chỉ một phiếu nhận được hàng |
 | **API Response** | <pre>HTTP 201 x3</pre> |
 | **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## BO-12
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa. Chưa có kế hoạch. Ghi nhận từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong lịch sử Git, commit `e6e2057`) |
+| **Luồng** | 3 - Đơn mua (Admin) |
+| **Endpoint / Màn hình** | Danh sách và chi tiết đơn mua ở console Admin, cổng 3001 |
+| **Nghi ngờ thuộc** | backoffice (đường dẫn danh sách cố định trong `useListMutation`, không giữ tiền tố `/admin`) |
+| **Bước tái hiện** | 1. Đăng nhập Admin (chỉ Admin, chưa đăng nhập Warehouse)<br>2. Mở `http://localhost:3001/admin/warehouse/purchase-orders`<br>3. Bấm mở một đơn mua<br>4. Với đơn APPROVED, mở thẳng `/admin/warehouse/purchase-orders/{id}` rồi bấm Mark ordered |
+| **Mong đợi** | Mở chi tiết và quay về danh sách giữ nguyên tiền tố `/admin`, vẫn là phiên Admin |
+| **Thực tế** | Bấm mở đơn mua dẫn tới `/warehouse/purchase-orders/3` (mất `/admin`) và ứng dụng chuyển sang đăng nhập Warehouse. Mở thẳng đường dẫn có `/admin` thì giữ đúng phiên và Mark ordered thành công, nhưng sau đó ứng dụng lại chuyển về `/warehouse/purchase-orders` và đòi đăng nhập Warehouse |
+| **Bằng chứng (status/body)** | Tái hiện qua trình duyệt tích hợp, chưa thu HTTP status/body. Ảnh 2 là lần Admin bị từ chối khi duyệt đơn mua ("You do not have permission"); báo cáo gốc ghi chưa chứng minh nó cùng nguyên nhân |
+| **API Response** | Không áp dụng: lỗi điều hướng giao diện |
+| **Ảnh bằng chứng** | [BO-12-1.png](../images/BO-12-1.png)<br>[BO-12-2.png](../images/BO-12-2.png) |

@@ -3,7 +3,7 @@
 | Mục | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa |
+| **Trạng thái** | Đã chấp nhận, không sửa (người dùng xác nhận ngày 2026-11-12). Giữ lại để tham khảo nếu sau này đổi ý.
 | **Repo** | `taschen-backoffice`, số dòng theo `develop` `02da243d` |
 | **Nhánh đề xuất** | `fix/money-input-negative`, tách từ `develop` |
 | **Khối lượng** | Khoảng 10 dòng code, cập nhật 2 file test |

@@ -1,9 +1,11 @@
 # Báo cáo bug Velora
 
+**Xem nhanh lỗi nào đã sửa, lỗi nào chưa: [trang-thai.md](trang-thai.md).**
+
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
 
-- **Bug:** 54, gồm 28 đang mở, 24 đã sửa, 2 đã đóng (SF-16, SF-36)
-- **Ảnh:** 40 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
+- **Bug:** 55, gồm 26 chưa sửa, 26 đã sửa, 3 đã đóng hoặc chấp nhận. Xem [trang-thai.md](trang-thai.md)
+- **Ảnh:** 42 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
 - **Kế hoạch sửa:** [fix-plans](fix-plans/), 38 file cho SF-01–SF-27, SF-37–SF-40 và BO-01–BO-07, chia theo repo cần sửa
 
 Bổ sung ngày 2026-11-11: SF-18–SF-27 là 10 bug giao diện Minor. Đã đối chiếu ảnh và commit sửa; chưa chạy kiểm thử lại. Trạng thái đã vào `origin/develop` được xác nhận bằng Git sau khi fetch. [Tổng kết](tong-ket.md) giữ nguyên kết quả đợt test 2026-11-10, chưa bao gồm 10 bug mới. SF-27 tiếp nối phần tiêu đề riêng từng trang từng được để tùy chọn ở SF-14.
@@ -39,4 +41,4 @@ Bổ sung ngày 2026-11-14: **SF-28–SF-43 và BO-08–BO-11** (20 bug) từ đ
 
 ## Retest Backoffice ngày 2026-11-12
 
-[Báo cáo và bằng chứng](retest-runs/2026-11-12-backoffice/README.md): 55 case, tổng hợp 53 Pass (UI/API), 2 Accepted, 0 Blocked sau khi chạy lại 13 case bị chặn. Lỗi điều hướng làm mất phiên Admin chưa sửa; lần chạy bổ sung giữ tiền tố Admin để đi vòng. Kết quả manual ngày 2026-11-10 vẫn giữ nguyên.
+Báo cáo và bằng chứng của đợt này đã được xóa khỏi repo (còn trong lịch sử Git, commit `e6e2057`). Hai điều rút ra từ đó được giữ lại: BO-05 được người dùng chấp nhận và lỗi điều hướng Admin được ghi thành BO-12.
