@@ -100,7 +100,38 @@ Vì khóa chỉ giữ trong lúc request chạy (tối đa 120 giây) còn kết
 | B | Tiến trình `order-service` chết giữa lúc đơn đã commit và lúc ghi `DONE` | Key kẹt `PENDING` 120 giây, sau đó bấm lại nhận 409 "Cart is empty" | Hiếm; chấp nhận. Muốn triệt để thì lưu `idempotencyKey` vào cột của bảng `orders` |
 | C | Khách dùng client không gửi header và mất phản hồi | Không nhận lại được đơn | Chỉ storefront mới gửi key |
 | D | Mất phản hồi ở bước khởi tạo thanh toán VNPay (`POST /orders/{id}/payments/initiate`) sau khi đặt hàng thành công | Giao diện báo "Đơn đã tạo, mở đơn hàng để thử thanh toán lại". Bước khởi tạo thanh toán đồng thời còn tạo nhiều bản ghi thanh toán (xem SF-43) | Sửa ở SF-43, không thuộc plan này |
-| E | Sự kiện `OrderPlacedEvent` bị inventory xử lý hai lần (RabbitMQ giao ít nhất một lần) | Có thể giữ hàng hai lần cho một đơn | Ngoài phạm vi; kiểm tra tính bất biến của listener inventory |
+| E | Mất `OrderPlacedEvent` (broker không nhận hoặc tiến trình chết ngay sau commit) | Đơn kẹt PENDING vĩnh viễn, không giữ hàng. Key chỉ làm cho lần bấm lại trả về chính đơn kẹt đó | Xem mục Message broker, trường hợp 4 |
+
+(Dòng E của bản trước ghi sai rằng inventory có thể giữ hàng hai lần khi nhận `OrderPlacedEvent` hai lần. Đã đọc lại code: inventory có bản ghi đánh dấu chống trùng, xem trường hợp 1 ở mục dưới.)
+
+## Message broker (RabbitMQ)
+
+Đặt hàng không chỉ là một request HTTP. Sau khi đơn commit, phần còn lại chạy qua RabbitMQ (exchange `taschen.events`):
+
+1. `checkout` commit, rồi `EventPublisher.publishAfterCommit` gửi `OrderPlacedEvent` (`OrderServiceImpl.java:145`).
+2. inventory-service nhận ở queue `inventory-service.order-placed.queue`, giữ hàng theo FIFO, rồi gửi `StockReservedEvent` (thành công hoặc thất bại).
+3. order-service nhận `StockReservedEvent` (`handleStockReserved`): đơn COD thành CONFIRMED; giữ hàng thất bại thì hủy đơn và gửi `OrderCancelledEvent`; đơn VNPay chờ thêm `PaymentCompletedEvent` hoặc `PaymentFailedEvent`.
+4. `OrderCancelledEvent` được inventory nhận để trả hàng về kho.
+
+Idempotency-Key và khóa chỉ chặn ở bước 0 (request HTTP). Các bước 1 đến 4 có bảo vệ riêng, đã đọc lại ngày 14/11:
+
+| # | Tình huống ở broker | Hiện trạng trong code | Kết luận |
+|---|---|---|---|
+| 1 | `OrderPlacedEvent` giao hai lần (RabbitMQ giao ít nhất một lần) | inventory kiểm tra bảng `processed_order_reservations` (`order_id` UNIQUE), có thì bỏ qua (`StockReservationServiceImpl.java:34-40`) | An toàn, không giữ hàng hai lần. Lần nhận lặp vẫn gửi lại `StockReservedEvent` |
+| 2 | `StockReservedEvent`, `PaymentCompletedEvent`, `PaymentFailedEvent` giao hai lần | `handle*` chỉ xử lý khi đơn còn PENDING và chưa đánh dấu (`OrderServiceImpl.java:572-575, 605-607, 682`) | An toàn |
+| 3 | `OrderCancelledEvent` giao hai lần | inventory trả hàng theo sổ cái (ledger), "idempotent by ledger" (`OrderCancelledEventListener`) | An toàn |
+| 4 | **Mất `OrderPlacedEvent`**: broker không nhận, hoặc tiến trình `order-service` chết giữa lúc commit và lúc gửi | `EventPublisher.send` chỉ ghi log lỗi, không ném (`EventPublisher.java`). order-service không có outbox, không bật publisher confirm, và không có tác vụ định kỳ nào (đã tìm `@Scheduled`: chỉ có ở gateway, payment-service, tracking-service). payment-service thì có `PaymentOutboxScheduler` chạy mỗi 5 phút | **Chưa cover.** Đơn kẹt PENDING, không giữ hàng, và không ai phát hiện |
+| 5 | Mất `StockReservedEvent` (inventory gửi lỗi) | Giống dòng 4 phía inventory | Chưa cover, nhưng cùng cách sửa với dòng 4 |
+| 6 | Xử lý một event ném lỗi | Listener của order-service không bắt lỗi, không cấu hình dead-letter hay retry (chỉ khai báo queue `durable`). Theo mặc định của Spring AMQP, message bị đẩy lại và giao lại liên tục (chưa kiểm chứng khi chạy thật). Listener của inventory thì nuốt mọi lỗi và chỉ ghi log, nên một lần trả hàng thất bại sẽ bị bỏ qua | Chưa cover. Ngoài phạm vi SF-37, ghi lại để xử lý riêng |
+
+**Liên hệ với SF-37.** Khi mất event (dòng 4), Idempotency-Key làm lần bấm lại trả về đúng đơn kẹt thay vì tạo đơn mới. Khách thấy đơn "Chờ xác nhận" mãi, nhưng không bị trùng. Còn với đơn có mã giảm giá, SF-38 đã giữ lượt mã ngay lúc đặt, nên đơn kẹt giữ luôn lượt mã.
+
+**Hướng sửa cho dòng 4 và 5 (đề xuất tách thành bug riêng).** Thêm một tác vụ định kỳ trong `order-service`, mỗi 1 đến 2 phút:
+
+- Tìm đơn `PENDING`, `stockReserved = false`, tạo hơn 2 phút trước, rồi phát lại `OrderPlacedEvent`. Làm vậy an toàn vì cả hai đầu đều idempotent (dòng 1 và 2): nếu inventory đã giữ hàng rồi thì nó chỉ gửi lại `StockReservedEvent`, nhờ đó sửa được cả dòng 5.
+- Đơn vẫn PENDING quá 30 phút thì hủy (gửi `OrderCancelledEvent`, hoàn lượt mã theo SF-38). Việc này cũng giải quyết đơn VNPay bỏ dở.
+- Khối lượng khoảng 40 dòng, thêm một truy vấn trong `OrderRepository` và 2 unit test. Có thể tái dùng mẫu của `PaymentOutboxScheduler`.
+- Cách làm bài bản hơn là bảng outbox như payment-service đang có; tốn công hơn, nên chỉ làm nếu tác vụ quét không đủ.
 
 ## Thay đổi backend
 

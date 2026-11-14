@@ -4,7 +4,7 @@ Nhóm **bug giao diện (UI) SF-18–SF-27** có mục lục riêng tại [ui/](
 
 Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản sửa merge; chưa kiểm thử lại. Trong các mục này, bước tái hiện, mong đợi, thực tế, response và ảnh bên dưới được giữ nguyên từ **trước khi sửa**, không phải kết quả trên bản develop mới.
 
-Ghi nhận ngày 2026-11-14: **SF-28–SF-43** là lỗi mới tìm thấy khi retest và khi test tính bất biến (gửi request đồng thời). Số lỗi nối tiếp SF-27. SF-37, SF-38, SF-40 là Major; SF-36 đã đóng vì đúng theo thiết kế. Bằng chứng nằm ở [bat-bien.md](bat-bien.md).
+Ghi nhận ngày 2026-11-14: **SF-28–SF-44** là lỗi mới tìm thấy khi retest và khi test tính bất biến (gửi request đồng thời). Số lỗi nối tiếp SF-27. SF-37, SF-38, SF-40, SF-44 là Major (SF-44 chưa tái hiện, phát hiện khi đọc code); SF-36 đã đóng vì đúng theo thiết kế. Bằng chứng nằm ở [bat-bien.md](bat-bien.md).
 
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
@@ -51,6 +51,7 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-43** là lỗi mới tìm thấy khi r
 | [SF-41](#sf-41) | Minor | Nhiều luồng | Hủy đơn, đổi trạng thái, đã nhận hàng, duyệt đổi trả, đăng ký, xác thực email, địa chỉ mặc định, duyệt khuyến mãi | order-service, identity-service, promotion-service, inventory-service (GlobalExceptionHandler) | Không có |
 | [SF-42](#sf-42) | Minor | 2 - Giỏ hàng | POST /api/v1/carts/me/items | order-service (cập nhật giỏ không khóa) | Không có |
 | [SF-43](#sf-43) | Minor | 4 - Checkout VNPAY | POST /api/v1/orders/{id}/payments/initiate | payment-service | Không có |
+| [SF-44](#sf-44) | Major | 3 - Checkout COD, 4 - Checkout VNPAY | EventPublisher · OrderPlacedEvent, StockReservedEvent | order-service | Không có |
 
 ## SF-01
 
@@ -742,3 +743,19 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-43** là lỗi mới tìm thấy khi r
 | **Bằng chứng (status/body)** | GET /payments/order/{id}: 3 bản ghi PENDING |
 | **API Response** | <pre>HTTP 200 x3</pre> |
 | **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
+
+## SF-44
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Chưa tái hiện, phát hiện khi đọc code ngày 2026-11-14. Xem [kế hoạch](../fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) |
+| **Luồng** | 3 - Checkout COD, 4 - Checkout VNPAY |
+| **Endpoint / Màn hình** | EventPublisher · OrderPlacedEvent, StockReservedEvent (RabbitMQ) |
+| **Nghi ngờ thuộc** | order-service (gửi event sau commit, không có outbox, không có tác vụ quét) |
+| **Bước tái hiện** | 1. Chặn kết nối RabbitMQ của order-service<br>2. Đặt một đơn COD<br>3. Khôi phục kết nối, đợi vài phút |
+| **Mong đợi** | Đơn được giữ hàng và xác nhận, hoặc bị hủy sau một thời hạn |
+| **Thực tế** | Dự đoán từ code: đơn ở PENDING, stockReserved = false mãi; không giữ hàng, không bị hủy, không ai được báo. Đơn có mã giữ luôn lượt mã |
+| **Bằng chứng (status/body)** | `EventPublisher.send` chỉ ghi log khi gửi lỗi; order-service không có outbox, không bật publisher confirm và không có `@Scheduled` (payment-service thì có `PaymentOutboxScheduler`). Ngày 14/11 `GET /orders?status=PENDING` trả 0 đơn, nên chưa có đơn kẹt thật |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | Không có. Chưa tái hiện |

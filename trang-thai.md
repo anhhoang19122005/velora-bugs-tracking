@@ -6,14 +6,14 @@ Cập nhật ngày 2026-11-14. Đây là bảng tóm tắt để xem nhanh; chi 
 
 | Trạng thái | Số lỗi | Trong đó Major |
 |---|---|---|
-| **Chưa sửa** | 26 | 5 |
+| **Chưa sửa** | 27 | 6 |
 | **Đã sửa** | 26 | 8 |
 | **Đã đóng hoặc chấp nhận** | 3 | 0 |
-| **Tổng** | 55 | 13 |
+| **Tổng** | 56 | 14 |
 
 Trong 26 lỗi đã sửa: 11 lỗi đã được retest xác nhận ngày 2026-11-14, 2 lỗi mới sửa ở `dev.ps1` chưa commit, phần còn lại chưa retest lại.
 
-Cách đọc cột **Retest**: *Đã xác nhận* là chạy lại và thấy đã hết lỗi. *Chưa xác nhận lại* là code đã sửa nhưng chưa chạy lại. *Còn lỗi* là chạy lại và vẫn tái hiện. *Cần xác nhận* là chưa rõ đúng hay sai theo nghiệp vụ.
+Cách đọc cột **Retest**: *Đã xác nhận* là chạy lại và thấy đã hết lỗi. *Chưa xác nhận lại* là code đã sửa nhưng chưa chạy lại. *Còn lỗi* là chạy lại và vẫn tái hiện. *Chưa tái hiện* là mới thấy qua đọc code. *Cần xác nhận* là chưa rõ đúng hay sai theo nghiệp vụ.
 
 ## Chưa sửa
 
@@ -26,6 +26,7 @@ Xếp theo mức độ, Major trước.
 | [SF-37](storefront/loi.md#sf-37) | Major | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ | backend, order-service và storefront | Còn lỗi | [kế hoạch](fix-plans/storefront-backend/SF-37-checkout-concurrent-duplicate-orders.md) | 10 request cùng lúc ra 10 đơn |
 | [SF-38](storefront/loi.md#sf-38) | Major | Mã giảm giá được cấp vượt số lượt | backend, order-service và promotion-service | Còn lỗi | [kế hoạch](fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) | Đã chốt quy tắc hoàn lượt (phương án B) |
 | [SF-40](storefront/loi.md#sf-40) | Major | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn | backend, order-service và storefront | Còn lỗi | [kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) | 5 yêu cầu RECEIVED cho 1 cuốn, mỗi yêu cầu hoàn toàn bộ tiền đơn |
+| [SF-44](storefront/loi.md#sf-44) | Major | Mất event thì đơn kẹt PENDING mãi, không giữ hàng và không bị hủy | backend, order-service | Chưa tái hiện | [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) | Phát hiện khi đọc code; cần tái hiện trước khi sửa |
 | [SF-28](storefront/loi.md#sf-28) | Minor | Tham số sai kiểu trả 500 thay vì 400 hoặc 404 | backend, nhiều service | Còn lỗi | chưa có |  |
 | [SF-29](storefront/loi.md#sf-29) | Minor | Body JSON hỏng hoặc enum sai trả 500 | backend, order-service và promotion-service | Còn lỗi | chưa có |  |
 | [SF-30](storefront/loi.md#sf-30) | Minor | Đăng nhập sai nhiều lần không bị giới hạn | backend, identity-service hoặc gateway | Còn lỗi | chưa có | Nên cân nhắc nâng mức trước khi lên môi trường thật |

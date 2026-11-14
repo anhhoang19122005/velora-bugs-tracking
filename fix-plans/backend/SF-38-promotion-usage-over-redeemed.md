@@ -212,7 +212,9 @@ Gọi `releasePromotionAfterCommit(...)` ngay cạnh `publishOrderCancelled(...)
 |---|---|---|---|
 | A | promotion-service lỗi đúng lúc hoàn lượt khi hệ thống hủy đơn | Lượt không được hoàn (chỉ ghi log) | Thêm thử lại hoặc bảng outbox; chỉ làm nếu thực tế xảy ra |
 | B | Giữ lượt thành công rồi commit đơn thất bại | Lượt bị trừ mà đơn không có. `saveAndFlush` giảm khả năng này nhưng không loại bỏ | Gọi hoàn lượt theo `orderId` khi commit lỗi, hoặc đối soát định kỳ |
-| C | Đơn VNPay bỏ dở, cổng không gọi lại (không có thất bại hay hủy) | Đơn PENDING giữ lượt vô thời hạn | **Chưa kiểm tra** có tác vụ hết hạn đơn chưa thanh toán hay không; nếu chưa có thì cần một tác vụ hủy sau N phút |
+| C | Đơn VNPay bỏ dở, cổng không gọi lại (không có thất bại hay hủy) | Đơn PENDING giữ lượt vô thời hạn | Đã kiểm tra ngày 14/11: order-service không có tác vụ định kỳ nào (không có `@Scheduled`), nên chưa có cơ chế hết hạn đơn. Cần tác vụ hủy đơn PENDING quá 30 phút, hoàn lượt mã khi hủy; xem mục Message broker ở plan SF-37 |
+| E | Event bị mất (`OrderPlacedEvent`, `StockReservedEvent`, `PaymentFailedEvent`) khiến đơn có mã kẹt PENDING | Đơn giữ lượt mã vì không có event nào hủy nó. `EventPublisher` chỉ ghi log khi gửi lỗi, không có outbox | Cùng tác vụ quét ở plan SF-37 giải quyết, vì nó hủy đơn kẹt và gọi hoàn lượt |
+| F | Hoàn lượt đi bằng HTTP (`/usages/release`), không đi qua broker | Nếu promotion-service lỗi lúc đó thì lượt không hoàn (dòng A). Gửi bằng event sẽ có cùng nhược điểm mất event nếu không có outbox | Tác vụ quét có thể gọi lại hoàn lượt cho đơn đã CANCELLED mà vẫn còn bản ghi lượt dùng (hoàn lượt idempotent theo `orderId`) |
 | D | Các đơn đã được giảm vượt lượt trước khi sửa (ví dụ đơn 58, 59 và 60 đến 62 trong dữ liệu test) | Giữ nguyên, không tự sửa | Xử lý tay nếu là dữ liệu thật |
 
 ## Test

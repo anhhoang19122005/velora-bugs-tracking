@@ -72,7 +72,8 @@ Khóa dòng đơn hàng trong lúc tạo yêu cầu, để các lần tạo cho 
 | A | Duyệt hoặc nhận hàng cùng một yêu cầu đồng thời | Dữ liệu đổi đúng một lần nhưng các request còn lại trả 500 (khóa lạc quan), thuộc SF-41 | Sửa ở SF-41 |
 | B | Các yêu cầu trùng đã tạo trước khi sửa (đơn 57 có 5 yêu cầu RECEIVED) | Giữ nguyên | Dọn tay; hoặc kiểm tra lại số lượng trong `approve` để chặn các bản trùng còn PENDING |
 | C | Mất phản hồi rồi khách muốn xem lại yêu cầu vừa tạo | Chỉ thấy qua danh sách | Có thể thêm Idempotency-Key như SF-37 nếu cần trải nghiệm này |
-| D | Hoàn tiền thật cho đơn VNPay khi nhận hàng trả | payment-service chưa nghe sự kiện trả hàng | Ngoài phạm vi plan này |
+| D | Hoàn tiền thật cho đơn VNPay khi nhận hàng trả, và nhập lại hàng vào kho | `markReceived` gửi `OrderReturnedEvent` sau commit (`ReturnRequestServiceImpl.java:263`), nhưng chỉ có notification-service nghe (đã tìm trong các service). payment-service không nghe nên không hoàn tiền, inventory không nghe nên không tự nhập lại kho (tồn sách đo ngày 14/11 không tăng sau khi nhận hàng trả) | Ngoài phạm vi plan này; cần quyết định nghiệp vụ trước |
+| E | Mất `OrderReturnedEvent` | Chỉ ảnh hưởng thông báo cho khách; `EventPublisher` chỉ ghi log | Mức thấp, không xử lý trong plan này |
 
 ## Dữ liệu đã hỏng
 
