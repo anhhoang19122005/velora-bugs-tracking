@@ -17,6 +17,30 @@ Nút Đã nhận hàng gọi mutation ngay, đồng thời thay đổi trạng t
 1. Dùng mẫu hộp thoại đang có cho Huỷ đơn trong màn chi tiết. Gọi confirmReceived từ nút xác nhận và khóa thao tác khi mutation đang gửi.
 2. Giữ quy trình refresh dữ liệu và thông báo của mutation hiện tại.
 
+## Code dự kiến
+
+Ở component chi tiết đơn, dùng ConfirmDialog đang dùng cho hủy đơn. Chỉ render trong nhánh canConfirm, dùng bản dịch theo locale.
+
+```tsx
+const [confirmingReceived, setConfirmingReceived] = React.useState(false);
+
+<Button variant="primary" disabled={busy} onClick={() => setConfirmingReceived(true)}>
+  {receivedLabel}
+</Button>
+<ConfirmDialog
+  open={confirmingReceived}
+  title={confirmReceivedTitle}
+  description={confirmReceivedDescription}
+  confirmLabel={receivedLabel}
+  cancelLabel={cancelLabel}
+  onConfirm={() => {
+    setConfirmingReceived(false);
+    if (!busy) onConfirm();
+  }}
+  onCancel={() => setConfirmingReceived(false)}
+/>
+```
+
 ## Kiểm thử lại
 
 Bấm nút mở hộp thoại. Đóng hộp thoại giữ nguyên trạng thái. Bấm xác nhận gửi đúng một request và đọc lại trạng thái đơn.

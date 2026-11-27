@@ -16,6 +16,18 @@ Guide đang mô tả nút và trường ngoài form. Người dùng làm theo s�
 
 1. Đối chiếu cấu hình task, mô tả dùng chung, quyền và form hiện hành. Cập nhật thứ tự tới đúng màn và hai trường Tên, URL ảnh.
 
+## Code dự kiến
+
+Trong apps/seller/src/messages/vi.json, các khóa banner-create.summary và steps.save.instruction. Sửa bản en tương ứng. Task đang có bước Tên, Ảnh và Lưu.
+
+```diff
+- "summary": "Ảnh lớn trên trang chủ. Dẫn khách tới nơi bạn muốn họ xem.",
++ "summary": "Thêm ảnh lớn hiển thị trên trang chủ.",
+
+- "instruction": "Bấm Lưu. Banner tắt vẫn lưu được — bật lên khi ảnh và đường dẫn đã đúng."
++ "instruction": "Kiểm tra tên và URL ảnh, rồi bấm Lưu."
+```
+
 ## Kiểm thử lại
 
 Chạy từng bước Guide me trên màn banner, khớp trường Tên và URL ảnh cùng vai trò có quyền tạo.

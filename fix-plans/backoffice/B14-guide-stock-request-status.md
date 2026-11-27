@@ -16,6 +16,15 @@ Guide gán trạng thái RECEIVED cho yêu cầu nhập trong khi trạng thái 
 
 1. Đổi mô tả theo đối tượng: yêu cầu dừng ở ORDERED, còn PO chuyển sang RECEIVED khi nhận đủ hàng.
 
+## Code dự kiến
+
+Trong apps/warehouse/src/messages/vi.json, stock-request-create.steps.status.tip. Dùng câu riêng để phân biệt đơn mua và yêu cầu nhập.
+
+```diff
+- "tip": "Chờ xử lý → Đã duyệt → Đã đặt hàng → Đã nhận là trọn đường đi. Bị từ chối thì dừng ở đó. Không bước nào tự chạy — mỗi bước đều là một người bấm nút."
++ "tip": "Yêu cầu nhập đi từ Chờ xử lý đến Đã duyệt rồi Đã đặt hàng. Khi nhận đủ hàng, xem trạng thái Đã nhận trên đơn mua."
+```
+
 ## Kiểm thử lại
 
 Khi nhập đủ, đối chiếu riêng trạng thái của yêu cầu nhập và đơn mua.

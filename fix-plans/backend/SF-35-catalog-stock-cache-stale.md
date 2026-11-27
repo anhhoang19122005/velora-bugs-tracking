@@ -17,6 +17,18 @@ Catalog lưu bản sao tồn và cache kết quả chi tiết sách. Một lần
 1. Xác nhận DB Catalog đã đổi khi Inventory phát event. Sau giao dịch, xóa những cache chứa tồn theo ID, slug hoặc danh sách có thật trong source.
 2. Dùng bản ghi Inventory để xác định tồn chuẩn khi đối soát event bị thiếu hoặc đến muộn. Phối hợp B04 để loại bỏ đường ghi tồn từ form biến thể.
 
+## Code dự kiến
+
+Ở listener, tách thời điểm lưu kho khỏi thời điểm xóa cache. Ví dụ dùng event nội bộ và listener AFTER_COMMIT nếu giao dịch hiện tại chưa có cơ chế tương đương. Giữ cơ chế redelivery/đối soát cho lỗi cache.
+
+```java
+@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+void evictStockViews(CatalogStockUpdated event) {
+    bookCache.evict(event.bookId());
+    bookSlugCache.evict(event.slug());
+}
+```
+
 ## Kiểm thử lại
 
 Sau đặt đơn, trả hàng và nhập kho, chi tiết/list hiển thị tồn mới. Lặp event không làm sai số. Xác nhận phép đo với cache đã làm nóng.

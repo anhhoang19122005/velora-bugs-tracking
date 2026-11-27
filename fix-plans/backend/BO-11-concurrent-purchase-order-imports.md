@@ -22,6 +22,24 @@ Khi tạo nhiều phiếu cùng lúc, mỗi giao dịch có thể đọc cùng h
 
 Dùng lại phép tính hạn mức từng dòng và repository khóa phù hợp. Service điều phối giao dịch, repository chỉ đảm nhận đọc có khóa. Hạn mức nằm trên PO nên khóa theo PO để các PO khác vẫn xử lý song song.
 
+## Code dự kiến
+
+Trong PurchaseOrderRepository, dùng khóa ghi trên PO. ImportStockServiceImpl lấy khóa này trước khi tính hạn mức và giữ tới commit. Ở đường nhận hàng, đọc ID PO rồi khóa PO trước khi khóa và tải lại phiếu.
+
+```java
+@Lock(LockModeType.PESSIMISTIC_WRITE)
+@Query("select po from PurchaseOrder po where po.id = :id")
+Optional<PurchaseOrder> findByIdForUpdate(@Param("id") Long id);
+```
+
+Trong giao dịch tạo phiếu gắn PO, dùng lại phép kiểm hiện có sau khi khóa.
+
+```java
+PurchaseOrder po = getPurchaseOrderForUpdate(request.purchaseOrderId());
+validateNotOverReceiving(po, request);
+// Tiếp tục lưu nháp trong cùng giao dịch.
+```
+
 ## Kiểm thử lại
 
 Ba phiếu đồng thời cùng đòi toàn bộ một PO chỉ một phiếu được tạo. Các đợt nhập một phần còn trong số lượng đặt vẫn thành công. Nhận đồng thời hoặc lặp lại không cộng vượt tồn và chỉ đóng PO khi đã nhận đủ.

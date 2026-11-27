@@ -17,6 +17,19 @@ Nhiều thao tác cùng đọc lượng cũ rồi ghi cùng một kết quả, n
 1. Khóa hàng giỏ trước khi đọc và sửa mục hàng, phối hợp thứ tự khóa và phiên bản giỏ với SF-37.
 2. Giữ khóa duy nhất của dòng theo sách/biến thể. Cộng số lượng trong giao dịch và kiểm số dòng, tổng số lượng khi thao tác đồng thời.
 
+## Code dự kiến
+
+Trong CartServiceImpl.addItem, dùng hàm đọc giỏ có khóa trong cùng transaction. Với người chưa có giỏ, dùng đường tạo có unique và đọc lại, tránh khóa một bản ghi chưa tồn tại.
+
+```java
+@Transactional
+public CartResponse addItem(AddCartItemRequest request) {
+    Cart cart = getOrCreateCartForUpdate(currentUserId());
+    addOrIncrementItem(cart, request);
+    return saveAndMap(cart);
+}
+```
+
 ## Kiểm thử lại
 
 Năm request thành công thì tổng tăng đúng năm. Chạy thêm đồng thời với checkout và kiểm giỏ mới sau checkout được giữ.

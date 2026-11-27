@@ -17,6 +17,17 @@ Phạm vi B08 ở đây là mã danh mục. Catalog nhận mã chữ thường v
 1. Dùng chung quy tắc đã chốt trên DTO tạo/sửa. Đồng bộ category.schema.ts và nội dung Guide me, giữ thông báo gắn với trường mã.
 2. Kiểm dữ liệu cũ trước khi đổi chuẩn hoặc thêm unique. Phần mã khuyến mãi chạy theo BO-08.
 
+## Code dự kiến
+
+Ở DTO tạo/sửa danh mục, dùng cùng quy tắc đã chốt và nối lỗi tới trường Code. Tên hằng minh họa bộ ký tự cần thống nhất với category.schema.ts.
+
+```java
+@NotBlank
+@Size(max = CategoryCodeRules.MAX_LENGTH)
+@Pattern(regexp = CategoryCodeRules.FORMAT)
+String code
+```
+
 ## Kiểm thử lại
 
 Mã không đúng định dạng bị từ chối theo cùng cách trên UI/API. Mã đúng tạo/sửa được. Case phần Promotion chạy theo BO-08.

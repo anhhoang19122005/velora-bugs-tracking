@@ -18,6 +18,19 @@ Form có thể ghi 10 cuốn vào Catalog trong khi kho có 0. Bản sao tồn t
 2. Tiếp tục dùng event tồn từ Inventory và kết hợp SF-35 để cập nhật cache sau commit.
 3. Chạy báo cáo so lệch theo bookId/variantId, duyệt kết quả và đồng bộ lại Catalog theo số liệu Inventory.
 
+## Code dự kiến
+
+Trong BookVariantServiceImpl, thay đường gán tồn lúc tạo và bỏ đường gán từ DTO lúc sửa. StockChangedEventListener tiếp tục là nơi đồng bộ thay đổi tồn.
+
+```diff
+- .stockQuantity(request.stockQuantity() != null ? request.stockQuantity() : 0)
++ .stockQuantity(0)
+
+- if (request.stockQuantity() != null) {
+-     bookVariant.setStockQuantity(request.stockQuantity());
+- }
+```
+
 ## Kiểm thử lại
 
 Tạo biến thể khi Inventory bằng 0 thì Storefront hiện hết hàng. Nhập kho 10 thì cùng biến thể hiển thị 10 sau đồng bộ. Tồn thật và số hiển thị khớp sau giữ hàng hoặc trả hàng.

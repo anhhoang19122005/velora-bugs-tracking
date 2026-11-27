@@ -17,6 +17,22 @@ Lỗi chuyển kiểu path/query đang rơi vào nhánh lỗi hệ thống ở m
 1. Đối chiếu từng response và log để xác định exception. Dùng lại cách Inventory xử lý MethodArgumentTypeMismatchException và NoResourceFoundException ở nơi phù hợp.
 2. Giữ 400 cho sai kiểu, 404 cho route hoặc tài nguyên không có, và chạy lại các điểm Catalog, Order, Identity, Promotion, Notification trong báo cáo.
 
+## Code dự kiến
+
+Áp dụng ở controller advice thiếu handler. Dùng helper dựng response và mã lỗi đang được dùng trong từng service.
+
+```java
+@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+ResponseEntity<?> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+    return badRequestForField(ex.getName());
+}
+
+@ExceptionHandler(NoResourceFoundException.class)
+ResponseEntity<?> handleMissingRoute(NoResourceFoundException ex) {
+    return resourceNotFound();
+}
+```
+
 ## Kiểm thử lại
 
 ID/query sai kiểu trả 400. Route hoặc tài nguyên không tồn tại trả 404. Lỗi hệ thống thật vẫn là 500.

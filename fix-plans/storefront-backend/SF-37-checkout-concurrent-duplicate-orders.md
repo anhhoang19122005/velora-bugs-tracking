@@ -34,6 +34,22 @@ Storefront chuyển tới trang đơn bằng `orderCode` theo tuyến hiện t�
 
 Chống tạo đơn trùng áp dụng ở bước checkout. Một đơn đã commit vẫn có thể kẹt khi mất sự kiện giữ hàng. Phát lại sự kiện và xử lý đơn kẹt theo [SF-44](../backend/SF-44-order-event-lost-stuck-pending.md). Giữ và hoàn lượt mã theo [SF-38](../backend/SF-38-promotion-usage-over-redeemed.md).
 
+## Code dự kiến
+
+Trong OrderServiceImpl, lưu bản ghi checkout thành công cùng giao dịch tạo đơn. Khóa phiên bản nguồn mua theo loại checkout, phần dưới minh họa nhánh mua từ giỏ. Redis có thể dùng để giảm tranh chấp; ràng buộc DB vẫn quyết định bản ghi nào được tạo.
+
+```java
+var previous = checkoutRepository.findCompleted(userId, checkoutKey);
+if (previous.isPresent()) {
+    return responseFor(previous.get().orderId());
+}
+var cart = cartRepository.findForCheckout(userId);
+checkoutRepository.claimCartVersion(userId, cart.getVersion(), checkoutKey);
+var order = saveOrderFrom(cart);
+checkoutRepository.complete(userId, checkoutKey, order.getId());
+return responseFor(order.getId());
+```
+
 ## Kiểm thử cần có
 
 | Tình huống | Kết quả mong đợi |

@@ -17,6 +17,14 @@ Yêu cầu bị từ chối kết thúc, nhưng khách có thể tạo yêu cầ
 1. Đề xuất mô tả cả hai trạng thái trong Guide me. Kiểm màn khách và Seller để dùng đúng câu chữ.
 2. Nếu chốt cấm gửi lại, cập nhật rule Order, phản hồi API và trạng thái thao tác ở UI.
 
+## Code dự kiến
+
+Trong apps/seller/src/messages/vi.json, order-return-process.steps.approve.deeper. Áp dụng câu dưới đây nếu chốt cho gửi lại và sửa cùng B12 vì hai lỗi nằm trong một chuỗi.
+
+```text
+Từ chối kết thúc yêu cầu hiện tại. Khách có thể gửi yêu cầu khác nếu đơn còn hạn và vẫn đủ điều kiện trả hàng.
+```
+
 ## Kiểm thử lại
 
 Kiểm yêu cầu bị từ chối, gửi lại trong hạn, quá hạn và đang có một yêu cầu mở.

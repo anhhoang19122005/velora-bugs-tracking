@@ -17,6 +17,15 @@ Tên hồ sơ có thể lưu chuỗi đánh dấu HTML trong khi tên người n
 1. Đối chiếu quy tắc tên hồ sơ với tên người nhận. Dùng lại constraint hiện có nếu hai trường cùng quy tắc. Áp dụng ở DTO cập nhật hồ sơ.
 2. Đồng bộ schema và thông báo theo trường ở form. Kiểm tên có dấu và dữ liệu hồ sơ cũ khi người dùng cập nhật.
 
+## Code dự kiến
+
+Trên DTO cập nhật hồ sơ, gắn lại constraint tên người nhận nếu nghiệp vụ đã xác nhận cùng quy tắc. Tên hằng bên dưới biểu diễn biểu thức đã có ở SF-10.
+
+```java
+@Pattern(regexp = PersonNameRules.PATTERN, message = "Invalid profile name")
+String fullName
+```
+
 ## Kiểm thử lại
 
 Tên có dấu hợp lệ lưu được. Chuỗi chứa markup bị từ chối. Kiểm cả UI và API.

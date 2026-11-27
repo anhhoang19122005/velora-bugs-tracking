@@ -22,6 +22,41 @@ Một ảnh bìa sai làm lỗi cả trang. next/image kiểm remotePatterns khi
 
 Kiểm URL bằng danh sách cấu hình duy nhất trong Storefront. Giữ logic ảnh thay thế ở lớp hiển thị, validation lưu URL ở Catalog. Ưu tiên các component ảnh hiện có, giới hạn helper mới vào phần kiểm URL dùng chung. Dùng danh sách host cụ thể theo môi trường.
 
+## Code dự kiến
+
+Trong cấu hình ảnh Storefront, chuyển danh sách host hiện có thành danh sách nguồn duy nhất. Chạy bộ lọc ở server hoặc truyền cùng danh sách đã phân giải sang client để khớp giá trị R2 lúc build. Trong Catalog, dùng cùng chính sách với validator URL của request tạo/sửa.
+
+```tsx
+const remotePatterns = allowedImageOrigins.map(({ protocol, hostname, port = "" }) => ({
+  protocol, hostname, port,
+}));
+
+function resolveCatalogImage(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    const allowed = allowedImageOrigins.some(({ protocol, hostname, port }) =>
+      url.protocol === protocol + ":" && url.hostname === hostname && url.port === port && !url.username && !url.password,
+    );
+    return allowed ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+const src = resolveCatalogImage(book.imageUrl);
+return <BookCover key={src ?? "placeholder"} src={src} />;
+```
+
+Trong BookCover, dùng bố cục ảnh hiện có. Khi bình thường giữ kích thước và alt của ảnh; khi lỗi tải chuyển sang phần giữ chỗ.
+
+```tsx
+const [failed, setFailed] = useState(false);
+return src && !failed
+  ? <Image src={src} alt={title} fill onError={() => setFailed(true)} />
+  : <BookCoverPlaceholder />;
+```
+
 ## Kiểm thử lại
 
 GM13-03. Một bìa lỗi ở trang chủ, danh sách hoặc chi tiết chỉ ảnh hưởng chỗ đặt ảnh. Kiểm URL rỗng, sai cú pháp, sai host, ảnh 404 và ảnh R2 hợp lệ. API trả 4xx có lỗi trường khi lưu URL ngoài danh sách; bản ghi cũ vẫn hiển thị bằng ảnh thay thế.

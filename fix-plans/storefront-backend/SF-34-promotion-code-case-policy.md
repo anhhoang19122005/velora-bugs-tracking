@@ -18,6 +18,18 @@ Cùng một mã có thể được lưu với chữ thường nhưng checkout l�
 2. Rà va chạm mã cũ, xử lý danh sách xung đột trước khi migration hoặc thêm uniqueness. Phối hợp giới hạn ký tự/độ dài ở BO-08.
 3. Nếu giữ phân biệt hoa thường, làm rõ chính sách ở form thay vì chuẩn hóa mã đã lưu.
 
+## Code dự kiến
+
+Nếu duyệt quy tắc không phân biệt hoa thường, dùng một phép chuẩn hóa cho request tạo/sửa và tra cứu. Bean Validation xử lý giá trị thiếu, migration xử lý mã cũ trước khi truy vấn theo dạng chuẩn.
+
+```java
+private String normalizeCode(String code) {
+    return code.strip().toUpperCase(Locale.ROOT);
+}
+
+String code = normalizeCode(request.code());
+```
+
 ## Kiểm thử lại
 
 Theo chính sách được duyệt, mã viết thường và viết hoa tra cùng chương trình hoặc UI báo rõ quy tắc. Kiểm mã cũ, mã trùng sau chuẩn hóa và mã có khoảng trắng bên trong.

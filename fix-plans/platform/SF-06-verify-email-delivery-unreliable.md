@@ -36,6 +36,14 @@ Nếu cấu hình hoặc binding sai, sửa ở cấu hình tương ứng. Nếu
 
 Không có.
 
+## Code dự kiến
+
+Khi xác nhận các máy dùng nhầm chung vhost, cấu hình môi trường chạy thử theo mẫu sau. Giá trị chỉ minh họa, dùng vhost đã được cấp cho môi trường; cùng cấu hình phía phát và phía nhận.
+
+```dotenv
+RABBITMQ_VHOST=velora-local-qa
+```
+
 ## Kiểm thử lại
 
 - Sau khi đổi vhost, số consumer của queue là 1.

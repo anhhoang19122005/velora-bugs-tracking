@@ -26,6 +26,17 @@ Một đơn đã commit nhưng `OrderPlacedEvent` không tới được inventor
 3. **Xử lý hết hạn riêng.** Hai phút để bắt đầu đối soát và 30 phút để bắt đầu kiểm tra hết hạn là ngưỡng đề xuất. Với đơn có thanh toán qua cổng hoặc chuyển khoản, đối soát payment-service trước khi hủy. Nếu đã nhận tiền, khôi phục hoặc xử lý theo luồng thanh toán hiện tại. Nếu chưa rõ tình trạng tiền hoặc service không phản hồi, giữ đơn để thử lại. Chỉ tự hủy khi đã xác nhận phiên thanh toán hết hiệu lực và chưa thu tiền. Việc hết hạn và xác nhận thanh toán cần có quy tắc xử lý tranh chấp để khoản thanh toán đến giữa hai bước không bị bỏ sót.
 4. **Tiền và kho sau khi hủy.** Với đơn đã trả tiền mà nghiệp vụ quyết định hủy, dùng luồng hiện tại để mở khoản hoàn và chuyển `REFUND_PENDING`. Chỉ ghi `REFUNDED` khi đã ghi nhận hoàn đủ tiền. Trả kho và hoàn lượt mã phải có khả năng thử lại theo ID đơn. Phối hợp [SF-38](SF-38-promotion-usage-over-redeemed.md) cho phần lượt mã.
 
+## Code dự kiến
+
+Trong giao dịch tạo đơn, ghi outbox ngay sau khi có ID đơn. Worker claim từng bản ghi, publish bằng mô hình xác nhận của PaymentOutboxScheduler rồi đánh dấu đã gửi sau confirm. Nếu worker chết sau confirm, consumer nhận lại theo cùng ID đơn.
+
+```java
+var savedOrder = orderRepository.save(order);
+outboxRepository.save(OrderOutbox.pending(
+    savedOrder.getId(), buildOrderPlacedEvent(savedOrder)));
+return orderMapper.toResponse(savedOrder);
+```
+
 ## Kiểm thử cần có
 
 | Tình huống | Kết quả mong đợi |

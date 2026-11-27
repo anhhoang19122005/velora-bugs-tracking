@@ -17,6 +17,16 @@ Các request khởi tạo đồng thời có thể cùng không thấy lần tha
 1. Dùng khóa theo đơn hoặc cơ chế ghi nguyên tử hiện có, thêm ràng buộc phù hợp để bảo vệ một lần thanh toán còn hiệu lực. Khi cạnh tranh, đọc lại bản ghi thắng và trả cùng link còn hạn.
 2. Giữ lịch sử các lần đã kết thúc, đối soát trước khi mở lần mới và giữ xử lý callback lặp theo mã giao dịch.
 
+## Code dự kiến
+
+Tại bước khởi tạo trong PaymentServiceImpl, thao tác tìm/tạo chạy dưới chốt đồng thời theo đơn. Xác định attempt còn hiệu lực theo trạng thái và hạn phiên. Nếu retry sau tranh chấp unique, đọc lại bằng transaction mới.
+
+```java
+return activeAttemptRepository.findForOrder(orderId)
+    .map(this::reuseInitiationResponse)
+    .orElseGet(() -> createActiveAttempt(orderId, request));
+```
+
 ## Kiểm thử lại
 
 Ba request đồng thời trả về cùng lần thanh toán hiệu lực. Callback lặp chỉ ghi nhận tiền một lần. Kiểm lần mới hợp lệ sau phiên cũ hết hạn theo quy tắc SF-33.

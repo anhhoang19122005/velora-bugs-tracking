@@ -17,6 +17,17 @@ Promotion lưu mã có khoảng trắng hoặc quá dài, trong khi checkout và
 1. Chốt bộ ký tự và độ dài theo nghiệp vụ/cột dữ liệu. Đặt validation ở DTO tạo/sửa, đồng bộ Zod và lỗi tại ô Code.
 2. Rà mã đang tồn tại và kiểm áp mã sau sửa. Phối hợp SF-34 đối với chính sách hoa thường.
 
+## Code dự kiến
+
+Trên field code của DTO create/update, dùng cùng hằng giới hạn và biểu thức đã chốt. Nếu SF-34 duyệt chuẩn hóa thì áp quy tắc ở cùng điểm trước lưu và tra cứu, đồng bộ Zod.
+
+```java
+@NotBlank
+@Size(max = PromotionCodeRules.MAX_LENGTH)
+@Pattern(regexp = PromotionCodeRules.FORMAT)
+String code
+```
+
 ## Kiểm thử lại
 
 Mã quá dài, ký tự cấm và dấu cách ở giữa bị chặn với lỗi trường. Mã hợp lệ tạo/sửa được và áp đúng ở checkout.

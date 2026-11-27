@@ -16,6 +16,14 @@ Bấm Đã nhận chỉ mở một khoản hoàn đang chờ chi, nhưng hướn
 
 1. Sửa bước Đã nhận để mô tả REFUND_PENDING và khoản hoàn OPEN. Chỉ mô tả hoàn tất sau bước ghi nhận chi trả.
 
+## Code dự kiến
+
+Trong apps/seller/src/messages/vi.json, order-return-process.steps.approve.deeper. Chỉ thay phần mô tả Đã nhận, giữ câu về Từ chối theo quyết định B11.
+
+```text
+Đã nhận xác nhận hàng đã về và mở khoản hoàn đang chờ chi. Khoản hoàn hoàn tất sau khi ghi nhận chi trả.
+```
+
 ## Kiểm thử lại
 
 Guide khớp màn và trạng thái trước/sau ghi nhận khoản hoàn.

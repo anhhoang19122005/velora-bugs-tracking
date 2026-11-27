@@ -29,6 +29,20 @@ Tức là saga giữ hàng đã làm đúng: chỉ một đơn giữ được h�
 2. Khi chuyển trạng thái vì kho báo hết hàng, hiển thị lý do theo mã nghiệp vụ nếu đã có. Nếu API chưa có, lưu và trả lý do có cấu trúc từ Order rồi sinh lại contract. Dùng bản dịch phía Storefront cho thông báo.
 3. Giữ quy trình giữ hàng bất đồng bộ. [SF-44](SF-44-order-event-lost-stuck-pending.md) xử lý trường hợp đơn chờ do mất sự kiện.
 
+## Code dự kiến
+
+Trong màn kết quả đặt hàng, derive nội dung từ trạng thái đọc lại bằng API. Dùng khóa dịch hiện có hoặc mở rộng namespace orders. Đơn hủy bởi kho hiển thị lý do theo mã có cấu trúc khi API trả về.
+
+```tsx
+if (order.status === OrderStatus.PENDING) {
+  return <OrderNotice>{t("waitingForStock")}</OrderNotice>;
+}
+if (order.status === OrderStatus.CANCELLED) {
+  return <OrderNotice>{cancellationMessage(order)}</OrderNotice>;
+}
+// Dùng nhánh kết quả phù hợp cho các trạng thái còn lại.
+```
+
 ## Kiểm thử lại
 
 Kịch bản 18: hai khách tranh lượng hàng cuối. Chỉ khách giữ được hàng thấy đơn xác nhận. Khách còn lại thấy đơn chờ rồi thông báo hết hàng. Kiểm COD và nhánh đồng bộ với trạng thái thanh toán.

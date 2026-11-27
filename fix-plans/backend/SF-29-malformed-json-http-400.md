@@ -17,6 +17,17 @@ Spring/Jackson báo lỗi đọc body trước khi chạy nghiệp vụ, nhưng 
 1. Dùng cách Identity/Catalog ánh xạ HttpMessageNotReadableException thành MALFORMED_REQUEST 400. Dùng định dạng lỗi chung đang có.
 2. Thêm test JSON hỏng, enum sai và số vượt kiểu, cùng control request hợp lệ.
 
+## Code dự kiến
+
+Trong Order/Promotion advice, dùng cùng cách dựng 400 MALFORMED_REQUEST hiện có của Identity/Catalog.
+
+```java
+@ExceptionHandler(HttpMessageNotReadableException.class)
+ResponseEntity<?> handleUnreadableBody(HttpMessageNotReadableException ex) {
+    return malformedRequest();
+}
+```
+
 ## Kiểm thử lại
 
 JSON lỗi cú pháp, enum sai và số vượt kiểu trả 400. Request hợp lệ giữ hành vi hiện tại.

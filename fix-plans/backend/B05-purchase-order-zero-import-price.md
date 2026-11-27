@@ -25,6 +25,15 @@ Giá 0 đi qua kiểm tra đầu vào rồi bị Bean Validation ở entity ch�
 
 Đặt annotation ở đầu vào API để Spring trả lỗi trường trước khi đi vào nghiệp vụ. Entity tiếp tục bảo vệ dữ liệu khi có đường ghi khác.
 
+## Code dự kiến
+
+Thay annotation trên importPrice ở DTO tạo PO và DTO tạo từ yêu cầu nhập. Dùng quy tắc dương của Zod tại form tương ứng.
+
+```diff
+- @DecimalMin(value = "0.0", message = "Import price cannot be negative")
++ @DecimalMin(value = "0.0", inclusive = false, message = "Import price must be greater than 0")
+```
+
 ## Kiểm thử lại
 
 Giá 0 hoặc âm trả 400 tại đúng trường, không sinh PO/phiếu. Giá dương hợp lệ vẫn lưu. Test cả hai lối tạo PO.

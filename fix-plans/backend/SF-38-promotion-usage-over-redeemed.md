@@ -33,6 +33,21 @@
 3. **Bù trừ lần checkout thất bại.** Tác vụ đối soát đọc các lần checkout bỏ dở đã lưu. Chỉ hoàn lượt sau khi xác nhận không có đơn đã commit và chốt lần checkout sang trạng thái thất bại để worker tạo đơn không thể commit muộn. Promotion-service lưu kết quả hủy theo tham chiếu kể cả khi chưa thấy lượt giữ, để request giữ đến muộn bị từ chối. `saveAndFlush` có thể phát hiện lỗi lưu sớm. Transaction đơn vẫn có thể rollback sau khi promotion-service đã giữ lượt.
 4. **Hoàn lượt có thể thử lại.** Ghi yêu cầu hoàn trong cùng transaction hủy của nhân viên hoặc hệ thống. Worker thử lại khi promotion-service lỗi hoặc mất phản hồi. Endpoint hoàn dùng tham chiếu ổn định và chỉ cộng lại một lần, cùng transaction xóa hoặc đánh dấu lượt đã hoàn. Đơn kẹt xử lý theo [SF-44](SF-44-order-event-lost-stuck-pending.md).
 
+## Code dự kiến
+
+Trong Promotion, phép lấy lượt theo checkout ref phải chạy chung transaction với ghi chủ sở hữu. Điều kiện UPDATE bảo vệ lượt cuối giữa nhiều customer, còn unique theo checkoutRef và giới hạn theo user bảo vệ gọi lặp. Hình dưới dùng tên hàm minh họa.
+
+```java
+var previous = reservationRepository.findByReference(checkoutRef);
+if (previous.isPresent()) {
+    return resolveExistingReservation(previous.get(), orderRef);
+}
+if (promotionRepository.decrementAvailableIfPositive(promotionId) != 1) {
+    return ReservationResult.exhausted();
+}
+return storeReservation(promotionId, checkoutRef, orderRef, customerId);
+```
+
 ## Kiểm thử cần có
 
 | Tình huống | Kết quả mong đợi |

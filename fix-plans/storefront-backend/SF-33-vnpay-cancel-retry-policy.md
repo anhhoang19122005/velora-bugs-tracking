@@ -18,6 +18,17 @@ Sau khi khách hủy ở VNPay, UI thấy đơn đã hủy và không có cách 
 2. Cho người dùng thử lại từ trang kết quả hoặc chi tiết đơn. Đối chiếu callback đến muộn và mốc hết hạn trước khi hủy.
 3. Nếu hủy cả đơn là hành vi mong muốn, sửa thông báo và hướng dẫn tương ứng.
 
+## Code dự kiến
+
+Nhánh dưới chỉ áp dụng nếu duyệt cho phép thử lại. Kiểm quyết định khi đã khóa đơn và đối soát lần thanh toán hiện tại. Các predicate minh họa quy tắc cần nối với model hiện có.
+
+```java
+if (order.isPayableAt(clock.instant()) && paymentAttempt.isTerminalFailure()) {
+    return initiateOrReuseActiveAttempt(order);
+}
+throw new AppException(ErrorCode.CONFLICT, "Order is not payable");
+```
+
 ## Kiểm thử lại
 
 Hủy ở sandbox hoặc thất bại có hành vi theo quyết định. Kiểm lần thử lại, hết hạn và tình huống phản hồi đến muộn để tránh thu tiền hai lần.
