@@ -1,0 +1,63 @@
+POST /api/v1/book-variants
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "6d99a563-aeb0-42c2-bf09-90ff887e0eb0",
+  "path": "/api/v1/book-variants",
+  "timestamp": "2026-11-27T04:32:46.194638800Z",
+  "fieldErrors": {
+    "variantId": "Variant ID is required",
+    "bookId": "Book ID is required",
+    "price": "Price is required"
+  }
+}
+
+POST /api/v1/book-variants
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "6a5cecec-4d5c-43ed-9f29-a1e85389c03d",
+  "path": "/api/v1/book-variants",
+  "timestamp": "2026-11-27T04:32:46.205497600Z",
+  "fieldErrors": {
+    "variantId": "Variant ID is required",
+    "bookId": "Book ID is required",
+    "price": "Price is required"
+  }
+}
+
+POST /api/v1/book-variants
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/book-variants
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "967ea571-5710-4c4b-8439-fdb14b5882eb",
+  "path": "/api/v1/book-variants",
+  "timestamp": "2026-11-27T04:32:46.239860Z",
+  "fieldErrors": {
+    "variantId": "Variant ID is required",
+    "bookId": "Book ID is required",
+    "price": "Price is required"
+  }
+}

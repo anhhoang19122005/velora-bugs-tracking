@@ -1,0 +1,56 @@
+PATCH /api/v1/inventory/stock-requests/10/approve
+Request body:
+{
+  "quantity": 3,
+  "responseMessage": "Chỉ duyệt 3 cuốn"
+}
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 10,
+    "requestCode": "STK-20261127-000026",
+    "quantity": 6,
+    "reason": "Còn 2 cuốn trên kệ, mỗi tuần bán khoảng 5 cuốn",
+    "status": "APPROVED",
+    "createdAt": "2026-11-27T04:18:27.017932Z",
+    "processedAt": "2026-11-27T04:37:46.166329100Z",
+    "responseMessage": "Chỉ duyệt 3 cuốn",
+    "bookId": 67,
+    "bookTitle": null,
+    "variantId": 1,
+    "createdByUserId": 97,
+    "processedByUserId": 95,
+    "createdBy": "Warehouse Taschen",
+    "processedBy": "Admin Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:37:46.309357700Z"
+}
+
+GET /api/v1/inventory/stock-requests/10
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 10,
+    "requestCode": "STK-20261127-000026",
+    "quantity": 6,
+    "reason": "Còn 2 cuốn trên kệ, mỗi tuần bán khoảng 5 cuốn",
+    "status": "APPROVED",
+    "createdAt": "2026-11-27T04:18:27.017932Z",
+    "processedAt": "2026-11-27T04:37:46.166329Z",
+    "responseMessage": "Chỉ duyệt 3 cuốn",
+    "bookId": 67,
+    "bookTitle": null,
+    "variantId": 1,
+    "createdByUserId": 97,
+    "processedByUserId": 95,
+    "createdBy": "Warehouse Taschen",
+    "processedBy": "Admin Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:37:46.751991800Z"
+}
+
+Ghi chú: gửi kèm quantity=3 khi duyệt nhưng phiếu vẫn giữ số lượng 6.

@@ -1,0 +1,53 @@
+POST /api/v1/banners
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "eadf74c8-0fe3-4d3a-9888-ca1061f811d8",
+  "path": "/api/v1/banners",
+  "timestamp": "2026-11-27T04:32:46.082650800Z",
+  "fieldErrors": {
+    "name": "Name is required",
+    "imageUrl": "Image URL is required"
+  }
+}
+
+POST /api/v1/banners
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/banners
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/banners
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "06257062-990f-4d47-b158-5eb0007d18ec",
+  "path": "/api/v1/banners",
+  "timestamp": "2026-11-27T04:32:46.131143800Z",
+  "fieldErrors": {
+    "name": "Name is required",
+    "imageUrl": "Image URL is required"
+  }
+}

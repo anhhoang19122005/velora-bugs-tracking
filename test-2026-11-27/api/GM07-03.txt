@@ -1,0 +1,50 @@
+DELETE /api/v1/suppliers/38
+HTTP 204
+{}
+
+POST /api/v1/purchase-orders
+Request body:
+{
+  "supplierId": 38,
+  "note": "Đặt bổ sung tháng 12",
+  "items": [
+    {
+      "bookId": 1,
+      "variantId": 1,
+      "quantity": 10,
+      "importPrice": 150000
+    }
+  ]
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 14,
+    "poCode": "PO-20261127-000038",
+    "createdAt": "2026-11-27T04:16:36.490948900Z",
+    "approvedAt": null,
+    "note": "Đặt bổ sung tháng 12",
+    "cancelReason": null,
+    "status": "PENDING",
+    "supplierId": 38,
+    "supplierName": "Công ty Cổ phần Văn hóa Phương Đông",
+    "stockRequestId": null,
+    "createdByUserId": 95,
+    "approvedByUserId": null,
+    "items": [
+      {
+        "id": 13,
+        "bookId": 1,
+        "bookTitle": null,
+        "variantId": 1,
+        "quantity": 10,
+        "importPrice": 150000
+      }
+    ],
+    "createdBy": "Admin Taschen",
+    "approvedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:16:36.689824300Z"
+}

@@ -1,0 +1,31 @@
+POST /api/v1/purchase-orders/from-stock-request
+Request body:
+{
+  "stockRequestId": null,
+  "supplierId": 36,
+  "importPrice": 52000,
+  "note": "Giao trước thứ Sáu, liên hệ kho Quận 7"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "a90ebfe5a1104121",
+  "path": "/api/v1/purchase-orders/from-stock-request",
+  "timestamp": "2026-11-27T04:17:19.195293500Z",
+  "fieldErrors": {
+    "stockRequestId": "Stock request ID is required"
+  }
+}
+
+GET /api/v1/inventory/stock-requests/None
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid value for parameter 'id'",
+  "traceId": "51368696080a4aad",
+  "path": "/api/v1/inventory/stock-requests/None",
+  "timestamp": "2026-11-27T04:17:19.217208200Z"
+}

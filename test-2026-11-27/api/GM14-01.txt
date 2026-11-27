@@ -1,0 +1,53 @@
+POST /api/v1/categories
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "3987123e-3aa5-4a03-b495-7f29ebdde9dd",
+  "path": "/api/v1/categories",
+  "timestamp": "2026-11-27T04:32:46.011194200Z",
+  "fieldErrors": {
+    "name": "Name is required",
+    "code": "Code is required"
+  }
+}
+
+POST /api/v1/categories
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/categories
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/categories
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "f1f8c5d6-b7b3-4b59-ac67-eefeb61654b3",
+  "path": "/api/v1/categories",
+  "timestamp": "2026-11-27T04:32:46.055369100Z",
+  "fieldErrors": {
+    "code": "Code is required",
+    "name": "Name is required"
+  }
+}

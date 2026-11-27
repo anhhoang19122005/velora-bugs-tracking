@@ -1,0 +1,81 @@
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{
+  "reason": "Khách trả cuốn sách chưa từng nhập kho qua phiếu nhập",
+  "items": [
+    {
+      "bookId": 70,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "returnRequestId": 64
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 50,
+    "returnCode": "RTW-20261127-000069",
+    "reason": "Khách trả cuốn sách chưa từng nhập kho qua phiếu nhập",
+    "responseNote": null,
+    "status": "PENDING",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:52.726531700Z",
+    "processedAt": null,
+    "createdByUserId": 96,
+    "processedByUserId": null,
+    "returnRequestId": 64,
+    "orderId": null,
+    "items": [
+      {
+        "id": 50,
+        "bookId": 70,
+        "variantId": 1,
+        "bookTitle": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:52.906118700Z"
+}
+
+PATCH /api/v1/inventory/return-to-warehouse/50/approve
+Request body:
+{
+  "responseNote": "Duyệt"
+}
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 50,
+    "returnCode": "RTW-20261127-000069",
+    "reason": "Khách trả cuốn sách chưa từng nhập kho qua phiếu nhập",
+    "responseNote": "Duyệt",
+    "status": "APPROVED",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:52.726532Z",
+    "processedAt": "2026-11-27T04:24:53.050903900Z",
+    "createdByUserId": 96,
+    "processedByUserId": 97,
+    "returnRequestId": 64,
+    "orderId": null,
+    "items": [
+      {
+        "id": 50,
+        "bookId": 70,
+        "variantId": 1,
+        "bookTitle": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": "Warehouse Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:53.169202100Z"
+}

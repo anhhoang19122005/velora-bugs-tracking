@@ -1,0 +1,39 @@
+POST /api/v1/promotions
+Request body:
+{
+  "name": "Tết Đinh Mùi",
+  "code": "tet dinh mui",
+  "discountPercent": 10,
+  "quantity": 50,
+  "priceOrderActive": 200000,
+  "startDate": "2026-11-27",
+  "endDate": "2026-12-02"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 167,
+    "name": "Tết Đinh Mùi",
+    "code": "tet dinh mui",
+    "discountPercent": 10,
+    "startDate": "2026-11-27",
+    "endDate": "2026-12-02",
+    "quantity": 50,
+    "isActive": true,
+    "status": "PENDING",
+    "priceOrderActive": 200000,
+    "createdByUserId": 96,
+    "approvedByUserId": null,
+    "createdAt": "2026-11-27T04:22:02.051130100Z",
+    "updatedAt": "2026-11-27T04:22:02.051130100Z",
+    "createdBy": "Seller Taschen",
+    "approvedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:22:02.195379100Z"
+}
+
+GET /api/v1/promotions/validate/tet dinh mui?userId=178&orderSubtotal=300000
+HTTP 0
+InvalidURL: URL can't contain control characters. '/api/v1/promotions/validate/tet dinh mui?userId=178&orderSubtotal=300000' (found at least ' ')

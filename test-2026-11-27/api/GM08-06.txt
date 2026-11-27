@@ -1,0 +1,14 @@
+PATCH /api/v1/inventory/stock-requests/None/reject
+Request body:
+{
+  "responseMessage": "Tồn kho hiện đủ bán đến cuối tháng"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid value for parameter 'id'",
+  "traceId": "b2d0e3c5721d4976",
+  "path": "/api/v1/inventory/stock-requests/None/reject",
+  "timestamp": "2026-11-27T04:17:07.013113900Z"
+}

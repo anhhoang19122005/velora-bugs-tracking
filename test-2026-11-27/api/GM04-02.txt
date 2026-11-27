@@ -1,0 +1,14 @@
+GET /api/v1/banners/1
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "name": "[GM-TEST-11271102] Sale tháng 12",
+    "imageUrl": "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/dbca62fc-9090-4523-b4d8-dbf533c72e5b.webp"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:37:46.077658900Z"
+}
+
+Ghi chú: bản ghi banner chỉ có các trường trên; không có trường bật/tắt hay đường dẫn.

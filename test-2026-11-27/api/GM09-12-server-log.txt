@@ -1,0 +1,8 @@
+11:20:08.951 ERROR [4c8cdc087e0b44ff] v.e.i.f.t.i.e.GlobalExceptionHandler - [4c8cdc087e0b44ff] INTERNAL_ERROR at /api/v1/purchase-orders/from-stock-request - Validation failed for classes [vn.edu.iuh.fit.taschen.inventory.model.PurchaseOrderItem] during persist time for groups [jakarta.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage='Import price must be greater than 0', propertyPath=importPrice, rootBeanClass=class vn.edu.iuh.fit.taschen.inventory.model.PurchaseOrderItem, messageTemplate='Import price must be greater than 0'}
+]
+jakarta.validation.ConstraintViolationException: Validation failed for classes [vn.edu.iuh.fit.taschen.inventory.model.PurchaseOrderItem] during persist time for groups [jakarta.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage='Import price must be greater than 0', propertyPath=importPrice, rootBeanClass=class vn.edu.iuh.fit.taschen.inventory.model.PurchaseOrderItem, messageTemplate='Import price must be greater than 0'}
+]

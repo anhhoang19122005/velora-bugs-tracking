@@ -1,0 +1,57 @@
+POST /api/v1/suppliers
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "f7551252c787421d",
+  "path": "/api/v1/suppliers",
+  "timestamp": "2026-11-27T04:32:46.996017Z",
+  "fieldErrors": {
+    "name": "Name is required"
+  }
+}
+
+POST /api/v1/suppliers
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/suppliers
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "b998d6445b5b46e9",
+  "path": "/api/v1/suppliers",
+  "timestamp": "2026-11-27T04:32:47.021143100Z",
+  "fieldErrors": {
+    "name": "Name is required"
+  }
+}
+
+POST /api/v1/suppliers
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "abf66fa4d5bc48de",
+  "path": "/api/v1/suppliers",
+  "timestamp": "2026-11-27T04:32:47.025159200Z",
+  "fieldErrors": {
+    "name": "Name is required"
+  }
+}

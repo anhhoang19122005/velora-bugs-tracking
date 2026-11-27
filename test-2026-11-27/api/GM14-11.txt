@@ -1,0 +1,60 @@
+POST /api/v1/inventory/stock-requests
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "5a3fc276dc1b469b",
+  "path": "/api/v1/inventory/stock-requests",
+  "timestamp": "2026-11-27T04:32:47.051213600Z",
+  "fieldErrors": {
+    "bookId": "Book ID is required",
+    "quantity": "Quantity is required"
+  }
+}
+
+POST /api/v1/inventory/stock-requests
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/inventory/stock-requests
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "2389578194b94605",
+  "path": "/api/v1/inventory/stock-requests",
+  "timestamp": "2026-11-27T04:32:47.094190700Z",
+  "fieldErrors": {
+    "bookId": "Book ID is required",
+    "quantity": "Quantity is required"
+  }
+}
+
+POST /api/v1/inventory/stock-requests
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "57bdbef976c84854",
+  "path": "/api/v1/inventory/stock-requests",
+  "timestamp": "2026-11-27T04:32:47.100204900Z",
+  "fieldErrors": {
+    "quantity": "Quantity is required",
+    "bookId": "Book ID is required"
+  }
+}

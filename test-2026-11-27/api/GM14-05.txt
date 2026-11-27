@@ -1,0 +1,72 @@
+POST /api/v1/promotions
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "8e1e9a67-7f24-422a-8b10-e37069523ed3",
+  "path": "/api/v1/promotions",
+  "timestamp": "2026-11-27T04:32:46.271401200Z",
+  "fieldErrors": {
+    "name": "Name is required",
+    "startDate": "Start date is required",
+    "quantity": "Quantity is required",
+    "code": "Code is required",
+    "discountPercent": "Discount percent is required",
+    "endDate": "End date is required"
+  }
+}
+
+POST /api/v1/promotions
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "297ef21d-09fc-4934-a6ae-1f88c69b1cb0",
+  "path": "/api/v1/promotions",
+  "timestamp": "2026-11-27T04:32:46.287923600Z",
+  "fieldErrors": {
+    "code": "Code is required",
+    "endDate": "End date is required",
+    "quantity": "Quantity is required",
+    "name": "Name is required",
+    "startDate": "Start date is required",
+    "discountPercent": "Discount percent is required"
+  }
+}
+
+POST /api/v1/promotions
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/promotions
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "9ff9c065-d412-4f33-b445-ca66a7242c37",
+  "path": "/api/v1/promotions",
+  "timestamp": "2026-11-27T04:32:46.314830600Z",
+  "fieldErrors": {
+    "code": "Code is required",
+    "endDate": "End date is required",
+    "name": "Name is required",
+    "startDate": "Start date is required",
+    "quantity": "Quantity is required",
+    "discountPercent": "Discount percent is required"
+  }
+}

@@ -1,0 +1,20 @@
+POST /api/v1/inventory/stock-requests
+Request body:
+{
+  "bookId": null,
+  "variantId": 1,
+  "quantity": 1,
+  "reason": "Bổ sung 1 cuốn trưng bày"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "f70d71bac0df4823",
+  "path": "/api/v1/inventory/stock-requests",
+  "timestamp": "2026-11-27T04:17:15.175262400Z",
+  "fieldErrors": {
+    "bookId": "Book ID is required"
+  }
+}

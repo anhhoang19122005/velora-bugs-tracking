@@ -1,0 +1,73 @@
+PATCH /api/v1/inventory/return-to-warehouse/47/approve
+Request body:
+{
+  "responseNote": "Đã kiểm hàng, sách còn tốt"
+}
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 47,
+    "returnCode": "RTW-20261127-000066",
+    "reason": "Khách trả 1 cuốn, sách còn nguyên seal, đưa lại lên kệ",
+    "responseNote": "Đã kiểm hàng, sách còn tốt",
+    "status": "APPROVED",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:27.095740Z",
+    "processedAt": "2026-11-27T04:24:36.359709100Z",
+    "createdByUserId": 96,
+    "processedByUserId": 97,
+    "returnRequestId": 64,
+    "orderId": 184,
+    "items": [
+      {
+        "id": 47,
+        "bookId": 67,
+        "variantId": 1,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": "Warehouse Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:36.502836900Z"
+}
+
+PATCH /api/v1/inventory/return-to-warehouse/48/approve
+Request body:
+{
+  "responseNote": "Duyệt phiếu thứ hai"
+}
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 48,
+    "returnCode": "RTW-20261127-000067",
+    "reason": "Lập lại phiếu trả về kho cho cùng yêu cầu khách trả",
+    "responseNote": "Duyệt phiếu thứ hai",
+    "status": "APPROVED",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:27.576750Z",
+    "processedAt": "2026-11-27T04:24:39.973262900Z",
+    "createdByUserId": 96,
+    "processedByUserId": 97,
+    "returnRequestId": 64,
+    "orderId": 184,
+    "items": [
+      {
+        "id": 48,
+        "bookId": 67,
+        "variantId": 1,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": "Warehouse Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:40.120005200Z"
+}

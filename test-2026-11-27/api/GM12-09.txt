@@ -1,0 +1,20 @@
+POST /api/v1/inventory/disposals
+Request body:
+{
+  "reason": "Rách bìa do kệ trưng bày bị đổ ngày",
+  "items": [
+    {
+      "batchId": 60,
+      "quantity": 1
+    }
+  ]
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "762b40246dc348de",
+  "path": "/api/v1/inventory/disposals",
+  "timestamp": "2026-11-27T04:19:22.250570800Z"
+}

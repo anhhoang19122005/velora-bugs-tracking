@@ -1,0 +1,45 @@
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{
+  "reason": "Khai số lượng lớn hơn số khách thật sự trả",
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 50
+    }
+  ],
+  "returnRequestId": 64,
+  "orderId": 184
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 49,
+    "returnCode": "RTW-20261127-000068",
+    "reason": "Khai số lượng lớn hơn số khách thật sự trả",
+    "responseNote": null,
+    "status": "PENDING",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:31.818090100Z",
+    "processedAt": null,
+    "createdByUserId": 96,
+    "processedByUserId": null,
+    "returnRequestId": 64,
+    "orderId": 184,
+    "items": [
+      {
+        "id": 49,
+        "bookId": 67,
+        "variantId": 1,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "quantity": 50
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:31.996905700Z"
+}

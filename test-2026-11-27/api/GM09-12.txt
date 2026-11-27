@@ -1,0 +1,58 @@
+POST /api/v1/purchase-orders/from-stock-request
+Request body:
+{
+  "stockRequestId": 17,
+  "supplierId": 36,
+  "importPrice": 0,
+  "note": "Hàng tặng kèm"
+}
+HTTP 500
+{
+  "success": false,
+  "code": "INTERNAL_ERROR",
+  "message": "Something went wrong. Please try again later.",
+  "traceId": "4c8cdc087e0b44ff",
+  "path": "/api/v1/purchase-orders/from-stock-request",
+  "timestamp": "2026-11-27T04:20:08.952190200Z"
+}
+
+POST /api/v1/purchase-orders/from-stock-request
+Request body:
+{
+  "stockRequestId": 17,
+  "supplierId": 36,
+  "importPrice": 1,
+  "note": "Hàng tặng kèm"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 24,
+    "poCode": "PO-20261127-000048",
+    "createdAt": "2026-11-27T04:20:09.075420100Z",
+    "approvedAt": null,
+    "note": "Hàng tặng kèm",
+    "cancelReason": null,
+    "status": "PENDING",
+    "supplierId": 36,
+    "supplierName": "Công ty TNHH Sách Bình Minh",
+    "stockRequestId": 17,
+    "createdByUserId": 97,
+    "approvedByUserId": null,
+    "items": [
+      {
+        "id": 21,
+        "bookId": 67,
+        "bookTitle": null,
+        "variantId": 1,
+        "quantity": 10,
+        "importPrice": 1
+      }
+    ],
+    "createdBy": "Warehouse Taschen",
+    "approvedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:20:09.285412400Z"
+}

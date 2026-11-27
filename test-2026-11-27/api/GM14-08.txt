@@ -1,0 +1,60 @@
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "f23ae2cd1bfd457c",
+  "path": "/api/v1/inventory/return-to-warehouse",
+  "timestamp": "2026-11-27T04:32:46.739970400Z",
+  "fieldErrors": {
+    "reason": "Reason is required",
+    "items": "Items are required"
+  }
+}
+
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "b4ef7a6cc1564b67",
+  "path": "/api/v1/inventory/return-to-warehouse",
+  "timestamp": "2026-11-27T04:32:46.756436500Z",
+  "fieldErrors": {
+    "items": "Items are required",
+    "reason": "Reason is required"
+  }
+}
+
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{}
+HTTP 403
+{
+  "success": false,
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action"
+}
+
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "b98a6d6ce8364322",
+  "path": "/api/v1/inventory/return-to-warehouse",
+  "timestamp": "2026-11-27T04:32:46.774276400Z",
+  "fieldErrors": {
+    "reason": "Reason is required",
+    "items": "Items are required"
+  }
+}

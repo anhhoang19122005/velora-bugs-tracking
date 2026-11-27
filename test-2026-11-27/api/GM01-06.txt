@@ -1,0 +1,18 @@
+POST /api/v1/categories
+Request body:
+{
+  "name": "[GM-TEST-11271102] Kỹ năng sống",
+  "code": "gm 11271102 ky nang"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 10,
+    "slug": "gm-test-11271102-ky-nang-song",
+    "code": "gm 11271102 ky nang",
+    "name": "[GM-TEST-11271102] Kỹ năng sống"
+  },
+  "message": "Category created",
+  "timestamp": "2026-11-27T04:06:54.645863200Z"
+}

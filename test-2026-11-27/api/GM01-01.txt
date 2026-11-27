@@ -1,0 +1,18 @@
+POST /api/v1/categories
+Request body:
+{
+  "name": "[GM-TEST-11271102] Văn học",
+  "code": "GMT11271102"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 9,
+    "slug": "gm-test-11271102-van-hoc",
+    "code": "GMT11271102",
+    "name": "[GM-TEST-11271102] Văn học"
+  },
+  "message": "Category created",
+  "timestamp": "2026-11-27T04:06:38.727035100Z"
+}

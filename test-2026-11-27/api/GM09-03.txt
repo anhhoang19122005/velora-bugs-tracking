@@ -1,0 +1,24 @@
+POST /api/v1/inventory/import-stocks
+Request body:
+{
+  "supplierId": 36,
+  "purchaseOrderId": 15,
+  "details": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "supplierId": 36,
+      "quantity": 20,
+      "importPrice": 118000
+    }
+  ]
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "8488e8e1bbc649e7",
+  "path": "/api/v1/inventory/import-stocks",
+  "timestamp": "2026-11-27T04:18:28.354186400Z"
+}

@@ -1,0 +1,219 @@
+POST /api/v1/orders
+Request body:
+{
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "addressId": 58,
+  "paymentMethod": "COD",
+  "promotionId": 170
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 186,
+    "orderCode": "ORD-20261127-000190",
+    "userId": 176,
+    "addressId": 58,
+    "recipientName": "Nguyễn Minh Anh",
+    "recipientPhone": "0903456721",
+    "shippingAddress": "48 Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+    "promotionId": 170,
+    "discountAmount": 18900.0,
+    "discountPercent": 10.0,
+    "totalAmount": 170100.0,
+    "status": "PENDING",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "COD",
+    "lines": [
+      {
+        "id": 204,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T04:22:17.824658900Z",
+    "updatedAt": "2026-11-27T04:22:17.824658900Z",
+    "hasActiveReturn": false
+  },
+  "message": "Order placed",
+  "timestamp": "2026-11-27T04:22:17.941258Z"
+}
+
+POST /api/v1/orders
+Request body:
+{
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "addressId": 59,
+  "paymentMethod": "COD",
+  "promotionId": 170
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 187,
+    "orderCode": "ORD-20261127-000191",
+    "userId": 178,
+    "addressId": 59,
+    "recipientName": "Lê Quốc Bảo",
+    "recipientPhone": "0938127456",
+    "shippingAddress": "215 Lý Thường Kiệt, Phường 15, Quận 11, TP. Hồ Chí Minh",
+    "promotionId": 170,
+    "discountAmount": 18900.0,
+    "discountPercent": 10.0,
+    "totalAmount": 170100.0,
+    "status": "PENDING",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "COD",
+    "lines": [
+      {
+        "id": 205,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T04:22:17.874434100Z",
+    "updatedAt": "2026-11-27T04:22:17.874434100Z",
+    "hasActiveReturn": false
+  },
+  "message": "Order placed",
+  "timestamp": "2026-11-27T04:22:17.993976200Z"
+}
+
+GET /api/v1/orders/186
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 186,
+    "orderCode": "ORD-20261127-000190",
+    "userId": 176,
+    "addressId": 58,
+    "recipientName": "Nguyễn Minh Anh",
+    "recipientPhone": "0903456721",
+    "shippingAddress": "48 Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+    "promotionId": 170,
+    "discountAmount": 18900.0,
+    "discountPercent": 10.0,
+    "totalAmount": 170100.0,
+    "status": "CONFIRMED",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "COD",
+    "lines": [
+      {
+        "id": 204,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T04:22:17.824659Z",
+    "updatedAt": "2026-11-27T04:22:18.481451Z",
+    "hasActiveReturn": false
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:22:20.187062900Z"
+}
+
+GET /api/v1/orders/187
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 187,
+    "orderCode": "ORD-20261127-000191",
+    "userId": 178,
+    "addressId": 59,
+    "recipientName": "Lê Quốc Bảo",
+    "recipientPhone": "0938127456",
+    "shippingAddress": "215 Lý Thường Kiệt, Phường 15, Quận 11, TP. Hồ Chí Minh",
+    "promotionId": 170,
+    "discountAmount": 18900.0,
+    "discountPercent": 10.0,
+    "totalAmount": 170100.0,
+    "status": "CONFIRMED",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "COD",
+    "lines": [
+      {
+        "id": 205,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T04:22:17.874434Z",
+    "updatedAt": "2026-11-27T04:22:06.013489Z",
+    "hasActiveReturn": false
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:22:20.249988100Z"
+}
+
+GET /api/v1/promotions/170
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 170,
+    "name": "Mở bán sớm",
+    "code": "MOBANSOM",
+    "discountPercent": 10.0,
+    "startDate": "2026-11-27",
+    "endDate": "2026-11-29",
+    "quantity": 0,
+    "isActive": true,
+    "status": "ACTIVE",
+    "priceOrderActive": 0.0,
+    "createdByUserId": 96,
+    "approvedByUserId": 95,
+    "createdAt": "2026-11-27T04:22:16.764309Z",
+    "updatedAt": "2026-11-27T04:22:18.387839Z",
+    "createdBy": "Seller Taschen",
+    "approvedBy": "Admin Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:22:20.427120200Z"
+}

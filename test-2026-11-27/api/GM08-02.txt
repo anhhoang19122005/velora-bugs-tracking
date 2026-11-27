@@ -1,0 +1,14 @@
+PATCH /api/v1/inventory/stock-requests/None/approve
+Request body:
+{
+  "responseMessage": "Đồng ý nhập 20 cuốn cho đợt cuối năm"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid value for parameter 'id'",
+  "traceId": "f49775a1e23e4bb3",
+  "path": "/api/v1/inventory/stock-requests/None/approve",
+  "timestamp": "2026-11-27T04:16:47.050892100Z"
+}

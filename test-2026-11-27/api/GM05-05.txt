@@ -1,0 +1,22 @@
+POST /api/v1/promotions
+Request body:
+{
+  "name": "Tri ân khách hàng",
+  "code": "TRIAN2026",
+  "discountPercent": 5,
+  "priceOrderActive": 200000,
+  "startDate": "2026-11-27",
+  "endDate": "2026-11-28"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "271f8da2-5c21-440c-acf0-01a1f8f10a6c",
+  "path": "/api/v1/promotions",
+  "timestamp": "2026-11-27T04:21:48.600274400Z",
+  "fieldErrors": {
+    "quantity": "Quantity is required"
+  }
+}

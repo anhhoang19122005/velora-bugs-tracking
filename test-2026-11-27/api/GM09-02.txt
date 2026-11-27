@@ -1,0 +1,10 @@
+PATCH /api/v1/purchase-orders/None/approve
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid value for parameter 'id'",
+  "traceId": "91f620e99ffc4dd2",
+  "path": "/api/v1/purchase-orders/None/approve",
+  "timestamp": "2026-11-27T04:17:23.161517900Z"
+}

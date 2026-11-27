@@ -1,0 +1,14 @@
+PATCH /api/v1/inventory/stock-requests/None/approve
+Request body:
+{
+  "responseMessage": "Duyệt lần hai"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid value for parameter 'id'",
+  "traceId": "c31548ae856f47bf",
+  "path": "/api/v1/inventory/stock-requests/None/approve",
+  "timestamp": "2026-11-27T04:17:11.177468300Z"
+}

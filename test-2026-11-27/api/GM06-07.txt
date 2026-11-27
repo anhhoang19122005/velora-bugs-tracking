@@ -1,0 +1,91 @@
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{
+  "reason": "Khách trả 1 cuốn, sách còn nguyên seal, đưa lại lên kệ",
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "returnRequestId": 64,
+  "orderId": 184
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 47,
+    "returnCode": "RTW-20261127-000066",
+    "reason": "Khách trả 1 cuốn, sách còn nguyên seal, đưa lại lên kệ",
+    "responseNote": null,
+    "status": "PENDING",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:27.095739800Z",
+    "processedAt": null,
+    "createdByUserId": 96,
+    "processedByUserId": null,
+    "returnRequestId": 64,
+    "orderId": 184,
+    "items": [
+      {
+        "id": 47,
+        "bookId": 67,
+        "variantId": 1,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:27.273704400Z"
+}
+
+POST /api/v1/inventory/return-to-warehouse
+Request body:
+{
+  "reason": "Lập lại phiếu trả về kho cho cùng yêu cầu khách trả",
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "returnRequestId": 64,
+  "orderId": 184
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 48,
+    "returnCode": "RTW-20261127-000067",
+    "reason": "Lập lại phiếu trả về kho cho cùng yêu cầu khách trả",
+    "responseNote": null,
+    "status": "PENDING",
+    "source": "CUSTOMER_RETURN",
+    "createdAt": "2026-11-27T04:24:27.576749500Z",
+    "processedAt": null,
+    "createdByUserId": 96,
+    "processedByUserId": null,
+    "returnRequestId": 64,
+    "orderId": 184,
+    "items": [
+      {
+        "id": 48,
+        "bookId": 67,
+        "variantId": 1,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "quantity": 1
+      }
+    ],
+    "createdBy": "Seller Taschen",
+    "processedBy": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:27.750006200Z"
+}

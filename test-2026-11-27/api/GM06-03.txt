@@ -1,0 +1,64 @@
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 188,
+  "reasonCode": "WRONG_ITEM",
+  "description": "Gửi lại yêu cầu kèm ảnh tem đơn hàng ghi bản bìa cứng như đã đặt",
+  "items": [
+    {
+      "orderDetailId": 206,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [
+    "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/dbca62fc-9090-4523-b4d8-dbf533c72e5b.webp"
+  ],
+  "refundDestination": {
+    "type": "EWALLET",
+    "provider": "MoMo",
+    "accountNumber": "0938127456",
+    "accountHolder": "LE QUOC BAO"
+  }
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 66,
+    "returnCode": "RMA-20261127-000066",
+    "orderId": 188,
+    "reasonCode": "WRONG_ITEM",
+    "description": "Gửi lại yêu cầu kèm ảnh tem đơn hàng ghi bản bìa cứng như đã đặt",
+    "responseNote": null,
+    "status": "PENDING",
+    "refundAmount": 189000.0,
+    "items": [
+      {
+        "orderDetailId": 206,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineRefund": 189000.0
+      }
+    ],
+    "evidenceUrls": [
+      "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/dbca62fc-9090-4523-b4d8-dbf533c72e5b.webp"
+    ],
+    "createdByUserId": 178,
+    "processedByUserId": null,
+    "processedAt": null,
+    "createdAt": "2026-11-27T04:24:12.704418500Z",
+    "orderCode": "ORD-20261127-000192",
+    "createdBy": "Quốc Bảo Lê",
+    "processedBy": null,
+    "refundDestination": {
+      "type": "EWALLET",
+      "provider": "MoMo",
+      "accountNumber": "••••7456",
+      "accountHolder": "LE QUOC BAO"
+    }
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:24:12.908091Z"
+}

@@ -1,0 +1,40 @@
+POST /api/v1/inventory/stock-requests
+Request body:
+{
+  "bookId": null,
+  "variantId": null,
+  "quantity": 5,
+  "reason": "Cần thêm hàng, chưa rõ định dạng"
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "54f82b43fbfb4102",
+  "path": "/api/v1/inventory/stock-requests",
+  "timestamp": "2026-11-27T04:17:02.992641700Z",
+  "fieldErrors": {
+    "bookId": "Book ID is required"
+  }
+}
+
+POST /api/v1/purchase-orders/from-stock-request
+Request body:
+{
+  "stockRequestId": null,
+  "supplierId": 36,
+  "importPrice": 52000
+}
+HTTP 400
+{
+  "success": false,
+  "code": "VALIDATION_ERROR",
+  "message": "The request contains invalid data.",
+  "traceId": "88c39e26d1dd4edd",
+  "path": "/api/v1/purchase-orders/from-stock-request",
+  "timestamp": "2026-11-27T04:17:03.058105Z",
+  "fieldErrors": {
+    "stockRequestId": "Stock request ID is required"
+  }
+}

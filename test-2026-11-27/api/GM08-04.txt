@@ -1,0 +1,58 @@
+GET /api/v1/inventory/stock-requests/6
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 6,
+    "requestCode": "STK-20261127-000022",
+    "quantity": 20,
+    "reason": "Còn 2 cuốn trên kệ, mỗi tuần bán khoảng 5 cuốn",
+    "status": "ORDERED",
+    "createdAt": "2026-11-27T04:18:10.834603Z",
+    "processedAt": "2026-11-27T04:18:11.333682Z",
+    "responseMessage": "Đồng ý nhập 20 cuốn cho đợt cuối năm",
+    "bookId": 67,
+    "bookTitle": null,
+    "variantId": 1,
+    "createdByUserId": 97,
+    "processedByUserId": 95,
+    "createdBy": "Warehouse Taschen",
+    "processedBy": "Admin Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:19:59.140488800Z"
+}
+
+GET /api/v1/purchase-orders/15
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 15,
+    "poCode": "PO-20261127-000039",
+    "createdAt": "2026-11-27T04:18:27.627254Z",
+    "approvedAt": "2026-11-27T04:18:28.102694Z",
+    "note": "Giao trước thứ Sáu, liên hệ kho Quận 7",
+    "cancelReason": null,
+    "status": "RECEIVED",
+    "supplierId": 36,
+    "supplierName": "Công ty TNHH Sách Bình Minh",
+    "stockRequestId": 6,
+    "createdByUserId": 97,
+    "approvedByUserId": 95,
+    "items": [
+      {
+        "id": 14,
+        "bookId": 67,
+        "bookTitle": null,
+        "variantId": 1,
+        "quantity": 20,
+        "importPrice": 118000.0
+      }
+    ],
+    "createdBy": "Warehouse Taschen",
+    "approvedBy": "Admin Taschen"
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T04:19:59.345388Z"
+}
