@@ -27,9 +27,14 @@ Không có ảnh và chưa lưu kết quả page.title(). Bằng chứng nguồn
 
 Đã đọc diff và test; chưa chạy lại test hoặc xác nhận trên môi trường triển khai trong lần cập nhật tài liệu này.
 
+## Phần cần đối chiếu sau lần rà 27/11
+
+Trang chủ và payment-result vẫn dùng tiêu đề chung theo tracker. Nếu `page.title()` xác nhận, khai báo metadata riêng ở server route/layout tương ứng. Dùng lại quy ước title và bản dịch hiện có.
+
 ## Kiểm thử lại
 
 - Dùng page.title() ghi lại tiêu đề trên cả 5 URL, đối chiếu metadata từng layout.
+- Ghi lại `page.title()` ở trang chủ và payment-result theo locale, gồm cả URL có query trả về từ VNPay.
 - Kiểm tra tiêu đề chi tiết đơn và trang con để phát hiện kế thừa ngoài ý muốn.
 
 Chạy kiểm tra phù hợp trong repo storefront: `pnpm lint`, `pnpm typecheck`, rồi các test liên quan ở `e2e/api/storefront.spec.ts` hoặc `e2e/responsive.spec.ts` với cấu hình môi trường tương ứng.

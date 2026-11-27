@@ -117,7 +117,7 @@ Thêm vào test "login, server cart, checkout and order detail use real request 
 
 Không có.
 
-## Phần tiêu đề riêng từng trang đã hoàn tất ở SF-27
+## Phần tiêu đề riêng từng trang trong SF-27
 
 Bug mong muốn mỗi trang có tiêu đề riêng. Vì đăng nhập, giỏ hàng và đơn hàng là client component, muốn có `metadata` thì phải thêm một server component bọc ngoài. Mẫu sẵn có là `checkout/page.tsx`. Cách ít file nhất là thêm 3 `layout.tsx`, mỗi file khoảng 3 dòng:
 
@@ -126,6 +126,8 @@ Bug mong muốn mỗi trang có tiêu đề riêng. Vì đăng nhập, giỏ hà
 - `(main)/orders/layout.tsx`
 
 Đây là phương án từng để tùy chọn khi sửa SF-14. Ngày 2026-11-11, commit `b771af7` đã bổ sung layout tiêu đề riêng cho 5 trang, gồm cả tìm kiếm và đăng ký; xem [SF-27](SF-27-pages-share-same-tab-title.md). Bản sửa đã vào `origin/develop` qua PR #77 (`b3444b9`).
+
+Tracker ngày 27/11 ghi nhận trang chủ và payment-result vẫn dùng tiêu đề chung. Đo tiêu đề hiện tại rồi xử lý phần còn lại theo kế hoạch SF-27.
 
 ## Kiểm thử lại
 

@@ -1,0 +1,21 @@
+# B10: Guide me ngụ ý có thể bỏ trống số lượt khuyến mãi
+
+| Mục | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Chưa sửa |
+| **Repo** | `taschen-backoffice` |
+| **Bug** | [Chi tiết B10](../../test-2026-11-27/loi.md#b10) · GM05-05 |
+| **Điểm vào source** | `Guide me Promotion`, `promotion.schema.ts` |
+
+## Nguyên nhân
+
+Tip gợi ý để trống số lượt trong khi form và API bắt buộc.
+
+## Thay đổi
+
+1. Sửa tip tại nguồn copy của Guide me. Nêu giá trị mẫu hợp lệ và dùng cùng tên trường với form.
+
+## Kiểm thử lại
+
+Guide và form thống nhất khi bỏ trống hoặc nhập số lượt hợp lệ.

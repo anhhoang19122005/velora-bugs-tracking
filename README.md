@@ -6,7 +6,9 @@ Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. 
 
 - **Bug:** Xem số lượng và trạng thái hiện tại trong [trang-thai.md](trang-thai.md).
 - **Ảnh:** 42 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
-- **Kế hoạch sửa:** [fix-plans](fix-plans/), 39 file cho SF-01–SF-27, SF-37–SF-40, SF-44 và BO-01–BO-07, chia theo repo cần sửa
+- **Kế hoạch sửa:** [fix-plans](fix-plans/), 69 file chia theo repo, có liên kết cho tất cả lỗi đang mở trong [bảng trạng thái](trang-thai.md).
+
+Khi triển khai bản sửa, dùng lại thành phần hoặc quy tắc đang có (DRY), chọn thay đổi nhỏ nhất giải quyết được nguyên nhân (KISS) và giữ trách nhiệm của từng lớp rõ ràng (SOLID). UI hướng dẫn và báo lỗi, service sở hữu quy tắc nghiệp vụ, cơ sở dữ liệu bảo vệ tính nhất quán khi có nhiều request. Mỗi PR cần test hồi quy tại lớp xảy ra lỗi; thay đổi API thì sinh lại contract và kiểu client. Các sửa liên quan dữ liệu cũ cần đối soát trước migration.
 
 Bổ sung ngày 2026-11-11: SF-18–SF-27 là 10 bug giao diện Minor. Đã đối chiếu ảnh và commit sửa; chưa chạy kiểm thử lại. Trạng thái đã vào `origin/develop` được xác nhận bằng Git sau khi fetch. [Tổng kết](tong-ket.md) giữ nguyên kết quả đợt test 2026-11-10, chưa bao gồm 10 bug mới. SF-27 tiếp nối phần tiêu đề riêng từng trang từng được để tùy chọn ở SF-14.
 

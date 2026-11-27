@@ -21,14 +21,16 @@ Một đơn đã commit nhưng `OrderPlacedEvent` không tới được inventor
 
 ## Thiết kế đề xuất
 
-1. **Khôi phục giữ hàng.** Quét các đơn `PENDING` chưa ghi nhận giữ hàng sau ngưỡng chờ. Kiểm tra lại trạng thái và phát lại `OrderPlacedEvent` theo từng đơn. Inventory đã có dấu theo ID đơn để bỏ qua việc giữ hàng lặp và listener vẫn gửi kết quả `StockReservedEvent`. Cần bảo đảm sự kiện đến muộn sau hủy không giữ lại hàng và kiểm thử trường hợp phát lại đua với hủy.
-2. **Xử lý hết hạn riêng.** Hai phút để phát lại và 30 phút để bắt đầu kiểm tra hết hạn là ngưỡng đề xuất. Với đơn có thanh toán qua cổng hoặc chuyển khoản, đối soát payment-service trước khi hủy. Nếu đã nhận tiền, khôi phục hoặc xử lý theo luồng thanh toán hiện tại. Nếu chưa rõ tình trạng tiền hoặc service không phản hồi, giữ đơn để thử lại. Chỉ tự hủy khi đã xác nhận phiên thanh toán hết hiệu lực và chưa thu tiền. Việc hết hạn và xác nhận thanh toán cần có quy tắc xử lý tranh chấp để khoản thanh toán đến giữa hai bước không bị bỏ sót.
-3. **Tiền và kho sau khi hủy.** Với đơn đã trả tiền mà nghiệp vụ quyết định hủy, dùng luồng hiện tại để mở khoản hoàn và chuyển `REFUND_PENDING`. Chỉ ghi `REFUNDED` khi đã ghi nhận hoàn đủ tiền. Trả kho và hoàn lượt mã phải có khả năng thử lại theo ID đơn. Phối hợp [SF-38](SF-38-promotion-usage-over-redeemed.md) cho phần lượt mã.
+1. **Lưu sự kiện cùng đơn.** Ghi `OrderPlacedEvent` vào outbox trong cùng `@Transactional` với đơn. Outbox là bảng lưu sự kiện cần gửi để tiến trình khác có thể gửi lại sau khi lỗi. Tham chiếu `PaymentOutboxScheduler` và publisher confirm. Chỉ đánh dấu đã gửi sau khi RabbitMQ xác nhận. Dùng lại contract event nếu payload đủ. Inventory tiếp tục chống giữ hàng lặp theo ID đơn.
+2. **Đối soát đơn cũ hoặc thiếu phản hồi.** Quét `PENDING` chưa có kết quả sau ngưỡng chờ. Kiểm lại trạng thái trước khi phát lại theo ID đơn. Kiểm sự kiện đến muộn sau hủy để kho không giữ lại hàng.
+3. **Xử lý hết hạn riêng.** Hai phút để bắt đầu đối soát và 30 phút để bắt đầu kiểm tra hết hạn là ngưỡng đề xuất. Với đơn có thanh toán qua cổng hoặc chuyển khoản, đối soát payment-service trước khi hủy. Nếu đã nhận tiền, khôi phục hoặc xử lý theo luồng thanh toán hiện tại. Nếu chưa rõ tình trạng tiền hoặc service không phản hồi, giữ đơn để thử lại. Chỉ tự hủy khi đã xác nhận phiên thanh toán hết hiệu lực và chưa thu tiền. Việc hết hạn và xác nhận thanh toán cần có quy tắc xử lý tranh chấp để khoản thanh toán đến giữa hai bước không bị bỏ sót.
+4. **Tiền và kho sau khi hủy.** Với đơn đã trả tiền mà nghiệp vụ quyết định hủy, dùng luồng hiện tại để mở khoản hoàn và chuyển `REFUND_PENDING`. Chỉ ghi `REFUNDED` khi đã ghi nhận hoàn đủ tiền. Trả kho và hoàn lượt mã phải có khả năng thử lại theo ID đơn. Phối hợp [SF-38](SF-38-promotion-usage-over-redeemed.md) cho phần lượt mã.
 
 ## Kiểm thử cần có
 
 | Tình huống | Kết quả mong đợi |
 |---|---|
+| Tiến trình dừng giữa commit và gửi, hoặc RabbitMQ chưa xác nhận | Bản ghi outbox còn chờ và được gửi khi khôi phục. |
 | Mất `OrderPlacedEvent` hoặc `StockReservedEvent` | Sau phát lại, đơn COD hợp lệ được xác nhận. Kho chỉ giảm một lần. |
 | Sự kiện phát lại đến sau khi đơn đã hủy | Kho không bị giữ lại cho đơn đã hủy. |
 | Nhiều worker quét cùng đơn hoặc callback đến lúc kiểm tra hết hạn | Mỗi tác dụng phụ đúng một lần. Đọc lại trạng thái trước khi chuyển. |

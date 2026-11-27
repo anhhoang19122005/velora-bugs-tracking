@@ -1,0 +1,27 @@
+# B03: Ảnh bìa từ host ngoài cấu hình làm lỗi toàn bộ trang chủ
+
+| Mục | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa |
+| **Repo** | `taschen-storefront`, catalog-service, `taschen-backoffice` |
+| **Bug** | [Chi tiết B03](../../test-2026-11-27/loi.md#b03) · GM13-03 |
+| **Điểm vào source** | `next.config.ts`, `BookCard`, `ProductGallery` |
+
+## Nguyên nhân
+
+Một ảnh bìa sai làm lỗi cả trang. next/image kiểm remotePatterns khi render, trong khi Catalog hiện nhận được URL mà Storefront không hỗ trợ.
+
+## Thay đổi
+
+1. Tách cấu hình ảnh Next.js dùng chung trong Storefront để cùng một danh sách cấp cho remotePatterns và bộ kiểm URL trước khi render. Áp dụng ở các ảnh Catalog đang dùng next/image, bắt đầu từ thẻ sách trang chủ, rồi rà danh sách, chi tiết và các màn dùng lại ảnh bìa.
+2. Dùng ảnh thay thế ngay khi URL thiếu/sai/ngoài cấu hình. Dùng onError ở thành phần client cho ảnh hợp lệ nhưng tải lỗi, và đặt lại trạng thái khi URL đổi.
+3. Trong PR Catalog/Backoffice riêng, kiểm URL ở điểm ghi dữ liệu, đồng bộ cấu hình host được hỗ trợ theo môi trường, và trả lỗi tại ô URL ảnh. Kiểm tra các URL cũ cần thay thế.
+
+## Tuân thủ quy tắc
+
+Kiểm URL bằng danh sách cấu hình duy nhất trong Storefront. Giữ logic ảnh thay thế ở lớp hiển thị, validation lưu URL ở Catalog. Ưu tiên các component ảnh hiện có, giới hạn helper mới vào phần kiểm URL dùng chung. Dùng danh sách host cụ thể theo môi trường.
+
+## Kiểm thử lại
+
+GM13-03. Một bìa lỗi ở trang chủ, danh sách hoặc chi tiết chỉ ảnh hưởng chỗ đặt ảnh. Kiểm URL rỗng, sai cú pháp, sai host, ảnh 404 và ảnh R2 hợp lệ. API trả 4xx có lỗi trường khi lưu URL ngoài danh sách; bản ghi cũ vẫn hiển thị bằng ảnh thay thế.

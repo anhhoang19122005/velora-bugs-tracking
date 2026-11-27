@@ -47,13 +47,18 @@ Thêm dòng tương tự vào `taschen-platform/.env` trên máy. Nếu storefro
 
 **Vì sao không đổi giá trị mặc định trong `application.yml:48` và `EmailServiceImpl.java:30`:** mỗi môi trường có domain khác nhau, nên đây phải là cấu hình theo môi trường. Việc cần ghi nhớ là khi deploy phải đặt biến này.
 
+### 4. `taschen-platform/docker-compose.staging.yml`
+
+Áp dụng cùng biến cấu hình cho staging với URL Storefront của môi trường. Kiểm giá trị thật trong cấu hình triển khai trước khi kiểm thử link.
+
 ## File mới
 
 Không có.
 
 ## Kiểm thử lại
 
-- Đăng ký tài khoản, mở email trong Mailpit, link phải bắt đầu bằng địa chỉ storefront.
+- Đăng ký tài khoản ở native, Compose và staging. Link trong từng email phải dùng đúng origin và route Storefront của môi trường.
+- Kiểm token hết hạn và token đã dùng.
 - Bấm link: trang báo xác thực thành công, đăng nhập được.
 - Chạy lại luồng 1, test case liên quan trong [HD Đăng ký](../../storefront/hd-dang-ky.md).
 - `e2e/api/storefront.spec.ts:91` đang kiểm tra trang này, chạy lại để chắc chắn.

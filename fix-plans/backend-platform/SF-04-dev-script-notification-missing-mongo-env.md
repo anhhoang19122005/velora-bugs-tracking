@@ -55,6 +55,8 @@ Không có.
 
 ## Kiểm thử lại
 
+- Đối chiếu Compose local/staging với biến `NOTIFICATION_MONGO_URI` mà notification-service đọc. Chạy service ở từng cấu hình đã sửa và xác nhận một email đến đúng đích test.
+
 - `./dev.ps1 start notification`: service lên, không có lỗi kết nối Mongo.
 - `docker compose config` trong `taschen-platform`: `notification-service` có `NOTIFICATION_MONGO_URI`.
 - Không in giá trị biến ra log hay dán vào PR.

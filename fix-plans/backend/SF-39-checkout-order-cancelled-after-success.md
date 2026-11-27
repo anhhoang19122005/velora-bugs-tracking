@@ -25,9 +25,10 @@ Tức là saga giữ hàng đã làm đúng: chỉ một đơn giữ được h�
 
 ## Hướng sửa (không bắt buộc)
 
-- **Nhỏ nhất:** lưu lý do hủy vào đơn (cột `cancelReason`, cần migration Flyway) khi giữ hàng thất bại. Storefront hiện "Đơn đã bị hủy vì sản phẩm vừa hết hàng" ở trang chi tiết đơn.
-- **Triệt để:** giữ hàng đồng bộ (gọi inventory-service giữ hàng trước khi lưu đơn). Cách này đổi kiến trúc saga, không đề xuất cho Minor.
+1. Storefront phân biệt đơn vừa tạo, đang chờ giữ hàng và đã xác nhận. Dùng trạng thái trả về từ API đơn và cơ chế làm mới dữ liệu hiện có. Thông báo sau 201 là đã tiếp nhận nếu đơn còn `PENDING`.
+2. Khi chuyển trạng thái vì kho báo hết hàng, hiển thị lý do theo mã nghiệp vụ nếu đã có. Nếu API chưa có, lưu và trả lý do có cấu trúc từ Order rồi sinh lại contract. Dùng bản dịch phía Storefront cho thông báo.
+3. Giữ quy trình giữ hàng bất đồng bộ. [SF-44](SF-44-order-event-lost-stuck-pending.md) xử lý trường hợp đơn chờ do mất sự kiện.
 
 ## Kiểm thử lại
 
-Kịch bản 18: khách thứ hai thấy đơn bị hủy kèm lý do hết hàng, không còn chỉ thấy "Đã hủy" mà không rõ vì sao.
+Kịch bản 18: hai khách tranh lượng hàng cuối. Chỉ khách giữ được hàng thấy đơn xác nhận. Khách còn lại thấy đơn chờ rồi thông báo hết hàng. Kiểm COD và nhánh đồng bộ với trạng thái thanh toán.

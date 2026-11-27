@@ -3,8 +3,8 @@
 | Mục | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. **Không cần sửa code**, cần xác nhận hạ tầng |
-| **Repo** | Không có thay đổi code. Chỉ đổi `taschen-platform/.env` trên máy |
+| **Trạng thái** | Chưa sửa. Xác định điểm gián đoạn của luồng gửi mail |
+| **Repo** | `taschen-platform`, `taschen-backend` nếu xác nhận lỗi tại consumer hoặc SMTP |
 | **Khối lượng** | Cấu hình |
 | **Bug và ảnh** | [Chi tiết bug](../../storefront/loi.md#sf-06), [Ảnh 1](../../images/SF-06-1.jpg) |
 
@@ -16,7 +16,9 @@ Chưa có quyền xem danh sách consumer, nên đây vẫn là suy luận.
 
 ## Thay đổi
 
-### 1. Xác nhận trên trang quản trị CloudAMQP
+### 1. Đối chiếu luồng và xác nhận trên trang quản trị CloudAMQP
+
+Theo một lần đăng ký qua `UserRegisteredEvent`, lần nhận ở notification-service và kết quả SMTP/Mailpit. Ghi ID tương quan và thời gian từng bước.
 
 Mở queue của notification-service và xem số consumer. Nếu lớn hơn 1 khi chỉ một máy đang chạy service, nguyên nhân đã được xác nhận.
 
@@ -26,6 +28,10 @@ Tạo vhost riêng cho môi trường này trên CloudAMQP, rồi đặt biến 
 
 **Vì sao không sửa code:** logic gửi email chạy đúng ở những lần sự kiện tới đúng máy. Đổi vhost tách hoàn toàn hàng đợi, không cần đổi tên exchange hay queue. Mọi service phải chuyển vhost cùng lúc, nếu không bên phát và bên nhận sẽ không gặp nhau.
 
+### 3. Xử lý theo bước thất bại
+
+Nếu cấu hình hoặc binding sai, sửa ở cấu hình tương ứng. Nếu xác nhận SMTP hoặc consumer thất bại tạm thời, dùng cơ chế thử lại sẵn có trước khi thêm mới. Kiểm việc nhận lại cùng sự kiện và tránh gửi trùng.
+
 ## File mới
 
 Không có.
@@ -34,6 +40,7 @@ Không có.
 
 - Sau khi đổi vhost, số consumer của queue là 1.
 - Đăng ký 4 tài khoản liên tiếp, Mailpit phải nhận đủ 4 email và không có email lạ.
+- Thử gián đoạn SMTP trong môi trường test rồi khôi phục. Ghi thời gian nhận và kiểm số thư cho từng tài khoản.
 - Chạy lại luồng 1 trong [HD Đăng ký](../../storefront/hd-dang-ky.md).
 
 ## Tuân thủ quy tắc
