@@ -104,11 +104,6 @@ def main():
     lines = [
         "# Lỗi hiện tại",
         "",
-        "File tự sinh, **không sửa tay**: chạy `python scripts/build_loi_hien_tai.py` sau khi sửa "
-        "[trang-thai.md](trang-thai.md) hoặc các file `loi.md`. Gồm mọi lỗi chưa đóng: "
-        + ", ".join(f"{g} ({sum(1 for v in status.values() if v[0] == g)})" for g in GROUPS)
-        + ". Lỗi đã đóng xem ở [trang-thai.md](trang-thai.md#đã-đóng).",
-        "",
         "Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi hồ sơ lỗi nguyên văn (bước tái hiện, mong đợi, "
         "thực tế, API response, ảnh). Link trong file đã chỉnh để mở đúng từ thư mục gốc của repo.",
         "",
