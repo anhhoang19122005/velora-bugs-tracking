@@ -1,12 +1,12 @@
 # Báo cáo bug Velora
 
-**Xem nhanh lỗi nào đã sửa, lỗi nào chưa: [trang-thai.md](trang-thai.md).**
+**Theo dõi công việc hiện tại tại [trang-thai.md](trang-thai.md).**
 
-Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
+Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Ảnh của đợt manual đầu nằm trong [images](images/) và được liên kết từ từng bug.
 
-- **Bug:** Xem số lượng và trạng thái hiện tại trong [trang-thai.md](trang-thai.md).
-- **Ảnh:** 42 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
-- **Kế hoạch sửa:** [fix-plans](fix-plans/), 69 file chia theo repo, có liên kết cho tất cả lỗi đang mở trong [bảng trạng thái](trang-thai.md).
+- **Chi tiết lỗi** · [Storefront](storefront/loi.md), [Backoffice](backoffice/loi.md) và [lỗi giao diện](ui/loi.md).
+- **Kế hoạch sửa và retest** · [fix-plans](fix-plans/), chia theo repo cần sửa. Mở từng kế hoạch từ [bảng trạng thái](trang-thai.md).
+- **Bằng chứng** · [Ảnh đợt đầu](images/), [Guide me 27/11](test-2026-11-27/README.md) và [ảnh rà UI 27/11](ui/loi.md).
 
 Khi triển khai bản sửa, dùng lại thành phần hoặc quy tắc đang có (DRY), chọn thay đổi nhỏ nhất giải quyết được nguyên nhân (KISS) và giữ trách nhiệm của từng lớp rõ ràng (SOLID). UI hướng dẫn và báo lỗi, service sở hữu quy tắc nghiệp vụ, cơ sở dữ liệu bảo vệ tính nhất quán khi có nhiều request. Mỗi PR cần test hồi quy tại lớp xảy ra lỗi; thay đổi API thì sinh lại contract và kiểu client. Các sửa liên quan dữ liệu cũ cần đối soát trước migration.
 

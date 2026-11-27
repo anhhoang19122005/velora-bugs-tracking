@@ -60,3 +60,5 @@ return src && !failed
 ## Kiểm thử lại
 
 GM13-03. Một bìa lỗi ở trang chủ, danh sách hoặc chi tiết chỉ ảnh hưởng chỗ đặt ảnh. Kiểm URL rỗng, sai cú pháp, sai host, ảnh 404 và ảnh R2 hợp lệ. API trả 4xx có lỗi trường khi lưu URL ngoài danh sách; bản ghi cũ vẫn hiển thị bằng ảnh thay thế.
+
+Chạy thêm Search với từ khóa sapiens và ảnh từ x.test. Thẻ sách dùng ảnh thay thế khi ảnh gốc tải lỗi. Danh sách vẫn hiện và điều hướng sang chi tiết được. Rà đường render ảnh thường trong Search để áp cùng hành vi ảnh thay thế. [Bằng chứng retest 27/11](../../ui/loi.md#b03)

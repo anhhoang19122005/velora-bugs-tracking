@@ -1,6 +1,8 @@
 # Bug UI — Storefront
 
-Thư mục phân loại **bug giao diện (UI)** SF-18–SF-27: bố cục, hiển thị, thao tác cảm ứng, thông báo cho khách và tiêu đề trang. Các mã này đã nằm trong tổng số 34 bug, không tính thêm lần nữa.
+Danh mục UI toàn dự án và các lần kiểm thử mới nằm tại [UI VELORA](../../ui/loi.md).
+
+Thư mục phân loại **bug giao diện (UI)** SF-18–SF-27: bố cục, hiển thị, thao tác cảm ứng, thông báo cho khách và tiêu đề trang. Các mã này được tính một lần trong [bảng trạng thái](../../trang-thai.md).
 
 Chi tiết tái hiện và trạng thái được giữ tại [danh sách lỗi Storefront](../loi.md#sf-18); bảng dưới dẫn tới từng bug, ảnh bằng chứng và kế hoạch sửa.
 
