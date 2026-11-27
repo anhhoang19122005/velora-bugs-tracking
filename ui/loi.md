@@ -2,7 +2,7 @@
 
 Theo dõi responsive, bố cục, bản dịch và định dạng trên Storefront và Backoffice. Trạng thái hiện hành tra ở [bảng trạng thái](../trang-thai.md).
 
-Đợt rà 27/11 chạy Chromium qua Playwright trên local. Storefront `0a72cc4` được kiểm ở 320–1440 px với phiên khách. Backoffice `8e1ecfbe` được kiểm ở 375–1440 px với Admin, Seller và Warehouse. Trang chủ Storefront bị B03 chặn nên phần bố cục trang chủ còn chờ kiểm tra. Checkout có sản phẩm và phiên khách hàng đã đăng nhập nằm ngoài phạm vi đợt này.
+Đợt rà 27/11 chạy Chromium qua Playwright trên local. Storefront `0a72cc4` được kiểm ở 320–1440 px với phiên khách. Backoffice `8e1ecfbe` được kiểm ở 375–1440 px với Admin, Seller và Warehouse. Trang chủ Storefront bị SF-45 chặn nên phần bố cục trang chủ còn chờ kiểm tra. Checkout có sản phẩm và phiên khách hàng đã đăng nhập nằm ngoài phạm vi đợt này.
 
 ## Lỗi UI ghi nhận trong đợt rà
 
@@ -74,9 +74,9 @@ Theo dõi responsive, bố cục, bản dịch và định dạng trên Storefro
 - [SF-18–SF-27](../storefront/ui/README.md) có danh mục, ảnh và kế hoạch từ đợt trước.
 - [BO-01](../backoffice/loi.md#bo-01) ghi nhận hộp Guided Tasks trống ở trang bị từ chối truy cập.
 
-### B03
+### SF-45
 
-[Mã B03](../test-2026-11-27/loi.md#b03) tiếp tục theo dõi ảnh lỗi. Kiểm lại ngày 27/11, trang chủ rơi vào màn “Something broke on our end”. Technical details báo `Invalid src prop` với hostname `x.test`. Trên Search, cùng hostname làm một thẻ hiện ảnh hỏng, trong khi danh sách vẫn dùng được. Thêm case Search vào nghiệm thu B03. [Trang chủ](evidence/2026-11-27/verify-storefront-vi-375.png) · [Kết quả tìm kiếm](evidence/2026-11-27/storefront-search-en-375-confirmed.png) · [Kế hoạch B03](../fix-plans/storefront-backend/B03-catalog-image-host-crashes-storefront.md)
+[Mã SF-45](../storefront/loi.md#sf-45) tiếp tục theo dõi ảnh lỗi. Kiểm lại ngày 27/11, trang chủ rơi vào màn “Something broke on our end”. Technical details báo `Invalid src prop` với hostname `x.test`. Trên Search, cùng hostname làm một thẻ hiện ảnh hỏng, trong khi danh sách vẫn dùng được. Thêm case Search vào nghiệm thu SF-45. [Trang chủ](evidence/2026-11-27/verify-storefront-vi-375.png) · [Kết quả tìm kiếm](evidence/2026-11-27/storefront-search-en-375-confirmed.png) · [Kế hoạch SF-45](../fix-plans/storefront-backend/SF-45-catalog-image-host-crashes-storefront.md)
 
 ### BO-07
 

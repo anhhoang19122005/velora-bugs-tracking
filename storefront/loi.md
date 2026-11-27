@@ -6,6 +6,8 @@ Ghi nhận ngày 2026-11-12: SF-02, SF-03, SF-07, SF-08, SF-10 đã có bản s�
 
 Ghi nhận ngày 2026-11-14: **SF-28–SF-44** là lỗi mới tìm thấy khi retest và khi test tính bất biến (gửi request đồng thời). Số lỗi nối tiếp SF-27. SF-37, SF-38, SF-40, SF-44 là Major (SF-44 chưa tái hiện, phát hiện khi đọc code); SF-36 đã đóng vì đúng theo thiết kế. Bằng chứng nằm ở [bat-bien.md](bat-bien.md).
 
+Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test theo Guide me và test phân quyền ([test-2026-11-27](../test-2026-11-27/README.md)). Mỗi lỗi ghi kèm mã trong đợt (B.., P..).
+
 | # | Mức độ | Luồng | Endpoint / Màn hình | Nghi ngờ thuộc | Ảnh |
 |---|---|---|---|---|---|
 | [SF-01](#sf-01) | Major (đã sửa) | 1 - Đăng nhập, đăng ký | POST /auth/login, /auth/register · route.ts | storefront (route.ts) | [Ảnh 1](../images/SF-01-1.jpg), [Ảnh 2](../images/SF-01-2.jpg) |
@@ -52,6 +54,9 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-44** là lỗi mới tìm thấy khi r
 | [SF-42](#sf-42) | Minor | 2 - Giỏ hàng | POST /api/v1/carts/me/items | order-service (cập nhật giỏ không khóa) | Không có |
 | [SF-43](#sf-43) | Minor | 4 - Checkout VNPAY | POST /api/v1/orders/{id}/payments/initiate | payment-service | Không có |
 | [SF-44](#sf-44) | Major | 3 - Checkout COD, 4 - Checkout VNPAY | EventPublisher · OrderPlacedEvent, StockReservedEvent | order-service | Không có |
+| [SF-45](#sf-45) | Major | Storefront · Trang chủ | GET /vi (storefront) · POST /api/v1/books (imageUrl tự do) | taschen-storefront (next/image), catalog-service (không kiểm host của imageUrl) | [Ảnh 1](../images/SF-45-1.png), [Ảnh 2](../images/SF-45-2.png) |
+| [SF-46](#sf-46) | Major | Phiên bản &amp; giá → Storefront | POST /api/v1/book-variants (stockQuantity) · POST /api/v1/orders | catalog-service (book_variants.stock_quantity tách khỏi inventory) | [Ảnh 1](../images/SF-46-1.png), [Ảnh 2](../images/SF-46-2.png) |
+| [SF-47](#sf-47) | Major | 1 - Đăng ký, đăng nhập | POST /api/v1/auth/register · GET /api/v1/roles/code/USER | DB dùng chung (identity), không phải lỗi code | Không có |
 
 ## SF-01
 
@@ -653,7 +658,7 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-44** là lỗi mới tìm thấy khi r
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) Retest 2026-11-27 (GM05-12): **còn lỗi**, mã 1 lượt vẫn được 2 đơn đặt cùng lúc dùng (ORD-20261127-000190, 000191). Xem [B02](../test-2026-11-27/guide-me/loi.md#b02). |
 | **Luồng** | 7 - Khuyến mãi |
 | **Endpoint / Màn hình** | POST /api/v1/orders có promotionId · promotion-service |
 | **Nghi ngờ thuộc** | order-service / promotion-service |
@@ -759,3 +764,51 @@ Ghi nhận ngày 2026-11-14: **SF-28–SF-44** là lỗi mới tìm thấy khi r
 | **Bằng chứng (status/body)** | `EventPublisher.send` chỉ ghi log khi gửi lỗi; order-service không có outbox, không bật publisher confirm và không có `@Scheduled` (payment-service thì có `PaymentOutboxScheduler`). Ngày 14/11 `GET /orders?status=PENDING` trả 0 đơn, nên chưa có đơn kẹt thật |
 | **API Response** | Không áp dụng |
 | **Ảnh bằng chứng** | Không có. Chưa tái hiện |
+
+## SF-45
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B03). |
+| **Luồng** | Storefront · Trang chủ |
+| **Endpoint / Màn hình** | GET /vi (storefront) · POST /api/v1/books (imageUrl tự do) |
+| **Nghi ngờ thuộc** | taschen-storefront (next/image), catalog-service (không kiểm host của imageUrl) |
+| **Bước tái hiện** | 1. Có một sách với imageUrl https://x.test/qa.png (sách id 61 "QA-BOOK-20261127", không do đợt này tạo)<br>2. Mở trang chủ storefront (đăng nhập hay không đều vậy) |
+| **Mong đợi** | Trang chủ hiển thị bình thường; ảnh lỗi chỉ ảnh hưởng ô của sách đó |
+| **Thực tế** | Toàn bộ trang chủ báo "Something broke on our end". next/image: Invalid src prop ... hostname "x.test" is not configured. API tạo sách chấp nhận mọi URL ảnh |
+| **Bằng chứng (status/body)** | Đợt test 2026-11-27, case GM13-03 ([B03](../test-2026-11-27/guide-me/loi.md#b03)). Response đầy đủ: [GM13-03](../test-2026-11-27/guide-me/api/GM13-03.txt) |
+| **API Response** | <pre>GET /api/v1/banners<br>HTTP 200<br>{<br>  "success": true,<br>  "data": [<br>    {<br>      "id": 1,<br>      "name": "[GM-TEST-11271102] Sale tháng 12",<br>      "imageUrl": "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/dbca62fc-9090-4523-b4d8-dbf533c72e5b.webp"<br>    }<br>  ],<br>  "message": "OK",<br>(rút gọn)</pre> |
+| **Ảnh bằng chứng** | [SF-45-1.png](../images/SF-45-1.png)<br>[SF-45-2.png](../images/SF-45-2.png) |
+
+## SF-46
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B04). |
+| **Luồng** | Phiên bản &amp; giá → Storefront |
+| **Endpoint / Màn hình** | POST /api/v1/book-variants (stockQuantity) · POST /api/v1/orders |
+| **Nghi ngờ thuộc** | catalog-service (book_variants.stock_quantity tách khỏi inventory) |
+| **Bước tái hiện** | 1. Seller thêm phiên bản Bìa cứng với tồn ban đầu 10 cho một sách chưa nhập kho<br>2. Khách xem trang chi tiết và đặt 1 cuốn |
+| **Mong đợi** | Storefront không hiện hàng khi kho (inventory) chưa có lô, hoặc ô tồn ban đầu không tồn tại |
+| **Thực tế** | Trang chi tiết ghi "Bìa cứng · còn 10", thêm giỏ được (200) nhưng đặt hàng trả 409 "Not enough stock". Inventory báo tổng 0 |
+| **Bằng chứng (status/body)** | Đợt test 2026-11-27, case GM03-02 ([B04](../test-2026-11-27/guide-me/loi.md#b04)). Response đầy đủ: [GM03-02](../test-2026-11-27/guide-me/api/GM03-02.txt) |
+| **API Response** | <pre>GET /api/v1/books/60<br>HTTP 200<br>{<br>  "success": true,<br>  "data": {<br>    "id": 60,<br>    "slug": "gm-test-11271102-sach-ton-ao",<br>    "title": "[GM-TEST-11271102] Sách tồn ảo",<br>    "author": "GM Tác giả",<br>    "description": "Sách test của đợt GM-TEST-11271102",<br>    "publicationYear": 2020,<br>    "weightGrams": null,<br>(rút gọn)</pre> |
+| **Ảnh bằng chứng** | [SF-46-1.png](../images/SF-46-1.png)<br>[SF-46-2.png](../images/SF-46-2.png) |
+
+## SF-47
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test phân quyền, mã trong đợt: P1). |
+| **Luồng** | 1 - Đăng ký, đăng nhập |
+| **Endpoint / Màn hình** | POST /api/v1/auth/register · GET /api/v1/roles/code/USER |
+| **Nghi ngờ thuộc** | DB dùng chung (identity), không phải lỗi code |
+| **Bước tái hiện** | 1. Đăng nhập bằng một tài khoản khách đã có<br>2. Xem claim roles trong token và GET /api/v1/users/me<br>3. Admin gọi GET /api/v1/roles/code/USER |
+| **Mong đợi** | Khách có role USER; role USER tồn tại (seed V2__seed_roles.sql) |
+| **Thực tế** | Token và /users/me có roles rỗng; GET /roles/code/USER trả 404. AuthServiceImpl.findDefaultRole bắt buộc có role này nên đăng ký mới sẽ báo lỗi. Trên DB còn role lạ QA-ROLE-20261127 không do đợt test tạo |
+| **Bằng chứng (status/body)** | Đợt test 2026-11-27, phần phân quyền ([P1](../test-2026-11-27/phan-quyen/README.md#4-phát-hiện)). Flyway báo schema bản 19, repo chỉ có đến V18 |
+| **API Response** | <pre>GET /api/v1/roles/code/USER<br>HTTP 404<br>{ "code": "RESOURCE_NOT_FOUND" }</pre> |
+| **Ảnh bằng chứng** | Không có |

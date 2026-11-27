@@ -1,0 +1,1061 @@
+[
+ {
+  "id": "B-anon-admin-dashboard",
+  "role": "anon",
+  "area": "admin",
+  "page": "dashboard",
+  "typed": "http://localhost:3000/admin/dashboard",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-accounts",
+  "role": "anon",
+  "area": "admin",
+  "page": "accounts",
+  "typed": "http://localhost:3000/admin/accounts",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Faccounts",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-roles",
+  "role": "anon",
+  "area": "admin",
+  "page": "roles",
+  "typed": "http://localhost:3000/admin/roles",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-roles-new",
+  "role": "anon",
+  "area": "admin",
+  "page": "roles/new",
+  "typed": "http://localhost:3000/admin/roles/new",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-permissions",
+  "role": "anon",
+  "area": "admin",
+  "page": "permissions",
+  "typed": "http://localhost:3000/admin/permissions",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fpermissions",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-finance",
+  "role": "anon",
+  "area": "admin",
+  "page": "finance",
+  "typed": "http://localhost:3000/admin/finance",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-finance-transfers",
+  "role": "anon",
+  "area": "admin",
+  "page": "finance/transfers",
+  "typed": "http://localhost:3000/admin/finance/transfers",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-finance-transfers-unapplied",
+  "role": "anon",
+  "area": "admin",
+  "page": "finance/transfers/unapplied",
+  "typed": "http://localhost:3000/admin/finance/transfers/unapplied",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Funapplied",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-admin-finance-transfers-overpaid",
+  "role": "anon",
+  "area": "admin",
+  "page": "finance/transfers/overpaid",
+  "typed": "http://localhost:3000/admin/finance/transfers/overpaid",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Foverpaid",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-dashboard",
+  "role": "anon",
+  "area": "seller",
+  "page": "dashboard",
+  "typed": "http://localhost:3002/seller/dashboard",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-books",
+  "role": "anon",
+  "area": "seller",
+  "page": "books",
+  "typed": "http://localhost:3002/seller/books",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbooks",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-books-new",
+  "role": "anon",
+  "area": "seller",
+  "page": "books/new",
+  "typed": "http://localhost:3002/seller/books/new",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbooks%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-categories",
+  "role": "anon",
+  "area": "seller",
+  "page": "categories",
+  "typed": "http://localhost:3002/seller/categories",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fcategories",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-variants",
+  "role": "anon",
+  "area": "seller",
+  "page": "variants",
+  "typed": "http://localhost:3002/seller/variants",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fvariants",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-banners",
+  "role": "anon",
+  "area": "seller",
+  "page": "banners",
+  "typed": "http://localhost:3002/seller/banners",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbanners",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-promotions",
+  "role": "anon",
+  "area": "seller",
+  "page": "promotions",
+  "typed": "http://localhost:3002/seller/promotions",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fpromotions",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-orders",
+  "role": "anon",
+  "area": "seller",
+  "page": "orders",
+  "typed": "http://localhost:3002/seller/orders",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Forders",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-payments",
+  "role": "anon",
+  "area": "seller",
+  "page": "payments",
+  "typed": "http://localhost:3002/seller/payments",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fpayments",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-refunds",
+  "role": "anon",
+  "area": "seller",
+  "page": "refunds",
+  "typed": "http://localhost:3002/seller/refunds",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Frefunds",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-returns",
+  "role": "anon",
+  "area": "seller",
+  "page": "returns",
+  "typed": "http://localhost:3002/seller/returns",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Freturns",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-seller-stock-returns",
+  "role": "anon",
+  "area": "seller",
+  "page": "stock-returns",
+  "typed": "http://localhost:3002/seller/stock-returns",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fstock-returns",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-dashboard",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "dashboard",
+  "typed": "http://localhost:3001/warehouse/dashboard",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-suppliers",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "suppliers",
+  "typed": "http://localhost:3001/warehouse/suppliers",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fsuppliers",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-stock-requests",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "stock-requests",
+  "typed": "http://localhost:3001/warehouse/stock-requests",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fstock-requests",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-purchase-orders",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "purchase-orders",
+  "typed": "http://localhost:3001/warehouse/purchase-orders",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fpurchase-orders",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-purchase-orders-new",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "purchase-orders/new",
+  "typed": "http://localhost:3001/warehouse/purchase-orders/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fpurchase-orders%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-import-stocks",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "import-stocks",
+  "typed": "http://localhost:3001/warehouse/import-stocks",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fimport-stocks",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-import-stocks-new",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "import-stocks/new",
+  "typed": "http://localhost:3001/warehouse/import-stocks/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fimport-stocks%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-batches",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "batches",
+  "typed": "http://localhost:3001/warehouse/batches",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fbatches",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-disposals",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "disposals",
+  "typed": "http://localhost:3001/warehouse/disposals",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdisposals",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-disposals-new",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "disposals/new",
+  "typed": "http://localhost:3001/warehouse/disposals/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdisposals%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-anon-warehouse-return-to-warehouse",
+  "role": "anon",
+  "area": "warehouse",
+  "page": "return-to-warehouse",
+  "typed": "http://localhost:3001/warehouse/return-to-warehouse",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Freturn-to-warehouse",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-dashboard",
+  "role": "seller",
+  "area": "admin",
+  "page": "dashboard",
+  "typed": "http://localhost:3002/admin/dashboard",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-accounts",
+  "role": "seller",
+  "area": "admin",
+  "page": "accounts",
+  "typed": "http://localhost:3002/admin/accounts",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Faccounts",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-roles",
+  "role": "seller",
+  "area": "admin",
+  "page": "roles",
+  "typed": "http://localhost:3002/admin/roles",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-roles-new",
+  "role": "seller",
+  "area": "admin",
+  "page": "roles/new",
+  "typed": "http://localhost:3002/admin/roles/new",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-permissions",
+  "role": "seller",
+  "area": "admin",
+  "page": "permissions",
+  "typed": "http://localhost:3002/admin/permissions",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fpermissions",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-finance",
+  "role": "seller",
+  "area": "admin",
+  "page": "finance",
+  "typed": "http://localhost:3002/admin/finance",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-finance-transfers",
+  "role": "seller",
+  "area": "admin",
+  "page": "finance/transfers",
+  "typed": "http://localhost:3002/admin/finance/transfers",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-finance-transfers-unapplied",
+  "role": "seller",
+  "area": "admin",
+  "page": "finance/transfers/unapplied",
+  "typed": "http://localhost:3002/admin/finance/transfers/unapplied",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Funapplied",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-admin-finance-transfers-overpaid",
+  "role": "seller",
+  "area": "admin",
+  "page": "finance/transfers/overpaid",
+  "typed": "http://localhost:3002/admin/finance/transfers/overpaid",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Foverpaid",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-dashboard",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "dashboard",
+  "typed": "http://localhost:3002/warehouse/dashboard",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-suppliers",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "suppliers",
+  "typed": "http://localhost:3002/warehouse/suppliers",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fsuppliers",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-stock-requests",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "stock-requests",
+  "typed": "http://localhost:3002/warehouse/stock-requests",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fstock-requests",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-purchase-orders",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "purchase-orders",
+  "typed": "http://localhost:3002/warehouse/purchase-orders",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fpurchase-orders",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-purchase-orders-new",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "purchase-orders/new",
+  "typed": "http://localhost:3002/warehouse/purchase-orders/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fpurchase-orders%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-import-stocks",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "import-stocks",
+  "typed": "http://localhost:3002/warehouse/import-stocks",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fimport-stocks",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-import-stocks-new",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "import-stocks/new",
+  "typed": "http://localhost:3002/warehouse/import-stocks/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fimport-stocks%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-batches",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "batches",
+  "typed": "http://localhost:3002/warehouse/batches",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fbatches",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-disposals",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "disposals",
+  "typed": "http://localhost:3002/warehouse/disposals",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdisposals",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-disposals-new",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "disposals/new",
+  "typed": "http://localhost:3002/warehouse/disposals/new",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Fdisposals%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-seller-warehouse-return-to-warehouse",
+  "role": "seller",
+  "area": "warehouse",
+  "page": "return-to-warehouse",
+  "typed": "http://localhost:3002/warehouse/return-to-warehouse",
+  "url": "http://localhost:3001/signin?next=%2Fwarehouse%2Freturn-to-warehouse",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-dashboard",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "dashboard",
+  "typed": "http://localhost:3001/admin/dashboard",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-accounts",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "accounts",
+  "typed": "http://localhost:3001/admin/accounts",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Faccounts",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-roles",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "roles",
+  "typed": "http://localhost:3001/admin/roles",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-roles-new",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "roles/new",
+  "typed": "http://localhost:3001/admin/roles/new",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Froles%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-permissions",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "permissions",
+  "typed": "http://localhost:3001/admin/permissions",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Fpermissions",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-finance",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "finance",
+  "typed": "http://localhost:3001/admin/finance",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-finance-transfers",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "finance/transfers",
+  "typed": "http://localhost:3001/admin/finance/transfers",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-finance-transfers-unapplied",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "finance/transfers/unapplied",
+  "typed": "http://localhost:3001/admin/finance/transfers/unapplied",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Funapplied",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-admin-finance-transfers-overpaid",
+  "role": "warehouse",
+  "area": "admin",
+  "page": "finance/transfers/overpaid",
+  "typed": "http://localhost:3001/admin/finance/transfers/overpaid",
+  "url": "http://localhost:3000/signin?next=%2Fadmin%2Ffinance%2Ftransfers%2Foverpaid",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-dashboard",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "dashboard",
+  "typed": "http://localhost:3001/seller/dashboard",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fdashboard",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-books",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "books",
+  "typed": "http://localhost:3001/seller/books",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbooks",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-books-new",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "books/new",
+  "typed": "http://localhost:3001/seller/books/new",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbooks%2Fnew",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-categories",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "categories",
+  "typed": "http://localhost:3001/seller/categories",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fcategories",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-variants",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "variants",
+  "typed": "http://localhost:3001/seller/variants",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fvariants",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-banners",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "banners",
+  "typed": "http://localhost:3001/seller/banners",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fbanners",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-promotions",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "promotions",
+  "typed": "http://localhost:3001/seller/promotions",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fpromotions",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-orders",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "orders",
+  "typed": "http://localhost:3001/seller/orders",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Forders",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-payments",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "payments",
+  "typed": "http://localhost:3001/seller/payments",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fpayments",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-refunds",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "refunds",
+  "typed": "http://localhost:3001/seller/refunds",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Frefunds",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-returns",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "returns",
+  "typed": "http://localhost:3001/seller/returns",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Freturns",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-warehouse-seller-stock-returns",
+  "role": "warehouse",
+  "area": "seller",
+  "page": "stock-returns",
+  "typed": "http://localhost:3001/seller/stock-returns",
+  "url": "http://localhost:3002/signin?next=%2Fseller%2Fstock-returns",
+  "kind": "signin",
+  "api": []
+ },
+ {
+  "id": "B-admin-seller-dashboard",
+  "role": "admin",
+  "area": "seller",
+  "page": "dashboard",
+  "typed": "http://localhost:3002/admin/seller/dashboard",
+  "url": "http://localhost:3002/admin/seller/dashboard",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/books",
+   "200 /api/categories",
+   "200 /api/seller/dashboard",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-books",
+  "role": "admin",
+  "area": "seller",
+  "page": "books",
+  "typed": "http://localhost:3002/admin/seller/books",
+  "url": "http://localhost:3002/admin/seller/books",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/books",
+   "200 /api/categories",
+   "200 /api/variants",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-books-new",
+  "role": "admin",
+  "area": "seller",
+  "page": "books/new",
+  "typed": "http://localhost:3002/admin/seller/books/new",
+  "url": "http://localhost:3002/admin/seller/books/new",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/categories",
+   "200 /api/suppliers",
+   "200 /api/variants",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-categories",
+  "role": "admin",
+  "area": "seller",
+  "page": "categories",
+  "typed": "http://localhost:3002/admin/seller/categories",
+  "url": "http://localhost:3002/admin/seller/categories",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/categories",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-variants",
+  "role": "admin",
+  "area": "seller",
+  "page": "variants",
+  "typed": "http://localhost:3002/admin/seller/variants",
+  "url": "http://localhost:3002/admin/seller/variants",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/variants",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-banners",
+  "role": "admin",
+  "area": "seller",
+  "page": "banners",
+  "typed": "http://localhost:3002/admin/seller/banners",
+  "url": "http://localhost:3002/admin/seller/banners",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/banners",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-promotions",
+  "role": "admin",
+  "area": "seller",
+  "page": "promotions",
+  "typed": "http://localhost:3002/admin/seller/promotions",
+  "url": "http://localhost:3002/admin/seller/promotions",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/promotions",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-orders",
+  "role": "admin",
+  "area": "seller",
+  "page": "orders",
+  "typed": "http://localhost:3002/admin/seller/orders",
+  "url": "http://localhost:3002/admin/seller/orders",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/orders",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-payments",
+  "role": "admin",
+  "area": "seller",
+  "page": "payments",
+  "typed": "http://localhost:3002/admin/seller/payments",
+  "url": "http://localhost:3002/admin/seller/payments",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/payments",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-refunds",
+  "role": "admin",
+  "area": "seller",
+  "page": "refunds",
+  "typed": "http://localhost:3002/admin/seller/refunds",
+  "url": "http://localhost:3002/admin/seller/refunds",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/refunds",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-returns",
+  "role": "admin",
+  "area": "seller",
+  "page": "returns",
+  "typed": "http://localhost:3002/admin/seller/returns",
+  "url": "http://localhost:3002/admin/seller/returns",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/returns",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-seller-stock-returns",
+  "role": "admin",
+  "area": "seller",
+  "page": "stock-returns",
+  "typed": "http://localhost:3002/admin/seller/stock-returns",
+  "url": "http://localhost:3002/admin/seller/stock-returns",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/inventory/return-to-warehouse/mine",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-dashboard",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "dashboard",
+  "typed": "http://localhost:3001/admin/warehouse/dashboard",
+  "url": "http://localhost:3001/admin/warehouse/dashboard",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/purchase-orders",
+   "200 /api/stock-requests",
+   "200 /api/suppliers",
+   "200 /api/warehouse/dashboard",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-suppliers",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "suppliers",
+  "typed": "http://localhost:3001/admin/warehouse/suppliers",
+  "url": "http://localhost:3001/admin/warehouse/suppliers",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/suppliers",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-stock-requests",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "stock-requests",
+  "typed": "http://localhost:3001/admin/warehouse/stock-requests",
+  "url": "http://localhost:3001/admin/warehouse/stock-requests",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/books/titles",
+   "200 /api/stock-requests",
+   "200 /api/variants",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-purchase-orders",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "purchase-orders",
+  "typed": "http://localhost:3001/admin/warehouse/purchase-orders",
+  "url": "http://localhost:3001/admin/warehouse/purchase-orders",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/purchase-orders",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-purchase-orders-new",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "purchase-orders/new",
+  "typed": "http://localhost:3001/admin/warehouse/purchase-orders/new",
+  "url": "http://localhost:3001/admin/warehouse/purchase-orders/new",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-import-stocks",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "import-stocks",
+  "typed": "http://localhost:3001/admin/warehouse/import-stocks",
+  "url": "http://localhost:3001/admin/warehouse/import-stocks",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/import-stocks",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-import-stocks-new",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "import-stocks/new",
+  "typed": "http://localhost:3001/admin/warehouse/import-stocks/new",
+  "url": "http://localhost:3001/admin/warehouse/import-stocks/new",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-batches",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "batches",
+  "typed": "http://localhost:3001/admin/warehouse/batches",
+  "url": "http://localhost:3001/admin/warehouse/batches",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-disposals",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "disposals",
+  "typed": "http://localhost:3001/admin/warehouse/disposals",
+  "url": "http://localhost:3001/admin/warehouse/disposals",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/disposals",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-disposals-new",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "disposals/new",
+  "typed": "http://localhost:3001/admin/warehouse/disposals/new",
+  "url": "http://localhost:3001/admin/warehouse/disposals/new",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "500 /api/notifications"
+  ]
+ },
+ {
+  "id": "B-admin-warehouse-return-to-warehouse",
+  "role": "admin",
+  "area": "warehouse",
+  "page": "return-to-warehouse",
+  "typed": "http://localhost:3001/admin/warehouse/return-to-warehouse",
+  "url": "http://localhost:3001/admin/warehouse/return-to-warehouse",
+  "kind": "rendered",
+  "api": [
+   "200 /api/auth/me",
+   "200 /api/return-to-warehouse",
+   "500 /api/notifications"
+  ]
+ }
+]

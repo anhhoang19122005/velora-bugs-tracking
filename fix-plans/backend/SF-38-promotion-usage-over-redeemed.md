@@ -3,7 +3,7 @@
 | Mục | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Đã chốt phương án B ngày 14/11. [B02](../../test-2026-11-27/loi.md#b02) tái hiện ngày 27/11. |
+| **Trạng thái** | Chưa sửa. Đã chốt phương án B ngày 14/11. [B02](../../test-2026-11-27/guide-me/loi.md#b02) tái hiện ngày 27/11. |
 | **Repo** | `taschen-backend` (`order-service`, `promotion-service`), đối chiếu `develop` `d5b6ac2` |
 | **Nhánh đề xuất** | `fix/checkout-idempotency-sf-37-38`, phối hợp với [SF-37](../storefront-backend/SF-37-checkout-concurrent-duplicate-orders.md). |
 | **Khối lượng** | Cần sửa luồng checkout, lưu trạng thái bù trừ và kiểm thử lỗi giữa hai service. |

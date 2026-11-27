@@ -1,0 +1,110 @@
+[
+ {
+  "id": "A-admin-signin-admin",
+  "role": "admin",
+  "app": "admin",
+  "http": 200,
+  "url": "http://localhost:3000/admin/dashboard",
+  "kind": "rendered",
+  "note": "Pick a task. Each step points at the control you need and says what to put in it. Nothing is created for you, and you can pause at any time."
+ },
+ {
+  "id": "A-admin-signin-seller",
+  "role": "admin",
+  "app": "seller",
+  "http": 200,
+  "url": "http://localhost:3000/admin/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-admin-signin-warehouse",
+  "role": "admin",
+  "app": "warehouse",
+  "http": 200,
+  "url": "http://localhost:3000/admin/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-seller-signin-admin",
+  "role": "seller",
+  "app": "admin",
+  "http": 200,
+  "url": "http://localhost:3002/seller/dashboard",
+  "kind": "rendered",
+  "note": "Pick a task. Each step points at the control you need and says what to put in it. Nothing is created for you, and you can pause at any time."
+ },
+ {
+  "id": "A-seller-signin-seller",
+  "role": "seller",
+  "app": "seller",
+  "http": 200,
+  "url": "http://localhost:3002/seller/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-seller-signin-warehouse",
+  "role": "seller",
+  "app": "warehouse",
+  "http": 200,
+  "url": "http://localhost:3002/seller/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-warehouse-signin-admin",
+  "role": "warehouse",
+  "app": "admin",
+  "http": 200,
+  "url": "http://localhost:3001/warehouse/dashboard",
+  "kind": "rendered",
+  "note": "Pick a task. Each step points at the control you need and says what to put in it. Nothing is created for you, and you can pause at any time."
+ },
+ {
+  "id": "A-warehouse-signin-seller",
+  "role": "warehouse",
+  "app": "seller",
+  "http": 200,
+  "url": "http://localhost:3001/warehouse/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-warehouse-signin-warehouse",
+  "role": "warehouse",
+  "app": "warehouse",
+  "http": 200,
+  "url": "http://localhost:3001/warehouse/dashboard",
+  "kind": "rendered",
+  "note": ""
+ },
+ {
+  "id": "A-customer-signin-admin",
+  "role": "customer",
+  "app": "admin",
+  "http": 200,
+  "url": "http://localhost:3000/signin",
+  "kind": "signin",
+  "note": ""
+ },
+ {
+  "id": "A-customer-signin-seller",
+  "role": "customer",
+  "app": "seller",
+  "http": 200,
+  "url": "http://localhost:3002/signin",
+  "kind": "signin",
+  "note": ""
+ },
+ {
+  "id": "A-customer-signin-warehouse",
+  "role": "customer",
+  "app": "warehouse",
+  "http": 200,
+  "url": "http://localhost:3001/signin",
+  "kind": "signin",
+  "note": ""
+ }
+]

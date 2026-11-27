@@ -34,4 +34,4 @@ Mã quá dài, ký tự cấm và dấu cách ở giữa bị chặn với lỗi
 
 ## Liên quan
 
-[SF-34](../../fix-plans/storefront-backend/SF-34-promotion-code-case-policy.md) · [B08](../../fix-plans/backend/B08-category-code-format.md)
+[SF-34](../../fix-plans/storefront-backend/SF-34-promotion-code-case-policy.md) · [BO-26](../../fix-plans/backend/BO-26-category-code-format.md)

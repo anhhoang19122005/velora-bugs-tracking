@@ -1,0 +1,4137 @@
+[
+ {
+  "svc": "catalog",
+  "method": "DELETE",
+  "path": "/api/v1/banners/{id}",
+  "url": "/api/v1/banners/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PUT",
+  "path": "/api/v1/banners/{id}",
+  "url": "/api/v1/banners/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "name": "Giáng sinh 2026",
+   "imageUrl": "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/banner.webp"
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "GET",
+  "path": "/api/v1/book-variants",
+  "url": "/api/v1/book-variants",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "GET",
+  "path": "/api/v1/book-variants/book/{bookId}",
+  "url": "/api/v1/book-variants/book/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "GET",
+  "path": "/api/v1/book-variants/variant/{variantId}",
+  "url": "/api/v1/book-variants/variant/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "DELETE",
+  "path": "/api/v1/book-variants/{id}",
+  "url": "/api/v1/book-variants/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "GET",
+  "path": "/api/v1/book-variants/{id}",
+  "url": "/api/v1/book-variants/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PUT",
+  "path": "/api/v1/book-variants/{id}",
+  "url": "/api/v1/book-variants/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "POST",
+  "path": "/api/v1/books/embeddings/reindex",
+  "url": "/api/v1/books/embeddings/reindex",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "GET",
+  "path": "/api/v1/books/trash",
+  "url": "/api/v1/books/trash",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "DELETE",
+  "path": "/api/v1/books/{id}",
+  "url": "/api/v1/books/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PUT",
+  "path": "/api/v1/books/{id}",
+  "url": "/api/v1/books/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PATCH",
+  "path": "/api/v1/books/{id}/restore",
+  "url": "/api/v1/books/999999999/restore",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PATCH",
+  "path": "/api/v1/books/{id}/status",
+  "url": "/api/v1/books/999999999/status",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "isActive": false
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "DELETE",
+  "path": "/api/v1/categories/{id}",
+  "url": "/api/v1/categories/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PUT",
+  "path": "/api/v1/categories/{id}",
+  "url": "/api/v1/categories/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "POST",
+  "path": "/api/v1/uploads/image",
+  "url": "/api/v1/uploads/image",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "{\"success\":false,\"code\":\"UNAUTHORIZED\",\"message\":\"Authentication required\"}",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "{\"success\":false,\"code\":\"FORBIDDEN\",\"message\":\"You do not have permission to access this resource.\",\"traceId\":\"2edde2e3-637f-4f57-8824-701f6",
+    "allowed": false
+   },
+   "seller": {
+    "status": 500,
+    "msg": "INTERNAL_ERROR Something went wrong. Please try again later.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "{\"success\":false,\"code\":\"FORBIDDEN\",\"message\":\"You do not have permission to perform this action\"}",
+    "allowed": false
+   },
+   "admin": {
+    "status": 500,
+    "msg": "INTERNAL_ERROR Something went wrong. Please try again later.",
+    "allowed": true
+   }
+  },
+  "note": "Vai trò bị cấm gửi ảnh thật 1x1 (multipart). Vai trò được phép chỉ gửi thân rỗng (500 do sai định dạng, không phải do quyền)."
+ },
+ {
+  "svc": "catalog",
+  "method": "POST",
+  "path": "/api/v1/variants",
+  "url": "/api/v1/variants",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "formatCode": "BIA_DA",
+   "formatName": "Bìa da"
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "DELETE",
+  "path": "/api/v1/variants/{id}",
+  "url": "/api/v1/variants/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "catalog",
+  "method": "PUT",
+  "path": "/api/v1/variants/{id}",
+  "url": "/api/v1/variants/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/permissions",
+  "url": "/api/v1/permissions",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "POST",
+  "path": "/api/v1/permissions",
+  "url": "/api/v1/permissions",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "code": "BAOCAO_DOANHTHU_XEM",
+   "httpMethod": "GET",
+   "pathPattern": "/api/v1/reports/revenue",
+   "active": false
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "DELETE",
+  "path": "/api/v1/permissions/{id}",
+  "url": "/api/v1/permissions/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/permissions/{id}",
+  "url": "/api/v1/permissions/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PUT",
+  "path": "/api/v1/permissions/{id}",
+  "url": "/api/v1/permissions/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "code": "BAOCAO_DOANHTHU_XEM",
+   "httpMethod": "GET",
+   "pathPattern": "/api/v1/reports/revenue",
+   "active": false
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/roles",
+  "url": "/api/v1/roles",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "POST",
+  "path": "/api/v1/roles",
+  "url": "/api/v1/roles",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "code": "KE_TOAN_NOI_BO",
+   "name": "Kế toán nội bộ"
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/roles/code/{code}",
+  "url": "/api/v1/roles/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "DELETE",
+  "path": "/api/v1/roles/{id}",
+  "url": "/api/v1/roles/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/roles/{id}",
+  "url": "/api/v1/roles/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PUT",
+  "path": "/api/v1/roles/{id}",
+  "url": "/api/v1/roles/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "code": "KE_TOAN_NOI_BO",
+   "name": "Kế toán nội bộ"
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PUT",
+  "path": "/api/v1/roles/{id}/permissions",
+  "url": "/api/v1/roles/999999999/permissions",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "permissionIds": []
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/users",
+  "url": "/api/v1/users",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "GET",
+  "path": "/api/v1/users/{id}",
+  "url": "/api/v1/users/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PATCH",
+  "path": "/api/v1/users/{id}/activate",
+  "url": "/api/v1/users/999999999/activate",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PATCH",
+  "path": "/api/v1/users/{id}/deactivate",
+  "url": "/api/v1/users/999999999/deactivate",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "identity",
+  "method": "PATCH",
+  "path": "/api/v1/users/{id}/role",
+  "url": "/api/v1/users/999999999/role",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "role": "SELLER"
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/batches",
+  "url": "/api/v1/inventory/batches?bookId=999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/inventory/batches",
+  "url": "/api/v1/inventory/batches",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "bookId": 999999999,
+   "variantId": 999999999,
+   "supplierId": 999999999,
+   "quantity": 1,
+   "importPrice": 1000,
+   "productionDate": "2026-01-01"
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/batches/fifo-preview",
+  "url": "/api/v1/inventory/batches/fifo-preview?bookId=999999999&variantId=999999999&quantity=1",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/batches/stock-total",
+  "url": "/api/v1/inventory/batches/stock-total?bookId=999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/batches/{id}",
+  "url": "/api/v1/inventory/batches/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/disposals",
+  "url": "/api/v1/inventory/disposals",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/inventory/disposals",
+  "url": "/api/v1/inventory/disposals",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "reason": "Sách bị ẩm mốc sau đợt mưa lớn, không còn bán được cho khách",
+   "items": [
+    {
+     "batchId": 999999999,
+     "quantity": 1
+    }
+   ]
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/disposals/code/{code}",
+  "url": "/api/v1/inventory/disposals/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/disposals/{id}",
+  "url": "/api/v1/inventory/disposals/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/inventory/disposals/{id}/reject",
+  "url": "/api/v1/inventory/disposals/999999999/reject",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/import-stocks",
+  "url": "/api/v1/inventory/import-stocks",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/inventory/import-stocks",
+  "url": "/api/v1/inventory/import-stocks",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "supplierId": 999999999,
+   "purchaseOrderId": 999999999,
+   "details": [
+    {
+     "bookId": 999999999,
+     "variantId": 999999999,
+     "quantity": 1,
+     "importPrice": 1000,
+     "supplierId": 999999999,
+     "productionDate": "2026-01-01"
+    }
+   ]
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/import-stocks/code/{code}",
+  "url": "/api/v1/inventory/import-stocks/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/import-stocks/pending",
+  "url": "/api/v1/inventory/import-stocks/pending",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "DELETE",
+  "path": "/api/v1/inventory/import-stocks/{id}",
+  "url": "/api/v1/inventory/import-stocks/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/import-stocks/{id}",
+  "url": "/api/v1/inventory/import-stocks/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/return-to-warehouse",
+  "url": "/api/v1/inventory/return-to-warehouse",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/return-to-warehouse/code/{code}",
+  "url": "/api/v1/inventory/return-to-warehouse/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/return-to-warehouse/mine",
+  "url": "/api/v1/inventory/return-to-warehouse/mine",
+  "allowed": [
+   "ADMIN",
+   "SELLER",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/return-to-warehouse/{id}",
+  "url": "/api/v1/inventory/return-to-warehouse/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/inventory/return-to-warehouse/{id}/reject",
+  "url": "/api/v1/inventory/return-to-warehouse/999999999/reject",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/inventory/stats/cogs",
+  "url": "/api/v1/inventory/stats/cogs",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": true
+   }
+  },
+  "body": {
+   "orderIds": [
+    999999999
+   ]
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stats/purchasing",
+  "url": "/api/v1/inventory/stats/purchasing?from=2026-11-01T00:00:00Z&to=2026-11-27T00:00:00Z",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stats/stock-value",
+  "url": "/api/v1/inventory/stats/stock-value",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stock-requests",
+  "url": "/api/v1/inventory/stock-requests",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stock-requests/code/{code}",
+  "url": "/api/v1/inventory/stock-requests/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stock-requests/mine",
+  "url": "/api/v1/inventory/stock-requests/mine",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/inventory/stock-requests/{id}",
+  "url": "/api/v1/inventory/stock-requests/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/inventory/stock-requests/{id}/reject",
+  "url": "/api/v1/inventory/stock-requests/999999999/reject",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/purchase-orders",
+  "url": "/api/v1/purchase-orders",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/purchase-orders",
+  "url": "/api/v1/purchase-orders",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "supplierId": 999999999,
+   "items": [
+    {
+     "bookId": 999999999,
+     "variantId": 999999999,
+     "quantity": 1,
+     "importPrice": 1000
+    }
+   ]
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/purchase-orders/code/{code}",
+  "url": "/api/v1/purchase-orders/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "POST",
+  "path": "/api/v1/purchase-orders/from-stock-request",
+  "url": "/api/v1/purchase-orders/from-stock-request",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 400,
+    "msg": "VALIDATION_ERROR The request contains invalid data.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "stockRequestId": 999999999,
+   "supplierId": 999999999,
+   "importPrice": 1000
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/purchase-orders/{id}",
+  "url": "/api/v1/purchase-orders/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/purchase-orders/{id}/cancel",
+  "url": "/api/v1/purchase-orders/999999999/cancel",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "cancelReason": "Nhà cung cấp báo hết hàng"
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/purchase-orders/{id}/reject",
+  "url": "/api/v1/purchase-orders/999999999/reject",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/suppliers",
+  "url": "/api/v1/suppliers",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "DELETE",
+  "path": "/api/v1/suppliers/{id}",
+  "url": "/api/v1/suppliers/999999999",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "GET",
+  "path": "/api/v1/suppliers/{id}",
+  "url": "/api/v1/suppliers/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "inventory",
+  "method": "PATCH",
+  "path": "/api/v1/suppliers/{id}",
+  "url": "/api/v1/suppliers/999999999",
+  "allowed": [
+   "ADMIN",
+   "WAREHOUSE_STAFF"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/orders/completed-monthly",
+  "url": "/api/v1/orders/completed-monthly",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "POST",
+  "path": "/api/v1/orders/finance-backfill",
+  "url": "/api/v1/orders/finance-backfill",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/orders/stats",
+  "url": "/api/v1/orders/stats",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/orders/stats/month",
+  "url": "/api/v1/orders/stats/month?month=2026-11",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "order",
+  "method": "PATCH",
+  "path": "/api/v1/orders/{id}/status",
+  "url": "/api/v1/orders/999999999/status",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "status": "CONFIRMED"
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/returns",
+  "url": "/api/v1/returns",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/returns/code/{returnCode}",
+  "url": "/api/v1/returns/code/KHONG-CO-999999",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "GET",
+  "path": "/api/v1/returns/{id}",
+  "url": "/api/v1/returns/999999999",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "PATCH",
+  "path": "/api/v1/returns/{id}/received",
+  "url": "/api/v1/returns/999999999/received",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "order",
+  "method": "PATCH",
+  "path": "/api/v1/returns/{id}/reject",
+  "url": "/api/v1/returns/999999999/reject",
+  "allowed": [
+   "SELLER",
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "status": "REJECTED",
+   "responseNote": "Không đủ điều kiện đổi trả"
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments",
+  "url": "/api/v1/payments",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/code/{paymentCode}",
+  "url": "/api/v1/payments/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/order/{orderId}",
+  "url": "/api/v1/payments/order/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/overpaid",
+  "url": "/api/v1/payments/overpaid",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/refunds",
+  "url": "/api/v1/payments/refunds",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/refunds/code/{refundCode}",
+  "url": "/api/v1/payments/refunds/code/KHONG-CO-999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/refunds/summary",
+  "url": "/api/v1/payments/refunds/summary?from=2026-11-01T00:00:00Z&to=2026-11-27T00:00:00Z",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  },
+  "body": null
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/refunds/{refundId}",
+  "url": "/api/v1/payments/refunds/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/refunds/{refundId}/records",
+  "url": "/api/v1/payments/refunds/999999999/records",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 400,
+    "msg": "IDEMPOTENCY_KEY_REQUIRED The request is missing its Idempotency-Key header.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 400,
+    "msg": "IDEMPOTENCY_KEY_REQUIRED The request is missing its Idempotency-Key header.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "method": "BANK_TRANSFER",
+   "amount": 1000,
+   "reference": "UNC-27112026-001"
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/transfers/{sepayId}/apply",
+  "url": "/api/v1/payments/transfers/999999999/apply",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": true
+   }
+  },
+  "body": {
+   "orderId": 999999999
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/transfers/{sepayId}/refunds",
+  "url": "/api/v1/payments/transfers/999999999/refunds",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": true
+   }
+  },
+  "body": {
+   "amount": 1000,
+   "reference": "UNC-27112026-001",
+   "note": "Đối soát chuyển khoản"
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/unapplied",
+  "url": "/api/v1/payments/unapplied",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/underpaid",
+  "url": "/api/v1/payments/underpaid",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "GET",
+  "path": "/api/v1/payments/{paymentId}",
+  "url": "/api/v1/payments/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/{paymentId}/cancel-underpaid",
+  "url": "/api/v1/payments/999999999/cancel-underpaid",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/{paymentId}/remind",
+  "url": "/api/v1/payments/999999999/remind",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "payment",
+  "method": "POST",
+  "path": "/api/v1/payments/{paymentId}/transfer-refunds",
+  "url": "/api/v1/payments/999999999/transfer-refunds",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 400,
+    "msg": "IDEMPOTENCY_KEY_REQUIRED The request is missing its Idempotency-Key header.",
+    "allowed": true
+   }
+  },
+  "body": {
+   "amount": 1000,
+   "reference": "UNC-27112026-001",
+   "note": "Đối soát chuyển khoản"
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "GET",
+  "path": "/api/v1/promotions",
+  "url": "/api/v1/promotions",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "GET",
+  "path": "/api/v1/promotions/search",
+  "url": "/api/v1/promotions/search",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 200,
+    "msg": "OK",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "GET",
+  "path": "/api/v1/promotions/{id}",
+  "url": "/api/v1/promotions/999999999",
+  "allowed": [
+   "ADMIN",
+   "SELLER"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "PATCH",
+  "path": "/api/v1/promotions/{id}/pause",
+  "url": "/api/v1/promotions/999999999/pause",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "PATCH",
+  "path": "/api/v1/promotions/{id}/reject",
+  "url": "/api/v1/promotions/999999999/reject",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ },
+ {
+  "svc": "promotion",
+  "method": "PATCH",
+  "path": "/api/v1/promotions/{id}/resume",
+  "url": "/api/v1/promotions/999999999/resume",
+  "allowed": [
+   "ADMIN"
+  ],
+  "res": {
+   "anon": {
+    "status": 401,
+    "msg": "UNAUTHORIZED Authentication required",
+    "allowed": false
+   },
+   "customer": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to access this resource.",
+    "allowed": false
+   },
+   "seller": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "warehouse": {
+    "status": 403,
+    "msg": "FORBIDDEN You do not have permission to perform this action",
+    "allowed": false
+   },
+   "admin": {
+    "status": 404,
+    "msg": "RESOURCE_NOT_FOUND The requested resource could not be found.",
+    "allowed": true
+   }
+  }
+ }
+]

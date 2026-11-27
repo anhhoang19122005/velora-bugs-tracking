@@ -15,7 +15,7 @@ Catalog lưu bản sao tồn và cache kết quả chi tiết sách. Một lần
 ## Thay đổi
 
 1. Xác nhận DB Catalog đã đổi khi Inventory phát event. Sau giao dịch, xóa những cache chứa tồn theo ID, slug hoặc danh sách có thật trong source.
-2. Dùng bản ghi Inventory để xác định tồn chuẩn khi đối soát event bị thiếu hoặc đến muộn. Phối hợp B04 để loại bỏ đường ghi tồn từ form biến thể.
+2. Dùng bản ghi Inventory để xác định tồn chuẩn khi đối soát event bị thiếu hoặc đến muộn. Phối hợp SF-46 để loại bỏ đường ghi tồn từ form biến thể.
 
 ## Code dự kiến
 
@@ -35,4 +35,4 @@ Sau đặt đơn, trả hàng và nhập kho, chi tiết/list hiển thị tồn
 
 ## Liên quan
 
-[B04](../../fix-plans/backend/B04-variant-stock-initialization.md)
+[SF-46](../../fix-plans/backend/SF-46-variant-stock-initialization.md)

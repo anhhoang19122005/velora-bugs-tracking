@@ -22,4 +22,4 @@ Source có `ReturnRequestConcurrencyIT` cho nhiều request tạo đồng thời
 - Với đơn `COMPLETED` có một cuốn đủ điều kiện trả, gửi năm request tạo yêu cầu. Mong đợi một HTTP 201 và bốn HTTP 409, chỉ một yêu cầu trong DB và tổng tiền hoàn đề nghị không vượt tiền của dòng hàng.
 - Gửi lại sau khi tạo thành công. Mong đợi 409 khi yêu cầu trước còn mở. Sau khi trả một phần hoàn tất, thử tạo yêu cầu cho số lượng còn lại và thử vượt số còn lại.
 - Bản ghi lịch sử đã tạo trùng cần đối soát riêng. Kết quả tạo an toàn sau bản sửa chưa xác nhận được tình trạng của dữ liệu cũ.
-- [B01](../../test-2026-11-27/loi.md#b01) theo dõi bước lập nhiều **phiếu trả về kho** từ một yêu cầu đã nhận hàng. Duyệt hoặc nhận cùng một phiếu đổi trả đồng thời thuộc SF-41.
+- [BO-13](../../backoffice/loi.md#bo-13) theo dõi bước lập nhiều **phiếu trả về kho** từ một yêu cầu đã nhận hàng. Duyệt hoặc nhận cùng một phiếu đổi trả đồng thời thuộc SF-41.
