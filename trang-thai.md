@@ -2,16 +2,16 @@
 
 Bảng trạng thái hiện hành của repo, cập nhật ngày 2026-11-27. Mỗi bug có một mã theo dõi. Chi tiết nằm ở [Storefront](storefront/loi.md), [Backoffice](backoffice/loi.md), [UI](ui/loi.md) hoặc [đợt Guide me ngày 27/11](test-2026-11-27/README.md).
 
-Retest ngày 27/11: 15 lỗi đóng, 4 lỗi về Cần sửa, xem [kết quả retest](test-2026-11-27/retest/README.md). Mốc đối chiếu source ngày 27/11 gồm Backend `d5b6ac2`, Backoffice `8e1ecfbe` và Storefront `0a72cc4`. Bảng giữ kết quả trước đó ở những lỗi chưa có bằng chứng mới.
+Đối chiếu code ngày 27/11: SF-33 không còn áp dụng (VNPay đã bỏ); SF-43, BO-09, SF-35 có bản sửa trong code, đã retest và đóng. Retest ngày 27/11: 15 lỗi đóng, 4 lỗi về Cần sửa, xem [kết quả retest](test-2026-11-27/retest/README.md). Mốc đối chiếu source ngày 27/11 gồm Backend `d5b6ac2`, Backoffice `8e1ecfbe` và Storefront `0a72cc4`. Bảng giữ kết quả trước đó ở những lỗi chưa có bằng chứng mới.
 
 ## Tóm tắt
 
 | Nhóm | Số lỗi | Trong đó Major |
 | --- | --- | --- |
-| [Cần sửa](#cần-sửa) | 42 | 13 |
-| [Cần xác nhận](#cần-xác-nhận) | 7 | 2 |
+| [Cần sửa](#cần-sửa) | 39 | 13 |
+| [Cần xác nhận](#cần-xác-nhận) | 6 | 2 |
 | [Chờ retest](#chờ-retest) | 0 | 0 |
-| [Đã đóng](#đã-đóng) | 28 | 8 |
+| [Đã đóng](#đã-đóng) | 32 | 8 |
 | **Tổng** | **77** | **23** |
 
 Lỗi của [đợt test 27/11](test-2026-11-27/README.md) mang mã SF/BO; mã trong đợt (B.., P..) ghi ở hồ sơ từng lỗi. B02 là bằng chứng bổ sung của SF-38. BO-26 theo dõi mã danh mục, phần mã khuyến mãi thuộc BO-08. SF-45 và BO-07 có bằng chứng UI mới và tiếp tục dùng mã cũ. Mục UI bổ sung bốn lỗi có mã UI-01–UI-04. Xem [bằng chứng và phân loại UI](ui/loi.md).
@@ -36,9 +36,7 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [BO-24](backoffice/loi.md#bo-24) | Major | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung | DB dùng chung (identity) | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình) | Chạy lại seed V18; không phải lỗi code |
 | [SF-04](storefront/loi.md#sf-04) | Major | notification-service không khởi động vì thiếu biến Mongo | taschen-platform (docker-compose) | — | Retest 27/11: xác nhận một phần | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-04) | Còn: Docker Compose vẫn truyền `MONGO_URI` cho notification-service, service đọc `NOTIFICATION_MONGO_URI`; dev.ps1 đã đúng. Bản sửa đã có: backend `dev.ps1` trên `develop` |
 | [SF-42](storefront/loi.md#sf-42) | Minor | Giỏ hàng mất cập nhật khi thêm đồng thời | backend, order-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-42-concurrent-cart-lost-update.md) | — |
-| [SF-43](storefront/loi.md#sf-43) | Minor | Khởi tạo VNPay đồng thời tạo nhiều bản ghi thanh toán | backend, payment-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-43-duplicate-active-vnpay-payment.md) | — |
 | [BO-11](backoffice/loi.md#bo-11) | Minor | Nhiều phiếu nhập cho một đơn mua khi tạo đồng thời | backend, inventory-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-11-concurrent-purchase-order-imports.md) | Chỉ một phiếu nhận được hàng |
-| [SF-35](storefront/loi.md#sf-35) | Minor | Tồn kho hiển thị cũ do cache catalog | backend, catalog-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-35-catalog-stock-cache-stale.md) | Inventory báo 49 cuốn, API sách báo 50 |
 | [SF-39](storefront/loi.md#sf-39) | Minor | Đơn báo thành công rồi tự hủy khi hai người tranh số hàng cuối | backend, order-service (và storefront) | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-39-checkout-order-cancelled-after-success.md) | Không bán vượt tồn kho; chỉ trải nghiệm |
 | [BO-07](backoffice/loi.md#bo-07) | Minor | Dòng hàng của đơn mua phải cuộn ngang ở 1024px | backoffice | — | Còn lỗi, đã retest UI ngày 27/11 | [kế hoạch](fix-plans/backoffice/BO-07-purchase-order-lines-horizontal-scroll.md) · [Retest UI](ui/loi.md#bo-07) | — |
 | [UI-02](ui/loi.md#ui-02) | Minor | Header tràn ngang và cắt nút Tài khoản ở 320 px | Storefront | — | Tái hiện trên Chromium local | [Kế hoạch](fix-plans/storefront/UI-02-header-account-overflow-320px.md) · [Bằng chứng](ui/loi.md#ui-02) | Tài liệu rộng 326 px ở viewport 320 px. Nút Tài khoản nằm từ x = 282 đến x = 326. Ở 375 px, không đo được phần tràn này. |
@@ -52,7 +50,6 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [BO-01](backoffice/loi.md#bo-01) | Minor | Hộp Guided tasks trống phủ lên trang không có quyền | backoffice | — | Tái hiện | [kế hoạch](fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) | — |
 | [BO-02](backoffice/loi.md#bo-02) | Minor | Duyệt khuyến mãi trả updatedAt cũ | backend, promotion-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-02-promotion-approve-stale-updated-at.md) | — |
 | [BO-08](backoffice/loi.md#bo-08) | Minor | Mã khuyến mãi không kiểm định dạng và độ dài | backend, promotion-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-08-promotion-code-format-length.md) | [BO-26](backoffice/loi.md#bo-26) xác nhận phần định dạng: mã có chữ thường và dấu cách vẫn được lưu. |
-| [BO-09](backoffice/loi.md#bo-09) | Minor | Tìm kiếm khuyến mãi trả 500 | backend, promotion-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-09-promotion-search-http-500.md) | — |
 | [BO-10](backoffice/loi.md#bo-10) | Minor | Nhà cung cấp trùng khi tạo đồng thời | backend, inventory-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-10-concurrent-duplicate-suppliers.md) | — |
 | [BO-26](backoffice/loi.md#bo-26) | Minor | Mã danh mục nhận chữ thường và dấu cách, khác hướng dẫn | catalog-service, Backoffice | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/BO-26-category-code-format.md) | Dòng này theo dõi phần danh mục. |
 | [BO-17](backoffice/loi.md#bo-17) | Minor | Guide me mô tả nút bật/tắt và đường dẫn banner mà form không có | Backoffice Guide me | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backoffice/BO-17-guide-banner-fields.md) | Form và API chỉ có tên và URL ảnh. |
@@ -72,8 +69,7 @@ Cần thêm bằng chứng hoặc cần chốt nghiệp vụ trước khi sửa.
 | Mã | Mức độ | Lỗi | Khu vực | Phụ trách | Việc tiếp theo | Kế hoạch | Ghi chú |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [SF-06](storefront/loi.md#sf-06) | Major | Email xác thực đến không ổn định | hạ tầng / backend | — | Chạy nhiều lượt đăng ký và kiểm log gửi email | [kế hoạch](fix-plans/platform/SF-06-verify-email-delivery-unreliable.md) | Một lần đăng ký nhận email sau khoảng 30 giây. Chưa xác minh độ ổn định của luồng gửi hiện tại. |
-| [SF-44](storefront/loi.md#sf-44) | Major | Mất event thì đơn có thể kẹt PENDING | backend, order-service | — | Tái hiện mất sự kiện trong môi trường test | [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) | Code gửi sự kiện sau commit và chỉ ghi log khi gửi lỗi. Chưa thấy cơ chế gửi lại hoặc xử lý đơn kẹt cho luồng đặt hàng. |
-| [SF-33](storefront/loi.md#sf-33) | Minor | Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được | order-service, payment-service | — | Chốt có cho thử thanh toán lại sau lỗi VNPay | [kế hoạch](fix-plans/storefront-backend/SF-33-vnpay-cancel-retry-policy.md) | Chưa rõ có phải chủ đích |
+| [SF-44](storefront/loi.md#sf-44) | Major | Mất event thì đơn có thể kẹt PENDING | backend, order-service | — | Tái hiện mất sự kiện trong môi trường test (luồng online nay là SePay) | [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) | Code gửi sự kiện sau commit và chỉ ghi log khi gửi lỗi. Chưa thấy cơ chế gửi lại hoặc xử lý đơn kẹt cho luồng đặt hàng. |
 | [SF-34](storefront/loi.md#sf-34) | Minor | Ô mã khuyến mãi phân biệt hoa thường | storefront, promotion-service | — | Chốt quy tắc viết hoa và chuẩn hóa mã | [kế hoạch](fix-plans/storefront-backend/SF-34-promotion-code-case-policy.md) | Cần xác nhận |
 | [BO-03](backoffice/loi.md#bo-03) | Minor | Khuyến mãi quá hạn vẫn hiện Active hoặc Pending | seller, promotion-service | — | Đối chiếu trạng thái trước và sau mốc hết hạn | [kế hoạch](fix-plans/backoffice/BO-03-promotion-expired-still-active.md) | Chưa xác nhận lại |
 | [BO-19](backoffice/loi.md#bo-19) | Minor | Guide me nói từ chối sẽ đóng luồng trả hàng, khách vẫn gửi được yêu cầu mới | Backoffice Guide me, order-service | — | Chốt cách gửi lại yêu cầu trả hàng | [kế hoạch](fix-plans/backoffice/BO-19-guide-return-request-after-rejection.md) | Đã tạo được yêu cầu mới sau khi bị từ chối. Cần chốt quy tắc gửi lại. |
@@ -85,6 +81,7 @@ Cần thêm bằng chứng hoặc cần chốt nghiệp vụ trước khi sửa.
 
 | Mã | Mức độ | Lỗi | Bản sửa | Phụ trách | Kết quả gần nhất | Việc tiếp theo | Kế hoạch | Ghi chú |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
 
 Không còn lỗi chờ retest sau [lần retest ngày 2026-11-27](test-2026-11-27/retest/README.md).
 
@@ -122,6 +119,10 @@ Kết luận ghi rõ trường hợp đã xác nhận bằng kiểm thử, đã 
 | [SF-25](storefront/loi.md#sf-25) | Minor | Menu phụ điện thoại bị chật và cắt chữ | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Menu phụ ở 375 và 413px (đo ở /vi/books, trang chủ đang lỗi do SF-45): chữ bị bẻ dòng không, liên kết khuất không cuộn được không. [bằng chứng](test-2026-11-27/retest/README.md#sf-25) |
 | [SF-26](storefront/loi.md#sf-26) | Minor | Đường dẫn không tồn tại hiển thị trang 404 mặc định | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | HTTP 404, trang 404 của Velora có header và thông báo tiếng Việt. [bằng chứng](test-2026-11-27/retest/README.md#sf-26) |
 | [SF-30](storefront/loi.md#sf-30) | Minor | Đăng nhập sai nhiều lần không bị giới hạn | backend PR #140 (`e06e334`) | Đã xác nhận ngày 27/11 | Gateway bật giới hạn (APP_RATE_LIMIT_ENABLED=true). 8 lần sai cùng email: [401, 401, 401, 401, 401, 429, 429, 429]; đăng nhập đúng ngay sau: 429. Chưa kiểm hành vi khi Redis lỗi (Redis dùng chung). [bằng chứng](test-2026-11-27/retest/README.md#sf-30) |
+| [SF-33](storefront/loi.md#sf-33) | Minor | Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được | — | Không còn áp dụng | VNPay đã bỏ (REQ-007, `27bae45`), thanh toán online là SePay, không có bước hủy ở cổng. Đối chiếu code 27/11 |
+| [SF-43](storefront/loi.md#sf-43) | Minor | Khởi tạo thanh toán đồng thời tạo nhiều bản ghi (ghi nhận với VNPay, nay là SePay) | backend `5b8445f` (BUG-021) | Đã xác nhận ngày 27/11 | Đơn SePay ORD-20261127-000201: 5 request khởi tạo thanh toán cùng lúc trả [200, 200, 200, 200, 200], 1 mã thanh toán chung; đơn có 1 payment PENDING (tổng 1). Đã hủy đơn sau khi test. [bằng chứng](test-2026-11-27/retest/README.md#sf-43) |
+| [BO-09](backoffice/loi.md#bo-09) | Minor | Tìm kiếm khuyến mãi trả 500 | backend `7fa1a8f` (BUG-027) | Đã xác nhận ngày 27/11 | search → 200 (159 kết quả); search?keyword=deep → 200 (159 kết quả); search?name=black → 200 (1 kết quả); search?code=BLACK → 200 (1 kết quả); search?status=ACTIVE&amp;isActive=true → 200 (18 kết quả). [bằng chứng](test-2026-11-27/retest/README.md#bo-09) |
+| [SF-35](storefront/loi.md#sf-35) | Minor | Tồn kho hiển thị cũ do cache catalog | backend `576eee4` (REQ-009) | Đã xác nhận ngày 27/11 | Sapiens (id 67): trước 18/18, sau khi đặt 1 cuốn 17/17, sau khi hủy 18/18 (API sách / inventory). [bằng chứng](test-2026-11-27/retest/README.md#sf-35) |
 
 ## Cập nhật bảng này
 

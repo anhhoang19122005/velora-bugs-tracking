@@ -1,0 +1,96 @@
+POST /api/v1/orders
+Request body:
+{
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "addressId": 58,
+  "paymentMethod": "SEPAY"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 197,
+    "orderCode": "ORD-20261127-000201",
+    "userId": 176,
+    "addressId": 58,
+    "recipientName": "Nguyễn Minh Anh",
+    "recipientPhone": "0903456721",
+    "shippingAddress": "48 Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+    "promotionId": null,
+    "discountAmount": null,
+    "discountPercent": null,
+    "totalAmount": 189000.0,
+    "status": "PENDING",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "SEPAY",
+    "lines": [
+      {
+        "id": 217,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T08:59:38.415568Z",
+    "updatedAt": "2026-11-27T08:59:38.415568Z",
+    "hasActiveReturn": false
+  },
+  "message": "Order placed",
+  "timestamp": "2026-11-27T08:59:38.533845200Z"
+}
+
+POST /api/v1/orders/197/payments/initiate
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "orderId": 197,
+    "paymentMethod": "SEPAY",
+    "qrUrl": "https://qr.sepay.vn/img?acc=0000000000&bank=MBBank&amount=189000&des=TASCHEN50",
+    "paymentCode": "TASCHEN50",
+    "amountDue": 189000,
+    "bankCode": "MBBank",
+    "accountNumber": "0000000000",
+    "status": "PENDING",
+    "accountName": ""
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T08:59:39.127569800Z"
+}
+
+POST /api/v1/orders/197/payments/initiate
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "orderId": 197,
+    "paymentMethod": "SEPAY",
+    "qrUrl": "https://qr.sepay.vn/img?acc=0000000000&bank=MBBank&amount=189000&des=TASCHEN50",
+    "paymentCode": "TASCHEN50",
+    "amountDue": 189000,
+    "bankCode": "MBBank",
+    "accountNumber": "0000000000",
+    "status": "PENDING",
+    "accountName": ""
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T08:59:39.127569800Z"
+}
+
+Mã trả về 5 request: [200, 200, 200, 200, 200]
+Mã thanh toán trong các response 200: ['TASCHEN50']
+Payment của đơn (admin): [('PAY-20261127-000050', 'SEPAY', 'PENDING')]
+Hủy đơn sau khi test: HTTP 200

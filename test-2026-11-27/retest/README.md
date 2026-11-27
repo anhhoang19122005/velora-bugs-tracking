@@ -272,8 +272,51 @@ Chạy lại 19 lỗi ở nhóm **Chờ retest** của [bảng trạng thái](..
 | Bằng chứng | [api-response](SF-27/api-response.txt) |
 
 
+## Retest sau khi đối chiếu code
+
+Đối chiếu code ngày 27/11 thấy ba lỗi đã có bản sửa sau ngày ghi nhận, nên chạy lại riêng (chỉ qua API, cùng bản backend `d5b6ac2`). Cả ba đã đóng.
+
+| Mã | Lỗi | Kết quả |
+| --- | --- | --- |
+| [SF-43](#sf-43) | Khởi tạo thanh toán đồng thời tạo nhiều bản ghi (ghi nhận với VNPay, nay là SePay) | Đã xác nhận |
+| [BO-09](#bo-09) | Tìm kiếm khuyến mãi trả 500 | Đã xác nhận |
+| [SF-35](#sf-35) | Tồn kho hiển thị cũ do cache catalog | Đã xác nhận |
+
+### SF-43
+
+**Khởi tạo thanh toán đồng thời tạo nhiều bản ghi (ghi nhận với VNPay, nay là SePay)** · [hồ sơ lỗi](../../storefront/loi.md#sf-43)
+
+| Mục | Nội dung |
+| --- | --- |
+| Kết quả | Đã xác nhận |
+| Bản sửa | backend `5b8445f` (BUG-021) |
+| Thực tế khi chạy lại | Đơn SePay ORD-20261127-000201: 5 request khởi tạo thanh toán cùng lúc trả [200, 200, 200, 200, 200], 1 mã thanh toán chung; đơn có 1 payment PENDING (tổng 1). Đã hủy đơn sau khi test |
+| Bằng chứng | [api-response](SF-43/api-response.txt) |
+
+### BO-09
+
+**Tìm kiếm khuyến mãi trả 500** · [hồ sơ lỗi](../../backoffice/loi.md#bo-09)
+
+| Mục | Nội dung |
+| --- | --- |
+| Kết quả | Đã xác nhận |
+| Bản sửa | backend `7fa1a8f` (BUG-027) |
+| Thực tế khi chạy lại | search → 200 (159 kết quả); search?keyword=deep → 200 (159 kết quả); search?name=black → 200 (1 kết quả); search?code=BLACK → 200 (1 kết quả); search?status=ACTIVE&amp;isActive=true → 200 (18 kết quả) |
+| Bằng chứng | [api-response](BO-09/api-response.txt) |
+
+### SF-35
+
+**Tồn kho hiển thị cũ do cache catalog** · [hồ sơ lỗi](../../storefront/loi.md#sf-35)
+
+| Mục | Nội dung |
+| --- | --- |
+| Kết quả | Đã xác nhận |
+| Bản sửa | backend `576eee4` (REQ-009) |
+| Thực tế khi chạy lại | Sapiens (id 67): trước 18/18, sau khi đặt 1 cuốn 17/17, sau khi hủy 18/18 (API sách / inventory) |
+| Bằng chứng | [api-response](SF-35/api-response.txt) |
+
 ## Ghi nhận thêm khi retest
 
 - Thông báo trên storefront tiếng Việt hiện nội dung tiếng Anh và số tiền thô ("Order placed. Your order #195 for 189000.00 has been placed successfully."), xem ảnh `SF-20/1-thong-bao-390.png`. Chưa có mã theo dõi.
-- Đợt retest tạo thêm dữ liệu trên DB dùng chung: đơn ORD-20261127-000198 (đã hoàn tất) và 1 yêu cầu trả hàng cho đơn này (SF-40), đơn mua PO-20261127-000045 chuyển ORDERED (BO-12), 1 sách trong danh sách yêu thích của khách Nguyễn Minh Anh. Địa chỉ dài dùng cho SF-18 đã xoá.
+- Đợt retest tạo thêm dữ liệu trên DB dùng chung: đơn ORD-20261127-000198 (đã hoàn tất) và 1 yêu cầu trả hàng cho đơn này (SF-40), đơn mua PO-20261127-000045 chuyển ORDERED (BO-12), 1 sách trong danh sách yêu thích của khách Nguyễn Minh Anh, hai đơn ORD-20261127-000200 và 000201 (SF-35, SF-43) đã hủy ngay sau khi test. Địa chỉ dài dùng cho SF-18 đã xoá.
 

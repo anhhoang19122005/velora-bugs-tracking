@@ -6,7 +6,7 @@ Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi h�
 
 Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng thời, cấu hình, điều hướng. **Giao diện**: bố cục, hiển thị, chữ, bản dịch, thao tác trên màn hình, và lời hướng dẫn Guide me khác với màn hình. Phân loại khai báo trong `UI_CODES` của script.
 
-### Lỗi logic (31)
+### Lỗi logic (27)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
@@ -24,22 +24,18 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [SF-47](#sf-47) | Major | Cần sửa | Role USER không còn trên DB dùng chung: đăng ký mới sẽ lỗi |
 | [BO-02](#bo-02) | Minor | Cần sửa | Duyệt khuyến mãi trả updatedAt cũ |
 | [BO-08](#bo-08) | Minor | Cần sửa | Mã khuyến mãi không kiểm định dạng và độ dài |
-| [BO-09](#bo-09) | Minor | Cần sửa | Tìm kiếm khuyến mãi trả 500 |
 | [BO-10](#bo-10) | Minor | Cần sửa | Nhà cung cấp trùng khi tạo đồng thời |
 | [BO-11](#bo-11) | Minor | Cần sửa | Nhiều phiếu nhập cho một đơn mua khi tạo đồng thời |
 | [BO-26](#bo-26) | Minor | Cần sửa | Mã danh mục nhận chữ thường và dấu cách, khác hướng dẫn |
 | [SF-28](#sf-28) | Minor | Cần sửa | Tham số sai kiểu trả 500 thay vì 400 hoặc 404 |
 | [SF-29](#sf-29) | Minor | Cần sửa | Body JSON hỏng hoặc enum sai trả 500 |
 | [SF-31](#sf-31) | Minor | Cần sửa | Tên hồ sơ nhận ký tự đặc biệt như `<script>` |
-| [SF-35](#sf-35) | Minor | Cần sửa | Tồn kho hiển thị cũ do cache catalog |
 | [SF-39](#sf-39) | Minor | Cần sửa | Đơn báo thành công rồi tự hủy khi hai người tranh số hàng cuối |
 | [SF-41](#sf-41) | Minor | Cần sửa | Request trùng đồng thời trả 500 thay vì 409 |
 | [SF-42](#sf-42) | Minor | Cần sửa | Giỏ hàng mất cập nhật khi thêm đồng thời |
-| [SF-43](#sf-43) | Minor | Cần sửa | Khởi tạo VNPay đồng thời tạo nhiều bản ghi thanh toán |
 | [SF-06](#sf-06) | Major | Cần xác nhận | Email xác thực đến không ổn định |
 | [SF-44](#sf-44) | Major | Cần xác nhận | Mất event thì đơn có thể kẹt PENDING |
 | [BO-03](#bo-03) | Minor | Cần xác nhận | Khuyến mãi quá hạn vẫn hiện Active hoặc Pending |
-| [SF-33](#sf-33) | Minor | Cần xác nhận | Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được |
 | [SF-34](#sf-34) | Minor | Cần xác nhận | Ô mã khuyến mãi phân biệt hoa thường |
 
 ### Lỗi giao diện (18)
@@ -86,7 +82,7 @@ Hồ sơ lỗi (backoffice/loi.md):
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). **Retest 2026-11-27: đã xác nhận.** Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. Xem [bằng chứng](test-2026-11-27/retest/README.md#bo-12). |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). |
 | **Luồng** | Trả hàng → trả về kho |
 | **Endpoint / Màn hình** | POST /api/v1/inventory/return-to-warehouse · PATCH .../{id}/approve |
 | **Nghi ngờ thuộc** | inventory-service (bảng chống trùng processed_order_returns đã bị xoá ở migration V12) |
@@ -382,7 +378,7 @@ Hồ sơ lỗi (storefront/loi.md):
 | Khu vực | catalog-service, inventory-service |
 | Kết quả gần nhất | Còn lỗi ngày 27/11 |
 | Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backend/SF-46-variant-stock-initialization.md) |
-| Ghi chú | Storefront hiện còn 10, đặt hàng trả 409. Liên quan [SF-35](#sf-35). |
+| Ghi chú | Storefront hiện còn 10, đặt hàng trả 409. Liên quan [SF-35](storefront/loi.md#sf-35). |
 
 Hồ sơ lỗi (storefront/loi.md):
 
@@ -578,35 +574,6 @@ Hồ sơ lỗi (backoffice/loi.md):
 | **Bằng chứng (status/body)** | Mã A B&lt;&gt; (id 42), lowercase1 (id 43), mã 51 chữ A (id 44) đều 201 |
 | **API Response** | <pre>HTTP 201 / { "code": "A B&lt;&gt;", "status": "PENDING" }</pre> |
 | **Ảnh bằng chứng** | [BO-08-1.jpg](images/BO-08-1.jpg) |
-
-### BO-09
-
-**Tìm kiếm khuyến mãi trả 500**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần sửa |
-| Mức độ | Minor |
-| Khu vực | backend, promotion-service |
-| Kết quả gần nhất | Tái hiện |
-| Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backend/BO-09-promotion-search-http-500.md) |
-
-Hồ sơ lỗi (backoffice/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
-| **Luồng** | Khuyến mãi |
-| **Endpoint / Màn hình** | GET /promotions/search?keyword= |
-| **Nghi ngờ thuộc** | promotion-service |
-| **Bước tái hiện** | 1. Admin gọi GET /api/v1/promotions/search?keyword=deep |
-| **Mong đợi** | Trả danh sách khớp |
-| **Thực tế** | 500 INTERNAL_ERROR (nghi lower(bytea) trong truy vấn khi keyword rỗng hoặc có giá trị) |
-| **Bằng chứng (status/body)** | GET /promotions/search?keyword=deep: 500 |
-| **API Response** | <pre>HTTP 500 / { "code": "INTERNAL_ERROR" }</pre> |
-| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
 
 ### BO-10
 
@@ -1082,36 +1049,6 @@ Hồ sơ lỗi (storefront/loi.md):
 | **API Response** | Không áp dụng |
 | **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
 
-### SF-35
-
-**Tồn kho hiển thị cũ do cache catalog**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần sửa |
-| Mức độ | Minor |
-| Khu vực | backend, catalog-service |
-| Kết quả gần nhất | Tái hiện |
-| Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backend/SF-35-catalog-stock-cache-stale.md) |
-| Ghi chú | Inventory báo 49 cuốn, API sách báo 50 |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
-| **Luồng** | 3 - Checkout COD |
-| **Endpoint / Màn hình** | GET /books/{id} sau khi đặt đơn |
-| **Nghi ngờ thuộc** | catalog-service (cache) |
-| **Bước tái hiện** | 1. Đặt đơn 1 cuốn sách id 4 và 5<br>2. Gọi lại GET /books/4 |
-| **Mong đợi** | Tồn kho giảm tương ứng |
-| **Thực tế** | Tồn vẫn 50 sau khi đặt. Nghi do catalog cache Redis 10 phút không bị xóa khi tồn kho đổi; chưa xác nhận bằng inventory-service |
-| **Bằng chứng (status/body)** | GET /books/4 và /books/5 stockQuantity 50 sau khi đặt đơn 520.116 đ |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
-
 ### SF-39
 
 **Đơn báo thành công rồi tự hủy khi hai người tranh số hàng cuối**
@@ -1199,35 +1136,6 @@ Hồ sơ lỗi (storefront/loi.md):
 | **Thực tế** | Cả 5 request trả 200 nhưng giỏ chỉ có 1 cuốn (mất cập nhật) |
 | **Bằng chứng (status/body)** | GET /carts/me sau đó: sách id 4, quantity 1 |
 | **API Response** | <pre>HTTP 200 x5</pre> |
-| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
-
-### SF-43
-
-**Khởi tạo VNPay đồng thời tạo nhiều bản ghi thanh toán**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần sửa |
-| Mức độ | Minor |
-| Khu vực | backend, payment-service |
-| Kết quả gần nhất | Tái hiện |
-| Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backend/SF-43-duplicate-active-vnpay-payment.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
-| **Luồng** | 4 - Checkout VNPAY |
-| **Endpoint / Màn hình** | POST /api/v1/orders/{id}/payments/initiate |
-| **Nghi ngờ thuộc** | payment-service |
-| **Bước tái hiện** | 1. Tạo đơn VNPAY<br>2. Gửi 3 request initiate cùng lúc |
-| **Mong đợi** | Một bản ghi thanh toán cho một đơn |
-| **Thực tế** | Tạo 3 bản ghi PENDING (id 9, 10, 11), nghĩa là có 3 link thanh toán đều trả được. Gửi lần lượt thì dùng lại 1 bản ghi |
-| **Bằng chứng (status/body)** | GET /payments/order/{id}: 3 bản ghi PENDING |
-| **API Response** | <pre>HTTP 200 x3</pre> |
 | **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
 
 ### UI-02
@@ -1356,7 +1264,7 @@ Hồ sơ lỗi (storefront/loi.md):
 | Nhóm | Cần xác nhận |
 | Mức độ | Major |
 | Khu vực | backend, order-service |
-| Việc tiếp theo | Tái hiện mất sự kiện trong môi trường test |
+| Việc tiếp theo | Tái hiện mất sự kiện trong môi trường test (luồng online nay là SePay) |
 | Kế hoạch | [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) |
 | Ghi chú | Code gửi sự kiện sau commit và chỉ ghi log khi gửi lỗi. Chưa thấy cơ chế gửi lại hoặc xử lý đơn kẹt cho luồng đặt hàng. |
 
@@ -1365,8 +1273,8 @@ Hồ sơ lỗi (storefront/loi.md):
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Chưa tái hiện, phát hiện khi đọc code ngày 2026-11-14. Xem [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) |
-| **Luồng** | 3 - Checkout COD, 4 - Checkout VNPAY |
+| **Trạng thái** | Chưa sửa. Chưa tái hiện, phát hiện khi đọc code ngày 2026-11-14. Xem [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) Đối chiếu code 2026-11-27: vẫn đúng với code hiện tại; VNPay đã bỏ nên luồng online là SePay. |
+| **Luồng** | 3 - Checkout COD, 4 - Checkout SePay |
 | **Endpoint / Màn hình** | EventPublisher · OrderPlacedEvent, StockReservedEvent (RabbitMQ) |
 | **Nghi ngờ thuộc** | order-service (gửi event sau commit, không có outbox, không có tác vụ quét) |
 | **Bước tái hiện** | 1. Chặn kết nối RabbitMQ của order-service<br>2. Đặt một đơn COD<br>3. Khôi phục kết nối, đợi vài phút |
@@ -1465,36 +1373,6 @@ Hồ sơ lỗi (backoffice/loi.md):
 | **Bằng chứng (status/body)** | Đợt test 2026-11-27, case GM08-03 ([B13](test-2026-11-27/guide-me/loi.md#b13)). Response đầy đủ: [GM08-03](test-2026-11-27/guide-me/api/GM08-03.txt) |
 | **API Response** | <pre>PATCH /api/v1/inventory/stock-requests/10/approve<br>Request body:<br>{<br>  "quantity": 3,<br>  "responseMessage": "Chỉ duyệt 3 cuốn"<br>}<br>HTTP 200<br>{<br>  "success": true,<br>  "data": {<br>    "id": 10,<br>    "requestCode": "STK-20261127-000026",<br>(rút gọn)</pre> |
 | **Ảnh bằng chứng** | [BO-21-1.png](images/BO-21-1.png)<br>[BO-21-2.png](images/BO-21-2.png) |
-
-### SF-33
-
-**Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần xác nhận |
-| Mức độ | Minor |
-| Khu vực | order-service, payment-service |
-| Việc tiếp theo | Chốt có cho thử thanh toán lại sau lỗi VNPay |
-| Kế hoạch | [kế hoạch](fix-plans/storefront-backend/SF-33-vnpay-cancel-retry-policy.md) |
-| Ghi chú | Chưa rõ có phải chủ đích |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
-| **Luồng** | 4 - Checkout VNPAY |
-| **Endpoint / Màn hình** | Trang kết quả thanh toán · chi tiết đơn |
-| **Nghi ngờ thuộc** | order-service / payment-service (cần xác nhận) |
-| **Bước tái hiện** | 1. Đặt hàng VNPay<br>2. Bấm hủy ở cổng sandbox |
-| **Mong đợi** | Thanh toán thất bại được thử lại (theo luồng 4) |
-| **Thực tế** | Đơn tự thành Đã hủy, không có nút thanh toán lại. Cần xác nhận đây là chủ đích |
-| **Bằng chứng (status/body)** | Đơn ORD-20261114-000040: CANCELLED, FAILED |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [SF-33-1.jpg](images/SF-33-1.jpg) |
 
 ### SF-34
 

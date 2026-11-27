@@ -166,7 +166,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. **Đối chiếu code 2026-11-27: đã có bản sửa, chờ retest.** `PromotionRepository.searchPromotions` ép kiểu tham số lọc rỗng nên Postgres không còn bind thành bytea (BUG-027, `7fa1a8f`). **Retest 2026-11-27: đã xác nhận.** search → 200 (159 kết quả); search?keyword=deep → 200 (159 kết quả); search?name=black → 200 (1 kết quả); search?code=BLACK → 200 (1 kết quả); search?status=ACTIVE&amp;isActive=true → 200 (18 kết quả). Xem [bằng chứng](../test-2026-11-27/retest/README.md#bo-09). |
 | **Luồng** | Khuyến mãi |
 | **Endpoint / Màn hình** | GET /promotions/search?keyword= |
 | **Nghi ngờ thuộc** | promotion-service |
@@ -214,7 +214,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `80960bbe` (BUG-001) qua PR #369 (merge `fe73d47f`), đã vào `develop`, đối chiếu Git ngày 2026-11-20. Bản sửa nằm ở lớp bảo vệ `packages/core/src/api/proxy.ts`: yêu cầu tới đường dẫn thường của một console mà người dùng chưa có phiên ở console đó nhưng có phiên Admin sẽ được chuyển về `/admin/<console>/…`. Các liên kết vẫn dùng đường dẫn thường. Nếu trình duyệt có phiên của console đích, proxy chọn phiên đó trước khi xét chuyển về phiên Admin. Cần retest mở chi tiết PO và quay lại danh sách trong hai trường hợp: chỉ có phiên Admin và có đồng thời phiên Admin cùng Warehouse. **Chưa có kết quả retest riêng cho hai trường hợp này.** Ghi nhận ban đầu từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong commit `e6e2057`)
+| **Trạng thái** | Đã sửa trong commit `80960bbe` (BUG-001) qua PR #369 (merge `fe73d47f`), đã vào `develop`, đối chiếu Git ngày 2026-11-20. Bản sửa nằm ở lớp bảo vệ `packages/core/src/api/proxy.ts`: yêu cầu tới đường dẫn thường của một console mà người dùng chưa có phiên ở console đó nhưng có phiên Admin sẽ được chuyển về `/admin/<console>/…`. Các liên kết vẫn dùng đường dẫn thường. Nếu trình duyệt có phiên của console đích, proxy chọn phiên đó trước khi xét chuyển về phiên Admin. Cần retest mở chi tiết PO và quay lại danh sách trong hai trường hợp: chỉ có phiên Admin và có đồng thời phiên Admin cùng Warehouse. **Chưa có kết quả retest riêng cho hai trường hợp này.** Ghi nhận ban đầu từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong commit `e6e2057`) **Retest 2026-11-27: đã xác nhận.** Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. Xem [bằng chứng](../test-2026-11-27/retest/README.md#bo-12). |
 | **Luồng** | 3 - Đơn mua (Admin) |
 | **Endpoint / Màn hình** | Danh sách và chi tiết đơn mua ở console Admin, cổng 3001 |
 | **Nghi ngờ thuộc** | backoffice (đường dẫn danh sách cố định trong `useListMutation`, không giữ tiền tố `/admin`) |
@@ -230,7 +230,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). **Retest 2026-11-27: đã xác nhận.** Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. Xem [bằng chứng](../test-2026-11-27/retest/README.md#bo-12). |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). |
 | **Luồng** | Trả hàng → trả về kho |
 | **Endpoint / Màn hình** | POST /api/v1/inventory/return-to-warehouse · PATCH .../{id}/approve |
 | **Nghi ngờ thuộc** | inventory-service (bảng chống trùng processed_order_returns đã bị xoá ở migration V12) |

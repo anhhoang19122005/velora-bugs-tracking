@@ -1,5 +1,7 @@
 # SF-33: Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được
 
+> **Cập nhật 2026-11-27:** Không còn áp dụng: VNPay đã bỏ (REQ-007), thanh toán online là SePay. Giữ file làm lịch sử.
+
 | Mục | Nội dung |
 |---|---|
 | **Mức độ** | Minor |

@@ -1,0 +1,340 @@
+GET /api/v1/promotions/search
+HTTP 200
+{
+  "success": true,
+  "data": [
+    {
+      "id": 3,
+      "name": "E2E Promotion",
+      "code": "PROMO1787397037252247",
+      "discountPercent": 10.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "PENDING",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": null,
+      "createdAt": "2026-08-22T11:10:37.290379Z",
+      "updatedAt": "2026-08-22T11:10:37.290379Z",
+      "createdBy": "QA Tester",
+      "approvedBy": null
+    },
+    {
+      "id": 50,
+      "name": "Hop le",
+      "code": "BHTESTB01",
+      "discountPercent": 10.0,
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-31",
+      "quantity": 5,
+      "isActive": false,
+      "status": "REJECTED",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 148,
+      "approvedByUserId": null,
+      "createdAt": "2026-11-20T11:20:23.963607Z",
+      "updatedAt": "2026-11-20T11:25:02.629158Z",
+      "createdBy": "BHB Seller",
+      "approvedBy": null
+    },
+    {
+      "id": 51,
+      "name": "Hop le full",
+      "code": "BHTESTB01x",
+      "discountPercent": 25.5,
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-31",
+      "quantity": 3,
+      "isActive": false,
+      "status": "REJECTED",
+      "priceOrderActive": 100000.0,
+      "createdByUserId": 148,
+      "approvedByUserId": null,
+      "createdAt": "2026-11-20T11:20:24.257032Z",
+      "updatedAt": "2026-11-20T11:25:02.833967Z",
+      "createdBy": "BHB Seller",
+      "approvedBy": null
+    },
+    {
+      "id": 2,
+      "name": "E2E Promotion",
+      "code": "PROMO1787397036979886",
+      "discountPercent": 10.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 2,
+      "approvedByUserId": 95,
+      "createdAt": "2026-08-22T11:10:37.029514Z",
+      "updatedAt": "2026-11-21T02:59:37.293605Z",
+      "createdBy": "seller Test",
+      "approvedBy": "Admin Taschen"
+    },
+    {
+      "id": 4,
+      "name": "E2E Lifecycle Promotion",
+      "code": "PROMO1787397038060993",
+      "discountPercent": 20.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 10,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+      "createdAt": "2026-08-22T11:10:38.247962Z",
+      "upd
+
+GET /api/v1/promotions/search?keyword=deep
+HTTP 200
+{
+  "success": true,
+  "data": [
+    {
+      "id": 3,
+      "name": "E2E Promotion",
+      "code": "PROMO1787397037252247",
+      "discountPercent": 10.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "PENDING",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": null,
+      "createdAt": "2026-08-22T11:10:37.290379Z",
+      "updatedAt": "2026-08-22T11:10:37.290379Z",
+      "createdBy": "QA Tester",
+      "approvedBy": null
+    },
+    {
+      "id": 50,
+      "name": "Hop le",
+      "code": "BHTESTB01",
+      "discountPercent": 10.0,
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-31",
+      "quantity": 5,
+      "isActive": false,
+      "status": "REJECTED",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 148,
+      "approvedByUserId": null,
+      "createdAt": "2026-11-20T11:20:23.963607Z",
+      "updatedAt": "2026-11-20T11:25:02.629158Z",
+      "createdBy": "BHB Seller",
+      "approvedBy": null
+    },
+    {
+      "id": 51,
+      "name": "Hop le full",
+      "code": "BHTESTB01x",
+      "discountPercent": 25.5,
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-31",
+      "quantity": 3,
+      "isActive": false,
+      "status": "REJECTED",
+      "priceOrderActive": 100000.0,
+      "createdByUserId": 148,
+      "approvedByUserId": null,
+      "createdAt": "2026-11-20T11:20:24.257032Z",
+      "updatedAt": "2026-11-20T11:25:02.833967Z",
+      "createdBy": "BHB Seller",
+      "approvedBy": null
+    },
+    {
+      "id": 2,
+      "name": "E2E Promotion",
+      "code": "PROMO1787397036979886",
+      "discountPercent": 10.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 2,
+      "approvedByUserId": 95,
+      "createdAt": "2026-08-22T11:10:37.029514Z",
+      "updatedAt": "2026-11-21T02:59:37.293605Z",
+      "createdBy": "seller Test",
+      "approvedBy": "Admin Taschen"
+    },
+    {
+      "id": 4,
+      "name": "E2E Lifecycle Promotion",
+      "code": "PROMO1787397038060993",
+      "discountPercent": 20.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 10,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+      "createdAt": "2026-08-22T11:10:38.247962Z",
+      "upd
+
+GET /api/v1/promotions/search?name=black
+HTTP 200
+{
+  "success": true,
+  "data": [
+    {
+      "id": 165,
+      "name": "Black Friday 2026",
+      "code": "BLACKFRIDAY26",
+      "discountPercent": 15.0,
+      "startDate": "2026-11-27",
+      "endDate": "2026-12-04",
+      "quantity": 99,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 200000.0,
+      "createdByUserId": 96,
+      "approvedByUserId": 95,
+      "createdAt": "2026-11-27T04:21:42.798438Z",
+      "updatedAt": "2026-11-27T04:21:48.165548Z",
+      "createdBy": "Seller Taschen",
+      "approvedBy": "Admin Taschen"
+    }
+  ],
+  "message": "OK",
+  "timestamp": "2026-11-27T08:59:23.477756500Z"
+}
+
+GET /api/v1/promotions/search?code=BLACK
+HTTP 200
+{
+  "success": true,
+  "data": [
+    {
+      "id": 165,
+      "name": "Black Friday 2026",
+      "code": "BLACKFRIDAY26",
+      "discountPercent": 15.0,
+      "startDate": "2026-11-27",
+      "endDate": "2026-12-04",
+      "quantity": 99,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 200000.0,
+      "createdByUserId": 96,
+      "approvedByUserId": 95,
+      "createdAt": "2026-11-27T04:21:42.798438Z",
+      "updatedAt": "2026-11-27T04:21:48.165548Z",
+      "createdBy": "Seller Taschen",
+      "approvedBy": "Admin Taschen"
+    }
+  ],
+  "message": "OK",
+  "timestamp": "2026-11-27T08:59:23.630054600Z"
+}
+
+GET /api/v1/promotions/search?status=ACTIVE&isActive=true
+HTTP 200
+{
+  "success": true,
+  "data": [
+    {
+      "id": 2,
+      "name": "E2E Promotion",
+      "code": "PROMO1787397036979886",
+      "discountPercent": 10.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 2,
+      "approvedByUserId": 95,
+      "createdAt": "2026-08-22T11:10:37.029514Z",
+      "updatedAt": "2026-11-21T02:59:37.293605Z",
+      "createdBy": "seller Test",
+      "approvedBy": "Admin Taschen"
+    },
+    {
+      "id": 4,
+      "name": "E2E Lifecycle Promotion",
+      "code": "PROMO1787397038060993",
+      "discountPercent": 20.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 10,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+      "createdAt": "2026-08-22T11:10:38.247962Z",
+      "updatedAt": "2026-08-22T11:10:38.836729Z",
+      "createdBy": "QA Tester",
+      "approvedBy": "QA Tester"
+    },
+    {
+      "id": 32,
+      "name": "E2E Validate Promotion",
+      "code": "PROMO1794445587165886",
+      "discountPercent": 25.0,
+      "startDate": "2026-11-12",
+      "endDate": "2026-12-12",
+      "quantity": 99,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+      "createdAt": "2026-11-12T01:06:27.449148Z",
+      "updatedAt": "2026-11-21T03:00:32.485981Z",
+      "createdBy": "QA Tester",
+      "approvedBy": "QA Tester"
+    },
+    {
+      "id": 5,
+      "name": "E2E Lifecycle Promotion",
+      "code": "PROMO1787397038932703",
+      "discountPercent": 20.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 10,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+      "createdAt": "2026-08-22T11:10:38.964544Z",
+      "updatedAt": "2026-08-22T11:10:39.107787Z",
+      "createdBy": "QA Tester",
+      "approvedBy": "QA Tester"
+    },
+    {
+      "id": 13,
+      "name": "E2E Validate Promotion",
+      "code": "PROMO1787397048248928",
+      "discountPercent": 25.0,
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-21",
+      "quantity": 100,
+      "isActive": true,
+      "status": "ACTIVE",
+      "priceOrderActive": 0.0,
+      "createdByUserId": 1,
+      "approvedByUserId": 1,
+    
+
+
+/api/v1/promotions/search: HTTP 200, 159 kết quả
+/api/v1/promotions/search?keyword=deep: HTTP 200, 159 kết quả
+/api/v1/promotions/search?name=black: HTTP 200, 1 kết quả
+/api/v1/promotions/search?code=BLACK: HTTP 200, 1 kết quả
+/api/v1/promotions/search?status=ACTIVE&isActive=true: HTTP 200, 18 kết quả

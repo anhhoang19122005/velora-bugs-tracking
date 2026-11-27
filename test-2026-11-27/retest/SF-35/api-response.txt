@@ -1,0 +1,57 @@
+POST /api/v1/orders
+Request body:
+{
+  "items": [
+    {
+      "bookId": 67,
+      "variantId": 1,
+      "quantity": 1
+    }
+  ],
+  "addressId": 58,
+  "paymentMethod": "COD"
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 196,
+    "orderCode": "ORD-20261127-000200",
+    "userId": 176,
+    "addressId": 58,
+    "recipientName": "Nguyễn Minh Anh",
+    "recipientPhone": "0903456721",
+    "shippingAddress": "48 Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+    "promotionId": null,
+    "discountAmount": null,
+    "discountPercent": null,
+    "totalAmount": 189000.0,
+    "status": "PENDING",
+    "paymentStatus": "UNPAID",
+    "paymentCode": null,
+    "paymentMethod": "COD",
+    "lines": [
+      {
+        "id": 216,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineTotal": 189000.0,
+        "returnedQuantity": 0,
+        "returnableQuantity": 1,
+        "bookVariantId": 1,
+        "variantFormatName": "Bìa mềm"
+      }
+    ],
+    "createdAt": "2026-11-27T08:59:26.677438500Z",
+    "updatedAt": "2026-11-27T08:59:26.677438500Z",
+    "hasActiveReturn": false
+  },
+  "message": "Order placed",
+  "timestamp": "2026-11-27T08:59:26.878335700Z"
+}
+
+Trước khi đặt: API sách 18, inventory 18
+Sau khi đơn CONFIRMED: API sách 17, inventory 17
+Sau khi hủy (HTTP 200): API sách 18, inventory 18

@@ -578,7 +578,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. **Đối chiếu code 2026-11-27: không còn áp dụng.** VNPay đã bỏ ở backend (REQ-007, `27bae45`; migration `V12__drop_vnpay`), thanh toán online giờ là SePay chuyển khoản QR, không có bước hủy ở cổng. Đơn bị hủy thì payment SePay đang chờ hủy theo (BUG-038, `16321c0`). |
 | **Luồng** | 4 - Checkout VNPAY |
 | **Endpoint / Màn hình** | Trang kết quả thanh toán · chi tiết đơn |
 | **Nghi ngờ thuộc** | order-service / payment-service (cần xác nhận) |
@@ -610,7 +610,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. **Đối chiếu code 2026-11-27: đã có bản sửa, chờ retest.** Catalog xóa cache sách khi nhận sự kiện đổi tồn kho (`@CacheEvict(value = "books", key = "#event.bookId()")`, REQ-009, `576eee4`). **Retest 2026-11-27: đã xác nhận.** Sapiens (id 67): trước 18/18, sau khi đặt 1 cuốn 17/17, sau khi hủy 18/18 (API sách / inventory). Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-35). |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | GET /books/{id} sau khi đặt đơn |
 | **Nghi ngờ thuộc** | catalog-service (cache) |
@@ -738,8 +738,8 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. |
-| **Luồng** | 4 - Checkout VNPAY |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. **Đối chiếu code 2026-11-27: đã có bản sửa, chờ retest.** VNPay đã bỏ; khởi tạo thanh toán giờ là SePay qua cùng endpoint. `PaymentServiceImpl.initiatePayment` giữ một payment PENDING mỗi đơn (ràng buộc duy nhất V7, BUG-021, `5b8445f`): request đồng thời thua lúc insert sẽ đọc lại và trả về đúng payment đang chờ. **Retest 2026-11-27: đã xác nhận.** Đơn SePay ORD-20261127-000201: 5 request khởi tạo thanh toán cùng lúc trả [200, 200, 200, 200, 200], 1 mã thanh toán chung; đơn có 1 payment PENDING (tổng 1). Đã hủy đơn sau khi test. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-43). |
+| **Luồng** | 4 - Checkout SePay (ghi nhận gốc với VNPay) |
 | **Endpoint / Màn hình** | POST /api/v1/orders/{id}/payments/initiate |
 | **Nghi ngờ thuộc** | payment-service |
 | **Bước tái hiện** | 1. Tạo đơn VNPAY<br>2. Gửi 3 request initiate cùng lúc |
@@ -754,8 +754,8 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Chưa tái hiện, phát hiện khi đọc code ngày 2026-11-14. Xem [kế hoạch](../fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) |
-| **Luồng** | 3 - Checkout COD, 4 - Checkout VNPAY |
+| **Trạng thái** | Chưa sửa. Chưa tái hiện, phát hiện khi đọc code ngày 2026-11-14. Xem [kế hoạch](../fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) Đối chiếu code 2026-11-27: vẫn đúng với code hiện tại; VNPay đã bỏ nên luồng online là SePay. |
+| **Luồng** | 3 - Checkout COD, 4 - Checkout SePay |
 | **Endpoint / Màn hình** | EventPublisher · OrderPlacedEvent, StockReservedEvent (RabbitMQ) |
 | **Nghi ngờ thuộc** | order-service (gửi event sau commit, không có outbox, không có tác vụ quét) |
 | **Bước tái hiện** | 1. Chặn kết nối RabbitMQ của order-service<br>2. Đặt một đơn COD<br>3. Khôi phục kết nối, đợi vài phút |

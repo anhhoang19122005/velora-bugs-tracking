@@ -1,5 +1,7 @@
 # SF-43: Khởi tạo VNPay đồng thời tạo nhiều bản ghi thanh toán
 
+> **Cập nhật 2026-11-27:** VNPay đã bỏ (REQ-007). Bản sửa BUG-021 (`5b8445f`) giữ một payment PENDING mỗi đơn cho SePay; kế hoạch này chỉ còn giá trị lịch sử, chờ retest với SePay.
+
 | Mục | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
