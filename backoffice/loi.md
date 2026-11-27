@@ -15,7 +15,7 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | [BO-09](#bo-09) | Minor | Khuyến mãi | GET /promotions/search?keyword= | promotion-service | Không có |
 | [BO-10](#bo-10) | Minor | Nhà cung cấp | POST /api/v1/suppliers | inventory-service | Không có |
 | [BO-11](#bo-11) | Minor | Đơn mua, nhập kho | POST /api/v1/inventory/import-stocks | inventory-service | Không có |
-| [BO-12](#bo-12) | Minor | 3 - Đơn mua (Admin) | Danh sách và chi tiết đơn mua ở console Admin | backoffice | [Ảnh 1](../images/BO-12-1.png), [Ảnh 2](../images/BO-12-2.png) |
+| [BO-12](#bo-12) | Minor (đã sửa một phần, chờ retest) | 3 - Đơn mua (Admin) | Danh sách và chi tiết đơn mua ở console Admin | backoffice | [Ảnh 1](../images/BO-12-1.png), [Ảnh 2](../images/BO-12-2.png) |
 
 ## BO-01
 
@@ -198,7 +198,7 @@ Ghi nhận ngày 2026-11-14: **BO-08–BO-11** là lỗi mới tìm thấy khi r
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Chưa có kế hoạch. Ghi nhận từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong lịch sử Git, commit `e6e2057`) |
+| **Trạng thái** | Đã sửa trong commit `80960bbe` (BUG-001) qua PR #369 (merge `fe73d47f`), đã vào `develop`, đối chiếu Git ngày 2026-11-20. Bản sửa nằm ở lớp bảo vệ `packages/core/src/api/proxy.ts`: yêu cầu tới đường dẫn thường của một console mà người dùng chưa có phiên ở console đó nhưng có phiên Admin sẽ được chuyển về `/admin/<console>/…`. Các liên kết vẫn dùng đường dẫn thường. Nếu trình duyệt có phiên của console đích, proxy chọn phiên đó trước khi xét chuyển về phiên Admin. Cần retest mở chi tiết PO và quay lại danh sách trong hai trường hợp: chỉ có phiên Admin và có đồng thời phiên Admin cùng Warehouse. **Chưa có kết quả retest riêng cho hai trường hợp này.** Ghi nhận ban đầu từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong commit `e6e2057`)
 | **Luồng** | 3 - Đơn mua (Admin) |
 | **Endpoint / Màn hình** | Danh sách và chi tiết đơn mua ở console Admin, cổng 3001 |
 | **Nghi ngờ thuộc** | backoffice (đường dẫn danh sách cố định trong `useListMutation`, không giữ tiền tố `/admin`) |

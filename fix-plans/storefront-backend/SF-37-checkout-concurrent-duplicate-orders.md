@@ -4,9 +4,9 @@
 |---|---|
 | **Mức độ** | Major |
 | **Trạng thái** | Chưa sửa. Hướng sửa đã chốt ngày 14/11: Idempotency-Key kết hợp khóa theo người dùng |
-| **Repo** | `taschen-backend` (`order-service`) và `taschen-storefront`, số dòng theo `develop` `e090ed4` (backend) và `cdb599a` (storefront) |
-| **Nhánh đề xuất** | `fix/checkout-idempotency-sf-37-38-40`, tách từ `develop` (chung nhánh với SF-38, SF-40; storefront dùng nhánh cùng tên) |
-| **Khối lượng** | Khoảng 110 dòng backend, 20 dòng storefront, 6 unit test, 3 integration test |
+| **Repo** | `taschen-backend` (`order-service`) `d5b6ac2` và `taschen-storefront` `0a72cc4` |
+| **Nhánh đề xuất** | `fix/checkout-idempotency-sf-37-38`, tách từ `develop`. Phối hợp SF-38 ở bước giữ lượt. |
+| **Khối lượng** | Cần thêm lưu kết quả cùng transaction và kiểm thử các điểm gián đoạn. |
 | **Bug** | `taschen-e2e/docs/bugs/manual-2026-11-10-v2.xlsx`, trang Storefront-Lỗi (SF-37) và Storefront-Bất biến (kịch bản 1 đến 5) |
 
 ## Hiện tượng
@@ -17,337 +17,35 @@ Có thêm một vấn đề liên quan, không phải đơn trùng. Nếu reques
 
 ## Nguyên nhân
 
-`OrderServiceImpl.checkout` (dòng 103-148) đọc giỏ ở dòng 107, kiểm tra và lưu đơn ở dòng 141, rồi mới xóa giỏ ở dòng 144. Không có khóa nào giữa bước đọc và bước xóa. Các request đồng thời đều đọc thấy giỏ đầy đủ trước khi request nào kịp xóa, nên mỗi request tạo một đơn. Mỗi đơn phát `OrderPlacedEvent` (dòng 145), inventory-service giữ hàng cho từng đơn, nên kho bị trừ nhiều lần.
+`OrderServiceImpl.checkout` đọc giỏ ở dòng 115, lưu đơn trong `TransactionTemplate` ở dòng 131–152, rồi mới xóa giỏ Redis ở dòng 155. Nhiều request có thể cùng đọc một giỏ trước khi bất kỳ request nào xóa nó. Mỗi đơn đã lưu phát sự kiện giữ hàng riêng.
 
-Giỏ là một giá trị JSON ở khóa Redis `cart:{userId}` (`CartServiceImpl.java:32`, `:92-106`), đọc rồi ghi lại toàn bộ, không có thao tác nguyên tử.
+## Thiết kế đề xuất
 
-Server không có khái niệm "request này đã xử lý rồi": server xử lý xong dù khách mất kết nối, và lần gửi lại chỉ thấy giỏ trống.
+Storefront tạo một `Idempotency-Key` cho mỗi ý định đặt hàng và dùng lại key nếu phản hồi bị mất. Đổi dữ liệu đơn thì sinh key mới. Backend gắn key với người dùng và dấu vân tay của payload gồm địa chỉ, phương thức thanh toán, mã khuyến mãi và các dòng hàng. Cùng key và payload trả lại đơn cũ với HTTP 201. Cùng key nhưng khác payload trả 400. Request đồng thời đang xử lý trả 409.
 
-## Vì sao không dùng riêng khóa theo người dùng (Redis `SET NX`, TTL 30 giây)
+1. **Lưu kết quả cùng transaction tạo đơn.** Ràng buộc duy nhất cho cặp người dùng và key. Khi thử lại, tra bản ghi đã commit trước khi đọc giỏ. Redis `DONE` có thể làm bộ nhớ đệm. Kết quả đã commit trong DB là căn cứ khi Redis lỗi hoặc tiến trình chết giữa commit và ghi `DONE`.
+2. **Chặn hai key cùng dùng một giỏ.** Giữ khóa theo người dùng trong lúc xử lý và lưu dấu phiên bản giỏ đã dùng cùng transaction tạo đơn. Ràng buộc duy nhất theo người dùng và phiên bản giỏ là lớp bảo vệ khi khóa Redis hết hạn hoặc request gửi key khác. Mỗi thay đổi giỏ sinh phiên bản mới. Client cũ vẫn đi qua chốt phiên bản giỏ.
+3. **Dọn giỏ theo phiên bản.** Sau commit, chỉ xóa nếu giỏ vẫn là phiên bản đã dùng. Khi tiến trình chết trước khi xóa, lần thử lại đọc đơn cũ hoặc nhận xung đột trên phiên bản giỏ cũ. Giỏ đã được khách sửa sau đó vẫn còn.
+4. **Phân biệt trạng thái lỗi.** Chỉ cho thử lại như lần mới khi biết transaction đã rollback. Nếu chưa rõ commit thành công hay chưa, đọc dấu đã lưu trong DB. Nhả khóa Redis bằng phép so token và xóa nguyên tử. Giới hạn thời gian chạy hoặc gia hạn khóa theo token. Chốt DB vẫn phải đúng khi khóa hết hạn.
 
-Phương án đầu của plan này. Kịch bản kiểm tra ngày 14/11 cho thấy nó thiếu hai chỗ:
+Storefront chuyển tới trang đơn bằng `orderCode` theo tuyến hiện tại. Cần chuyển tiếp key qua BFF và khai báo header trong OpenAPI khi triển khai.
 
-- **Request chạy lâu hơn TTL.** `order-service` không cấu hình timeout riêng cho Feign, nên dùng mặc định (đọc tối đa khoảng 60 giây mỗi lần gọi, chưa kiểm chứng giá trị chạy thật). Nếu inventory hoặc catalog treo, request đầu còn chạy khi khóa đã hết hạn, giỏ chưa bị xóa, và click thứ hai tạo đơn trùng.
-- **Mất phản hồi.** Khóa đã nhả khi request đầu xong. Lần bấm lại 45 giây sau nhận "Cart is empty", không biết đơn đã tạo.
+## Liên quan RabbitMQ và khuyến mãi
 
-Cả hai được giải quyết bằng Idempotency-Key: server nhớ kết quả của từng lần đặt và trả lại đúng đơn cũ khi nhận lại cùng key. Khóa theo người dùng vẫn giữ để chặn trường hợp hai tab dùng hai key khác nhau.
+Chống tạo đơn trùng áp dụng ở bước checkout. Một đơn đã commit vẫn có thể kẹt khi mất sự kiện giữ hàng. Phát lại sự kiện và xử lý đơn kẹt theo [SF-44](../backend/SF-44-order-event-lost-stuck-pending.md). Giữ và hoàn lượt mã theo [SF-38](../backend/SF-38-promotion-usage-over-redeemed.md).
 
-## Thiết kế
+## Kiểm thử cần có
 
-Mỗi lần đặt hàng của storefront mang một header `Idempotency-Key` (UUID). Server xử lý theo bảng:
-
-| Tình huống | Kết quả |
+| Tình huống | Kết quả mong đợi |
 |---|---|
-| Key mới | Đặt hàng bình thường, lưu kết quả theo key trong 24 giờ |
-| Cùng key, đã xong, cùng nội dung | Trả lại **đúng đơn cũ**, HTTP 201, kèm header `Idempotent-Replayed: true`, không tạo đơn |
-| Cùng key, đã xong, nội dung khác (ví dụ đổi địa chỉ rồi bấm lại) | 400 `VALIDATION_ERROR` |
-| Cùng key, đang xử lý | 409 `CONFLICT` |
-| Key khác, trong lúc người đó đang có một lần đặt chạy | 409 `CONFLICT` (khóa theo người dùng) |
-| Không gửi header | Chỉ có khóa theo người dùng (client cũ vẫn chạy) |
-| Đặt hàng thất bại | Xóa key và nhả khóa, gửi lại cùng key được xử lý như lần mới |
+| 2, 3 và 10 request cùng giỏ, cùng key hoặc khác key | Một đơn cho phiên bản giỏ đó. Kho giữ một lần. Các request còn lại trả lại đơn cũ nếu cùng key và đã xử lý xong, hoặc 409. |
+| Client cũ gửi nhiều request cùng giỏ | Một đơn. |
+| Mất phản hồi, gửi lại ở giây 45 và phút 10 | Cùng ID và mã đơn. Cùng key nhưng đổi địa chỉ hoặc dòng hàng trả 400. |
+| Dừng tiến trình sau commit, trước khi xóa giỏ hoặc ghi Redis `DONE` | Cùng key đọc đúng đơn cũ từ DB. Key khác với phiên bản giỏ cũ bị chặn. |
+| Khóa Redis hết hạn khi request đầu còn chạy | Ràng buộc DB vẫn bảo đảm một đơn cho phiên bản giỏ đó. |
+| Đổi giỏ sau khi đặt đơn | Dọn phiên bản cũ không xóa những gì khách vừa thêm. |
+| Transaction rollback trước commit | Lần thử lại hợp lệ có thể đặt. Giỏ và lượt mã được xử lý theo kết quả giao dịch. |
 
-Redis (dùng `StringRedisTemplate`, order-service đã có `spring-boot-starter-data-redis`, `pom.xml:75`):
+## Phạm vi triển khai
 
-- `checkout-idem:{userId}:{key}` = `PENDING:{hash}` (TTL 120 giây) rồi `DONE:{orderId}:{hash}` (TTL 24 giờ).
-- `checkout-lock:{userId}` = token ngẫu nhiên (TTL 120 giây).
-
-`hash` là SHA-256 của `addressId`, `promotionId`, `paymentMethod` và danh sách `bookId:variantId:quantity` đã sắp xếp. Không đưa `aiAssisted` vào vì nó không đổi nội dung đơn.
-
-**Phải điều phối bên ngoài transaction.** `OrderServiceImpl.checkout` có `@Transactional`; nếu ghi `DONE` hoặc nhả khóa bên trong nó thì có thể ghi `DONE` cho một đơn chưa commit hoặc bị rollback. Vì vậy thêm một lớp điều phối không có `@Transactional`, gọi `checkout` (commit xảy ra khi nó trả về), rồi mới ghi `DONE`.
-
-## Các trường hợp đã cover
-
-Ký hiệu K là Idempotency-Key của một lần đặt hàng; "cùng K" nghĩa là storefront gửi lại đúng key đó với cùng nội dung đơn.
-
-### Kịch bản mất phản hồi (ví dụ đã nêu)
-
-Khách bấm Đặt hàng, request đã tới server và đơn được tạo, nhưng mạng đứt nên khách không nhận phản hồi và không thấy gì.
-
-| Thời điểm | Chuyện xảy ra | Kết quả |
-|---|---|---|
-| t = 0 | Bấm Đặt hàng, gửi K | Server ghi `PENDING:K`, giữ khóa theo người dùng, tạo đơn #123 |
-| t ≈ 1 giây | Đơn commit, server ghi `DONE:123:K` (24 giờ), nhả khóa. Mạng đứt nên phản hồi mất | Khách không biết đơn đã tạo |
-| t = 45 giây, **mạng vẫn đứt** | Khách bấm lại | Request không tới được server, giao diện báo lỗi. Server không đổi gì |
-| t = 65 giây, **mạng đã về** | Khách bấm lại, giao diện vẫn dùng K | Server thấy `DONE:123:K` cùng nội dung, trả lại **đơn #123** (201, `Idempotent-Replayed: true`). Giao diện chuyển tới đơn, không tạo đơn mới |
-| t = 10 phút | Khách bấm lại cùng K | Như trên. `DONE` còn hiệu lực 24 giờ |
-| Khách tải lại trang rồi bấm lại | Nhờ lưu K trong `sessionStorage`, vẫn gửi K | Như trên. Nếu không lưu K thì sinh K mới, giỏ trống, nhận 409 và thông báo "mở trang Đơn hàng để kiểm tra" (không trùng đơn) |
-
-Vì khóa chỉ giữ trong lúc request chạy (tối đa 120 giây) còn kết quả giữ 24 giờ, không còn chuyện "khóa hết hạn sau 30 giây rồi bấm lại thì sao".
-
-### Bảng đầy đủ
-
-| # | Tình huống | Cơ chế xử lý | Kết quả | Kiểm bằng |
-|---|---|---|---|---|
-| 1 | Hai đến mười request giống hệt, cùng K, gửi cùng lúc (bấm nhanh, proxy hoặc trình duyệt gửi lại) | `SET NX` trên key | Đúng 1 đơn. Request còn lại 409 (đang xử lý) hoặc 201 replay cùng đơn | IT `checkout_concurrentSubmitsSameKey_createOneOrder` |
-| 2 | Cùng lúc nhưng khác K (hai tab, hai thiết bị) | Khóa theo người dùng | Đúng 1 đơn, request còn lại 409. Khi tab kia xong, tab này nhận 409 "Cart is empty": không trùng, giao diện nhắc kiểm tra Đơn hàng | IT `checkout_concurrentSubmitsDifferentKeys_createOneOrder` |
-| 3 | Không gửi header (client cũ) cùng lúc | Khóa theo người dùng | Đúng 1 đơn. Không có khả năng nhận lại đơn khi mất phản hồi | Unit `checkout_noKeyLockHeld_throwsConflict`, kịch bản 1 đến 3 |
-| 4 | Request đầu chưa tới server, khách bấm lại | Không có key hay khóa nào được ghi | Tạo đơn bình thường, không mất gì | Kịch bản mất phản hồi, dòng t = 45 giây |
-| 5 | Request đầu chạy lâu (inventory hoặc catalog chậm), khách bấm lại cùng K trong lúc đó | `PENDING:K` (120 giây) và khóa (120 giây); Feign timeout 10 giây | 409 "đang xử lý", không trùng. Khi xong, bấm lại trả đơn đã tạo | Kiểm thử lại thủ công (làm chậm inventory) |
-| 6 | Request đầu chạy lâu, khách bấm lại với K khác | Khóa theo người dùng | 409, không trùng | Như dòng 2 |
-| 7 | Gửi lại cùng K nhưng nội dung đã đổi (địa chỉ, phương thức, mã, số lượng) | So `hash` nội dung | 400 `VALIDATION_ERROR`. Giao diện đổi chữ ký nên tự dùng K mới và đặt được | Unit `checkout_keyDoneWithDifferentRequest_throwsValidationError` |
-| 8 | Lần thử đầu thất bại (hết hàng, mã không hợp lệ, lỗi hệ thống) rồi thử lại cùng K | Xóa key và nhả khóa khi lỗi | Lần sau chạy như lần mới, không bị kẹt "đang xử lý" | Unit `checkout_orderServiceFails_deletesKeyAndReleasesLock` |
-| 9 | Người dùng A và B dùng cùng K | Key có `userId` trong tên | Hai bên độc lập, không nhìn thấy đơn của nhau | Nằm trong thiết kế; thêm 1 ca vào `CartAndOrderIT` nếu cần |
-| 10 | Replay trả trạng thái hiện tại của đơn (đã hủy hoặc đã đổi trạng thái sau khi tạo) | Replay đọc lại đơn bằng `getOrder` thay vì lưu bản sao | Khách thấy đơn đúng trạng thái hiện tại | Nằm trong thiết kế |
-| 11 | `DONE` được ghi trước khi đơn commit | Điều phối ngoài transaction, ghi `DONE` sau khi `checkout` trả về | Không bao giờ trỏ tới đơn bị rollback | Unit `checkout_success_storesDoneOnlyAfterCheckoutReturned` |
-| 12 | Redis lỗi | Giỏ hàng cũng nằm ở Redis | Checkout vốn đã không chạy được, không thêm lỗi mới | Không cần ca riêng |
-| 13 | Bấm nhanh trên cùng một tab | Nút bị khóa khi đang gửi | 1 request. Nếu lọt qua thì rơi vào dòng 1 | Kịch bản 5 ở trang Storefront-Bất biến |
-
-### Chưa cover (biết trước)
-
-| # | Tình huống | Hệ quả | Hướng xử lý nếu cần |
-|---|---|---|---|
-| A | Request chạy lâu hơn 120 giây (mọi lệnh gọi Feign đều treo gần hết timeout, giỏ nhiều dòng) rồi khách bấm lại | Key và khóa hết hạn khi request đầu còn chạy, đơn trùng có thể xảy ra | Gia hạn khóa theo từng dòng giỏ; hoặc giảm timeout Feign |
-| B | Tiến trình `order-service` chết giữa lúc đơn đã commit và lúc ghi `DONE` | Key kẹt `PENDING` 120 giây, sau đó bấm lại nhận 409 "Cart is empty" | Hiếm; chấp nhận. Muốn triệt để thì lưu `idempotencyKey` vào cột của bảng `orders` |
-| C | Khách dùng client không gửi header và mất phản hồi | Không nhận lại được đơn | Chỉ storefront mới gửi key |
-| D | Mất phản hồi ở bước khởi tạo thanh toán VNPay (`POST /orders/{id}/payments/initiate`) sau khi đặt hàng thành công | Giao diện báo "Đơn đã tạo, mở đơn hàng để thử thanh toán lại". Bước khởi tạo thanh toán đồng thời còn tạo nhiều bản ghi thanh toán (xem SF-43) | Sửa ở SF-43, không thuộc plan này |
-| E | Mất `OrderPlacedEvent` (broker không nhận hoặc tiến trình chết ngay sau commit) | Đơn kẹt PENDING vĩnh viễn, không giữ hàng. Key chỉ làm cho lần bấm lại trả về chính đơn kẹt đó | Xem mục Message broker, trường hợp 4 |
-
-(Dòng E của bản trước ghi sai rằng inventory có thể giữ hàng hai lần khi nhận `OrderPlacedEvent` hai lần. Đã đọc lại code: inventory có bản ghi đánh dấu chống trùng, xem trường hợp 1 ở mục dưới.)
-
-## Message broker (RabbitMQ)
-
-Đặt hàng không chỉ là một request HTTP. Sau khi đơn commit, phần còn lại chạy qua RabbitMQ (exchange `taschen.events`):
-
-1. `checkout` commit, rồi `EventPublisher.publishAfterCommit` gửi `OrderPlacedEvent` (`OrderServiceImpl.java:145`).
-2. inventory-service nhận ở queue `inventory-service.order-placed.queue`, giữ hàng theo FIFO, rồi gửi `StockReservedEvent` (thành công hoặc thất bại).
-3. order-service nhận `StockReservedEvent` (`handleStockReserved`): đơn COD thành CONFIRMED; giữ hàng thất bại thì hủy đơn và gửi `OrderCancelledEvent`; đơn VNPay chờ thêm `PaymentCompletedEvent` hoặc `PaymentFailedEvent`.
-4. `OrderCancelledEvent` được inventory nhận để trả hàng về kho.
-
-Idempotency-Key và khóa chỉ chặn ở bước 0 (request HTTP). Các bước 1 đến 4 có bảo vệ riêng, đã đọc lại ngày 14/11:
-
-| # | Tình huống ở broker | Hiện trạng trong code | Kết luận |
-|---|---|---|---|
-| 1 | `OrderPlacedEvent` giao hai lần (RabbitMQ giao ít nhất một lần) | inventory kiểm tra bảng `processed_order_reservations` (`order_id` UNIQUE), có thì bỏ qua (`StockReservationServiceImpl.java:34-40`) | An toàn, không giữ hàng hai lần. Lần nhận lặp vẫn gửi lại `StockReservedEvent` |
-| 2 | `StockReservedEvent`, `PaymentCompletedEvent`, `PaymentFailedEvent` giao hai lần | `handle*` chỉ xử lý khi đơn còn PENDING và chưa đánh dấu (`OrderServiceImpl.java:572-575, 605-607, 682`) | An toàn |
-| 3 | `OrderCancelledEvent` giao hai lần | inventory trả hàng theo sổ cái (ledger), "idempotent by ledger" (`OrderCancelledEventListener`) | An toàn |
-| 4 | **Mất `OrderPlacedEvent`**: broker không nhận, hoặc tiến trình `order-service` chết giữa lúc commit và lúc gửi | `EventPublisher.send` chỉ ghi log lỗi, không ném (`EventPublisher.java`). order-service không có outbox, không bật publisher confirm, và không có tác vụ định kỳ nào (đã tìm `@Scheduled`: chỉ có ở gateway, payment-service, tracking-service). payment-service thì có `PaymentOutboxScheduler` chạy mỗi 5 phút | **Chưa cover.** Đơn kẹt PENDING, không giữ hàng, và không ai phát hiện |
-| 5 | Mất `StockReservedEvent` (inventory gửi lỗi) | Giống dòng 4 phía inventory | Chưa cover, nhưng cùng cách sửa với dòng 4 |
-| 6 | Xử lý một event ném lỗi | Listener của order-service không bắt lỗi, không cấu hình dead-letter hay retry (chỉ khai báo queue `durable`). Theo mặc định của Spring AMQP, message bị đẩy lại và giao lại liên tục (chưa kiểm chứng khi chạy thật). Listener của inventory thì nuốt mọi lỗi và chỉ ghi log, nên một lần trả hàng thất bại sẽ bị bỏ qua | Chưa cover. Ngoài phạm vi SF-37, ghi lại để xử lý riêng |
-
-**Liên hệ với SF-37.** Khi mất event (dòng 4), Idempotency-Key làm lần bấm lại trả về đúng đơn kẹt thay vì tạo đơn mới. Khách thấy đơn "Chờ xác nhận" mãi, nhưng không bị trùng. Còn với đơn có mã giảm giá, SF-38 đã giữ lượt mã ngay lúc đặt, nên đơn kẹt giữ luôn lượt mã.
-
-**Hướng sửa cho dòng 4 và 5 (đề xuất tách thành bug riêng).** Thêm một tác vụ định kỳ trong `order-service`, mỗi 1 đến 2 phút:
-
-- Tìm đơn `PENDING`, `stockReserved = false`, tạo hơn 2 phút trước, rồi phát lại `OrderPlacedEvent`. Làm vậy an toàn vì cả hai đầu đều idempotent (dòng 1 và 2): nếu inventory đã giữ hàng rồi thì nó chỉ gửi lại `StockReservedEvent`, nhờ đó sửa được cả dòng 5.
-- Đơn vẫn PENDING quá 30 phút thì hủy (gửi `OrderCancelledEvent`, hoàn lượt mã theo SF-38). Việc này cũng giải quyết đơn VNPay bỏ dở.
-- Khối lượng khoảng 40 dòng, thêm một truy vấn trong `OrderRepository` và 2 unit test. Có thể tái dùng mẫu của `PaymentOutboxScheduler`.
-- Cách làm bài bản hơn là bảng outbox như payment-service đang có; tốn công hơn, nên chỉ làm nếu tác vụ quét không đủ.
-
-## Thay đổi backend
-
-### 1. Lớp điều phối mới
-
-`services/order-service/src/main/java/vn/edu/iuh/fit/taschen/order/service/CheckoutCoordinator.java`:
-
-```java
-package vn.edu.iuh.fit.taschen.order.service;
-
-@Service
-@RequiredArgsConstructor
-public class CheckoutCoordinator {
-
-    private static final Duration IN_FLIGHT_TTL = Duration.ofSeconds(120);
-    private static final Duration DONE_TTL = Duration.ofHours(24);
-    private static final Pattern KEY_FORMAT = Pattern.compile("[A-Za-z0-9_-]{8,64}");
-    private static final RedisScript<Long> RELEASE_LOCK = RedisScript.of(
-            "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end",
-            Long.class);
-
-    private final StringRedisTemplate redis;
-    private final OrderService orderService;
-
-    public record Result(OrderResponse order, boolean replayed) {}
-
-    // Runs outside any transaction on purpose: OrderService#checkout commits when it returns, and only then
-    // is the result remembered, so a replay can never point at an order that was rolled back.
-    public Result checkout(CreateOrderRequest request, String idempotencyKey) {
-        Long userId = CurrentUserProvider.currentUserId();
-        String keyRedis = null;
-        String hash = fingerprint(request);
-        if (idempotencyKey != null) {
-            if (!KEY_FORMAT.matcher(idempotencyKey).matches()) {
-                throw new AppException(ErrorCode.VALIDATION_ERROR, "Idempotency-Key must be 8-64 letters, digits, '-' or '_'");
-            }
-            keyRedis = "checkout-idem:" + userId + ":" + idempotencyKey;
-            Result replay = claimOrReplay(keyRedis, hash);
-            if (replay != null) {
-                return replay;
-            }
-        }
-        String lockKey = "checkout-lock:" + userId;
-        String token = UUID.randomUUID().toString();
-        if (!Boolean.TRUE.equals(redis.opsForValue().setIfAbsent(lockKey, token, IN_FLIGHT_TTL))) {
-            forget(keyRedis);
-            throw new AppException(ErrorCode.CONFLICT, "Another checkout is already in progress for this user");
-        }
-        try {
-            OrderResponse order = orderService.checkout(request);
-            if (keyRedis != null) {
-                redis.opsForValue().set(keyRedis, "DONE:" + order.id() + ":" + hash, DONE_TTL);
-            }
-            return new Result(order, false);
-        } catch (RuntimeException e) {
-            forget(keyRedis); // a failed attempt must not block the retry with the same key
-            throw e;
-        } finally {
-            redis.execute(RELEASE_LOCK, List.of(lockKey), token);
-        }
-    }
-
-    // Returns the stored order for a finished attempt, null when this call owns the key now.
-    private Result claimOrReplay(String keyRedis, String hash) {
-        if (Boolean.TRUE.equals(redis.opsForValue().setIfAbsent(keyRedis, "PENDING:" + hash, IN_FLIGHT_TTL))) {
-            return null;
-        }
-        String stored = redis.opsForValue().get(keyRedis);
-        if (stored == null) { // expired between the two calls: take it
-            return claimOrReplay(keyRedis, hash);
-        }
-        String[] parts = stored.split(":");
-        if (!parts[parts.length - 1].equals(hash)) {
-            throw new AppException(ErrorCode.VALIDATION_ERROR, "Idempotency-Key was already used for a different request");
-        }
-        if ("PENDING".equals(parts[0])) {
-            throw new AppException(ErrorCode.CONFLICT, "This checkout is still being processed");
-        }
-        return new Result(orderService.getOrder(Long.parseLong(parts[1])), true);
-    }
-
-    private void forget(String keyRedis) {
-        if (keyRedis != null) {
-            redis.delete(keyRedis);
-        }
-    }
-
-    private static String fingerprint(CreateOrderRequest request) {
-        String items = request.items().stream()
-                .map(i -> i.bookId() + ":" + i.variantId() + ":" + i.quantity())
-                .sorted()
-                .collect(Collectors.joining(","));
-        String raw = request.addressId() + "|" + request.promotionId() + "|" + request.paymentMethod() + "|" + items;
-        return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(raw.getBytes(StandardCharsets.UTF_8)));
-    }
-}
-```
-
-`MessageDigest.getInstance` ném `NoSuchAlgorithmException` (checked): bọc trong `try/catch` rồi ném `IllegalStateException`. Đoạn trên rút gọn để dễ đọc.
-
-### 2. Controller
-
-`OrderController.java:30-35`:
-
-```diff
-     @PostMapping
-     @Operation(summary = "Checkout: place an order from the current user's cart")
-     @SecurityRequirement(name = "bearerAuth")
--    public ResponseEntity<ApiResponse<OrderResponse>> checkout(@Valid @RequestBody CreateOrderRequest request) {
--        OrderResponse response = orderService.checkout(request);
--        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok(response, "Order placed"));
-+    public ResponseEntity<ApiResponse<OrderResponse>> checkout(
-+            @Valid @RequestBody CreateOrderRequest request,
-+            @Parameter(description = "Same key on a retry returns the order already created")
-+                    @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey) {
-+        CheckoutCoordinator.Result result = checkoutCoordinator.checkout(request, idempotencyKey);
-+        ResponseEntity.BodyBuilder response = ResponseEntity.status(HttpStatus.CREATED);
-+        if (result.replayed()) {
-+            response.header("Idempotent-Replayed", "true");
-+        }
-+        return response.body(ApiResponse.ok(result.order(), "Order placed"));
-     }
-```
-
-Thêm field `private final CheckoutCoordinator checkoutCoordinator;`. `OrderService.checkout` giữ nguyên, nên các test hiện có không phải sửa.
-
-### 3. Timeout cho Feign
-
-Để một request không thể chạy lâu hơn khóa. `services/order-service/src/main/resources/application.yml`:
-
-```yaml
-spring:
-  cloud:
-    openfeign:
-      client:
-        config:
-          default:
-            connect-timeout: 3000
-            read-timeout: 10000
-```
-
-Với 10 giây mỗi lần gọi, một giỏ vài dòng chạy tối đa khoảng 1 phút khi mọi lần gọi đều treo, nằm trong TTL 120 giây. Giỏ rất nhiều dòng mà mọi lần gọi đều treo có thể vượt; chấp nhận được vì lúc đó checkout đã hỏng. Nếu cần chặt hơn thì gia hạn khóa theo từng dòng.
-
-## Thay đổi storefront
-
-`src/modules/orders/api/order.api.ts:40-41`:
-
-```diff
--  placeOrder: (payload: PlaceOrderPayload) =>
--    http.post<GetOrderResponse>("orders", payload),
-+  placeOrder: (payload: PlaceOrderPayload, idempotencyKey?: string) =>
-+    http.post<GetOrderResponse>(
-+      "orders",
-+      payload,
-+      idempotencyKey ? { headers: { "Idempotency-Key": idempotencyKey } } : undefined,
-+    ),
-```
-
-`checkout/_components/CheckoutScreen.tsx`, quanh dòng 122: giữ cùng một key cho các lần thử lại của cùng một đơn.
-
-```diff
-+      // One key per order attempt: a retry after a lost response gets the order already created back.
-+      const signature = JSON.stringify(payload);
-+      if (attempt.current?.signature !== signature) {
-+        attempt.current = { key: crypto.randomUUID(), signature };
-+      }
--      const order = await orderService.placeOrder(payload);
-+      const order = await orderService.placeOrder(payload, attempt.current.key);
-+      attempt.current = null; // done: the next order gets a new key
-```
-
-với `const attempt = React.useRef<{ key: string; signature: string } | null>(null);` cạnh các `useState` (dòng 74-76). Không xóa key khi lỗi: server tự bỏ key của lần thất bại, và key giữ nguyên chính là thứ giúp lần bấm lại nhận lại đơn.
-
-Tải lại trang thì `useRef` mất key. Muốn lần bấm sau khi tải lại vẫn nhận lại đơn cũ thì lưu `{ key, signature }` vào `sessionStorage` (bọc `try/catch`, đọc khi khởi tạo, xóa khi đặt xong). Thêm khoảng 8 dòng; nên làm vì mất mạng thường đi kèm tải lại trang.
-
-Nhánh `catch` (dòng 157-169): thêm trường hợp 409 để khách biết kiểm tra đơn thay vì chỉ thấy "thất bại". Server không trả lý do riêng cho 409 (`CONFLICT` dùng chung câu mặc định), nên dùng một thông báo chung:
-
-```diff
-+      } else if ((error as { code?: string } | null)?.code === "CONFLICT") {
-+        toast.error("Đơn đang được xử lý hoặc đã được tạo. Mở trang Đơn hàng để kiểm tra trước khi đặt lại.");
-```
-
-Proxy `src/app/api/[...path]/route.ts` chuyển tiếp mọi header trừ nhóm trong `STRIP` (dòng 26-38), nên `Idempotency-Key` đi qua. Gateway cho phép mọi header (`CorsConfig.java:30`). Kiểm tra `http.post` nhận tham số thứ ba là `config` (đã thấy chữ ký `post = <T>(path, data, config)`, `http.ts:162-167`).
-
-## Test
-
-**`CheckoutCoordinatorTest` (Mockito, mock `StringRedisTemplate` và `ValueOperations`)**
-- `checkout_noKeyLockHeld_throwsConflict`
-- `checkout_keyAlreadyDone_returnsStoredOrderWithoutCheckout`
-- `checkout_keyDoneWithDifferentRequest_throwsValidationError`
-- `checkout_keyPending_throwsConflict`
-- `checkout_orderServiceFails_deletesKeyAndReleasesLock`
-- `checkout_success_storesDoneOnlyAfterCheckoutReturned`: `InOrder` kiểm tra `orderService.checkout` chạy trước lệnh ghi `DONE`.
-
-**`CartAndOrderIT` (đã có Postgres và Redis container)**
-- `checkout_sameKeyTwice_returnsSameOrderAndOneRow`: gọi hai lần cùng key, hai response cùng `id`, lần hai có header `Idempotent-Replayed`, bảng `orders` chỉ có 1 dòng của người dùng.
-- `checkout_concurrentSubmitsDifferentKeys_createOneOrder`: 5 request cùng lúc với 5 key khác nhau qua `ExecutorService` và `CountDownLatch`: đúng 1 response 201, các request còn lại 409, 1 dòng `orders`.
-- `checkout_concurrentSubmitsSameKey_createOneOrder`: 5 request cùng key: đúng 1 đơn được tạo; các request còn lại là 409 (đang xử lý) hoặc 201 replay cùng `id`.
-
-## Kiểm thử lại
-
-- Kịch bản 1 đến 3 ở trang Storefront-Bất biến (2, 3, 10 request cùng lúc, không gửi key): chỉ ra 1 đơn, tồn chỉ trừ 1 lần.
-- **Mất phản hồi:** gửi request với key K, bỏ qua phản hồi, gửi lại cùng K và cùng nội dung ở giây 45 và ở phút 10: cả hai trả đúng đơn đầu tiên, không có đơn thứ hai.
-- **Request chạy lâu:** làm inventory-service chậm hơn 30 giây (ví dụ tạm dừng tiến trình), gửi lại cùng K trong lúc đó: nhận 409, không tạo đơn trùng; sau khi xong, gửi lại cùng K trả đơn đã tạo.
-- Đổi địa chỉ rồi bấm lại cùng key: 400, và giao diện (đã đổi chữ ký payload) tự dùng key mới nên vẫn đặt được.
-- Kịch bản 5 (click 3 lần liên tiếp trên giao diện) vẫn ra 1 đơn.
-- `./mvnw.cmd spotless:apply`, `./mvnw.cmd clean verify -Dapi.version=1.44` trong `order-service`; `pnpm lint` và `pnpm typecheck` trong storefront.
-
-## Giới hạn còn lại
-
-- Nếu tiến trình `order-service` chết giữa lúc đơn đã commit và lúc ghi `DONE`, key kẹt ở `PENDING` đến hết 120 giây; sau đó gửi lại sẽ nhận "Cart is empty" như hiện nay. Khe này rất hẹp (hai lệnh liên tiếp), chấp nhận.
-- Key chỉ có tác dụng với client gửi header. Client cũ vẫn được khóa theo người dùng chặn đơn trùng, nhưng không có tính năng nhận lại đơn cũ.
-- Hai tab khác nhau có key khác nhau: tab nào bấm sau bị 409 trong lúc tab kia còn đang chạy, và nhận "Cart is empty" khi tab kia đã xong, đúng như hiện nay.
-
-## Tuân thủ quy tắc
-
-- Java 4 dấu cách, Spotless. TypeScript theo ESLint của storefront.
-- Header mới nằm trong OpenAPI nên sinh lại contract: `./mvnw.cmd -Popenapi` để cập nhật `services/order-service/contract/openapi.yaml`. Không sửa tay file sinh ra. Không cần migration.
-- Dùng cùng kiểu mã lỗi hiện có (`CONFLICT`, `VALIDATION_ERROR`), không thêm mã mới vào `ErrorCode`, nên không đổi danh mục lỗi trong `taschen-contracts`.
+Cần migration cho dấu checkout hoặc bảng tương đương, cập nhật contract cho header và kiểm thử qua gateway, BFF và Storefront. Khởi tạo thanh toán trùng theo dõi riêng ở SF-43. Đây là thiết kế đề xuất, chưa có bản sửa.

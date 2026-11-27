@@ -4,7 +4,7 @@
 
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Toàn bộ ảnh bằng chứng nằm trong [images](images/) và được bug liên kết tới.
 
-- **Bug:** 56, gồm 27 chưa sửa, 26 đã sửa, 3 đã đóng hoặc chấp nhận. Xem [trang-thai.md](trang-thai.md)
+- **Bug:** Xem số lượng và trạng thái hiện tại trong [trang-thai.md](trang-thai.md).
 - **Ảnh:** 42 (SF-27 chưa có ảnh; dùng bằng chứng nguồn, chưa có kết quả đo tiêu đề được lưu)
 - **Kế hoạch sửa:** [fix-plans](fix-plans/), 39 file cho SF-01–SF-27, SF-37–SF-40, SF-44 và BO-01–BO-07, chia theo repo cần sửa
 
@@ -14,7 +14,9 @@ Cập nhật ngày 2026-11-12: **SF-02, SF-03, SF-07, SF-08, SF-10 đã sửa, �
 
 Trong 24 bug đã sửa, **17 bug** đã vào develop qua PR #77 (merge `b3444b9`), **5 bug** thuộc đợt merge mới trên; **SF-04 và SF-12** được người dùng xác nhận đã giải quyết ngày 2026-11-12. Hai bug này chưa được đối chiếu commit/PR hoặc kiểm thử lại trong lần cập nhật này. Cập nhật này phản ánh trạng thái code, **không phải kết quả retest**. Tổng kết, luồng, test case Pass/Fail/Blocked, ảnh và response của đợt manual 2026-11-10 được giữ nguyên làm bằng chứng lịch sử. Các kế hoạch SF-07/SF-08 được chuyển sang nhóm `fix-plans/storefront-backend` vì bản sửa chạm cả hai repo.
 
-Bổ sung ngày 2026-11-14: **SF-28–SF-44 và BO-08–BO-12** (22 bug) từ đợt retest và test tính bất biến, có 4 Major ở backend (SF-37 đặt hàng trùng, SF-38 mã giảm giá dùng quá lượt, SF-40 đổi trả trùng, SF-44 mất event làm đơn kẹt PENDING, chưa tái hiện) và kế hoạch sửa tương ứng. Số lượng bug ở trên đã tính thêm 22 bug mới nhưng **chưa phản ánh kết quả retest 14/11 của các bug cũ**. Trang mới [Storefront-Bất biến](storefront/bat-bien.md). Trạng thái từng bug cũ sau retest, luồng và test case vẫn giữ nguyên kết quả đợt 1; xem file Excel.
+Bổ sung ngày 2026-11-14: **SF-28–SF-44 và BO-08–BO-12** (22 bug) từ đợt retest và test tính bất biến, có 4 Major ở backend (SF-37 đặt hàng trùng, SF-38 mã giảm giá dùng quá lượt, SF-40 đổi trả trùng, SF-44 mất event làm đơn kẹt PENDING, chưa tái hiện) và kế hoạch sửa tương ứng. Trang mới [Storefront-Bất biến](storefront/bat-bien.md). Trạng thái từng bug cũ sau retest, luồng và test case vẫn giữ nguyên kết quả đợt 1; xem file Excel.
+
+Bổ sung ngày 2026-11-27: đợt kiểm thử theo Guide me có 162 case. Bảng trạng thái bổ sung 14 mục và liên kết bằng chứng trùng với các lỗi cũ. [Báo cáo đợt test](test-2026-11-27/README.md).
 
 | Sheet | Bên | File |
 |---|---|---|

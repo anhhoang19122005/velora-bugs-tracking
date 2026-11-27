@@ -4,29 +4,29 @@
 |---|---|
 | **Mức độ** | Minor |
 | **Trạng thái** | Chưa sửa |
-| **Repo** | `taschen-backend`, số dòng theo `develop` `e090ed4` |
+| **Repo** | `taschen-backend` (`promotion-service`), đối chiếu `develop` `d5b6ac2` |
 | **Nhánh đề xuất** | `fix/promotion-fresh-updated-at`, tách từ `develop` |
 | **Khối lượng** | 4 dòng code, 1 test |
 | **Bug và ảnh** | [Chi tiết bug](../../backoffice/loi.md#bo-02), [Ảnh 1](../../images/BO-02-1.jpg) |
 
 ## Nguyên nhân
 
-`PromotionServiceImpl` đổi trạng thái rồi `promotionRepository.save(promotion)` và map ra response ngay, ở dòng `109` (approve), `125` (reject), `136` (pause), `147` (resume).
+`PromotionServiceImpl` đổi trạng thái rồi `promotionRepository.save(promotion)` và map ra response ngay, ở dòng `114` (approve), `130` (reject), `141` (pause), `152` (resume).
 
 `updatedAt` trong `BaseEntity.java:35-37` là `@LastModifiedDate`, chỉ được ghi khi Hibernate flush. Việc flush xảy ra lúc transaction commit, tức là sau khi response đã được map. Vì vậy response luôn mang `updatedAt` cũ, còn DB thì đúng. Không riêng approve: cả 4 thao tác đều dính lỗi này.
 
 ## Thay đổi
 
-File: `services/promotion-service/src/main/java/vn/edu/iuh/fit/taschen/promotion/service/impl/PromotionServiceImpl.java`, dòng 109, 125, 136, 147:
+File: `services/promotion-service/src/main/java/vn/edu/iuh/fit/taschen/promotion/service/impl/PromotionServiceImpl.java`, dòng 114, 130, 141, 152:
 
 ```diff
 -        Promotion saved = promotionRepository.save(promotion);
 +        Promotion saved = promotionRepository.saveAndFlush(promotion);
 ```
 
-**Vì sao:** `saveAndFlush` cho auditing ghi `updatedAt` trước khi map, đúng cách `recordUsageAttempt` (dòng 339-341) đã dùng. Approve vẫn publish event sau commit như cũ (`publishPromotionApprovedEvent`), không đổi thứ tự.
+**Vì sao:** `saveAndFlush` cho auditing ghi `updatedAt` trước khi map response. Luồng ghi lượt hiện cập nhật `updatedAt` ngay trong câu lệnh giảm số lượng. Sự kiện duyệt vẫn được gửi sau commit.
 
-**Không cần sửa:** `createPromotion` (dòng 96). Bản ghi mới có `createdAt` bằng `updatedAt` là đúng.
+**Không cần sửa:** `createPromotion`. Bản ghi mới có `createdAt` bằng `updatedAt` là đúng.
 
 ## Test
 
