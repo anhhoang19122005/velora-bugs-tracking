@@ -1,0 +1,33 @@
+[
+ {
+  "label": "Thêm vào yêu thích",
+  "w": 29,
+  "h": 29,
+  "opacity": 1,
+  "hidden": false
+ },
+ {
+  "label": "Thêm vào yêu thích",
+  "w": 29,
+  "h": 29,
+  "opacity": 1,
+  "hidden": false
+ },
+ {
+  "label": "Thêm vào giỏ",
+  "w": 29,
+  "h": 29,
+  "opacity": 1,
+  "hidden": false
+ },
+ {
+  "label": "Thêm vào yêu thích",
+  "w": 29,
+  "h": 29,
+  "opacity": 1,
+  "hidden": false
+ }
+]
+
+
+Đã chạm nút đầu tiên không cần hover (xem ảnh 3).

@@ -1,0 +1,4 @@
+{"left": 13, "right": 377, "top": 76, "bottom": 584, "vw": 390, "vh": 844}
+
+
+Nội dung thông báo tiếng Anh: ['Order placed', 'Return received', 'has been placed', 'have been received']

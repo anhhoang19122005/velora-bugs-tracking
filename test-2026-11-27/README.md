@@ -6,6 +6,7 @@ Chạy trên máy local, nối DB và broker dùng chung (`taschen-platform/.env
 |---|---|---|
 | [Guide me](guide-me/README.md) | Nghiệp vụ 4 vai trò theo chức năng Guide me: 162 case, 6 luồng đầu-cuối | 141 Pass, 18 Fail, 3 Blocked; 15 lỗi |
 | [Phân quyền](phan-quyen/README.md) | Vai trò làm việc không được phép: 110 API và 166 lần mở trang | Không vai trò nào vượt quyền; 3 lỗi (2 do dữ liệu DB dùng chung) |
+| [Retest](retest/README.md) | Chạy lại 19 lỗi chờ retest | 15 đã xác nhận, 3 một phần, 1 còn lỗi |
 
 ## Lỗi và mã theo dõi
 
@@ -42,10 +43,13 @@ test-2026-11-27/
 │   ├── test-case/         15 bảng test case (hd-*.md)
 │   ├── images/            ảnh của case Fail và Blocked
 │   └── api/               API response từng case
-└── phan-quyen/
-    ├── README.md          báo cáo
-    ├── images/            ảnh đăng nhập nhầm ứng dụng và so sánh nút
-    └── data/              kết quả API và giao diện (JSON)
+├── phan-quyen/
+│   ├── README.md          báo cáo
+│   ├── images/            ảnh đăng nhập nhầm ứng dụng và so sánh nút
+│   └── data/              kết quả API và giao diện (JSON)
+└── retest/
+    ├── README.md          kết quả chạy lại 19 lỗi
+    └── <mã lỗi>/          ảnh và API response
 ```
 
 Video quay các phiên test không đưa lên repo.

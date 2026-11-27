@@ -1,0 +1,2 @@
+{"headerLeft": 80, "contentLeft": 80, "vw": 1440}
+

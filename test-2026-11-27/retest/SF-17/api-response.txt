@@ -1,0 +1,40 @@
+GET /api/v1/books/10
+HTTP 200
+{
+  "success": true,
+  "data": {
+    "id": 10,
+    "slug": "lap-trinh-huong-doi-tuong-java-core-danh-cho-nguoi-moi",
+    "title": "Lập Trình Hướng Đối Tượng Java Core Dành Cho Người Mới",
+    "author": "Nguyễn Văn Thành (NEOS.THÀNH)",
+    "description": "Gồm các bài học về tư duy hướng đối tượng, đa hình, kế thừa, String, Array, File và giao diện Swing trong Java Core.",
+    "publicationYear": null,
+    "weightGrams": null,
+    "pageCount": null,
+    "price": 289000.0,
+    "stockQuantity": 50,
+    "imageUrl": "https://pub-51c65cc9b6514e65ab4891a65fc437cf.r2.dev/images/478970e4-2b7e-423e-8f02-f2d64786b835.webp",
+    "isActive": true,
+    "deletedAt": null,
+    "deletedBy": null,
+    "variantFormats": [
+      {
+        "variantId": 1,
+        "formatCode": "BIA_MEM",
+        "formatName": "Bìa mềm",
+        "price": 289000.0,
+        "stockQuantity": 50
+      }
+    ],
+    "categoryIds": [
+      1
+    ],
+    "supplierId": 7,
+    "publisher": null
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T08:19:52.578834400Z"
+}
+
+
+Dòng hiện số 0: []

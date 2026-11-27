@@ -1,0 +1,69 @@
+{
+ "375": {
+  "links": [
+   {
+    "t": "Tất cả danh mục",
+    "h": 32,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 20,
+    "inView": true
+   },
+   {
+    "t": "Hỗ trợ",
+    "h": 20,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 16,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 16,
+    "inView": true
+   }
+  ],
+  "lineHeight": 19.5,
+  "scrollable": "không cần cuộn",
+  "pageOverflow": false
+ },
+ "413": {
+  "links": [
+   {
+    "t": "Tất cả danh mục",
+    "h": 32,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 20,
+    "inView": true
+   },
+   {
+    "t": "Hỗ trợ",
+    "h": 20,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 16,
+    "inView": true
+   },
+   {
+    "t": "Theo dõi đơn",
+    "h": 16,
+    "inView": true
+   }
+  ],
+  "lineHeight": 19.5,
+  "scrollable": "không cần cuộn",
+  "pageOverflow": false
+ }
+}
+
+
+Đo ở /vi/books vì trang chủ đang lỗi (SF-45)

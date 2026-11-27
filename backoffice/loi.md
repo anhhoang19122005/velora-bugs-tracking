@@ -230,7 +230,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). **Retest 2026-11-27: đã xác nhận.** Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. Xem [bằng chứng](../test-2026-11-27/retest/README.md#bo-12). |
 | **Luồng** | Trả hàng → trả về kho |
 | **Endpoint / Màn hình** | POST /api/v1/inventory/return-to-warehouse · PATCH .../{id}/approve |
 | **Nghi ngờ thuộc** | inventory-service (bảng chống trùng processed_order_returns đã bị xoá ở migration V12) |

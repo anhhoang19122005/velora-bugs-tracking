@@ -1,0 +1,3 @@
+Lần 1: chặn /auth/login trả 403 thân rỗng (như gateway). Thông báo: Không kết nối được máy chủ. Vui lòng thử lại.
+Lần 2: tài khoản chưa xác thực, API 403. Thông báo: Tài khoản này chưa xác thực email nên chưa đăng nhập được.
+

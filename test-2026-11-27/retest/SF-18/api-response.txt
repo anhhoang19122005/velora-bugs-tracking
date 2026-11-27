@@ -1,0 +1,32 @@
+POST /api/v1/users/me/addresses
+Request body:
+{
+  "recipientName": "Nguyễn Minh Anh",
+  "phoneNumber": "0903456721",
+  "street": "So999999DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1",
+  "ward": "Phường Bến Thành",
+  "district": "Quận 1",
+  "city": "TP. Hồ Chí Minh",
+  "addressType": "HOME",
+  "isDefault": false
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 61,
+    "addressType": "HOME",
+    "street": "So999999DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1DuongNguyenThiMinhKhaiPhuongBenThanhQuan1",
+    "district": "Quận 1",
+    "ward": "Phường Bến Thành",
+    "city": "TP. Hồ Chí Minh",
+    "recipientName": "Nguyễn Minh Anh",
+    "phoneNumber": "0903456721",
+    "isDefault": false
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T08:20:04.978727800Z"
+}
+
+
+scrollWidth/clientWidth ở 390px: [390, 390]. Địa chỉ dài 172 ký tự, không có dấu cách (đã xoá sau khi test)

@@ -1,0 +1,8 @@
+{
+ "/vi/cart": "Giỏ hàng | Velora",
+ "/vi/orders": "Đơn hàng | Velora",
+ "/vi/search?q=python": "Tìm kiếm | Velora",
+ "/vi/login": "Velora — Nhà sách trực tuyến",
+ "/vi/register": "Velora — Nhà sách trực tuyến"
+}
+

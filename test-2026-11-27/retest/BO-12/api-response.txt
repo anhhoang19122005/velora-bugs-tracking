@@ -1,0 +1,8 @@
+1. http://localhost:3001/admin/warehouse/purchase-orders
+2. http://localhost:3001/admin/warehouse/purchase-orders/PO-20261127-000051
+3. http://localhost:3001/admin/warehouse/purchase-orders/PO-20261127-000051
+4. http://localhost:3001/admin/warehouse/purchase-orders/PO-20261127-000045
+5. http://localhost:3001/admin/warehouse/purchase-orders
+
+
+Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED

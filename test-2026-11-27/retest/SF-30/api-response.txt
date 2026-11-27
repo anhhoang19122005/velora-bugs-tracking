@@ -1,0 +1,54 @@
+POST /api/v1/auth/login
+Request body:
+{
+  "email": "le.quocbao.1127@velora.local",
+  "password": "***"
+}
+HTTP 429
+{
+  "success": false,
+  "code": "RATE_LIMITED",
+  "message": "Too many requests. Please try again shortly."
+}
+
+POST /api/v1/auth/login
+Request body:
+{
+  "email": "le.quocbao.1127@velora.local",
+  "password": "***"
+}
+HTTP 429
+{
+  "success": false,
+  "code": "RATE_LIMITED",
+  "message": "Too many requests. Please try again shortly."
+}
+
+POST /api/v1/auth/login
+Request body:
+{
+  "email": "le.quocbao.1127@velora.local",
+  "password": "***"
+}
+HTTP 429
+{
+  "success": false,
+  "code": "RATE_LIMITED",
+  "message": "Too many requests. Please try again shortly."
+}
+
+POST /api/v1/auth/login
+Request body:
+{
+  "email": "le.quocbao.1127@velora.local",
+  "password": "***"
+}
+HTTP 429
+{
+  "success": false,
+  "code": "RATE_LIMITED",
+  "message": "Too many requests. Please try again shortly."
+}
+
+8 lần sai: [401, 401, 401, 401, 401, 429, 429, 429]
+Đăng nhập đúng ngay sau: 429

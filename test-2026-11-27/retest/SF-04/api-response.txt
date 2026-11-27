@@ -1,0 +1,36 @@
+GET http://localhost:8087/actuator/health
+{"groups":["liveness","readiness"],"status":"UP"}
+
+Log khởi động: Started NotificationServiceApplication in 9.713 seconds (process running for 10.473)
+Mongo: 2026-11-27 15:15:55.657 [] INFO  org.mongodb.driver.cluster - Adding discovered server ac-2fhewak-shard-00-00.qqafd82.mongodb.net:27017 to client view of cluster
+--- docker-compose.yml, notification-service ---
+  notification-service:
+    build:
+      context: ../taschen/services/notification-service
+      secrets:
+        - maven_settings
+    container_name: taschen-notification-service
+    mem_limit: 448m
+    restart: unless-stopped
+    # No longer uses Postgres — its notification history now lives in MongoDB,
+    # and it uses RabbitMQ as a STOMP relay for real-time push (port 61613).
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      CONFIG_URI: http://config-server:8888
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
+      RABBITMQ_PORT: ${RABBITMQ_PORT:-5672}
+      RABBITMQ_STOMP_PORT: ${RABBITMQ_STOMP_PORT:-61613}
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      RABBITMQ_VHOST: ${RABBITMQ_VHOST:-/}
+      RABBITMQ_SSL_ENABLED: ${RABBITMQ_SSL_ENABLED:-false}
+      # WebSocket push: simple in-memory broker (default) vs external STOMP relay for multi-replica.
+      WEBSOCKET_BROKER_MODE: ${WEBSOCKET_BROKER_MODE:-simple}
+      APP_JWT_SECRET: ${APP_JWT_SECRET}
+      APP_INTERNAL_TOKEN: ${APP_INTERNAL_TOKEN}
+      MAIL_HOST: ma

@@ -1,0 +1,184 @@
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 194,
+  "reasonCode": "CHANGED_MIND",
+  "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+  "items": [
+    {
+      "orderDetailId": 214,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [],
+  "refundDestination": {
+    "type": "BANK",
+    "provider": "Vietcombank",
+    "accountNumber": "0071000654321",
+    "accountHolder": "NGUYEN MINH ANH"
+  }
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "9bea6e86-5267-47e4-9f0d-5c799f9a9681",
+  "path": "/api/v1/returns",
+  "timestamp": "2026-11-27T08:18:35.434186900Z"
+}
+
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 194,
+  "reasonCode": "CHANGED_MIND",
+  "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+  "items": [
+    {
+      "orderDetailId": 214,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [],
+  "refundDestination": {
+    "type": "BANK",
+    "provider": "Vietcombank",
+    "accountNumber": "0071000654321",
+    "accountHolder": "NGUYEN MINH ANH"
+  }
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "7deaea59-6322-4b9b-bdbf-d12306961bfe",
+  "path": "/api/v1/returns",
+  "timestamp": "2026-11-27T08:18:35.257084Z"
+}
+
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 194,
+  "reasonCode": "CHANGED_MIND",
+  "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+  "items": [
+    {
+      "orderDetailId": 214,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [],
+  "refundDestination": {
+    "type": "BANK",
+    "provider": "Vietcombank",
+    "accountNumber": "0071000654321",
+    "accountHolder": "NGUYEN MINH ANH"
+  }
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "a1bf9b19-2370-430c-a999-7420d6a241a4",
+  "path": "/api/v1/returns",
+  "timestamp": "2026-11-27T08:18:35.372759700Z"
+}
+
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 194,
+  "reasonCode": "CHANGED_MIND",
+  "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+  "items": [
+    {
+      "orderDetailId": 214,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [],
+  "refundDestination": {
+    "type": "BANK",
+    "provider": "Vietcombank",
+    "accountNumber": "0071000654321",
+    "accountHolder": "NGUYEN MINH ANH"
+  }
+}
+HTTP 201
+{
+  "success": true,
+  "data": {
+    "id": 68,
+    "returnCode": "RMA-20261127-000068",
+    "orderId": 194,
+    "reasonCode": "CHANGED_MIND",
+    "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+    "responseNote": null,
+    "status": "PENDING",
+    "refundAmount": 189000.0,
+    "items": [
+      {
+        "orderDetailId": 214,
+        "bookId": 67,
+        "bookTitle": "Sapiens: Lược Sử Loài Người",
+        "unitPrice": 189000.0,
+        "quantity": 1,
+        "lineRefund": 189000.0
+      }
+    ],
+    "evidenceUrls": [],
+    "createdByUserId": 176,
+    "processedByUserId": null,
+    "processedAt": null,
+    "createdAt": "2026-11-27T08:18:34.999887400Z",
+    "orderCode": "ORD-20261127-000198",
+    "createdBy": "Minh Anh Nguyễn",
+    "processedBy": null,
+    "refundDestination": {
+      "type": "BANK",
+      "provider": "Vietcombank",
+      "accountNumber": "••••4321",
+      "accountHolder": "NGUYEN MINH ANH"
+    }
+  },
+  "message": "OK",
+  "timestamp": "2026-11-27T08:18:35.194685600Z"
+}
+
+POST /api/v1/returns
+Request body:
+{
+  "orderId": 194,
+  "reasonCode": "CHANGED_MIND",
+  "description": "Khách đổi ý, sách còn nguyên seal và hoá đơn đầy đủ",
+  "items": [
+    {
+      "orderDetailId": 214,
+      "quantity": 1
+    }
+  ],
+  "evidenceUrls": [],
+  "refundDestination": {
+    "type": "BANK",
+    "provider": "Vietcombank",
+    "accountNumber": "0071000654321",
+    "accountHolder": "NGUYEN MINH ANH"
+  }
+}
+HTTP 409
+{
+  "success": false,
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource.",
+  "traceId": "d63d1f2c-7582-49b0-98a8-f8c0bea8686c",
+  "path": "/api/v1/returns",
+  "timestamp": "2026-11-27T08:18:35.313889600Z"
+}
+
+Đơn ORD-20261127-000198 (id 194), dòng 214 số lượng 1
+Mã trả về: [409, 409, 409, 201, 409]
+Yêu cầu trả hàng của đơn sau khi gửi: [('RMA-20261127-000068', 'PENDING')]

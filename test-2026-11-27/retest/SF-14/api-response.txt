@@ -1,0 +1,13 @@
+{
+ "/vi": "Velora — Nhà sách trực tuyến",
+ "/en": "Velora — Nhà sách trực tuyến",
+ "/vi/cart": "Giỏ hàng | Velora",
+ "/vi/orders": "Đơn hàng | Velora",
+ "/vi/search?q=python": "Tìm kiếm | Velora",
+ "/vi/success": "Velora — Nhà sách trực tuyến",
+ "/en/success": "Velora — Nhà sách trực tuyến",
+ "/vi/books": "Tất cả sách | Velora"
+}
+
+
+Nhãn trạng thái tiếng Anh ở /vi/orders: []

@@ -1,0 +1,29 @@
+GET /api/v1/orders/stats/month
+HTTP 500
+{
+  "success": false,
+  "code": "INTERNAL_ERROR",
+  "message": "Something went wrong. Please try again later.",
+  "traceId": "784134ea-d654-4d2e-a237-a7d13db65480",
+  "path": "/api/v1/orders/stats/month",
+  "timestamp": "2026-11-27T08:18:23.546693700Z"
+}
+
+traceId=784134ea-d654-4d2e-a237-a7d13db65480
+Số dòng log chứa traceId: 1
+--- trích log order-service ---
+web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-11-27 15:18:23.505 [] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-11-27 15:18:23.544 [784134ea-d654-4d2e-a237-a7d13db65480] ERROR v.e.i.f.t.o.e.GlobalExceptionHandler - [784134ea-d654-4d2e-a237-a7d13db65480] Unhandled MissingServletRequestParameterException at /api/v1/orders/stats/month
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'month' for method parameter type YearMonth is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:219)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:195)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:123)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:174)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServle

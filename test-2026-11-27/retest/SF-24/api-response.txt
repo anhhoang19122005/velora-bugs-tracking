@@ -1,0 +1,4 @@
+URL sau khi mở /vi/orders: http://localhost:3003/vi/orders
+Có lời nhắc đăng nhập ở trang đơn: True (link /login trong main: 1)
+Menu thông báo nhắc đăng nhập: True
+

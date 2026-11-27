@@ -30,7 +30,7 @@ Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tr
 
 Khi tạo xong ticket, ghi mã Jira vào cột **Phụ trách** hoặc **Ghi chú** của dòng tương ứng trong `trang-thai.md`. Khi sửa, đặt tên nhánh và commit có mã Jira (ví dụ `fix/VEL-123-sf-38-promotion-usage`) để Jira tự gắn commit vào ticket nếu đã nối Jira với GitHub.
 
-## Từng lỗi chưa đóng (45 lỗi)
+## Từng lỗi chưa đóng (49 lỗi)
 
 Lấy từ hai nhóm **Cần sửa** và **Cần xác nhận** của bảng trạng thái. Mỗi lỗi một ticket: chép tiêu đề và khối link của dòng đó.
 
@@ -144,6 +144,15 @@ Mã lỗi: BO-24
 Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/backoffice/loi.md#bo-24
 Kế hoạch sửa: chưa có
 Bằng chứng: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình
+Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
+```
+
+**[SF-04] notification-service không khởi động vì thiếu biến Mongo** (Major)
+
+```text
+Mã lỗi: SF-04
+Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/storefront/loi.md#sf-04
+Kế hoạch sửa: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md
 Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
 ```
 
@@ -382,6 +391,33 @@ Mã lỗi: BO-25
 Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/backoffice/loi.md#bo-25
 Kế hoạch sửa: chưa có
 Bằng chứng: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/test-2026-11-27/phan-quyen/README.md#21-đăng-nhập-nhầm-ứng-dụng
+Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
+```
+
+**[SF-13] Giao diện hiện thương hiệu Taschen thay vì Velora** (Minor)
+
+```text
+Mã lỗi: SF-13
+Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/storefront/loi.md#sf-13
+Kế hoạch sửa: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md
+Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
+```
+
+**[SF-14] Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh** (Minor)
+
+```text
+Mã lỗi: SF-14
+Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/storefront/loi.md#sf-14
+Kế hoạch sửa: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/fix-plans/storefront/SF-14-tab-title-book-store-english-status.md
+Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
+```
+
+**[SF-27] Nhiều trang dùng chung tiêu đề tab** (Minor)
+
+```text
+Mã lỗi: SF-27
+Chi tiết lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/storefront/loi.md#sf-27
+Kế hoạch sửa: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/fix-plans/storefront/SF-27-pages-share-same-tab-title.md
 Link tổng hợp các lỗi: https://github.com/anhhoang19122005/velora-bugs-tracking/blob/main/trang-thai.md
 ```
 

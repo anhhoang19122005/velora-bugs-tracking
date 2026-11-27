@@ -1,6 +1,6 @@
 # Lỗi hiện tại
 
-File tự sinh, **không sửa tay**: chạy `python scripts/build_loi_hien_tai.py` sau khi sửa [trang-thai.md](trang-thai.md) hoặc các file `loi.md`. Gồm mọi lỗi chưa đóng: Cần sửa (38), Cần xác nhận (7), Chờ retest (19). Lỗi đã đóng xem ở [trang-thai.md](trang-thai.md#đã-đóng).
+File tự sinh, **không sửa tay**: chạy `python scripts/build_loi_hien_tai.py` sau khi sửa [trang-thai.md](trang-thai.md) hoặc các file `loi.md`. Gồm mọi lỗi chưa đóng: Cần sửa (42), Cần xác nhận (7), Chờ retest (0). Lỗi đã đóng xem ở [trang-thai.md](trang-thai.md#đã-đóng).
 
 Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi hồ sơ lỗi nguyên văn (bước tái hiện, mong đợi, thực tế, API response, ảnh). Link trong file đã chỉnh để mở đúng từ thư mục gốc của repo.
 
@@ -8,7 +8,7 @@ Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi h�
 
 Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng thời, cấu hình, điều hướng. **Giao diện**: bố cục, hiển thị, chữ, bản dịch, thao tác trên màn hình, và lời hướng dẫn Guide me khác với màn hình. Phân loại khai báo trong `UI_CODES` của script.
 
-### Lỗi logic (35)
+### Lỗi logic (31)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
@@ -17,6 +17,7 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [BO-15](#bo-15) | Major | Cần sửa | API tạo được đơn mua với nhà cung cấp đã ngừng hoạt động |
 | [BO-16](#bo-16) | Major | Cần sửa | Duyệt trả kho cho sách chưa có lô không cộng tồn |
 | [BO-24](#bo-24) | Major | Cần sửa | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung |
+| [SF-04](#sf-04) | Major | Cần sửa | notification-service không khởi động vì thiếu biến Mongo |
 | [SF-09](#sf-09) | Major | Cần sửa | Link trong email xác thực trỏ tới địa chỉ giả |
 | [SF-37](#sf-37) | Major | Cần sửa | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ |
 | [SF-38](#sf-38) | Major | Cần sửa | Mã giảm giá được cấp vượt số lượt |
@@ -42,13 +43,8 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [BO-03](#bo-03) | Minor | Cần xác nhận | Khuyến mãi quá hạn vẫn hiện Active hoặc Pending |
 | [SF-33](#sf-33) | Minor | Cần xác nhận | Hủy ở cổng VNPay thì đơn tự hủy, không thanh toán lại được |
 | [SF-34](#sf-34) | Minor | Cần xác nhận | Ô mã khuyến mãi phân biệt hoa thường |
-| [SF-03](#sf-03) | Major | Chờ retest | order-service không ghi log khi trả lỗi |
-| [SF-04](#sf-04) | Major | Chờ retest | notification-service không khởi động vì thiếu biến Mongo |
-| [SF-40](#sf-40) | Major | Chờ retest | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn |
-| [BO-12](#bo-12) | Minor | Chờ retest | Điều hướng Admin làm mất tiền tố /admin, mất phiên |
-| [SF-30](#sf-30) | Minor | Chờ retest | Đăng nhập sai nhiều lần không bị giới hạn |
 
-### Lỗi giao diện (29)
+### Lỗi giao diện (18)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
@@ -61,26 +57,15 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [BO-22](#bo-22) | Minor | Cần sửa | Guide me mô tả trạng thái Đã nhận cho yêu cầu nhập |
 | [BO-23](#bo-23) | Minor | Cần sửa | Guide me bỏ qua bước Đánh dấu đã đặt trước khi nhận hàng |
 | [BO-25](#bo-25) | Minor | Cần sửa | Khách đăng nhập ứng dụng quản trị không được báo vì sao bị từ chối |
+| [SF-13](#sf-13) | Minor | Cần sửa | Giao diện hiện thương hiệu Taschen thay vì Velora |
+| [SF-14](#sf-14) | Minor | Cần sửa | Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh |
+| [SF-27](#sf-27) | Minor | Cần sửa | Nhiều trang dùng chung tiêu đề tab |
 | [SF-32](#sf-32) | Minor | Cần sửa | Nút Đã nhận hàng không hỏi xác nhận |
 | [UI-02](#ui-02) | Minor | Cần sửa | Header tràn ngang và cắt nút Tài khoản ở 320 px |
 | [UI-03](#ui-03) | Minor | Cần sửa | Trang tìm kiếm tiếng Anh hiển thị nhãn tiếng Việt |
 | [UI-04](#ui-04) | Minor | Cần sửa | Ngày trên Promotions và Orders khác định dạng |
 | [BO-19](#bo-19) | Minor | Cần xác nhận | Guide me nói từ chối sẽ đóng luồng trả hàng, khách vẫn gửi được yêu cầu mới |
 | [BO-21](#bo-21) | Minor | Cần xác nhận | Guide me nói Admin quyết số lượng nhập khi duyệt, hộp thoại chỉ có lời nhắn |
-| [SF-11](#sf-11) | Minor | Chờ retest | Mọi lỗi 403 khi đăng nhập đều báo chưa xác thực email |
-| [SF-13](#sf-13) | Minor | Chờ retest | Giao diện hiện thương hiệu Taschen thay vì Velora |
-| [SF-14](#sf-14) | Minor | Chờ retest | Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh |
-| [SF-17](#sf-17) | Minor | Chờ retest | Chi tiết sách hiện 0 trang, năm 0, 0 g |
-| [SF-18](#sf-18) | Minor | Chờ retest | Địa chỉ dài tràn màn hình checkout |
-| [SF-19](#sf-19) | Minor | Chờ retest | Nội dung checkout sát mép màn hình |
-| [SF-20](#sf-20) | Minor | Chờ retest | Khung thông báo bị cắt ở điện thoại |
-| [SF-21](#sf-21) | Minor | Chờ retest | Nút yêu thích và thêm giỏ không hiện trên cảm ứng |
-| [SF-22](#sf-22) | Minor | Chờ retest | Chip lọc trạng thái đơn hàng hiển thị tiếng Anh |
-| [SF-23](#sf-23) | Minor | Chờ retest | Breadcrumb chồng chữ trên điện thoại |
-| [SF-24](#sf-24) | Minor | Chờ retest | Khách chưa đăng nhập thấy trạng thái rỗng của đơn hàng và thông báo |
-| [SF-25](#sf-25) | Minor | Chờ retest | Menu phụ điện thoại bị chật và cắt chữ |
-| [SF-26](#sf-26) | Minor | Chờ retest | Đường dẫn không tồn tại hiển thị trang 404 mặc định |
-| [SF-27](#sf-27) | Minor | Chờ retest | Nhiều trang dùng chung tiêu đề tab |
 
 ## Cần sửa
 
@@ -103,7 +88,7 @@ Hồ sơ lỗi (backoffice/loi.md):
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test theo Guide me, mã trong đợt: B01). **Retest 2026-11-27: đã xác nhận.** Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. Xem [bằng chứng](test-2026-11-27/retest/README.md#bo-12). |
 | **Luồng** | Trả hàng → trả về kho |
 | **Endpoint / Màn hình** | POST /api/v1/inventory/return-to-warehouse · PATCH .../{id}/approve |
 | **Nghi ngờ thuộc** | inventory-service (bảng chống trùng processed_order_returns đã bị xoá ở migration V12) |
@@ -233,6 +218,36 @@ Hồ sơ lỗi (backoffice/loi.md):
 | **Bằng chứng (status/body)** | Đợt test 2026-11-27, phần phân quyền ([P2](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình)), [results.json](test-2026-11-27/phan-quyen/data/results.json) |
 | **API Response** | <pre>POST /api/v1/payments/transfers/999999999/apply<br>HTTP 403<br>{ "code": "FORBIDDEN", "message": "You do not have permission to perform this action" }</pre> |
 | **Ảnh bằng chứng** | Không có |
+
+### SF-04
+
+**notification-service không khởi động vì thiếu biến Mongo**
+
+| Theo dõi | |
+| --- | --- |
+| Loại | Logic |
+| Nhóm | Cần sửa |
+| Mức độ | Major |
+| Khu vực | taschen-platform (docker-compose) |
+| Kết quả gần nhất | Retest 27/11: xác nhận một phần |
+| Kế hoạch / bằng chứng | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-04) |
+| Ghi chú | Còn: Docker Compose vẫn truyền `MONGO_URI` cho notification-service, service đọc `NOTIFICATION_MONGO_URI`; dev.ps1 đã đúng. Bản sửa đã có: backend `dev.ps1` trên `develop` |
+
+Hồ sơ lỗi (storefront/loi.md):
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Major |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. **Retest 2026-11-27: xác nhận một phần.** Chạy native với biến như dev.ps1 (NOTIFICATION_MONGO_URI): service khởi động (có), health UP. Docker Compose vẫn truyền MONGO_URI cho notification-service (service đọc NOTIFICATION_MONGO_URI), chưa chạy Compose. Xem [bằng chứng](test-2026-11-27/retest/README.md#sf-04). |
+| **Luồng** | Khởi động môi trường |
+| **Endpoint / Màn hình** | taschen-backend/dev.ps1 |
+| **Nghi ngờ thuộc** | backend (dev.ps1) |
+| **Bước tái hiện** | Chạy ./dev.ps1 start |
+| **Mong đợi** | notification-service chạy với Mongo trong taschen-platform/.env |
+| **Thực tế** | Crash: kết nối localhost:27017. dev.ps1 chỉ đặt MONGO_URI, service đọc NOTIFICATION_MONGO_URI |
+| **Bằng chứng (status/body)** | MongoSocketOpenException, Application run failed |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | [SF-04-1.png](images/SF-04-1.png) |
 
 ### SF-09
 
@@ -863,6 +878,96 @@ Hồ sơ lỗi (backoffice/loi.md):
 | **API Response** | <pre>POST /api/v1/categories<br>Request body:<br>{<br>  "name": "[GM-TEST-11271102] Kỹ năng sống",<br>  "code": "gm 11271102 ky nang"<br>}<br>HTTP 201<br>{<br>  "success": true,<br>  "data": {<br>    "id": 10,<br>    "slug": "gm-test-11271102-ky-nang-song",<br>(rút gọn)</pre> |
 | **Ảnh bằng chứng** | [BO-26-1.png](images/BO-26-1.png) |
 
+### SF-13
+
+**Giao diện hiện thương hiệu Taschen thay vì Velora**
+
+| Theo dõi | |
+| --- | --- |
+| Loại | Giao diện |
+| Nhóm | Cần sửa |
+| Mức độ | Minor |
+| Khu vực | storefront (footer) |
+| Kết quả gần nhất | Retest 27/11: xác nhận một phần |
+| Kế hoạch / bằng chứng | [Kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-13) |
+| Ghi chú | Còn: Email liên hệ `hello@taschen.vn` ở footer mọi trang. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
+
+Hồ sơ lỗi (storefront/loi.md):
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) **Retest 2026-11-27: xác nhận một phần.** Tên thương hiệu và tiêu đề trang Tài khoản đã là Velora ("Velora — Nhà sách trực tuyến"). Còn email liên hệ hello@taschen.vn ở footer mọi trang. Xem [bằng chứng](test-2026-11-27/retest/README.md#sf-13). |
+| **Luồng** | Hồ sơ |
+| **Endpoint / Màn hình** | /vi/profile |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | Mở Tài khoản của tôi |
+| **Mong đợi** | Thương hiệu Velora trên toàn bộ giao diện, tiêu đề đúng |
+| **Thực tế** | Header, footer và tiêu đề tab ghi "Taschen", trong khi trang hồ sơ ghi "Velora". Tiêu đề "Hồ sơ của tôi" lỗi hiển thị dấu |
+| **Bằng chứng (status/body)** | Ảnh |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | [SF-13-1.png](images/SF-13-1.png) |
+
+### SF-14
+
+**Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh**
+
+| Theo dõi | |
+| --- | --- |
+| Loại | Giao diện |
+| Nhóm | Cần sửa |
+| Mức độ | Minor |
+| Khu vực | storefront (tiêu đề trang) |
+| Kết quả gần nhất | Retest 27/11: xác nhận một phần |
+| Kế hoạch / bằng chứng | [Kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-14) |
+| Ghi chú | Còn: Trang success và bản /en dùng tiêu đề chung tiếng Việt; tiêu đề trang chủ chờ SF-45. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
+
+Hồ sơ lỗi (storefront/loi.md):
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) **Retest 2026-11-27: xác nhận một phần.** Trạng thái đơn đã tiếng Việt. Tiêu đề /vi, /vi/success, /en/success đều là tiêu đề chung "Velora — Nhà sách trực tuyến"; /en vẫn tiêu đề tiếng Việt. Trang chủ đang lỗi do SF-45 nên chưa đo được tiêu đề thật của trang chủ. Xem [bằng chứng](test-2026-11-27/retest/README.md#sf-14). |
+| **Luồng** | Nhiều trang |
+| **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | Xem tiêu đề tab, trạng thái đơn |
+| **Mong đợi** | Tiêu đề riêng từng trang, trạng thái tiếng Việt |
+| **Thực tế** | Tiêu đề tab là "Book Store". Trạng thái hiện PENDING, UNPAID |
+| **Bằng chứng (status/body)** | Ảnh |
+| **API Response** | Không áp dụng |
+| **Ảnh bằng chứng** | [SF-14-1.jpg](images/SF-14-1.jpg) |
+
+### SF-27
+
+**Nhiều trang dùng chung tiêu đề tab**
+
+| Theo dõi | |
+| --- | --- |
+| Loại | Giao diện |
+| Nhóm | Cần sửa |
+| Mức độ | Minor |
+| Khu vực | storefront (tiêu đề trang) |
+| Kết quả gần nhất | Retest 27/11: còn lỗi |
+| Kế hoạch / bằng chứng | [Kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-27) |
+| Ghi chú | Còn: Đăng nhập và đăng ký vẫn dùng tiêu đề chung. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
+
+Hồ sơ lỗi (storefront/loi.md):
+
+| Trường | Nội dung |
+|---|---|
+| **Mức độ** | Minor |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md). **Retest 2026-11-27: còn lỗi.** /vi/cart = "Giỏ hàng \| Velora"; /vi/orders = "Đơn hàng \| Velora"; /vi/search?q=python = "Tìm kiếm \| Velora"; /vi/login = "Velora — Nhà sách trực tuyến"; /vi/register = "Velora — Nhà sách trực tuyến". Giỏ, đơn hàng, tìm kiếm đã có tiêu đề riêng; đăng nhập và đăng ký vẫn dùng tiêu đề chung. Xem [bằng chứng](test-2026-11-27/retest/README.md#sf-27). |
+| **Luồng** | Điều hướng và tiêu đề trang |
+| **Endpoint / Màn hình** | /cart, /orders, /search, /login, /register |
+| **Nghi ngờ thuộc** | storefront |
+| **Bước tái hiện** | 1. Mở lần lượt giỏ, đơn hàng, tìm kiếm, đăng nhập và đăng ký<br>2. Đọc document.title hoặc dùng await page.title() |
+| **Mong đợi** | Mỗi trang có tiêu đề riêng gắn với Velora |
+| **Thực tế** | Các trang dùng tiêu đề mặc định chung do không khai báo metadata riêng |
+| **Bằng chứng (status/body)** | Không có ảnh và chưa lưu kết quả page.title(). Bằng chứng nguồn: layout locale đặt title chung; commit b771af7 bổ sung 5 layout metadata. Test đơn hàng có assertion toHaveTitle("Đơn hàng &#124; Velora"); chưa chạy lại trong đợt ghi nhận này. |
+| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
+| **Ảnh bằng chứng** | Không có; xem bằng chứng nguồn ở kế hoạch, cần bổ sung kết quả page.title(). |
+
 ### SF-28
 
 **Tham số sai kiểu trả 500 thay vì 400 hoặc 404**
@@ -1425,581 +1530,3 @@ Hồ sơ lỗi (storefront/loi.md):
 
 
 ## Chờ retest
-
-### SF-03
-
-**order-service không ghi log khi trả lỗi**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Chờ retest |
-| Mức độ | Major |
-| Bản sửa | backend PR #117 (`e090ed4`) |
-| Kết quả gần nhất | Chưa xác nhận |
-| Việc tiếp theo | Đối chiếu traceId với log service khi có 500 |
-| Kế hoạch | [Kế hoạch](fix-plans/backend/SF-03-order-service-no-error-log.md) |
-| Ghi chú | Đã có trong code và unit test; chưa đọc log của service đang chạy |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](fix-plans/backend/SF-03-order-service-no-error-log.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. |
-| **Bản sửa đã merge** | Backend `0c9fe1d`: thêm logger, traceId và stack trace cho lỗi 500; chưa quan sát log runtime sau sửa. |
-| **Luồng** | 3 - Checkout COD |
-| **Endpoint / Màn hình** | order-service GlobalExceptionHandler |
-| **Nghi ngờ thuộc** | order-service |
-| **Bước tái hiện** | Gây bất kỳ lỗi 500 nào ở order-service rồi xem log |
-| **Mong đợi** | Log có exception và traceId |
-| **Thực tế** | Không có dòng log nào, traceId không tra được |
-| **Bằng chứng (status/body)** | handleUnexpected không gọi log; phải bật SPRING_MVC_LOG_RESOLVED_EXCEPTION mới thấy |
-| **API Response** | <pre>HTTP 500<br>{<br>  "success": false,<br>  "code": "INTERNAL_ERROR",<br>  "message": "Something went wrong. Please try again later.",<br>  "traceId": "fc68cfac-dacf-4bd5-bd52-f7f24e44912a",<br>  "path": "/api/v1/orders",<br>  "timestamp": "2026-11-10T03:25:26.050267100Z"<br>}</pre> |
-| **Ảnh bằng chứng** | [SF-03-1.png](images/SF-03-1.png) |
-
-### SF-04
-
-**notification-service không khởi động vì thiếu biến Mongo**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Chờ retest |
-| Mức độ | Major |
-| Bản sửa | backend `dev.ps1` trên `develop` |
-| Kết quả gần nhất | Đã xác nhận với chạy native |
-| Việc tiếp theo | Kiểm notification-service và gửi mail bằng Compose |
-| Kế hoạch | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) |
-| Ghi chú | Phạm vi đã sửa là `dev.ps1`. Docker Compose vẫn truyền `MONGO_URI`, trong khi service đọc `NOTIFICATION_MONGO_URI`. Chưa kiểm thử Compose. |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
-| **Luồng** | Khởi động môi trường |
-| **Endpoint / Màn hình** | taschen-backend/dev.ps1 |
-| **Nghi ngờ thuộc** | backend (dev.ps1) |
-| **Bước tái hiện** | Chạy ./dev.ps1 start |
-| **Mong đợi** | notification-service chạy với Mongo trong taschen-platform/.env |
-| **Thực tế** | Crash: kết nối localhost:27017. dev.ps1 chỉ đặt MONGO_URI, service đọc NOTIFICATION_MONGO_URI |
-| **Bằng chứng (status/body)** | MongoSocketOpenException, Application run failed |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [SF-04-1.png](images/SF-04-1.png) |
-
-### SF-40
-
-**Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Chờ retest |
-| Mức độ | Major |
-| Bản sửa | backend PR #121 (`3fd69ed`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Kiểm tạo yêu cầu đổi trả đồng thời |
-| Kế hoạch | [Kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) |
-| Ghi chú | Khóa đơn trong giao dịch trước khi kiểm yêu cầu trả hàng đang mở. Có `ReturnRequestConcurrencyIT` trong source. BO-13 theo dõi bước tạo phiếu trả về kho. |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) |
-| **Luồng** | 6 - Đổi trả |
-| **Endpoint / Màn hình** | POST /api/v1/returns · PATCH /returns/{id}/approve, /received |
-| **Nghi ngờ thuộc** | order-service (kiểm tra số lượng còn trả được không nằm trong khóa; duyệt không kiểm lại) |
-| **Bước tái hiện** | 1. Đơn Completed có 1 cuốn<br>2. Gửi 5 request tạo đổi trả cùng dòng hàng cùng lúc<br>3. Duyệt và nhận hàng cả 5 yêu cầu |
-| **Mong đợi** | Chỉ 1 yêu cầu được tạo cho 1 cuốn. Yêu cầu thứ hai bị từ chối khi duyệt |
-| **Thực tế** | Tạo cả 5 yêu cầu. Cả 5 đều duyệt và nhận hàng được (200). Dòng hàng ghi returnedQuantity 5 trên số lượng 1, returnableQuantity 0. Gửi lần lượt thì lần 2 bị 409 |
-| **Bằng chứng (status/body)** | Đơn 57: RMA-20261114-000006 đến -000010 đều RECEIVED. Đơn COD không có bản ghi thanh toán nên chưa kiểm được hoàn tiền nhiều lần; với VNPay đây là rủi ro hoàn tiền trùng |
-| **API Response** | <pre>HTTP 201 x5, rồi PATCH approve và received 200 x5</pre> |
-| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |
-
-### BO-12
-
-**Điều hướng Admin làm mất tiền tố /admin, mất phiên**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | backoffice PR #369 (merge `fe73d47f`, BUG-001) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Kiểm điều hướng, tải lại và phiên dưới /admin |
-| Kế hoạch | [Kế hoạch](fix-plans/backoffice/BO-12-admin-prefix-session.md) |
-| Ghi chú | Sửa ở lớp bảo vệ `proxy.ts`: đường dẫn thường được chuyển về `/admin/<console>/…`; chưa chạy lại trên giao diện |
-
-Hồ sơ lỗi (backoffice/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `80960bbe` (BUG-001) qua PR #369 (merge `fe73d47f`), đã vào `develop`, đối chiếu Git ngày 2026-11-20. Bản sửa nằm ở lớp bảo vệ `packages/core/src/api/proxy.ts`: yêu cầu tới đường dẫn thường của một console mà người dùng chưa có phiên ở console đó nhưng có phiên Admin sẽ được chuyển về `/admin/<console>/…`. Các liên kết vẫn dùng đường dẫn thường. Nếu trình duyệt có phiên của console đích, proxy chọn phiên đó trước khi xét chuyển về phiên Admin. Cần retest mở chi tiết PO và quay lại danh sách trong hai trường hợp: chỉ có phiên Admin và có đồng thời phiên Admin cùng Warehouse. **Chưa có kết quả retest riêng cho hai trường hợp này.** Ghi nhận ban đầu từ báo cáo retest Backoffice ngày 2026-11-12 (đã xóa khỏi repo, còn trong commit `e6e2057`)
-| **Luồng** | 3 - Đơn mua (Admin) |
-| **Endpoint / Màn hình** | Danh sách và chi tiết đơn mua ở console Admin, cổng 3001 |
-| **Nghi ngờ thuộc** | backoffice (đường dẫn danh sách cố định trong `useListMutation`, không giữ tiền tố `/admin`) |
-| **Bước tái hiện** | 1. Đăng nhập Admin (chỉ Admin, chưa đăng nhập Warehouse)<br>2. Mở `http://localhost:3001/admin/warehouse/purchase-orders`<br>3. Bấm mở một đơn mua<br>4. Với đơn APPROVED, mở thẳng `/admin/warehouse/purchase-orders/{id}` rồi bấm Mark ordered |
-| **Mong đợi** | Mở chi tiết và quay về danh sách giữ nguyên tiền tố `/admin`, vẫn là phiên Admin |
-| **Thực tế** | Bấm mở đơn mua dẫn tới `/warehouse/purchase-orders/3` (mất `/admin`) và ứng dụng chuyển sang đăng nhập Warehouse. Mở thẳng đường dẫn có `/admin` thì giữ đúng phiên và Mark ordered thành công, nhưng sau đó ứng dụng lại chuyển về `/warehouse/purchase-orders` và đòi đăng nhập Warehouse |
-| **Bằng chứng (status/body)** | Tái hiện qua trình duyệt tích hợp, chưa thu HTTP status/body. Ảnh 2 là lần Admin bị từ chối khi duyệt đơn mua ("You do not have permission"); báo cáo gốc ghi chưa chứng minh nó cùng nguyên nhân |
-| **API Response** | Không áp dụng: lỗi điều hướng giao diện |
-| **Ảnh bằng chứng** | [BO-12-1.png](images/BO-12-1.png)<br>[BO-12-2.png](images/BO-12-2.png) |
-
-### SF-11
-
-**Mọi lỗi 403 khi đăng nhập đều báo chưa xác thực email**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) |
-| **Luồng** | 1 - Đăng nhập |
-| **Endpoint / Màn hình** | Trang đăng nhập |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | Đăng nhập khi gateway trả 403 vì lý do khác (như bug SF-01) |
-| **Mong đợi** | Thông báo đúng nguyên nhân |
-| **Thực tế** | Báo "Tài khoản này chưa xác thực email" dù tài khoản đã VERIFIED |
-| **Bằng chứng (status/body)** | POST login 403; hồ sơ hiện VERIFIED |
-| **API Response** | 403, body rỗng |
-| **Ảnh bằng chứng** | [SF-11-1.jpg](images/SF-11-1.jpg) |
-
-### SF-13
-
-**Giao diện hiện thương hiệu Taschen thay vì Velora**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) |
-| **Luồng** | Hồ sơ |
-| **Endpoint / Màn hình** | /vi/profile |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | Mở Tài khoản của tôi |
-| **Mong đợi** | Thương hiệu Velora trên toàn bộ giao diện, tiêu đề đúng |
-| **Thực tế** | Header, footer và tiêu đề tab ghi "Taschen", trong khi trang hồ sơ ghi "Velora". Tiêu đề "Hồ sơ của tôi" lỗi hiển thị dấu |
-| **Bằng chứng (status/body)** | Ảnh |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [SF-13-1.png](images/SF-13-1.png) |
-
-### SF-14
-
-**Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Xác nhận một phần |
-| Việc tiếp theo | Đo tiêu đề trang chủ và payment-result theo locale |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) |
-| Ghi chú | Trạng thái đã tiếng Việt; trang chủ và payment-result vẫn dùng tiêu đề chung |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) |
-| **Luồng** | Nhiều trang |
-| **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | Xem tiêu đề tab, trạng thái đơn |
-| **Mong đợi** | Tiêu đề riêng từng trang, trạng thái tiếng Việt |
-| **Thực tế** | Tiêu đề tab là "Book Store". Trạng thái hiện PENDING, UNPAID |
-| **Bằng chứng (status/body)** | Ảnh |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [SF-14-1.jpg](images/SF-14-1.jpg) |
-
-### SF-17
-
-**Chi tiết sách hiện 0 trang, năm 0, 0 g**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) |
-| **Luồng** | Backoffice 2 - Hiển thị sách |
-| **Endpoint / Màn hình** | Chi tiết sách storefront |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | Mở sách chưa nhập năm và số trang |
-| **Mong đợi** | Hiện "Chưa cập nhật" hoặc ẩn đi |
-| **Thực tế** | Số trang và năm xuất bản hiện 0, khối lượng 0 g |
-| **Bằng chứng (status/body)** | Ảnh chi tiết sách id 50 |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [SF-17-1.jpg](images/SF-17-1.jpg) |
-
-### SF-18
-
-**Địa chỉ dài tràn màn hình checkout**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-18-checkout-long-address-overflow.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-18-checkout-long-address-overflow.md). |
-| **Luồng** | 3 - Checkout COD |
-| **Endpoint / Màn hình** | /checkout · chọn địa chỉ |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Đăng nhập, có giỏ hàng và địa chỉ chứa chuỗi dài không có dấu cách (500 ký tự)<br>2. Mở checkout ở chiều rộng 390px |
-| **Mong đợi** | Địa chỉ xuống dòng trong khung, trang không cuộn ngang |
-| **Thực tế** | Chuỗi địa chỉ chạy qua mép phải màn hình |
-| **Bằng chứng (status/body)** | Ảnh dựng lại lỗi trên code trước bản sửa theo bàn giao; đã kiểm tra nội dung ảnh. Không phải ảnh chụp bản hiện tại. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-18-1.png) |
-
-### SF-19
-
-**Nội dung checkout sát mép màn hình**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-19-checkout-content-touches-edge.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-19-checkout-content-touches-edge.md). |
-| **Luồng** | 3 - Checkout COD |
-| **Endpoint / Màn hình** | /checkout |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Đăng nhập, thêm sách vào giỏ<br>2. Mở trang thanh toán trên desktop |
-| **Mong đợi** | Nội dung có khoảng cách hai bên và căn theo container chung của website |
-| **Thực tế** | Nội dung thanh toán sát mép, không thẳng hàng với header |
-| **Bằng chứng (status/body)** | Ảnh người dùng cung cấp; đã kiểm tra nội dung ảnh. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-19-1.webp) |
-
-### SF-20
-
-**Khung thông báo bị cắt ở điện thoại**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-20-toast-cut-off-mobile.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-20-toast-cut-off-mobile.md). |
-| **Luồng** | Giao diện điện thoại |
-| **Endpoint / Màn hình** | Header · NotificationsMenu / AccountMenu |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở storefront trên điện thoại<br>2. Bấm biểu tượng thông báo trên header |
-| **Mong đợi** | Khung thông báo nằm trọn trong viewport, đọc và bấm được nội dung |
-| **Thực tế** | Khung lệch ra ngoài mép trái, nội dung bị cắt |
-| **Bằng chứng (status/body)** | Ảnh người dùng cung cấp; đã kiểm tra nội dung ảnh. Ảnh minh họa thông báo; phạm vi sửa còn bao gồm khung tài khoản. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-20-1.png) |
-
-### SF-21
-
-**Nút yêu thích và thêm giỏ không hiện trên cảm ứng**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md). |
-| **Luồng** | 2 - Danh mục, thêm giỏ |
-| **Endpoint / Màn hình** | /books · BookCard |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở danh mục sách trên điện thoại cảm ứng<br>2. Quan sát và thao tác trên thẻ sách |
-| **Mong đợi** | Có thể nhìn thấy và bấm nút yêu thích, thêm giỏ mà không cần hover |
-| **Thực tế** | Các nút bị ẩn khi không hover; điện thoại không có thao tác rê chuột |
-| **Bằng chứng (status/body)** | Ảnh cho thấy thẻ sách không có nút thao tác; nguyên nhân được đối chiếu trong diff commit. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-21-1.jpg) |
-
-### SF-22
-
-**Chip lọc trạng thái đơn hàng hiển thị tiếng Anh**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-22-order-status-chip-english.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-22-order-status-chip-english.md). |
-| **Luồng** | Đơn hàng và đổi/trả |
-| **Endpoint / Màn hình** | /orders · bộ lọc đơn hàng, đổi/trả |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Đăng nhập, mở /vi/orders<br>2. Xem chip lọc ở tab Đơn hàng và Đổi/Trả |
-| **Mong đợi** | Nhãn trạng thái tiếng Việt; URL/API vẫn dùng mã trạng thái |
-| **Thực tế** | Chip hiển thị mã PENDING, CONFIRMED, PROCESSING… |
-| **Bằng chứng (status/body)** | Ảnh minh họa tab Đơn hàng; diff xác nhận sửa cả bộ lọc đổi/trả. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-22-1.jpg) |
-
-### SF-23
-
-**Breadcrumb chồng chữ trên điện thoại**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md). |
-| **Luồng** | 2 - Chi tiết sách |
-| **Endpoint / Màn hình** | /detail/[...slug] · breadcrumb |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở chi tiết sách có tên và danh mục dài<br>2. Thu viewport xuống 375px |
-| **Mong đợi** | Các mục breadcrumb tách rõ, được xuống dòng khi thiếu chỗ |
-| **Thực tế** | Tên danh mục và tên sách chồng lên nhau |
-| **Bằng chứng (status/body)** | Ảnh minh họa chi tiết sách Tư Duy Python ở viewport điện thoại. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-23-1.jpg) |
-
-### SF-24
-
-**Khách chưa đăng nhập thấy trạng thái rỗng của đơn hàng và thông báo**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md). |
-| **Luồng** | Đơn hàng và thông báo |
-| **Endpoint / Màn hình** | /orders · menu thông báo |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Đăng xuất hoặc mở phiên khách<br>2. Mở /vi/orders<br>3. Mở menu thông báo |
-| **Mong đợi** | Nhắc đăng nhập và có liên kết đăng nhập |
-| **Thực tế** | Hiển thị “Bạn chưa có đơn hàng”, “Bạn chưa có thông báo” như tài khoản đã đăng nhập nhưng chưa có dữ liệu |
-| **Bằng chứng (status/body)** | Hai ảnh từ phiên khách theo bàn giao; ảnh riêng lẻ không tự chứng minh trạng thái phiên. Diff xác nhận nhánh giao diện trước đây thiếu phân biệt khách. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-24-1.jpg), [Ảnh 2](images/SF-24-2.jpg) |
-
-### SF-25
-
-**Menu phụ điện thoại bị chật và cắt chữ**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md) |
-| Ghi chú | 9 trang chính không cuộn ngang ở 375px |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md). |
-| **Luồng** | 8 - Giao diện điện thoại |
-| **Endpoint / Màn hình** | Header · thanh điều hướng phụ |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở trang chủ ở chiều rộng khoảng 375–413px<br>2. Xem hàng “Tất cả danh mục”, “Theo dõi đơn”, “Hỗ trợ” |
-| **Mong đợi** | Tên danh mục không bị bẻ dòng khó đọc, các liên kết truy cập được bằng cuộn ngang khi thiếu chỗ |
-| **Thực tế** | “Tất cả danh mục” xuống dòng, các mục còn lại chật và bị cắt ở cuối |
-| **Bằng chứng (status/body)** | Ảnh SF-25-1.jpg; triệu chứng cũng đã được ghi chú trong luồng giao diện điện thoại của đợt 10/11. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-25-1.jpg) |
-
-### SF-26
-
-**Đường dẫn không tồn tại hiển thị trang 404 mặc định**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Chạy lại case gốc |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-26-unknown-route-default-404.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-26-unknown-route-default-404.md). |
-| **Luồng** | Điều hướng, xử lý trang không tồn tại |
-| **Endpoint / Màn hình** | Đường dẫn không tồn tại dưới /vi |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở một đường dẫn không tồn tại, ví dụ /vi/khong-co-trang-nay |
-| **Mong đợi** | Trang lỗi của Velora có thông báo tiếng Việt và điều hướng của cửa hàng |
-| **Thực tế** | Trang 404 mặc định của Next.js, không có header của cửa hàng |
-| **Bằng chứng (status/body)** | Ảnh 320×240 hiển thị “404 / This page could not be found.”; ảnh không chứa URL, đường dẫn tái hiện dựa trên test trong commit. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | [Ảnh 1](images/SF-26-1.jpg) |
-
-### SF-27
-
-**Nhiều trang dùng chung tiêu đề tab**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | storefront PR #77 (`b3444b9`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Đo tiêu đề từng route bằng page.title() |
-| Kế hoạch | [Kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md) |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md). |
-| **Luồng** | Điều hướng và tiêu đề trang |
-| **Endpoint / Màn hình** | /cart, /orders, /search, /login, /register |
-| **Nghi ngờ thuộc** | storefront |
-| **Bước tái hiện** | 1. Mở lần lượt giỏ, đơn hàng, tìm kiếm, đăng nhập và đăng ký<br>2. Đọc document.title hoặc dùng await page.title() |
-| **Mong đợi** | Mỗi trang có tiêu đề riêng gắn với Velora |
-| **Thực tế** | Các trang dùng tiêu đề mặc định chung do không khai báo metadata riêng |
-| **Bằng chứng (status/body)** | Không có ảnh và chưa lưu kết quả page.title(). Bằng chứng nguồn: layout locale đặt title chung; commit b771af7 bổ sung 5 layout metadata. Test đơn hàng có assertion toHaveTitle("Đơn hàng &#124; Velora"); chưa chạy lại trong đợt ghi nhận này. |
-| **API Response** | Không áp dụng: lỗi giao diện; không dùng HTTP status làm bằng chứng đã sửa. |
-| **Ảnh bằng chứng** | Không có; xem bằng chứng nguồn ở kế hoạch, cần bổ sung kết quả page.title(). |
-
-### SF-30
-
-**Đăng nhập sai nhiều lần không bị giới hạn**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Chờ retest |
-| Mức độ | Minor |
-| Bản sửa | backend PR #140 (`e06e334`) |
-| Kết quả gần nhất | Chưa xác nhận lại |
-| Việc tiếp theo | Kiểm giới hạn đăng nhập và hành vi khi Redis lỗi |
-| Kế hoạch | [Kế hoạch](fix-plans/backend/SF-30-login-rate-limit.md) |
-| Ghi chú | Gateway giới hạn theo IP và email. Khi Redis lỗi, Gateway cho request đi qua. |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
-| **Luồng** | 1 - Đăng nhập |
-| **Endpoint / Màn hình** | POST /auth/login |
-| **Nghi ngờ thuộc** | identity-service / api-gateway |
-| **Bước tái hiện** | 1. Gọi đăng nhập sai mật khẩu 8 lần liên tiếp với cùng một email<br>2. Đăng nhập đúng ngay sau đó |
-| **Mong đợi** | Bị giới hạn hoặc khóa tạm sau một số lần sai |
-| **Thực tế** | Cả 8 lần đều 401, lần đúng sau đó vào được. Không có giới hạn số lần thử |
-| **Bằng chứng (status/body)** | 8 lần 401 liên tiếp, lần 9 đúng trả 200 |
-| **API Response** | <pre>HTTP 401 x8, rồi HTTP 200</pre> |
-| **Ảnh bằng chứng** | Không có. Lỗi được tìm bằng script gửi request nên chưa có ảnh. |

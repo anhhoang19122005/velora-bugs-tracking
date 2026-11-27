@@ -96,7 +96,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/backend/SF-03-order-service-no-error-log.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. |
+| **Trạng thái** | Đã sửa, đã merge vào `develop`; chưa kiểm thử lại. Đối chiếu Git/source ngày 2026-11-12. Xem [bản ghi sửa](../fix-plans/backend/SF-03-order-service-no-error-log.md). Backend [PR #117](https://github.com/VELORA-MICRO/taschen-backend/pull/117), merge `e090ed4`. **Retest 2026-11-27: đã xác nhận.** GET /orders/stats/month thiếu tham số trả 500, traceId 784134ea-d654-4d2e-a237-a7d13db65480. Log order-service có 1 dòng chứa traceId kèm exception (ERROR và stack trace). Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-03). |
 | **Bản sửa đã merge** | Backend `0c9fe1d`: thêm logger, traceId và stack trace cho lỗi 500; chưa quan sát log runtime sau sửa. |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | order-service GlobalExceptionHandler |
@@ -113,7 +113,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. |
+| **Trạng thái** | Đã sửa theo xác nhận của người dùng ngày 2026-11-12; chưa đối chiếu commit/PR, chưa kiểm thử lại trong lần cập nhật này. Xem [kế hoạch](../fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md). Bước tái hiện, response và ảnh dưới đây là bằng chứng trước khi sửa. **Retest 2026-11-27: xác nhận một phần.** Chạy native với biến như dev.ps1 (NOTIFICATION_MONGO_URI): service khởi động (có), health UP. Docker Compose vẫn truyền MONGO_URI cho notification-service (service đọc NOTIFICATION_MONGO_URI), chưa chạy Compose. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-04). |
 | **Luồng** | Khởi động môi trường |
 | **Endpoint / Màn hình** | taschen-backend/dev.ps1 |
 | **Nghi ngờ thuộc** | backend (dev.ps1) |
@@ -226,7 +226,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `534cb69`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) **Retest 2026-11-27: đã xác nhận.** 403 thân rỗng từ gateway báo: "Không kết nối được máy chủ. Vui lòng thử lại."; tài khoản chưa xác thực thật báo: "Tài khoản này chưa xác thực email nên chưa đăng nhập được.". Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-11). |
 | **Luồng** | 1 - Đăng nhập |
 | **Endpoint / Màn hình** | Trang đăng nhập |
 | **Nghi ngờ thuộc** | storefront |
@@ -258,7 +258,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) **Retest 2026-11-27: xác nhận một phần.** Tên thương hiệu và tiêu đề trang Tài khoản đã là Velora ("Velora — Nhà sách trực tuyến"). Còn email liên hệ hello@taschen.vn ở footer mọi trang. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-13). |
 | **Luồng** | Hồ sơ |
 | **Endpoint / Màn hình** | /vi/profile |
 | **Nghi ngờ thuộc** | storefront |
@@ -274,7 +274,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `278146b`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) **Retest 2026-11-27: xác nhận một phần.** Trạng thái đơn đã tiếng Việt. Tiêu đề /vi, /vi/success, /en/success đều là tiêu đề chung "Velora — Nhà sách trực tuyến"; /en vẫn tiêu đề tiếng Việt. Trang chủ đang lỗi do SF-45 nên chưa đo được tiêu đề thật của trang chủ. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-14). |
 | **Luồng** | Nhiều trang |
 | **Endpoint / Màn hình** | login, cart, orders · chi tiết đơn |
 | **Nghi ngờ thuộc** | storefront |
@@ -322,7 +322,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) |
+| **Trạng thái** | Đã sửa trên `fix/storefront-bugs` (merge `a8ab9a5`), đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Xem [kế hoạch](../fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) **Retest 2026-11-27: đã xác nhận.** Sách id 10 không có số trang, năm, cân nặng: trang chi tiết không còn hiện 0. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-17). |
 | **Luồng** | Backoffice 2 - Hiển thị sách |
 | **Endpoint / Màn hình** | Chi tiết sách storefront |
 | **Nghi ngờ thuộc** | storefront |
@@ -338,7 +338,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-18-checkout-long-address-overflow.md). |
+| **Trạng thái** | Đã sửa trong commit `494e90b` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-18-checkout-long-address-overflow.md). **Retest 2026-11-27: đã xác nhận.** Địa chỉ 172 ký tự liền (API 201); checkout 390px: scrollWidth 390 / clientWidth 390. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-18). |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | /checkout · chọn địa chỉ |
 | **Nghi ngờ thuộc** | storefront |
@@ -354,7 +354,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-19-checkout-content-touches-edge.md). |
+| **Trạng thái** | Đã sửa trong commit `093e1bd` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-19-checkout-content-touches-edge.md). **Retest 2026-11-27: đã xác nhận.** Checkout 1440px: nội dung cách mép trái 80px, khung header bắt đầu 80px. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-19). |
 | **Luồng** | 3 - Checkout COD |
 | **Endpoint / Màn hình** | /checkout |
 | **Nghi ngờ thuộc** | storefront |
@@ -370,7 +370,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-20-toast-cut-off-mobile.md). |
+| **Trạng thái** | Đã sửa trong commit `0e497d7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-20-toast-cut-off-mobile.md). **Retest 2026-11-27: đã xác nhận.** Khung thông báo ở 390px nằm trong màn hình: trái 13, phải 377 / 390, dưới 584 / 844.. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-20). |
 | **Luồng** | Giao diện điện thoại |
 | **Endpoint / Màn hình** | Header · NotificationsMenu / AccountMenu |
 | **Nghi ngờ thuộc** | storefront |
@@ -386,7 +386,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md). |
+| **Trạng thái** | Đã sửa trong commit `ee742a1` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md). **Retest 2026-11-27: đã xác nhận.** Ở 390px cảm ứng, 4 nút yêu thích/thêm giỏ trên thẻ sách đều hiện sẵn (không cần hover): Thêm vào yêu thích 29x29, Thêm vào yêu thích 29x29, Thêm vào giỏ 29x29, Thêm vào yêu thích 29x29. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-21). |
 | **Luồng** | 2 - Danh mục, thêm giỏ |
 | **Endpoint / Màn hình** | /books · BookCard |
 | **Nghi ngờ thuộc** | storefront |
@@ -402,7 +402,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-22-order-status-chip-english.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-22-order-status-chip-english.md). **Retest 2026-11-27: đã xác nhận.** Chip và trạng thái ở /vi/orders: nhãn tiếng Anh không có; tab Đổi/Trả: không có. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-22). |
 | **Luồng** | Đơn hàng và đổi/trả |
 | **Endpoint / Màn hình** | /orders · bộ lọc đơn hàng, đổi/trả |
 | **Nghi ngờ thuộc** | storefront |
@@ -418,7 +418,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md). **Retest 2026-11-27: đã xác nhận.** Breadcrumb sách tên dài nhất (93 ký tự) ở 375px: {'items': 3, 'overlap': 0, 'right': 355, 'vw': 375}. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-23). |
 | **Luồng** | 2 - Chi tiết sách |
 | **Endpoint / Màn hình** | /detail/[...slug] · breadcrumb |
 | **Nghi ngờ thuộc** | storefront |
@@ -434,7 +434,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md). **Retest 2026-11-27: đã xác nhận.** Khách chưa đăng nhập: trang Đơn hàng nhắc đăng nhập; menu thông báo nhắc đăng nhập. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-24). |
 | **Luồng** | Đơn hàng và thông báo |
 | **Endpoint / Màn hình** | /orders · menu thông báo |
 | **Nghi ngờ thuộc** | storefront |
@@ -450,7 +450,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md). **Retest 2026-11-27: đã xác nhận.** Menu phụ ở 375 và 413px (đo ở /vi/books, trang chủ đang lỗi do SF-45): chữ bị bẻ dòng không, liên kết khuất không cuộn được không. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-25). |
 | **Luồng** | 8 - Giao diện điện thoại |
 | **Endpoint / Màn hình** | Header · thanh điều hướng phụ |
 | **Nghi ngờ thuộc** | storefront |
@@ -466,7 +466,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-26-unknown-route-default-404.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-26-unknown-route-default-404.md). **Retest 2026-11-27: đã xác nhận.** HTTP 404, trang 404 của Velora có header và thông báo tiếng Việt. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-26). |
 | **Luồng** | Điều hướng, xử lý trang không tồn tại |
 | **Endpoint / Màn hình** | Đường dẫn không tồn tại dưới /vi |
 | **Nghi ngờ thuộc** | storefront |
@@ -482,7 +482,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-27-pages-share-same-tab-title.md). |
+| **Trạng thái** | Đã sửa trong commit `b771af7` trên `fix/storefront-bugs`; đã vào `origin/develop` qua PR #77 (merge `b3444b9`), kiểm tra Git ngày 2026-11-11. Chưa kiểm thử lại trong đợt cập nhật tài liệu này. Xem [kế hoạch](../fix-plans/storefront/SF-27-pages-share-same-tab-title.md). **Retest 2026-11-27: còn lỗi.** /vi/cart = "Giỏ hàng \| Velora"; /vi/orders = "Đơn hàng \| Velora"; /vi/search?q=python = "Tìm kiếm \| Velora"; /vi/login = "Velora — Nhà sách trực tuyến"; /vi/register = "Velora — Nhà sách trực tuyến". Giỏ, đơn hàng, tìm kiếm đã có tiêu đề riêng; đăng nhập và đăng ký vẫn dùng tiêu đề chung. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-27). |
 | **Luồng** | Điều hướng và tiêu đề trang |
 | **Endpoint / Màn hình** | /cart, /orders, /search, /login, /register |
 | **Nghi ngờ thuộc** | storefront |
@@ -530,7 +530,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi retest. **Retest 2026-11-27: đã xác nhận.** Gateway bật giới hạn (APP_RATE_LIMIT_ENABLED=true). 8 lần sai cùng email: [401, 401, 401, 401, 401, 429, 429, 429]; đăng nhập đúng ngay sau: 429. Chưa kiểm hành vi khi Redis lỗi (Redis dùng chung). Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-30). |
 | **Luồng** | 1 - Đăng nhập |
 | **Endpoint / Màn hình** | POST /auth/login |
 | **Nghi ngờ thuộc** | identity-service / api-gateway |
@@ -690,7 +690,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-14 khi test tính bất biến. Xem [kế hoạch](../fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) **Retest 2026-11-27: đã xác nhận.** 5 request tạo trả hàng cùng lúc cho 1 cuốn (đơn ORD-20261127-000198): mã [409, 409, 409, 201, 409]; đơn có 1 yêu cầu trả hàng. Xem [bằng chứng](../test-2026-11-27/retest/README.md#sf-40). |
 | **Luồng** | 6 - Đổi trả |
 | **Endpoint / Màn hình** | POST /api/v1/returns · PATCH /returns/{id}/approve, /received |
 | **Nghi ngờ thuộc** | order-service (kiểm tra số lượng còn trả được không nằm trong khóa; duyệt không kiểm lại) |

@@ -2,16 +2,16 @@
 
 Bảng trạng thái hiện hành của repo, cập nhật ngày 2026-11-27. Mỗi bug có một mã theo dõi. Chi tiết nằm ở [Storefront](storefront/loi.md), [Backoffice](backoffice/loi.md), [UI](ui/loi.md) hoặc [đợt Guide me ngày 27/11](test-2026-11-27/README.md).
 
-Mốc đối chiếu source ngày 27/11 gồm Backend `d5b6ac2`, Backoffice `8e1ecfbe` và Storefront `0a72cc4`. Bảng giữ kết quả trước đó ở những lỗi chưa có bằng chứng mới.
+Retest ngày 27/11: 15 lỗi đóng, 4 lỗi về Cần sửa, xem [kết quả retest](test-2026-11-27/retest/README.md). Mốc đối chiếu source ngày 27/11 gồm Backend `d5b6ac2`, Backoffice `8e1ecfbe` và Storefront `0a72cc4`. Bảng giữ kết quả trước đó ở những lỗi chưa có bằng chứng mới.
 
 ## Tóm tắt
 
 | Nhóm | Số lỗi | Trong đó Major |
 | --- | --- | --- |
-| [Cần sửa](#cần-sửa) | 38 | 12 |
+| [Cần sửa](#cần-sửa) | 42 | 13 |
 | [Cần xác nhận](#cần-xác-nhận) | 7 | 2 |
-| [Chờ retest](#chờ-retest) | 19 | 3 |
-| [Đã đóng](#đã-đóng) | 13 | 6 |
+| [Chờ retest](#chờ-retest) | 0 | 0 |
+| [Đã đóng](#đã-đóng) | 28 | 8 |
 | **Tổng** | **77** | **23** |
 
 Lỗi của [đợt test 27/11](test-2026-11-27/README.md) mang mã SF/BO; mã trong đợt (B.., P..) ghi ở hồ sơ từng lỗi. B02 là bằng chứng bổ sung của SF-38. BO-26 theo dõi mã danh mục, phần mã khuyến mãi thuộc BO-08. SF-45 và BO-07 có bằng chứng UI mới và tiếp tục dùng mã cũ. Mục UI bổ sung bốn lỗi có mã UI-01–UI-04. Xem [bằng chứng và phân loại UI](ui/loi.md).
@@ -34,6 +34,7 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [UI-01](ui/loi.md#ui-01) | Major | Sidebar chiếm chỗ nội dung ở 375 px | Backoffice | — | Tái hiện trên Chromium local | [Kế hoạch](fix-plans/backoffice/UI-01-mobile-sidebar-squeezes-content.md) · [Bằng chứng](ui/loi.md#ui-01) | Sidebar rộng 290 px. Vùng nội dung chính bắt đầu tại x = 290 và chỉ còn 85 px. Tài liệu rộng 395–476 px trên các màn đo được. |
 | [SF-47](storefront/loi.md#sf-47) | Major | Role USER không còn trên DB dùng chung: đăng ký mới sẽ lỗi | DB dùng chung (identity) | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#4-phát-hiện) | Chạy lại seed V2 hoặc tìm người đã xoá; không phải lỗi code |
 | [BO-24](backoffice/loi.md#bo-24) | Major | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung | DB dùng chung (identity) | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình) | Chạy lại seed V18; không phải lỗi code |
+| [SF-04](storefront/loi.md#sf-04) | Major | notification-service không khởi động vì thiếu biến Mongo | taschen-platform (docker-compose) | — | Retest 27/11: xác nhận một phần | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-04) | Còn: Docker Compose vẫn truyền `MONGO_URI` cho notification-service, service đọc `NOTIFICATION_MONGO_URI`; dev.ps1 đã đúng. Bản sửa đã có: backend `dev.ps1` trên `develop` |
 | [SF-42](storefront/loi.md#sf-42) | Minor | Giỏ hàng mất cập nhật khi thêm đồng thời | backend, order-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-42-concurrent-cart-lost-update.md) | — |
 | [SF-43](storefront/loi.md#sf-43) | Minor | Khởi tạo VNPay đồng thời tạo nhiều bản ghi thanh toán | backend, payment-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-43-duplicate-active-vnpay-payment.md) | — |
 | [BO-11](backoffice/loi.md#bo-11) | Minor | Nhiều phiếu nhập cho một đơn mua khi tạo đồng thời | backend, inventory-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-11-concurrent-purchase-order-imports.md) | Chỉ một phiếu nhận được hàng |
@@ -60,6 +61,9 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [BO-22](backoffice/loi.md#bo-22) | Minor | Guide me mô tả trạng thái Đã nhận cho yêu cầu nhập | Backoffice Guide me | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backoffice/BO-22-guide-stock-request-status.md) | Yêu cầu dừng ở ORDERED, đơn mua mới chuyển RECEIVED. |
 | [BO-23](backoffice/loi.md#bo-23) | Minor | Guide me bỏ qua bước Đánh dấu đã đặt trước khi nhận hàng | Backoffice Guide me | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backoffice/BO-23-guide-purchase-order-before-receipt.md) | Đơn APPROVED chưa nhập được. Phải sang ORDERED. |
 | [BO-25](backoffice/loi.md#bo-25) | Minor | Khách đăng nhập ứng dụng quản trị không được báo vì sao bị từ chối | backoffice | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#21-đăng-nhập-nhầm-ứng-dụng) | — |
+| [SF-13](storefront/loi.md#sf-13) | Minor | Giao diện hiện thương hiệu Taschen thay vì Velora | storefront (footer) | — | Retest 27/11: xác nhận một phần | [Kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-13) | Còn: Email liên hệ `hello@taschen.vn` ở footer mọi trang. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
+| [SF-14](storefront/loi.md#sf-14) | Minor | Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh | storefront (tiêu đề trang) | — | Retest 27/11: xác nhận một phần | [Kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-14) | Còn: Trang success và bản /en dùng tiêu đề chung tiếng Việt; tiêu đề trang chủ chờ SF-45. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
+| [SF-27](storefront/loi.md#sf-27) | Minor | Nhiều trang dùng chung tiêu đề tab | storefront (tiêu đề trang) | — | Retest 27/11: còn lỗi | [Kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-27) | Còn: Đăng nhập và đăng ký vẫn dùng tiêu đề chung. Bản sửa đã có: storefront PR #77 (`b3444b9`) |
 
 ## Cần xác nhận
 
@@ -81,25 +85,8 @@ Cần thêm bằng chứng hoặc cần chốt nghiệp vụ trước khi sửa.
 
 | Mã | Mức độ | Lỗi | Bản sửa | Phụ trách | Kết quả gần nhất | Việc tiếp theo | Kế hoạch | Ghi chú |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [SF-03](storefront/loi.md#sf-03) | Major | order-service không ghi log khi trả lỗi | backend PR #117 (`e090ed4`) | — | Chưa xác nhận | Đối chiếu traceId với log service khi có 500 | [Kế hoạch](fix-plans/backend/SF-03-order-service-no-error-log.md) | Đã có trong code và unit test; chưa đọc log của service đang chạy |
-| [SF-04](storefront/loi.md#sf-04) | Major | notification-service không khởi động vì thiếu biến Mongo | backend `dev.ps1` trên `develop` | — | Đã xác nhận với chạy native | Kiểm notification-service và gửi mail bằng Compose | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) | Phạm vi đã sửa là `dev.ps1`. Docker Compose vẫn truyền `MONGO_URI`, trong khi service đọc `NOTIFICATION_MONGO_URI`. Chưa kiểm thử Compose. |
-| [SF-40](storefront/loi.md#sf-40) | Major | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn | backend PR #121 (`3fd69ed`) | — | Chưa xác nhận lại | Kiểm tạo yêu cầu đổi trả đồng thời | [Kế hoạch](fix-plans/backend/SF-40-return-concurrent-duplicate-requests.md) | Khóa đơn trong giao dịch trước khi kiểm yêu cầu trả hàng đang mở. Có `ReturnRequestConcurrencyIT` trong source. BO-13 theo dõi bước tạo phiếu trả về kho. |
-| [SF-11](storefront/loi.md#sf-11) | Minor | Mọi lỗi 403 khi đăng nhập đều báo chưa xác thực email | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-11-login-403-wrong-unverified-message.md) | — |
-| [SF-13](storefront/loi.md#sf-13) | Minor | Giao diện hiện thương hiệu Taschen thay vì Velora | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-13-branding-taschen-instead-of-velora.md) | — |
-| [SF-14](storefront/loi.md#sf-14) | Minor | Tiêu đề tab là Book Store và trạng thái đơn hiện mã tiếng Anh | storefront PR #77 (`b3444b9`) | — | Xác nhận một phần | Đo tiêu đề trang chủ và payment-result theo locale | [Kế hoạch](fix-plans/storefront/SF-14-tab-title-book-store-english-status.md) | Trạng thái đã tiếng Việt; trang chủ và payment-result vẫn dùng tiêu đề chung |
-| [SF-17](storefront/loi.md#sf-17) | Minor | Chi tiết sách hiện 0 trang, năm 0, 0 g | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-17-book-detail-zero-pages-year-weight.md) | — |
-| [SF-18](storefront/loi.md#sf-18) | Minor | Địa chỉ dài tràn màn hình checkout | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-18-checkout-long-address-overflow.md) | — |
-| [SF-19](storefront/loi.md#sf-19) | Minor | Nội dung checkout sát mép màn hình | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-19-checkout-content-touches-edge.md) | — |
-| [SF-20](storefront/loi.md#sf-20) | Minor | Khung thông báo bị cắt ở điện thoại | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-20-toast-cut-off-mobile.md) | — |
-| [SF-21](storefront/loi.md#sf-21) | Minor | Nút yêu thích và thêm giỏ không hiện trên cảm ứng | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-21-wishlist-cart-buttons-hidden-touch.md) | — |
-| [SF-22](storefront/loi.md#sf-22) | Minor | Chip lọc trạng thái đơn hàng hiển thị tiếng Anh | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-22-order-status-chip-english.md) | — |
-| [SF-23](storefront/loi.md#sf-23) | Minor | Breadcrumb chồng chữ trên điện thoại | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-23-breadcrumb-overlap-mobile.md) | — |
-| [SF-24](storefront/loi.md#sf-24) | Minor | Khách chưa đăng nhập thấy trạng thái rỗng của đơn hàng và thông báo | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-24-guest-sees-empty-orders-notifications.md) | — |
-| [SF-25](storefront/loi.md#sf-25) | Minor | Menu phụ điện thoại bị chật và cắt chữ | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-25-mobile-subnav-cramped-clipped.md) | 9 trang chính không cuộn ngang ở 375px |
-| [SF-26](storefront/loi.md#sf-26) | Minor | Đường dẫn không tồn tại hiển thị trang 404 mặc định | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Chạy lại case gốc | [Kế hoạch](fix-plans/storefront/SF-26-unknown-route-default-404.md) | — |
-| [SF-27](storefront/loi.md#sf-27) | Minor | Nhiều trang dùng chung tiêu đề tab | storefront PR #77 (`b3444b9`) | — | Chưa xác nhận lại | Đo tiêu đề từng route bằng page.title() | [Kế hoạch](fix-plans/storefront/SF-27-pages-share-same-tab-title.md) | — |
-| [SF-30](storefront/loi.md#sf-30) | Minor | Đăng nhập sai nhiều lần không bị giới hạn | backend PR #140 (`e06e334`) | — | Chưa xác nhận lại | Kiểm giới hạn đăng nhập và hành vi khi Redis lỗi | [Kế hoạch](fix-plans/backend/SF-30-login-rate-limit.md) | Gateway giới hạn theo IP và email. Khi Redis lỗi, Gateway cho request đi qua. |
-| [BO-12](backoffice/loi.md#bo-12) | Minor | Điều hướng Admin làm mất tiền tố /admin, mất phiên | backoffice PR #369 (merge `fe73d47f`, BUG-001) | — | Chưa xác nhận lại | Kiểm điều hướng, tải lại và phiên dưới /admin | [Kế hoạch](fix-plans/backoffice/BO-12-admin-prefix-session.md) | Sửa ở lớp bảo vệ `proxy.ts`: đường dẫn thường được chuyển về `/admin/<console>/…`; chưa chạy lại trên giao diện |
+
+Không còn lỗi chờ retest sau [lần retest ngày 2026-11-27](test-2026-11-27/retest/README.md).
 
 ## Đã đóng
 
@@ -113,6 +100,8 @@ Kết luận ghi rõ trường hợp đã xác nhận bằng kiểm thử, đã 
 | [SF-07](storefront/loi.md#sf-07) | Major | Khởi tạo thanh toán VNPay trả 500 | backend PR #117 (`e090ed4`) và storefront PR #78 (`cdb599a`) | Đã xác nhận | Đã tới cổng sandbox và nhánh hủy; chưa test thanh toán thành công bằng thẻ |
 | [SF-08](storefront/loi.md#sf-08) | Major | Đặt hàng có mã khuyến mãi trả 400 | backend PR #117 (`e090ed4`) và storefront PR #78 (`cdb599a`) | Đã xác nhận | Một phần của lỗi vẫn còn ở SF-38 (cấp mã vượt lượt khi đồng thời) |
 | [SF-10](storefront/loi.md#sf-10) | Major | Địa chỉ chấp nhận ký tự đặc biệt, rồi đặt hàng lỗi | backend PR #117 (`e090ed4`) và storefront PR #78 (`cdb599a`) | Đã xác nhận | Kiểm bằng API |
+| [SF-03](storefront/loi.md#sf-03) | Major | order-service không ghi log khi trả lỗi | backend PR #117 (`e090ed4`) | Đã xác nhận ngày 27/11 | GET /orders/stats/month thiếu tham số trả 500, traceId 784134ea-d654-4d2e-a237-a7d13db65480. Log order-service có 1 dòng chứa traceId kèm exception (ERROR và stack trace). [bằng chứng](test-2026-11-27/retest/README.md#sf-03) |
+| [SF-40](storefront/loi.md#sf-40) | Major | Đổi trả đồng thời tạo nhiều yêu cầu cho một cuốn | backend PR #121 (`3fd69ed`) | Đã xác nhận ngày 27/11 | 5 request tạo trả hàng cùng lúc cho 1 cuốn (đơn ORD-20261127-000198): mã [409, 409, 409, 201, 409]; đơn có 1 yêu cầu trả hàng. [bằng chứng](test-2026-11-27/retest/README.md#sf-40) |
 | [SF-12](storefront/loi.md#sf-12) | Minor | Gợi ý sách và sự kiện hành vi lỗi 500 | backend PR #139 (`760c5e5`) | Đã xác nhận ở lần retest trước | `dev.ps1` trên `develop` khởi động tracking-service và truyền `TRACKING_MONGO_URI`. Lần retest trước, `/recommendations/trending` trả 200. |
 | [SF-15](storefront/loi.md#sf-15) | Minor | Bấm Huỷ đơn là huỷ ngay, không hỏi lại | storefront PR #77 (`b3444b9`) | Đã xác nhận | Nút Đã nhận hàng vẫn không hỏi: SF-32 |
 | [BO-04](backoffice/loi.md#bo-04) | Minor | Form tạo khuyến mãi báo lỗi chung và mất dữ liệu | backoffice PR #367 (`8bc1ee53`) | Đã xác nhận | Báo lỗi tại từng ô, không gửi request khi chưa hợp lệ |
@@ -120,6 +109,19 @@ Kết luận ghi rõ trường hợp đã xác nhận bằng kiểm thử, đã 
 | [BO-05](backoffice/loi.md#bo-05) | Minor | Ô giá tự bỏ dấu trừ, lưu -1 thành 1 | — | Chấp nhận | Người dùng xác nhận ngày 2026-11-12 là hợp lý; chưa kiểm tra lưu sau chuẩn hóa |
 | [SF-16](storefront/loi.md#sf-16) | Minor | Mật khẩu 5 ký tự vẫn được gửi lên API khi đăng nhập | — | Đã đóng | Đúng thiết kế: form đăng nhập không được nêu quy tắc mật khẩu |
 | [SF-36](storefront/loi.md#sf-36) | Minor | Hủy đơn không hoàn lượt mã | — | Đã đóng | Đúng quy tắc: khách tự hủy thì không hoàn (hệ thống và nhân viên hủy thì hoàn, xem SF-38) |
+| [BO-12](backoffice/loi.md#bo-12) | Minor | Điều hướng Admin làm mất tiền tố /admin, mất phiên | backoffice PR #369 (merge `fe73d47f`, BUG-001) | Đã xác nhận ngày 27/11 | Danh sách → mở đơn → tải lại → mở đơn APPROVED → Mark ordered: URL giữ /admin/warehouse và phiên Admin ở mọi bước (:3001/admin/warehouse/purchase-orders \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000051 \| :3001/admin/warehouse/purchase-orders/PO-20261127-000045 \| :3001/admin/warehouse/purchase-orders). Bấm Mark ordered cho PO-20261127-000045; trạng thái sau: ORDERED. [bằng chứng](test-2026-11-27/retest/README.md#bo-12) |
+| [SF-11](storefront/loi.md#sf-11) | Minor | Mọi lỗi 403 khi đăng nhập đều báo chưa xác thực email | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | 403 thân rỗng từ gateway báo: "Không kết nối được máy chủ. Vui lòng thử lại."; tài khoản chưa xác thực thật báo: "Tài khoản này chưa xác thực email nên chưa đăng nhập được.". [bằng chứng](test-2026-11-27/retest/README.md#sf-11) |
+| [SF-17](storefront/loi.md#sf-17) | Minor | Chi tiết sách hiện 0 trang, năm 0, 0 g | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Sách id 10 không có số trang, năm, cân nặng: trang chi tiết không còn hiện 0. [bằng chứng](test-2026-11-27/retest/README.md#sf-17) |
+| [SF-18](storefront/loi.md#sf-18) | Minor | Địa chỉ dài tràn màn hình checkout | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Địa chỉ 172 ký tự liền (API 201); checkout 390px: scrollWidth 390 / clientWidth 390. [bằng chứng](test-2026-11-27/retest/README.md#sf-18) |
+| [SF-19](storefront/loi.md#sf-19) | Minor | Nội dung checkout sát mép màn hình | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Checkout 1440px: nội dung cách mép trái 80px, khung header bắt đầu 80px. [bằng chứng](test-2026-11-27/retest/README.md#sf-19) |
+| [SF-20](storefront/loi.md#sf-20) | Minor | Khung thông báo bị cắt ở điện thoại | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Khung thông báo ở 390px nằm trong màn hình: trái 13, phải 377 / 390, dưới 584 / 844.. [bằng chứng](test-2026-11-27/retest/README.md#sf-20) |
+| [SF-21](storefront/loi.md#sf-21) | Minor | Nút yêu thích và thêm giỏ không hiện trên cảm ứng | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Ở 390px cảm ứng, 4 nút yêu thích/thêm giỏ trên thẻ sách đều hiện sẵn (không cần hover): Thêm vào yêu thích 29x29, Thêm vào yêu thích 29x29, Thêm vào giỏ 29x29, Thêm vào yêu thích 29x29. [bằng chứng](test-2026-11-27/retest/README.md#sf-21) |
+| [SF-22](storefront/loi.md#sf-22) | Minor | Chip lọc trạng thái đơn hàng hiển thị tiếng Anh | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Chip và trạng thái ở /vi/orders: nhãn tiếng Anh không có; tab Đổi/Trả: không có. [bằng chứng](test-2026-11-27/retest/README.md#sf-22) |
+| [SF-23](storefront/loi.md#sf-23) | Minor | Breadcrumb chồng chữ trên điện thoại | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Breadcrumb sách tên dài nhất (93 ký tự) ở 375px: {'items': 3, 'overlap': 0, 'right': 355, 'vw': 375}. [bằng chứng](test-2026-11-27/retest/README.md#sf-23) |
+| [SF-24](storefront/loi.md#sf-24) | Minor | Khách chưa đăng nhập thấy trạng thái rỗng của đơn hàng và thông báo | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Khách chưa đăng nhập: trang Đơn hàng nhắc đăng nhập; menu thông báo nhắc đăng nhập. [bằng chứng](test-2026-11-27/retest/README.md#sf-24) |
+| [SF-25](storefront/loi.md#sf-25) | Minor | Menu phụ điện thoại bị chật và cắt chữ | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | Menu phụ ở 375 và 413px (đo ở /vi/books, trang chủ đang lỗi do SF-45): chữ bị bẻ dòng không, liên kết khuất không cuộn được không. [bằng chứng](test-2026-11-27/retest/README.md#sf-25) |
+| [SF-26](storefront/loi.md#sf-26) | Minor | Đường dẫn không tồn tại hiển thị trang 404 mặc định | storefront PR #77 (`b3444b9`) | Đã xác nhận ngày 27/11 | HTTP 404, trang 404 của Velora có header và thông báo tiếng Việt. [bằng chứng](test-2026-11-27/retest/README.md#sf-26) |
+| [SF-30](storefront/loi.md#sf-30) | Minor | Đăng nhập sai nhiều lần không bị giới hạn | backend PR #140 (`e06e334`) | Đã xác nhận ngày 27/11 | Gateway bật giới hạn (APP_RATE_LIMIT_ENABLED=true). 8 lần sai cùng email: [401, 401, 401, 401, 401, 429, 429, 429]; đăng nhập đúng ngay sau: 429. Chưa kiểm hành vi khi Redis lỗi (Redis dùng chung). [bằng chứng](test-2026-11-27/retest/README.md#sf-30) |
 
 ## Cập nhật bảng này
 
