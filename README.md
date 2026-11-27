@@ -2,6 +2,8 @@
 
 **Theo dõi công việc hiện tại tại [trang-thai.md](trang-thai.md).**
 
+**Mọi lỗi chưa đóng trong một file (cho người fix và agent): [loi-hien-tai.md](loi-hien-tai.md).** File tự sinh bằng `python scripts/build_loi_hien_tai.py`; sửa nguồn (`trang-thai.md`, các `loi.md`) rồi chạy lại.
+
 Chuyển từ `manual-2026-11-10-v2.xlsx`, mỗi sheet là một file Markdown. Ảnh của đợt manual đầu nằm trong [images](images/) và được liên kết từ từng bug.
 
 - **Chi tiết lỗi** · [Storefront](storefront/loi.md), [Backoffice](backoffice/loi.md) và [lỗi giao diện](ui/loi.md).
