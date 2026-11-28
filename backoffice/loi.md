@@ -38,7 +38,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) |
+| **Trạng thái** | Chưa sửa. Xem [kế hoạch](../fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) **Đã sửa, đóng ngày 2026-11-28.** Console admin đã có tour Guide me nên hộp Guided tasks không còn trống.. |
 | **Luồng** | 6 - Phân quyền |
 | **Endpoint / Màn hình** | /forbidden · console admin |
 | **Nghi ngờ thuộc** | backoffice |

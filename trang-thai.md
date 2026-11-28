@@ -8,10 +8,10 @@ Bảng trạng thái hiện hành của repo, cập nhật ngày 2026-11-27. M�
 
 | Nhóm | Số lỗi | Trong đó Major |
 | --- | --- | --- |
-| [Cần sửa](#cần-sửa) | 38 | 12 |
-| [Cần xác nhận](#cần-xác-nhận) | 6 | 2 |
+| [Cần sửa](#cần-sửa) | 36 | 11 |
+| [Cần xác nhận](#cần-xác-nhận) | 5 | 1 |
 | [Chờ retest](#chờ-retest) | 0 | 0 |
-| [Đã đóng](#đã-đóng) | 33 | 9 |
+| [Đã đóng](#đã-đóng) | 36 | 11 |
 | **Tổng** | **77** | **23** |
 
 Lỗi của [đợt test 27/11](test-2026-11-27/README.md) mang mã SF/BO; mã trong đợt (B.., P..) ghi ở hồ sơ từng lỗi. B02 là bằng chứng bổ sung của SF-38. BO-26 theo dõi mã danh mục, phần mã khuyến mãi thuộc BO-08. SF-45 và BO-07 có bằng chứng UI mới và tiếp tục dùng mã cũ. Mục UI bổ sung bốn lỗi có mã UI-01–UI-04. Xem [bằng chứng và phân loại UI](ui/loi.md).
@@ -28,7 +28,6 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [SF-37](storefront/loi.md#sf-37) | Major | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ | backend, order-service và storefront | — | Còn lỗi ở lần retest trước | [kế hoạch](fix-plans/storefront-backend/SF-37-checkout-concurrent-duplicate-orders.md) | 10 request cùng lúc ra 10 đơn. Code hiện tại vẫn đọc giỏ, lưu đơn rồi mới xóa giỏ. |
 | [SF-38](storefront/loi.md#sf-38) | Major | Mã giảm giá được cấp vượt số lượt | backend, order-service và promotion-service | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/SF-38-promotion-usage-over-redeemed.md) | [B02](test-2026-11-27/guide-me/loi.md#b02): mã còn 1 lượt nhưng hai đơn đều xác nhận và giảm 18.900đ mỗi đơn. Quy tắc hoàn lượt đã chốt theo phương án B. |
 | [SF-46](storefront/loi.md#sf-46) | Major | Tồn ban đầu của phiên bản hiển thị có hàng dù Inventory bằng 0 | catalog-service, inventory-service | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/SF-46-variant-stock-initialization.md) | Storefront hiện còn 10, đặt hàng trả 409. Liên quan [SF-35](storefront/loi.md#sf-35). |
-| [SF-09](storefront/loi.md#sf-09) | Major | Link trong email xác thực trỏ tới địa chỉ giả | notification-service (cấu hình link) | — | Còn lỗi ở lần retest trước | [kế hoạch](fix-plans/backend-platform/SF-09-verify-email-link-fake-domain.md) | Khi chạy native, `dev.ps1` chưa truyền `VERIFY_URL_PREFIX`, nên thiếu cấu hình sẽ dùng `api.taschen.example`. Compose có giá trị riêng. Chưa kiểm link trên môi trường triển khai. |
 | [BO-14](backoffice/loi.md#bo-14) | Major | Giá nhập bằng 0 khi tạo đơn mua trả HTTP 500 | inventory-service | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/BO-14-purchase-order-zero-import-price.md) | Request chấp nhận 0, lớp lưu yêu cầu giá lớn hơn 0. |
 | [BO-15](backoffice/loi.md#bo-15) | Major | API tạo được đơn mua với nhà cung cấp đã ngừng hoạt động | inventory-service | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/BO-15-purchase-order-inactive-supplier.md) | Ô chọn trên UI đã ẩn nhà cung cấp, API vẫn trả 201. |
 | [UI-01](ui/loi.md#ui-01) | Major | Sidebar chiếm chỗ nội dung ở 375 px | Backoffice | — | Tái hiện trên Chromium local | [Kế hoạch](fix-plans/backoffice/UI-01-mobile-sidebar-squeezes-content.md) · [Bằng chứng](ui/loi.md#ui-01) | Sidebar rộng 290 px. Vùng nội dung chính bắt đầu tại x = 290 và chỉ còn 85 px. Tài liệu rộng 395–476 px trên các màn đo được. |
@@ -46,7 +45,6 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [SF-31](storefront/loi.md#sf-31) | Minor | Tên hồ sơ nhận ký tự đặc biệt như `<script>` | backend, identity-service | — | Tái hiện | [kế hoạch](fix-plans/storefront-backend/SF-31-profile-name-validation.md) | — |
 | [SF-32](storefront/loi.md#sf-32) | Minor | Nút Đã nhận hàng không hỏi xác nhận | storefront | — | Tái hiện | [kế hoạch](fix-plans/storefront/SF-32-confirm-before-marking-order-received.md) | — |
 | [SF-41](storefront/loi.md#sf-41) | Minor | Request trùng đồng thời trả 500 thay vì 409 | backend, nhiều service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-41-concurrent-business-conflict-http-409.md) | Dữ liệu đúng, chỉ sai mã trả về |
-| [BO-01](backoffice/loi.md#bo-01) | Minor | Hộp Guided tasks trống phủ lên trang không có quyền | backoffice | — | Tái hiện | [kế hoạch](fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) | — |
 | [BO-02](backoffice/loi.md#bo-02) | Minor | Duyệt khuyến mãi trả updatedAt cũ | backend, promotion-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-02-promotion-approve-stale-updated-at.md) | — |
 | [BO-08](backoffice/loi.md#bo-08) | Minor | Mã khuyến mãi không kiểm định dạng và độ dài | backend, promotion-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-08-promotion-code-format-length.md) | [BO-26](backoffice/loi.md#bo-26) xác nhận phần định dạng: mã có chữ thường và dấu cách vẫn được lưu. |
 | [BO-10](backoffice/loi.md#bo-10) | Minor | Nhà cung cấp trùng khi tạo đồng thời | backend, inventory-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-10-concurrent-duplicate-suppliers.md) | — |
@@ -67,7 +65,6 @@ Cần thêm bằng chứng hoặc cần chốt nghiệp vụ trước khi sửa.
 
 | Mã | Mức độ | Lỗi | Khu vực | Phụ trách | Việc tiếp theo | Kế hoạch | Ghi chú |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [SF-06](storefront/loi.md#sf-06) | Major | Email xác thực đến không ổn định | hạ tầng / backend | — | Chạy nhiều lượt đăng ký và kiểm log gửi email | [kế hoạch](fix-plans/platform/SF-06-verify-email-delivery-unreliable.md) | Một lần đăng ký nhận email sau khoảng 30 giây. Chưa xác minh độ ổn định của luồng gửi hiện tại. |
 | [SF-44](storefront/loi.md#sf-44) | Major | Mất event thì đơn có thể kẹt PENDING | backend, order-service | — | Tái hiện mất sự kiện trong môi trường test (luồng online nay là SePay) | [kế hoạch](fix-plans/backend/SF-44-order-event-lost-stuck-pending.md) | Code gửi sự kiện sau commit và chỉ ghi log khi gửi lỗi. Chưa thấy cơ chế gửi lại hoặc xử lý đơn kẹt cho luồng đặt hàng. |
 | [SF-34](storefront/loi.md#sf-34) | Minor | Ô mã khuyến mãi phân biệt hoa thường | storefront, promotion-service | — | Chốt quy tắc viết hoa và chuẩn hóa mã | [kế hoạch](fix-plans/storefront-backend/SF-34-promotion-code-case-policy.md) | Cần xác nhận |
 | [BO-03](backoffice/loi.md#bo-03) | Minor | Khuyến mãi quá hạn vẫn hiện Active hoặc Pending | seller, promotion-service | — | Đối chiếu trạng thái trước và sau mốc hết hạn | [kế hoạch](fix-plans/backoffice/BO-03-promotion-expired-still-active.md) | Chưa xác nhận lại |
@@ -123,6 +120,9 @@ Kết luận ghi rõ trường hợp đã xác nhận bằng kiểm thử, đã 
 | [BO-09](backoffice/loi.md#bo-09) | Minor | Tìm kiếm khuyến mãi trả 500 | backend `7fa1a8f` (BUG-027) | Đã xác nhận ngày 27/11 | search → 200 (159 kết quả); search?keyword=deep → 200 (159 kết quả); search?name=black → 200 (1 kết quả); search?code=BLACK → 200 (1 kết quả); search?status=ACTIVE&amp;isActive=true → 200 (18 kết quả). [bằng chứng](test-2026-11-27/retest/README.md#bo-09) |
 | [SF-35](storefront/loi.md#sf-35) | Minor | Tồn kho hiển thị cũ do cache catalog | backend `576eee4` (REQ-009) | Đã xác nhận ngày 27/11 | Sapiens (id 67): trước 18/18, sau khi đặt 1 cuốn 17/17, sau khi hủy 18/18 (API sách / inventory). [bằng chứng](test-2026-11-27/retest/README.md#sf-35) |
 | [BO-24](backoffice/loi.md#bo-24) | Major | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung | — | Không còn áp dụng | REQ-023 bỏ danh sách chuyển khoản không khớp cùng hai thao tác áp vào đơn và hoàn tiền (backend `7614b47`), migration identity `V19__remove_unapplied_action_permissions` xoá hai quyền. Đối chiếu code 28/11 (backend `77fae31`) |
+| [SF-06](storefront/loi.md#sf-06) | Major | Email xác thực đến không ổn định | backend `54670aa`, platform `ed8d274` (REQ-025) | Đã sửa | Gửi email chuyển từ Mailpit sang Gmail SMTP. Cần `MAIL_USERNAME`/`MAIL_PASSWORD` trong `.env` mới gửi được |
+| [SF-09](storefront/loi.md#sf-09) | Major | Link trong email xác thực trỏ tới địa chỉ giả | platform `ed8d274` (REQ-025) | Đã sửa | Docker Compose truyền `VERIFY_URL_PREFIX` là `http://localhost:8080/api/v1/auth/verify?token=`. |
+| [BO-01](backoffice/loi.md#bo-01) | Minor | Hộp Guided tasks trống phủ lên trang không có quyền | backoffice `1e69528c`, `48982afb` (REQ-019) | Đã sửa | Console admin đã có tour Guide me nên hộp Guided tasks không còn trống. |
 
 ## Cập nhật bảng này
 

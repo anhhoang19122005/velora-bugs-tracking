@@ -145,6 +145,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | **Đã sửa, đóng ngày 2026-11-28.** Gửi email chuyển từ Mailpit sang Gmail SMTP. Cần `MAIL_USERNAME`/`MAIL_PASSWORD` trong `.env` mới gửi được. |
 | **Luồng** | 1 - Đăng ký |
 | **Endpoint / Màn hình** | Mailpit · notification-service |
 | **Nghi ngờ thuộc** | backend / hạ tầng |
@@ -194,6 +195,7 @@ Ghi nhận ngày 2026-11-27: **SF-45–SF-47** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
+| **Trạng thái** | **Đã sửa, đóng ngày 2026-11-28.** Docker Compose truyền `VERIFY_URL_PREFIX` là `http://localhost:8080/api/v1/auth/verify?token=`.. |
 | **Luồng** | 1 - Xác thực email |
 | **Endpoint / Màn hình** | Email xác thực · notification-service |
 | **Nghi ngờ thuộc** | notification-service (cấu hình link) |

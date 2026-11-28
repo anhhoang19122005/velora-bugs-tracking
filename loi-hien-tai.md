@@ -6,7 +6,7 @@ Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi h�
 
 Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng thời, cấu hình, điều hướng. **Giao diện**: bố cục, hiển thị, chữ, bản dịch, thao tác trên màn hình, và lời hướng dẫn Guide me khác với màn hình. Phân loại khai báo trong `UI_CODES` của script.
 
-### Lỗi logic (26)
+### Lỗi logic (24)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
@@ -15,7 +15,6 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [BO-15](#bo-15) | Major | Cần sửa | API tạo được đơn mua với nhà cung cấp đã ngừng hoạt động |
 | [BO-16](#bo-16) | Major | Cần sửa | Duyệt trả kho cho sách chưa có lô không cộng tồn |
 | [SF-04](#sf-04) | Major | Cần sửa | notification-service không khởi động vì thiếu biến Mongo |
-| [SF-09](#sf-09) | Major | Cần sửa | Link trong email xác thực trỏ tới địa chỉ giả |
 | [SF-37](#sf-37) | Major | Cần sửa | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ |
 | [SF-38](#sf-38) | Major | Cần sửa | Mã giảm giá được cấp vượt số lượt |
 | [SF-45](#sf-45) | Major | Cần sửa | Ảnh bìa từ host ngoài cấu hình làm lỗi toàn bộ trang chủ |
@@ -32,17 +31,15 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [SF-39](#sf-39) | Minor | Cần sửa | Đơn báo thành công rồi tự hủy khi hai người tranh số hàng cuối |
 | [SF-41](#sf-41) | Minor | Cần sửa | Request trùng đồng thời trả 500 thay vì 409 |
 | [SF-42](#sf-42) | Minor | Cần sửa | Giỏ hàng mất cập nhật khi thêm đồng thời |
-| [SF-06](#sf-06) | Major | Cần xác nhận | Email xác thực đến không ổn định |
 | [SF-44](#sf-44) | Major | Cần xác nhận | Mất event thì đơn có thể kẹt PENDING |
 | [BO-03](#bo-03) | Minor | Cần xác nhận | Khuyến mãi quá hạn vẫn hiện Active hoặc Pending |
 | [SF-34](#sf-34) | Minor | Cần xác nhận | Ô mã khuyến mãi phân biệt hoa thường |
 
-### Lỗi giao diện (18)
+### Lỗi giao diện (17)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
 | [UI-01](#ui-01) | Major | Cần sửa | Sidebar chiếm chỗ nội dung ở 375 px |
-| [BO-01](#bo-01) | Minor | Cần sửa | Hộp Guided tasks trống phủ lên trang không có quyền |
 | [BO-07](#bo-07) | Minor | Cần sửa | Dòng hàng của đơn mua phải cuộn ngang ở 1024px |
 | [BO-17](#bo-17) | Minor | Cần sửa | Guide me mô tả nút bật/tắt và đường dẫn banner mà form không có |
 | [BO-18](#bo-18) | Minor | Cần sửa | Guide me ngụ ý có thể bỏ trống số lượt khuyến mãi |
@@ -211,35 +208,6 @@ Hồ sơ lỗi (storefront/loi.md):
 | **Bằng chứng (status/body)** | MongoSocketOpenException, Application run failed |
 | **API Response** | Không áp dụng |
 | **Ảnh bằng chứng** | [SF-04-1.png](images/SF-04-1.png) |
-
-### SF-09
-
-**Link trong email xác thực trỏ tới địa chỉ giả**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần sửa |
-| Mức độ | Major |
-| Khu vực | notification-service (cấu hình link) |
-| Kết quả gần nhất | Còn lỗi ở lần retest trước |
-| Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backend-platform/SF-09-verify-email-link-fake-domain.md) |
-| Ghi chú | Khi chạy native, `dev.ps1` chưa truyền `VERIFY_URL_PREFIX`, nên thiếu cấu hình sẽ dùng `api.taschen.example`. Compose có giá trị riêng. Chưa kiểm link trên môi trường triển khai. |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Luồng** | 1 - Xác thực email |
-| **Endpoint / Màn hình** | Email xác thực · notification-service |
-| **Nghi ngờ thuộc** | notification-service (cấu hình link) |
-| **Bước tái hiện** | 1. Đăng ký<br>2. Mở email trong Mailpit, bấm liên kết |
-| **Mong đợi** | Liên kết mở được hệ thống đang chạy |
-| **Thực tế** | Liên kết trỏ tới https://api.taschen.example/... là địa chỉ giả, không mở được. Phải dùng mã trong email |
-| **Bằng chứng (status/body)** | Nội dung email trong Mailpit |
-| **API Response** | <pre>GET /auth/verify qua proxy local<br>HTTP 200<br>{<br>  "success": true,<br>  "data": null,<br>  "message": "OK"<br>}</pre> |
-| **Ảnh bằng chứng** | [SF-09-1.jpg](images/SF-09-1.jpg) |
 
 ### SF-37
 
@@ -422,35 +390,6 @@ Hồ sơ lỗi (ui/loi.md):
 | Mong đợi | Điều hướng, bảng và thao tác chính dùng được ở 375 px. Sidebar desktop vẫn mở và thu gọn được. |
 | Bằng chứng | [Ảnh 1](ui/evidence/2026-11-27/cold-admin-admin-accounts-375.png) · [Ảnh 2](ui/evidence/2026-11-27/cold-seller-seller-orders-375.png) · [Ảnh 3](ui/evidence/2026-11-27/cold-warehouse-warehouse-suppliers-375.png) |
 | Kế hoạch | [Kế hoạch](fix-plans/backoffice/UI-01-mobile-sidebar-squeezes-content.md) |
-
-### BO-01
-
-**Hộp Guided tasks trống phủ lên trang không có quyền**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Giao diện |
-| Nhóm | Cần sửa |
-| Mức độ | Minor |
-| Khu vực | backoffice |
-| Kết quả gần nhất | Tái hiện |
-| Kế hoạch / bằng chứng | [kế hoạch](fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) |
-
-Hồ sơ lỗi (backoffice/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Minor |
-| **Trạng thái** | Chưa sửa. Xem [kế hoạch](fix-plans/backoffice/BO-01-forbidden-page-empty-guided-tasks.md) |
-| **Luồng** | 6 - Phân quyền |
-| **Endpoint / Màn hình** | /forbidden · console admin |
-| **Nghi ngờ thuộc** | backoffice |
-| **Bước tái hiện** | Đăng nhập seller ở console admin |
-| **Mong đợi** | Trang không có quyền hiển thị gọn |
-| **Thực tế** | Hộp Guided tasks trống phủ lên trang không có quyền |
-| **Bằng chứng (status/body)** | Ảnh |
-| **API Response** | Không áp dụng |
-| **Ảnh bằng chứng** | [BO-01-1.jpg](images/BO-01-1.jpg) |
 
 ### BO-02
 
@@ -1193,35 +1132,6 @@ Hồ sơ lỗi (ui/loi.md):
 
 
 ## Cần xác nhận
-
-### SF-06
-
-**Email xác thực đến không ổn định**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần xác nhận |
-| Mức độ | Major |
-| Khu vực | hạ tầng / backend |
-| Việc tiếp theo | Chạy nhiều lượt đăng ký và kiểm log gửi email |
-| Kế hoạch | [kế hoạch](fix-plans/platform/SF-06-verify-email-delivery-unreliable.md) |
-| Ghi chú | Một lần đăng ký nhận email sau khoảng 30 giây. Chưa xác minh độ ổn định của luồng gửi hiện tại. |
-
-Hồ sơ lỗi (storefront/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Luồng** | 1 - Đăng ký |
-| **Endpoint / Màn hình** | Mailpit · notification-service |
-| **Nghi ngờ thuộc** | backend / hạ tầng |
-| **Bước tái hiện** | 1. Đăng ký tài khoản mới<br>2. Mở Mailpit |
-| **Mong đợi** | Có email xác thực |
-| **Thực tế** | Đăng ký 201 nhưng chỉ 1 trong 4 email đến Mailpit, các email còn lại không thấy. Nghi có consumer khác trên CloudAMQP dùng chung nhận mất, chưa xác nhận |
-| **Bằng chứng (status/body)** | Mailpit có 1 thư (tc09@taschen.test) sau 4 lần đăng ký |
-| **API Response** | POST /auth/register: 201. Status ghi nhận từ tab Network. Body không lưu được vì đã chuyển trang trước khi đọc. |
-| **Ảnh bằng chứng** | [SF-06-1.jpg](images/SF-06-1.jpg) |
 
 ### SF-44
 
