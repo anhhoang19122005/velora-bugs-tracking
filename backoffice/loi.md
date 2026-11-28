@@ -406,7 +406,7 @@ Ghi nhận ngày 2026-11-27: **BO-13–BO-26** là lỗi mới từ đợt test 
 | Trường | Nội dung |
 |---|---|
 | **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test phân quyền, mã trong đợt: P2). |
+| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test phân quyền, mã trong đợt: P2). **Đối chiếu code 2026-11-28: không còn áp dụng.** REQ-023 bỏ danh sách chuyển khoản không khớp cùng hai thao tác áp vào đơn và hoàn tiền (backend `7614b47`), migration identity `V19__remove_unapplied_action_permissions` xoá hai quyền. Đối chiếu code 28/11 (backend `77fae31`). |
 | **Luồng** | Tài chính (Admin) |
 | **Endpoint / Màn hình** | POST /api/v1/payments/transfers/{sepayId}/apply · POST /api/v1/payments/transfers/{sepayId}/refunds |
 | **Nghi ngờ thuộc** | DB dùng chung (identity, ma trận quyền), không phải lỗi code |

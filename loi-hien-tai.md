@@ -6,7 +6,7 @@ Mỗi lỗi gồm: trạng thái theo dõi (từ bảng trạng thái), rồi h�
 
 Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng thời, cấu hình, điều hướng. **Giao diện**: bố cục, hiển thị, chữ, bản dịch, thao tác trên màn hình, và lời hướng dẫn Guide me khác với màn hình. Phân loại khai báo trong `UI_CODES` của script.
 
-### Lỗi logic (27)
+### Lỗi logic (26)
 
 | Mã | Mức độ | Nhóm | Lỗi |
 | --- | --- | --- | --- |
@@ -14,7 +14,6 @@ Chia hai loại. **Logic**: quy tắc nghiệp vụ, dữ liệu, API, đồng t
 | [BO-14](#bo-14) | Major | Cần sửa | Giá nhập bằng 0 khi tạo đơn mua trả HTTP 500 |
 | [BO-15](#bo-15) | Major | Cần sửa | API tạo được đơn mua với nhà cung cấp đã ngừng hoạt động |
 | [BO-16](#bo-16) | Major | Cần sửa | Duyệt trả kho cho sách chưa có lô không cộng tồn |
-| [BO-24](#bo-24) | Major | Cần sửa | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung |
 | [SF-04](#sf-04) | Major | Cần sửa | notification-service không khởi động vì thiếu biến Mongo |
 | [SF-09](#sf-09) | Major | Cần sửa | Link trong email xác thực trỏ tới địa chỉ giả |
 | [SF-37](#sf-37) | Major | Cần sửa | Đặt hàng đồng thời tạo nhiều đơn từ một giỏ |
@@ -182,36 +181,6 @@ Hồ sơ lỗi (backoffice/loi.md):
 | **Bằng chứng (status/body)** | Đợt test 2026-11-27, case GM11-03 ([B07](test-2026-11-27/guide-me/loi.md#b07)). Response đầy đủ: [GM11-03](test-2026-11-27/guide-me/api/GM11-03.txt) |
 | **API Response** | <pre>POST /api/v1/inventory/return-to-warehouse<br>Request body:<br>{<br>  "reason": "Khách trả cuốn sách chưa từng nhập kho qua phiếu nhập",<br>  "items": [<br>    {<br>      "bookId": 70,<br>      "variantId": 1,<br>      "quantity": 1<br>    }<br>  ],<br>  "returnRequestId": 64<br>(rút gọn)</pre> |
 | **Ảnh bằng chứng** | [BO-16-1.png](images/BO-16-1.png) |
-
-### BO-24
-
-**Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung**
-
-| Theo dõi | |
-| --- | --- |
-| Loại | Logic |
-| Nhóm | Cần sửa |
-| Mức độ | Major |
-| Khu vực | DB dùng chung (identity) |
-| Kết quả gần nhất | Tái hiện ngày 27/11 |
-| Kế hoạch / bằng chứng | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình) |
-| Ghi chú | Chạy lại seed V18; không phải lỗi code |
-
-Hồ sơ lỗi (backoffice/loi.md):
-
-| Trường | Nội dung |
-|---|---|
-| **Mức độ** | Major |
-| **Trạng thái** | Chưa sửa. Phát hiện ngày 2026-11-27 (test phân quyền, mã trong đợt: P2). |
-| **Luồng** | Tài chính (Admin) |
-| **Endpoint / Màn hình** | POST /api/v1/payments/transfers/{sepayId}/apply · POST /api/v1/payments/transfers/{sepayId}/refunds |
-| **Nghi ngờ thuộc** | DB dùng chung (identity, ma trận quyền), không phải lỗi code |
-| **Bước tái hiện** | 1. Đăng nhập Admin<br>2. Gọi POST /payments/transfers/{id}/apply hoặc /refunds (id bất kỳ) |
-| **Mong đợi** | Qua được gateway (400/404 với id không tồn tại); quyền PAYMENT_TRANSFER_APPLY, PAYMENT_UNAPPLIED_REFUND được seed ở V18 |
-| **Thực tế** | Gateway trả 403 "no granting permission". GET /api/v1/permissions không có hai quyền này; Admin không áp được chuyển khoản vào đơn, không hoàn được khoản chuyển nhầm |
-| **Bằng chứng (status/body)** | Đợt test 2026-11-27, phần phân quyền ([P2](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình)), [results.json](test-2026-11-27/phan-quyen/data/results.json) |
-| **API Response** | <pre>POST /api/v1/payments/transfers/999999999/apply<br>HTTP 403<br>{ "code": "FORBIDDEN", "message": "You do not have permission to perform this action" }</pre> |
-| **Ảnh bằng chứng** | Không có |
 
 ### SF-04
 

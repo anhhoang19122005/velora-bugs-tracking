@@ -8,10 +8,10 @@ Bảng trạng thái hiện hành của repo, cập nhật ngày 2026-11-27. M�
 
 | Nhóm | Số lỗi | Trong đó Major |
 | --- | --- | --- |
-| [Cần sửa](#cần-sửa) | 39 | 13 |
+| [Cần sửa](#cần-sửa) | 38 | 12 |
 | [Cần xác nhận](#cần-xác-nhận) | 6 | 2 |
 | [Chờ retest](#chờ-retest) | 0 | 0 |
-| [Đã đóng](#đã-đóng) | 32 | 8 |
+| [Đã đóng](#đã-đóng) | 33 | 9 |
 | **Tổng** | **77** | **23** |
 
 Lỗi của [đợt test 27/11](test-2026-11-27/README.md) mang mã SF/BO; mã trong đợt (B.., P..) ghi ở hồ sơ từng lỗi. B02 là bằng chứng bổ sung của SF-38. BO-26 theo dõi mã danh mục, phần mã khuyến mãi thuộc BO-08. SF-45 và BO-07 có bằng chứng UI mới và tiếp tục dùng mã cũ. Mục UI bổ sung bốn lỗi có mã UI-01–UI-04. Xem [bằng chứng và phân loại UI](ui/loi.md).
@@ -33,7 +33,6 @@ Xếp Major trước. Dùng kế hoạch trong từng dòng để giao việc. C
 | [BO-15](backoffice/loi.md#bo-15) | Major | API tạo được đơn mua với nhà cung cấp đã ngừng hoạt động | inventory-service | — | Còn lỗi ngày 27/11 | [kế hoạch](fix-plans/backend/BO-15-purchase-order-inactive-supplier.md) | Ô chọn trên UI đã ẩn nhà cung cấp, API vẫn trả 201. |
 | [UI-01](ui/loi.md#ui-01) | Major | Sidebar chiếm chỗ nội dung ở 375 px | Backoffice | — | Tái hiện trên Chromium local | [Kế hoạch](fix-plans/backoffice/UI-01-mobile-sidebar-squeezes-content.md) · [Bằng chứng](ui/loi.md#ui-01) | Sidebar rộng 290 px. Vùng nội dung chính bắt đầu tại x = 290 và chỉ còn 85 px. Tài liệu rộng 395–476 px trên các màn đo được. |
 | [SF-47](storefront/loi.md#sf-47) | Major | Role USER không còn trên DB dùng chung: đăng ký mới sẽ lỗi | DB dùng chung (identity) | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#4-phát-hiện) | Chạy lại seed V2 hoặc tìm người đã xoá; không phải lỗi code |
-| [BO-24](backoffice/loi.md#bo-24) | Major | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung | DB dùng chung (identity) | — | Tái hiện ngày 27/11 | [Bằng chứng](test-2026-11-27/phan-quyen/README.md#31-admin-bị-chặn-ở-chức-năng-của-chính-mình) | Chạy lại seed V18; không phải lỗi code |
 | [SF-04](storefront/loi.md#sf-04) | Major | notification-service không khởi động vì thiếu biến Mongo | taschen-platform (docker-compose) | — | Retest 27/11: xác nhận một phần | [Kế hoạch](fix-plans/backend-platform/SF-04-dev-script-notification-missing-mongo-env.md) · [bằng chứng](test-2026-11-27/retest/README.md#sf-04) | Còn: Docker Compose vẫn truyền `MONGO_URI` cho notification-service, service đọc `NOTIFICATION_MONGO_URI`; dev.ps1 đã đúng. Bản sửa đã có: backend `dev.ps1` trên `develop` |
 | [SF-42](storefront/loi.md#sf-42) | Minor | Giỏ hàng mất cập nhật khi thêm đồng thời | backend, order-service | — | Tái hiện | [kế hoạch](fix-plans/backend/SF-42-concurrent-cart-lost-update.md) | — |
 | [BO-11](backoffice/loi.md#bo-11) | Minor | Nhiều phiếu nhập cho một đơn mua khi tạo đồng thời | backend, inventory-service | — | Tái hiện | [kế hoạch](fix-plans/backend/BO-11-concurrent-purchase-order-imports.md) | Chỉ một phiếu nhận được hàng |
@@ -123,6 +122,7 @@ Kết luận ghi rõ trường hợp đã xác nhận bằng kiểm thử, đã 
 | [SF-43](storefront/loi.md#sf-43) | Minor | Khởi tạo thanh toán đồng thời tạo nhiều bản ghi (ghi nhận với VNPay, nay là SePay) | backend `5b8445f` (BUG-021) | Đã xác nhận ngày 27/11 | Đơn SePay ORD-20261127-000201: 5 request khởi tạo thanh toán cùng lúc trả [200, 200, 200, 200, 200], 1 mã thanh toán chung; đơn có 1 payment PENDING (tổng 1). Đã hủy đơn sau khi test. [bằng chứng](test-2026-11-27/retest/README.md#sf-43) |
 | [BO-09](backoffice/loi.md#bo-09) | Minor | Tìm kiếm khuyến mãi trả 500 | backend `7fa1a8f` (BUG-027) | Đã xác nhận ngày 27/11 | search → 200 (159 kết quả); search?keyword=deep → 200 (159 kết quả); search?name=black → 200 (1 kết quả); search?code=BLACK → 200 (1 kết quả); search?status=ACTIVE&amp;isActive=true → 200 (18 kết quả). [bằng chứng](test-2026-11-27/retest/README.md#bo-09) |
 | [SF-35](storefront/loi.md#sf-35) | Minor | Tồn kho hiển thị cũ do cache catalog | backend `576eee4` (REQ-009) | Đã xác nhận ngày 27/11 | Sapiens (id 67): trước 18/18, sau khi đặt 1 cuốn 17/17, sau khi hủy 18/18 (API sách / inventory). [bằng chứng](test-2026-11-27/retest/README.md#sf-35) |
+| [BO-24](backoffice/loi.md#bo-24) | Major | Admin mất 2 quyền chuyển khoản SePay trên DB dùng chung | — | Không còn áp dụng | REQ-023 bỏ danh sách chuyển khoản không khớp cùng hai thao tác áp vào đơn và hoàn tiền (backend `7614b47`), migration identity `V19__remove_unapplied_action_permissions` xoá hai quyền. Đối chiếu code 28/11 (backend `77fae31`) |
 
 ## Cập nhật bảng này
 
